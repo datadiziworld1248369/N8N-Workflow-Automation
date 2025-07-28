@@ -1,0 +1,807 @@
+{
+  "active": false,
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Get Token Lark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Normalize data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send event to Meta": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize data": {
+      "main": [
+        [
+          {
+            "node": "Encrypt data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Encrypt data": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Token Lark": {
+      "main": [
+        [
+          {
+            "node": "Get data in lark base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get data in lark base": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Send event to Meta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ID BM": {
+      "main": [
+        [
+          {
+            "node": "Token dài hạn đúng không",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bm & token": {
+      "main": [
+        [
+          {
+            "node": "ID BM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Token dài hạn đúng không": {
+      "main": [
+        [
+          {
+            "node": "Lấy data ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy data ads": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create token": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy ìnor app & token shorrt meta": {
+      "main": [
+        [
+          {
+            "node": "Bm & token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Create token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize data1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "Normalize data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-23T14:10:41.522Z",
+  "id": "BFEAyCSz1xbyHerS",
+  "isArchived": false,
+  "meta": null,
+  "name": "TP",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "02d8fef1-66c0-4e59-8713-7d4e7ca33e32",
+              "name": "app_id",
+              "value": "cli_a7f1cfbe36b81010",
+              "type": "string"
+            },
+            {
+              "id": "32404746-b39b-4078-8463-5e0f865f35d0",
+              "name": "app_scret",
+              "value": "IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        180,
+        0
+      ],
+      "id": "67064a18-cb16-44a7-bb7d-e03c7b20e674",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data.items",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        760,
+        0
+      ],
+      "id": "4903963d-7776-42c2-aaa2-ab4ffa5cdd53",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "=v22.0",
+        "node": "468436841049517",
+        "edge": "=events",
+        "options": {
+          "queryParametersJson": "={\n  \"data\": [\n    {\n      \"event_name\": \"Purchase\",\n      \"event_time\": \"{{ $now.toISO() }}\",\n      \"user_data\": {\n        \"em\": \"{{ $json.user_data.email }}\",\n        \"ph\": \"{{ $json.user_data.phone }}\",\n        \"fn\": \"{{ $json.user_data.name }}\"\n      },\n      \"custom_data\": {\n        \"value\": {{ $json.Meta_data.cost || 0 }},\n        \"currency\": \"VND\"\n      }\n    }\n  ]\n}\n"
+        }
+      },
+      "id": "5bfff0ea-1f88-4e8e-9227-c39c7912133e",
+      "name": "Send event to Meta",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        20
+      ],
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "eOaZUcKWfhwNtWPN",
+          "name": "LongTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "65d1994d-f4b8-478a-8cf1-490990e6639d",
+              "name": "Meta_data.phone",
+              "value": "={{ $json[\"data.items\"].fields[\"Số điện thoại\"][0].text }}",
+              "type": "string"
+            },
+            {
+              "id": "e3ba8236-2630-40b8-bcdb-a78d74bdd7ff",
+              "name": "Meta_data.cost",
+              "value": "={{ $json[\"data.items\"].fields[\"Tổng công\"][0].text }}",
+              "type": "string"
+            },
+            {
+              "id": "e914397d-1f40-42a2-84c8-6a6d877e8db4",
+              "name": "Lark.record_id",
+              "value": "={{ $json[\"data.items\"].record_id }}",
+              "type": "string"
+            },
+            {
+              "id": "945137d7-13a5-4169-95dd-2dabc08b49b0",
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": "={{ true }}",
+        "include": "except",
+        "excludeFields": "user_data.name",
+        "options": {}
+      },
+      "id": "bd57efad-7616-4b9f-80a3-9f0876684c7b",
+      "name": "Normalize data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        980,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1e87a997-5b78-48d8-9616-edfb1b910743",
+              "name": "user_data.phone",
+              "value": "={{ $json.Meta_data.phone?.hash('sha256') }}",
+              "type": "string"
+            },
+            {
+              "id": "59dd81a8-b511-4399-a41f-ce27f8a28577",
+              "name": "user_data.cost",
+              "value": "={{ $json.Meta_data.cost }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "1fc8f63b-dba3-4021-97d9-b2b1a4603b9f",
+      "name": "Encrypt data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_scret }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"app_id\": \"cli_a7f1cfbe36b81010\",\n    \"app_secret\": \"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        360,
+        0
+      ],
+      "id": "4891041b-c124-4371-9027-194785fdd884",
+      "name": "Get Token Lark"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/Dvvhbt24gaKTHashkzblbcDegqg/tables/tblocboVVYtXY4C5/records/search",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"{{ $('Edit Fields').item.json.app_id }}\",\n    \"app_secret\": \"{{ $('Edit Fields').item.json.app_scret }}\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        540,
+        0
+      ],
+      "id": "c664f0a9-edb1-4022-8fc5-1b35fb6aa6e1",
+      "name": "Get data in lark base"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2420,
+        20
+      ],
+      "id": "1d2bbb80-1fe0-459e-b15c-e0989ea1eb0b",
+      "name": "Wait",
+      "webhookId": "a3d8c500-404e-4828-8df9-25177faf566b"
+    },
+    {
+      "parameters": {
+        "batchSize": 10,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1500,
+        0
+      ],
+      "id": "9176761f-cffb-4717-8c35-f208217d297d",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -240,
+        280
+      ],
+      "id": "63954fb2-bc7b-44d4-b56f-c19893daed92",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v21.0/{{ $('Bm & token').item.json['<BUSINESS_ID>'] }}/owned_ad_accounts?fields=name,account_id&access_token={{ $('Lấy ìnor app & token shorrt meta').item.json.short_token }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1860,
+        420
+      ],
+      "id": "3749fd12-02c7-4348-b946-1e522ba5d1a3",
+      "name": "ID BM"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cb3cddfb-0644-463a-b573-c119185f7d5c",
+              "name": "<BUSINESS_ID>",
+              "value": "677146292804553",
+              "type": "string"
+            },
+            {
+              "id": "cbc1c925-8c82-4edf-a7c3-35c7b3b85b12",
+              "name": "app_id",
+              "value": "518402377833202",
+              "type": "string"
+            },
+            {
+              "id": "b1787f5d-3e42-4eda-91bd-82375339250a",
+              "name": "app_secret",
+              "value": "8106de68ed0576220b96eed1b83bfcc9",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1700,
+        420
+      ],
+      "id": "c1075e3c-41dd-491e-b0ed-7d87febc66d2",
+      "name": "Bm & token"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/oauth/access_token",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "grant_type",
+              "value": "fb_exchange_token"
+            },
+            {
+              "name": "client_id",
+              "value": "={{ $('Bm & token').item.json.app_id }}"
+            },
+            {
+              "name": "client_secret",
+              "value": "={{ $('Bm & token').item.json.app_secret }}"
+            },
+            {
+              "name": "fb_exchange_token",
+              "value": "={{ $('Lấy ìnor app & token shorrt meta').item.json.short_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2040,
+        420
+      ],
+      "id": "eb6f5b25-3f17-4bb6-9276-32dcdd0f8022",
+      "name": "Token dài hạn đúng không"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v21.0/{{ $('ID BM').item.json.data[0].id }}/insights?fields=campaign_name,adset_name,ad_name,impressions,clicks,spend,frequency,cpc,cpm,reach&level=ad&time_range={\"since\":\"2024-01-01\",\"until\":\"2025-05-31\"}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.access_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2220,
+        420
+      ],
+      "id": "45fd9e65-11b4-4dce-9ad0-fd04cd9ba717",
+      "name": "Lấy data ads"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_scret }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"app_id\": \"cli_a7f1cfbe36b81010\",\n    \"app_secret\": \"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3140,
+        420
+      ],
+      "id": "2b9d3faa-b27b-4b14-a39c-bdae5acbbdd0",
+      "name": "Create token"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/WkwXbhdCSaQrZnsDqiUlAt5kgVd/tables/tblXHTKlbvgpohNc/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"campaign_name\": \"{{ $('Normalize data1').item.json.campaign_name }}\",\n    \"adset_name\": \"{{ $('Normalize data1').item.json.adset_name }}\",\n    \"ad_name\": \"{{ $('Normalize data1').item.json.ad_name }}\",\n    \"impressions\": \"{{ $('Normalize data1').item.json.impressions }}\",\n    \"spend\": \"{{ $('Normalize data1').item.json.spend }}\",\n    \"frequency\": \"{{ $('Normalize data1').item.json.frequency }}\",\n    \"cpc\": \"{{ $('Normalize data1').item.json.cpc }}\",\n    \"cpm\": \"{{ $('Normalize data1').item.json.cpm }}\",\n    \"reach\": \"{{ $('Normalize data1').item.json.reach }}\",\n    \"date_start\": \"{{ $('Normalize data1').item.json.date_start }}\",\n    \"date_stop\": \"{{ $('Normalize data1').item.json.date_stop }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3380,
+        420
+      ],
+      "id": "97e28da9-25da-4b8b-aa55-3f3d0d2fa06c",
+      "name": "Creates records lark"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cbc1c925-8c82-4edf-a7c3-35c7b3b85b12",
+              "name": "app_id",
+              "value": "518402377833202",
+              "type": "string"
+            },
+            {
+              "id": "b1787f5d-3e42-4eda-91bd-82375339250a",
+              "name": "app_secret",
+              "value": "8106de68ed0576220b96eed1b83bfcc9",
+              "type": "string"
+            },
+            {
+              "id": "290a0e7e-2b5d-4af1-9d11-8ef1ef42dccb",
+              "name": "short_token",
+              "value": "EAAHXeZCWU2vIBOZC25kRwdcQeR0h0F49kJQTRNZBdx2IZCUHkZBsxSCPR0hHqQvAg87fPxGoX1kZCfAQl9943CdTa98QnNyFct0nzFWzO309Fq9IcNfLrmuNSKc1drZCnoJGuQOVzNiRrZAdQZApZBKoGUaqzQ7ccZBlWu8hvzLgJQ70gnauCCy1loxZBPkdTVXX1hzZBZC6USEctiHE9sHOZCxsHQJAvoDyZCtymc4ZD",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1520,
+        420
+      ],
+      "id": "cdcc75a2-4d11-4a1c-ad01-3d665ba1ea8c",
+      "name": "Lấy ìnor app & token shorrt meta"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "02d8fef1-66c0-4e59-8713-7d4e7ca33e32",
+              "name": "app_id",
+              "value": "cli_a7f1cfbe36b81010",
+              "type": "string"
+            },
+            {
+              "id": "32404746-b39b-4078-8463-5e0f865f35d0",
+              "name": "app_scret",
+              "value": "IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2920,
+        420
+      ],
+      "id": "6ca8f986-f959-4271-89a7-018596b25eaa",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "77775875-fff9-4792-9778-a8f2d4deb7d4",
+              "name": "Meta_ads_data.camp",
+              "value": "={{ $json.campaign_name }}",
+              "type": "string"
+            },
+            {
+              "id": "6a315617-d1c9-4320-b851-e3dcc5207b4b",
+              "name": "Meta_ads_data.adset",
+              "value": "={{ $json.adset_name }}",
+              "type": "string"
+            },
+            {
+              "id": "65d1994d-f4b8-478a-8cf1-490990e6639d",
+              "name": "Meta_ads_data.ad",
+              "value": "={{ $json.ad_name }}",
+              "type": "string"
+            },
+            {
+              "id": "61bc8b24-0976-448d-9c2e-e648127a27e3",
+              "name": "Meta_ads_data.clicks",
+              "value": "={{ $json.clicks }}",
+              "type": "string"
+            },
+            {
+              "id": "e4a932a1-41a2-4062-b8ae-7524c9b17635",
+              "name": "Meta_ads_data.spend",
+              "value": "={{ $json.spend }}",
+              "type": "string"
+            },
+            {
+              "id": "81d74014-2803-44fe-8e35-ce584f3b9d3e",
+              "name": "Meta_ads_data.frequency",
+              "value": "={{ $json.frequency }}",
+              "type": "string"
+            },
+            {
+              "id": "7cc2a725-79c5-41b8-b0ca-29270bf8c3c2",
+              "name": "Meta_ads_data.cpc",
+              "value": "={{ $json.cpc }}",
+              "type": "string"
+            },
+            {
+              "id": "ec9d6551-eeb4-4be3-8f0b-0241b7141b12",
+              "name": "Meta_ads_data.cpm",
+              "value": "={{ $json.cpm }}",
+              "type": "string"
+            },
+            {
+              "id": "75d55059-d495-4470-b964-7c0a68f336ad",
+              "name": "Meta_ads_data.reach",
+              "value": "={{ $json.reach }}",
+              "type": "string"
+            },
+            {
+              "id": "2b720bc6-df57-45e9-8b59-4fd90e51280a",
+              "name": "Meta_ads_data.start",
+              "value": "={{ $json.date_start }}",
+              "type": "string"
+            },
+            {
+              "id": "5494091e-aca5-40e0-9955-a8f3b75ac57c",
+              "name": "Meta_ads_data.stop",
+              "value": "={{ $json.date_stop }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "include": "except",
+        "excludeFields": "user_data.name",
+        "options": {}
+      },
+      "id": "b76c7880-1298-434e-85bb-8f6608c4964f",
+      "name": "Normalize data1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2660,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2400,
+        420
+      ],
+      "id": "f17611c0-3ddf-4367-86a5-5da236062c2d",
+      "name": "Split Out1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-29T16:46:48.000Z",
+  "versionId": "52709863-5e55-4f7d-87b0-8499456ba367"
+}
