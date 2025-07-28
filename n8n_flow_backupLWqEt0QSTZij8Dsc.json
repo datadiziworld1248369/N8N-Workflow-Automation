@@ -1,0 +1,253 @@
+{
+  "active": false,
+  "connections": {
+    "‘Test workflow’ trigger": {
+      "main": [
+        [
+          {
+            "node": "Set sitemap URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set sitemap URL": {
+      "main": [
+        [
+          {
+            "node": "Get Sitemap",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Filter URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Sitemap": {
+      "main": [
+        [
+          {
+            "node": "Convert Sitemap to JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert Sitemap to JSON": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-22T13:15:25.358Z",
+  "id": "LWqEt0QSTZij8Dsc",
+  "isArchived": false,
+  "meta": null,
+  "name": "Đọc link stiemap",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "764b9470-5b52-43e6-9e6f-63af569f2e96",
+      "name": "‘Test workflow’ trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        384,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d6c5ac86-6d67-42fb-96ec-9826caf452e2",
+              "name": "sitemapUrl",
+              "type": "string",
+              "value": "https://n8n.io/sitemap-workflows.xml"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e33f60ab-39de-4566-8dca-685506c7a212",
+      "name": "Set sitemap URL",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        560,
+        0
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "urlset.url",
+        "options": {}
+      },
+      "id": "fc533cc0-74d2-4795-bc15-2dc257976bbf",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        1104,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.sitemapUrl }}",
+        "options": {}
+      },
+      "id": "315d7dd2-e6ff-459a-99cd-2916be4c6478",
+      "name": "Get Sitemap",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        752,
+        0
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "options": {
+          "ignoreAttrs": true,
+          "mergeAttrs": true,
+          "normalize": true,
+          "normalizeTags": true,
+          "trim": true
+        }
+      },
+      "id": "cda56a11-a073-42c3-ade1-4c9d494120b3",
+      "name": "Convert Sitemap to JSON",
+      "type": "n8n-nodes-base.xml",
+      "position": [
+        928,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "0bf8e98c-b6c5-4129-852c-0d3e63f32f9f",
+              "operator": {
+                "type": "string",
+                "operation": "endsWith"
+              },
+              "leftValue": "={{ $json.loc }}",
+              "rightValue": ".pdf"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f05c34bb-5690-4f93-88aa-71e20a384962",
+      "name": "Filter URLs",
+      "type": "n8n-nodes-base.filter",
+      "position": [
+        1280,
+        0
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "content": "**Set your sitemap.xml\nurl here.**",
+        "height": 240,
+        "width": 150,
+        "color": 6
+      },
+      "id": "5f0c8a2d-5f9e-4079-8b27-2e144625d31b",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        544,
+        -80
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "**Create your filter here.**",
+        "height": 240,
+        "width": 150,
+        "color": 6
+      },
+      "id": "24441531-05eb-4653-b679-0ed49b67bebe",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1264,
+        -80
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Fetch and process the sitemap.xml file\nThis part fetches and process the sitemap.xml file from XML data to JSON that we can work with.",
+        "height": 300,
+        "width": 540,
+        "color": 7
+      },
+      "id": "467ae3c7-024c-464c-bae9-ac2c26f8bf59",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        704,
+        -128
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Sitemap.xml reader\nThis workflow reads an sitemap.xml and filters out the entries you want.\n\nBy default only PDF documents are returned at the end of the workflow.\n\n**SETUP**\n- Edit the **Set sitemap URL** block and add the url to the sitemap you want to read.\n\n- Edit the **Filter URLs** to your needs.",
+        "height": 420,
+        "width": 280
+      },
+      "id": "a52251cd-d819-464d-a3e0-648183b7caf8",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        64,
+        -160
+      ],
+      "typeVersion": 1
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-23T04:34:51.000Z",
+  "versionId": "39109d06-cc79-4041-b0b9-f1653433244e"
+}
