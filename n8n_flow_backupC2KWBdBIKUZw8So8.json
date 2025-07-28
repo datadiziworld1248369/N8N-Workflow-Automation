@@ -1,0 +1,331 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Example data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize data": {
+      "main": [
+        [
+          {
+            "node": "Encrypt data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Encrypt data": {
+      "main": [
+        [
+          {
+            "node": "Send event to Meta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Example data": {
+      "main": [
+        [
+          {
+            "node": "Normalize data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-08T07:52:25.056Z",
+  "id": "C2KWBdBIKUZw8So8",
+  "isArchived": false,
+  "meta": null,
+  "name": "Đẩy data lên meta",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "7dfbdfdd-816d-4d59-87a4-89a8dcccf66f",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        704,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Resources\nHere you find documentation on how to use the Facebook Conversion API.\n### How to get your API token\n### [🎥 Watch video](https://www.youtube.com/watch?v=bMm58tWxZ-A )\n### [📰 Read Official Guide](https://developers.facebook.com/docs/graph-api/get-started )\n### Facebook API Explorer\n### [🔍 Open Explorer](https://developers.facebook.com/tools/explorer/?method=POST&path=%7BYOUR_PIXEL_ID_HERE%7D%2Fevents&version=v20.0&data= [%0A%20%20%7B%0A%20%20%20%20%22event_name%22%3A%20%22Purchase%22%2C%0A%20%20%20%20%22event_time%22%3A%201727700999%2C%0A%20%20%20%20%22event_source_url%22%3A%20%22https%3A%2F%2Fwww.example.com%2Fthank_you%22%2C%0A%20%20%20%20%22action_source%22%3A%20%22website%22%2C%0A%20%20%20%20%22user_data%22%3A%20%7B%0A%20%20%20%20%20%20%22em%22%3A%20%227629d047f95fdad7cdb34786a032289b50c2d56298a9eb7a458d9cf05b53e487%22%2C%0A%20%20%20%20%20%20%22ph%22%3A%20%22673c13f6157846da67b7254fc33064ecdd3244919a87091a3f6fc9dfdfc5fd5e%22%2C%0A%20%20%20%20%20%20%22fn%22%3A%20%225cc6d27e226b37db0f02a940977559bf0131f826f6185a8f451f3714d128d00f%22%2C%0A%20%20%20%20%20%20%22ln%22%3A%20%229289b8b41c61b83a78ce0e579f861957df776150ce43c6d5d8572f61cf68e33f%22%2C%0A%20%20%20%20%20%20%22fbc%22%3A%20%22fb.1.1554763741205.AbCdEfGhIjKlMnOpQrStUvWxYz1234567890%22%2C%0A%20%20%20%20%20%20%22fbp%22%3A%20%22fb.1.1596403881668.1116446470%22%2C%0A%20%20%20%20%20%20%22client_ip_address%22%3A%20%22168.212.226.204%22%2C%0A%20%20%20%20%20%20%22client_user_agent%22%3A%20%22Mozilla%2F5.0%20(Windows%20NT%2010.0%3B%20Win64%3B%20x64)%22%0A%20%20%20%20%7D%2C%0A%20%20%20%20%22custom_data%22%3A%20%7B%0A%20%20%20%20%20%20%22value%22%3A%20127.9%2C%0A%20%20%20%20%20%20%22currency%22%3A%20%22USD%22%0A%20%20%20%20%7D%0A%20%20%7D%0A]&test_event_code=TEST49670)\n### API Reference for the Conversions API\n### https://developers.facebook.com/docs/marketing-api/conversions-api/using-the-api \n### See all allowed parameters here:\n### https://developers.facebook.com/docs/marketing-api/conversions-api/parameters ",
+        "height": 541.795438981266,
+        "width": 610.9005248123877,
+        "color": 7
+      },
+      "id": "1a2f38db-697f-4a0f-9f0a-f105bd3829fd",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "77775875-fff9-4792-9778-a8f2d4deb7d4",
+              "name": "user_data.first_name",
+              "value": "={{ encodeURIComponent($json.user_data.name.trim().split(' ').shift().toLowerCase().replace(/\\s+/g, '').replace(/[^\\p{L}\\p{N}]/gu, '')) }}",
+              "type": "string"
+            },
+            {
+              "id": "aca1383e-3d9f-4d1b-b4d5-f8754d409298",
+              "name": "user_data.last_name",
+              "value": "={{ encodeURIComponent($json.user_data.name.split(' ').pop().toLowerCase().replace(/\\s+/g, '').replace(/[^\\p{L}\\p{N}]/gu, '')) }}",
+              "type": "string"
+            },
+            {
+              "id": "6a315617-d1c9-4320-b851-e3dcc5207b4b",
+              "name": "user_data.email",
+              "value": "={{ $json.user_data.email.trim().toLowerCase() }}",
+              "type": "string"
+            },
+            {
+              "id": "65d1994d-f4b8-478a-8cf1-490990e6639d",
+              "name": "user_data.phone",
+              "value": "={{ $json.user_data.phone.replace(/\\D/g, '').replace(/^0+/, '') }}",
+              "type": "string"
+            },
+            {
+              "id": "5650546d-f0ad-4c69-829c-3e4283e16ac7",
+              "name": "event_time",
+              "value": "={{ Math.floor(new Date($json.event_time).getTime() / 1000) }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "include": "except",
+        "excludeFields": "user_data.name",
+        "options": {}
+      },
+      "id": "be8df7fa-36de-4992-87fd-c0c931aa6d39",
+      "name": "Normalize data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1408,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Data normalization\nEvery parameter has very strict formatting rules that must be followed.\nName, email, phone number etc.\nYou can learn more [**here**](https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/customer-information-parameters #em).",
+        "height": 412.48761180612286,
+        "width": 342.59090654623236,
+        "color": 7
+      },
+      "id": "cea224fb-7122-422c-a65c-5b8d8c6c0319",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        128
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "097ed7ff-c076-454e-930c-1f4820ac6e2e",
+              "name": "user_data.first_name",
+              "value": "={{ $json.user_data.first_name.hash(\"sha256\") }}",
+              "type": "string"
+            },
+            {
+              "id": "e285fa12-d272-48a0-a583-5e90b394fd74",
+              "name": "user_data.last_name",
+              "value": "={{ $json.user_data.last_name.hash(\"sha256\") }}",
+              "type": "string"
+            },
+            {
+              "id": "e0e524cf-62cc-4ca3-a469-4caa2ffcab62",
+              "name": "user_data.email",
+              "value": "={{ $json.user_data.email.hash(\"sha256\") }}",
+              "type": "string"
+            },
+            {
+              "id": "1e87a997-5b78-48d8-9616-edfb1b910743",
+              "name": "user_data.phone",
+              "value": "={{ $json.user_data.phone.hash(\"sha256\") }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "db723e8c-6dfb-4ca2-9698-23e60dde3c5a",
+      "name": "Encrypt data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1760,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Data encryption\nAfter the data is normalized, it has to be encrypted using SHA256.\nSome parameters need encryption, while others shouldn't be encrypted at all.\nYou can learn more [**here**](https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/customer-information-parameters #em).",
+        "height": 412.48761180612286,
+        "width": 342.59090654623236,
+        "color": 7
+      },
+      "id": "88cf7285-e8db-4c00-a86a-23494208c52e",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1648,
+        128
+      ]
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "=v20.0",
+        "node": "PUT_YOUR_PIXEL_ID_HERE",
+        "edge": "events",
+        "options": {
+          "queryParametersJson": "={\n  \"data\": [\n    {\n      \"event_name\": \"{{ $json.event_name }}\",\n      \"event_time\": {{ $json.event_time }},\n      \"event_source_url\": \"{{ $json.event_source_url }}\",\n      \"action_source\": \"{{ $json.action_source }}\",\n      \"user_data\": {\n        \"em\": \"{{ $json.user_data.email }}\",\n        \"ph\": \"{{ $json.user_data.phone }}\",\n        \"fn\": \"{{ $json.user_data.first_name }}\",\n        \"ln\": \"{{ $json.user_data.last_name }}\",\n        \"fbc\": \"{{ $json.user_data.facebook_click_id }}\",\n        \"fbp\": \"{{ $json.user_data.facebook_browser_id }}\",\n        \"client_ip_address\": \"{{ $json.user_data.client_ip_address }}\",\n        \"client_user_agent\": \"{{ $json.user_data.client_user_agent }}\"\n      },\n      \"custom_data\": {\n        \"value\": {{ $json.custom_data.value }},\n        \"currency\": \"{{ $json.custom_data.currency }}\"\n      }\n    }\n  ],\n  \"test_event_code\": \"TEST49670\"\n}"
+        }
+      },
+      "id": "0319ce32-1ad1-4379-be98-20abc244e490",
+      "name": "Send event to Meta",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        2144,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Test event\nThere's a TEST CODE you can get from the Facebook Events Manager to send test events.\nYou should write your test code in the *test_event_code* parameter, at the end of the JSON.\nUse that to test your events. After everything is working, remove the *test_event_code* parameter so that your events become official.\nLearn more [**here**](https://business.facebook.com/business/help/2040882565969969 )",
+        "height": 474.23048442295953,
+        "width": 374.9781292691818,
+        "color": 7
+      },
+      "id": "d647fa66-48a2-4d95-9d26-32cf160cab50",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// This node is used only for giving you example data to work with.\n// Your data should come from your website, app or server.\nreturn [\n  {\n    json: {\n      user_data: {\n        name: \"Valério John-doe Rovert\",\n        email: \"JohnDoeRobert@gmail.com\",\n        phone: \"+034 (616) 954-78 88\",\n        client_ip_address: \"168.212.226.204\",\n        client_user_agent: \"Mozilla/5.0 (Windows NT 10.0; Win64; x64)\",\n        facebook_click_id: \"fb.1.1554763741205.AbCdEfGhIjKlMnOpQrStUvWxYz1234567890\",\n        facebook_browser_id: \"fb.1.1596403881668.1116446470\"\n      },\n      event_name: \"Purchase\",\n      event_time: \"2024-09-30T12:56:39.000Z\",\n      custom_data: {\n        value: 127.9,\n        currency: \"USD\"\n      },\n      action_source: \"website\",\n      event_source_url: \"https://www.example.com/thank_you \"\n    }\n  }\n];"
+      },
+      "id": "e5e71ae7-1d06-4977-990e-19a550d0df4a",
+      "name": "Example data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Example data\nYou should find a way to receive all this data in your n8n workflow.\nYou can use webhook, database, API... Whatever you need to bring this data in.",
+        "height": 412.48761180612286,
+        "width": 342.59090654623236,
+        "color": 7
+      },
+      "id": "845de47a-8969-43c7-9762-46737445ba80",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        928,
+        128
+      ]
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "=v20.0",
+        "node": "PUT_YOUR_PIXEL_ID_HERE",
+        "edge": "events",
+        "options": {
+          "queryParametersJson": "={\n  \"data\": [\n    {\n      \"event_name\": \"{{ $json.event_name }}\",\n      \"event_time\": {{ $json.event_time }},\n      \"event_source_url\": \"{{ $json.event_source_url }}\",\n      \"action_source\": \"{{ $json.action_source }}\",\n      \"user_data\": {\n        \"em\": \"{{ $json.user_data.email }}\",\n        \"ph\": \"{{ $json.user_data.phone }}\",\n        \"fn\": \"{{ $json.user_data.first_name }}\",\n        \"ln\": \"{{ $json.user_data.last_name }}\",\n        \"fbc\": \"{{ $json.user_data.facebook_click_id }}\",\n        \"fbp\": \"fb.1.{{ $json.event_time }}.{{ Math.floor(Math.random() * 9000000000) + 1000000000 }}\",\n        \"client_ip_address\": \"{{ $json.user_data.client_ip_address }}\",\n        \"client_user_agent\": \"{{ $json.user_data.client_user_agent }}\"\n      },\n      \"custom_data\": {\n        \"value\": {{ $json.custom_data.value }},\n        \"currency\": \"{{ $json.custom_data.currency }}\"\n      }\n    }\n  ],\n  \"test_event_code\": \"TEST49670\"\n}"
+        }
+      },
+      "id": "14029b49-79fe-472c-86dd-9f7a7afcd12f",
+      "name": "Send event to Meta1",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        2144,
+        672
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## You don't have the fbp?\nUse this node instead\nThe `fbp` is reliable for identifying a user session, so in the absence of a real fbclid, relying on fbp generally contributes more to accurate tracking.",
+        "height": 380,
+        "width": 380,
+        "color": 7
+      },
+      "id": "62ba4b03-e472-42b4-a8bd-63eb0add27a8",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## What if I don't have the fbc ?\nIf you don’t have a `facebook_click_id` (or if the user wasn’t driven by a Facebook ad), you can erase the `fbc`.\n`fbc` is only valuable when it contains an actual fbclid from a Facebook ad click.\nIf you don’t have a genuine `fbclid` (from a real click), generating a fbc won't improve tracking — it may even worsen the attribution.",
+        "height": 380,
+        "width": 360,
+        "color": 7
+      },
+      "id": "6600b8f3-bd9d-4996-8e5e-964c9d302973",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2400,
+        560
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-23T04:38:04.000Z",
+  "versionId": "b31ae95d-fb01-404a-834c-b81ab5f4f0b4"
+}
