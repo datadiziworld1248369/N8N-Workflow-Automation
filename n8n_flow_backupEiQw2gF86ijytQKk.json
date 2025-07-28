@@ -1,0 +1,163 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Create token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create token": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Creates records lark3": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-07-19T04:42:52.565Z",
+  "id": "EiQw2gF86ijytQKk",
+  "isArchived": true,
+  "meta": null,
+  "name": "My workflow 23",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c96d63c7-a375-497b-8da9-5b105819e853",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        224,
+        16
+      ],
+      "id": "8677e373-5521-4737-989f-2ef617d52eed",
+      "name": "Create token"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/VxajbwrdnaSe03sibtpl6dQZgId/tables/tbl4ADauCQanIPCf/records/recuRmiHx6C3AE",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"AI Status\": \"SUCCESS\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        464,
+        32
+      ],
+      "id": "39bbe2b9-9dfe-49c8-b391-ccfc2c403e7f",
+      "name": "Creates records lark3"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "https://open.larksuite.com/open-apis/bitable/v1/apps/appbcbWCzen6D8dezhoCH2RpMAh/tables/tblsRc9GRRXKqhvW/records/recPGfZZ13",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "ignore_consistency_check",
+              "value": "true"
+            },
+            {
+              "name": "user_id_type",
+              "value": "open_id"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer t-7f1b******8e560"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"fields\": {\n    \"attachment\": [\n      {\n        \"file_token\": \"DRiFbwaKsoZaLax4WKZbEGCccoe\"\n      },\n      {\n        \"file_token\": \"BZk3bL1Enoy4pzxaPL9bNeKqcLe\"\n      },\n      {\n        \"file_token\": \"EmL4bhjFFovrt9xZgaSbjJk9c1b\"\n      },\n      {\n        \"file_token\": \"Vl3FbVkvnowlgpxpqsAbBrtFcrd\"\n      }\n    ],\n    \"barcode\": \"qawqe\",\n    \"checkbox\": true,\n    \"currency\": 3,\n    \"date\": 1674206443000,\n    \"duplex_link\": [\n      \"recHTLvO7x\",\n      \"recbS8zb2m\"\n    ],\n    \"groupChat\": [\n      {\n        \"id\": \"oc_cd07f55f14d6f4a4f1b51504e7e97f48\"\n      }\n    ],\n    \"location\": \"116.397755,39.903179\",\n    \"multi_select\": [\n      \"option_1\",\n      \"option_2\"\n    ],\n    \"number\": 100,\n    \"phone\": \"130xxxx2666\",\n    \"progress\": 0.25,\n    \"rating\": 3,\n    \"single_link\": [\n      \"recHTLvO7x\",\n      \"recbS8zb2m\"\n    ],\n    \"single_select\": \"option_1\",\n    \"text\": \"text\",\n    \"url\": {\n      \"link\": \"https://www.larksuite.com/product/base\",\n      \"text\": \"Base\"\n    },\n    \"user\": [\n      {\n        \"id\": \"ou_2910013f1e6456f16a0ce75ede950a0a\"\n      },\n      {\n        \"id\": \"ou_e04138c9633dd0d2ea166d79f548ab5d\"\n      }\n    ]\n  }\n}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        672,
+        32
+      ],
+      "id": "76ba3150-5e45-4330-af48-e5935cc7d504",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-23T04:38:53.000Z",
+  "versionId": "de8b6257-2afc-45f9-8e24-6006cf1a107c"
+}
