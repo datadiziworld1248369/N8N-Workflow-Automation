@@ -1,0 +1,252 @@
+{
+  "active": false,
+  "connections": {
+    "Embeddings": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Insert",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Query",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Tool",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agent": {
+      "main": [
+        [
+          {
+            "node": "Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-24T04:34:05.205Z",
+  "id": "giypRYsKMfTxCFxP",
+  "isArchived": true,
+  "meta": null,
+  "name": "My workflow 25",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Ad Campaign Performance Alert",
+        "height": 520,
+        "width": 1100
+      },
+      "id": "15f1ed98-7ad0-45f1-95b0-6772af07b373",
+      "name": "Sticky",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1056,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ad_campaign_performance_alert",
+        "options": {}
+      },
+      "id": "0e6d8bf3-f247-4519-a053-a7d7be1396a3",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -864,
+        448
+      ],
+      "webhookId": "d03e7dd9-1e3c-49d4-b41a-eeee529c0e71"
+    },
+    {
+      "parameters": {
+        "chunkSize": 400,
+        "chunkOverlap": 40
+      },
+      "id": "5fe855fd-6dcb-4d4d-8f7b-0ba704ddffd1",
+      "name": "Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        464
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c11d9701-0f9f-46e8-aa8b-c4f47ad5a26b",
+      "name": "Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
+      "typeVersion": 1,
+      "position": [
+        -464,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "id": "5bbcf5c6-613e-4a64-bf4f-6780e4f9de29",
+      "name": "Insert",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        592
+      ]
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "id": "64183e90-a8fa-4f17-8df2-c5ffd548e992",
+      "name": "Query",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        192,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "name": "Pinecone"
+      },
+      "id": "39cd7c33-84f8-486c-bc95-c69ef87d4e3e",
+      "name": "Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1,
+      "position": [
+        496,
+        288
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "964fd4fe-1399-4d0b-9ccd-e9baf2b168c4",
+      "name": "Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        448,
+        128
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "8028ac53-c239-4e80-8583-0b36763b9afb",
+      "name": "Chat",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "text": "={{ $json }}",
+        "options": {}
+      },
+      "id": "02f28460-3624-4b70-902e-89cbc50a22df",
+      "name": "Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1,
+      "position": [
+        432,
+        -32
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": "SHEET_ID",
+        "sheetName": "Log",
+        "options": {}
+      },
+      "id": "7b6f8d34-98ad-4311-8854-5e78e3bd4a7a",
+      "name": "Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        944,
+        -64
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-24T04:34:14.000Z",
+  "versionId": "6aa37100-4e30-487d-a48b-79dc5bdb268c"
+}
