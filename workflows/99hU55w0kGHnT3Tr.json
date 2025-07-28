@@ -1,0 +1,253 @@
+{
+  "active": false,
+  "connections": {
+    "Embeddings": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Insert",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Query",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Tool",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agent": {
+      "main": [
+        [
+          {
+            "node": "Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-27T14:40:05.207Z",
+  "id": "99hU55w0kGHnT3Tr",
+  "isArchived": false,
+  "meta": null,
+  "name": "inventory_restock_forecast",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Inventory Restock Forecast",
+        "height": 520,
+        "width": 1100
+      },
+      "id": "1c3ccb9f-00c1-4686-8062-43d2cf85bda7",
+      "name": "Sticky",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "inventory_restock_forecast",
+        "options": {}
+      },
+      "id": "b18fe289-60e8-4b1c-b18e-089c650dc4bc",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -688,
+        256
+      ],
+      "webhookId": "a4158013-e135-4cdb-ae32-5110ac9cd0f1"
+    },
+    {
+      "parameters": {
+        "chunkSize": 400,
+        "chunkOverlap": 40
+      },
+      "id": "cdc399ce-bb90-4d7a-9458-ba849e475a36",
+      "name": "Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        256
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f9af7b65-a57a-487f-9b54-718286a92d76",
+      "name": "Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "id": "22ba7769-5c0f-4263-b6df-5dbaf30995c3",
+      "name": "Insert",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "tableName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "id": "7fed0df2-3390-4be1-b12b-0b563067b82f",
+      "name": "Query",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "name": "Supabase"
+      },
+      "id": "f7f769bc-ffe9-40da-b9d7-0c049a4844b4",
+      "name": "Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1,
+      "position": [
+        432,
+        -80
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f5a0148a-fc20-4563-b22e-f17dd0e700b4",
+      "name": "Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        448,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20240620",
+        "options": {}
+      },
+      "id": "9be99d33-3043-4418-9c5a-3bce62d075de",
+      "name": "Chat",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1,
+      "position": [
+        304,
+        416
+      ]
+    },
+    {
+      "parameters": {
+        "text": "={{ $json }}",
+        "options": {}
+      },
+      "id": "41ae7469-9365-437f-9093-2c95449f6d8a",
+      "name": "Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1,
+      "position": [
+        384,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": "SHEET_ID",
+        "sheetName": "Log",
+        "options": {}
+      },
+      "id": "4de25896-e48a-4d8e-a924-72d88ca8c809",
+      "name": "Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        768,
+        224
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-27T14:40:35.000Z",
+  "versionId": "f08ef207-df96-47dc-ace2-8d7d67edd9a5"
+}
