@@ -1,0 +1,936 @@
+{
+  "active": false,
+  "connections": {
+    "Prompt": {
+      "main": [
+        [
+          {
+            "node": "Gemini API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Move file to base64 string": {
+      "main": [
+        [
+          {
+            "node": "Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini API": {
+      "main": [
+        [
+          {
+            "node": "JSON to string",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JSON to string": {
+      "main": [
+        [
+          {
+            "node": "Parse string",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse string": {
+      "main": [
+        [
+          {
+            "node": "Add to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add to Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Wait For Saving Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive Get Receipt": {
+      "main": [
+        [
+          {
+            "node": "Move file to base64 string",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger Image": {
+      "main": [
+        [
+          {
+            "node": "Create File Name For Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out Binary Files": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Attachments": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Create File Name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Split Out Binary Files",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Emails": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Attachments",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait For Saving": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Attachments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Google Drive Get Receipt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create File Name": {
+      "main": [
+        [
+          {
+            "node": "Google Drive Save Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create File Name For Telegram": {
+      "main": [
+        [
+          {
+            "node": "Google Save Files 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive Trigger New Files": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive Save Files": {
+      "main": [
+        [
+          {
+            "node": "Wait For Saving",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait For Saving Data": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-15T13:17:29.026Z",
+  "id": "VpxrxDKafhOi1qus",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Mẫu gửi hóa đơn OCR",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ae25506d-5f84-4a61-b06e-399f0c0e4604",
+              "name": "prompt",
+              "value": "My company is **Sisu Digital**, which is the **receiver** of the invoice.  \n\nFrom the provided invoice document, extract the following fields and output them as a **JSON object** with the fields in the **exact order** listed below:\n\n---\n\n- **Invoice Date**: The date when the invoice was issued. Format strictly as: `DD/MM/YYYY` (e.g., `15/11/2025`).\n\n- **Category**: Classify the expense into **one of the following predefined categories**:\n    - IT and Software Costs  \n    - Telephone and Communication  \n    - Office Supplies  \n    - Travel and Accommodation  \n    - Marketing and Advertising  \n    - Service Fees  \n    - Subscriptions and Memberships  \n    - Training and Education  \n    - Utilities and Rent  \n    - Professional Services\n\n- **Sender**: The name of the company or individual that issued the invoice. This is **not Sisu Digital**, but the invoicing entity clearly stated on the document.\n\n- **Description**: A brief explanation of the service or product provided.\n\n- **Amount (0% VAT)**: The **net price before VAT**.  \n  - Remove all currency symbols or text (€, $, EUR, USD, etc.).  \n  - Use a **comma as the decimal separator**, not a dot (e.g., `10.90` → `10,90`).  \n  - Example: `\"1200,00\"`\n\n- **VAT %**: The **numerical value of the VAT rate**, using a **comma as the decimal separator** and no percent sign.  \n  - Example: `\"25,5\"` (not `\"25.5\"` or `\"25,5%\"`)  \n  - If no VAT is applied, write `\"0,0\"`\n\n- **Total**: The total amount **including VAT**.  \n  - Remove all currency symbols.  \n  - Format using a **comma as decimal separator**.  \n  - Example: `\"1500,00\"`\n\n- **Currency**: Extract the currency unit separately as an uppercase abbreviation (e.g., `\"EUR\"`, `\"USD\"`).\n\n- **Note**: Any relevant additional notes for bookkeeping or clarification. Use `\"N/A\"` if not applicable.\n\n---\n\n✅ Ensure:\n- **Consistent formatting** across all entries  \n- **No empty fields** (use `\"N/A\"` where needed)  \n- **Strict adherence to structure and order**",
+              "type": "string"
+            },
+            {
+              "id": "1eec8912-eec6-49cb-be01-4a6f606ea283",
+              "name": "model",
+              "value": "gemini-2.0-flash",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2304,
+        144
+      ],
+      "id": "59ee2378-b3ef-419e-a09d-770af50f8ea1",
+      "name": "Prompt"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "binaryPropertyName": "=data",
+        "destinationKey": "base64",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        144
+      ],
+      "id": "e317ae6c-f8b1-4ae5-a35a-8ee77dd408e3",
+      "name": "Move file to base64 string"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/{{ $json.model }}:generateContent",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "your_gemini_api_key_here"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"role\": \"user\",\n      \"parts\": [\n        {\n          \"inlineData\": {\n            \"mimeType\": {{ JSON.stringify($('Google Drive Get Receipt').first().json.mimeType) }},\n            \"data\": {{ JSON.stringify($('Move file to base64 string').item.json.base64) }}\n          }\n        },\n        {\n          \"text\": {{ JSON.stringify($('Prompt').item.json.prompt) }}\n        }\n      ]\n    }\n  ],\n  \"generationConfig\": {\n    \"temperature\": 0,\n    \"topK\": 1,\n    \"topP\": 0.95,\n    \"maxOutputTokens\": 1024,\n    \"responseMimeType\": \"application/json\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2608,
+        144
+      ],
+      "id": "d05fa5c3-b270-489c-a5b9-0e747bf2b453",
+      "name": "Gemini API"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1400480d-72cc-4ce9-8e38-61d21d32a4f9",
+              "name": "jsonString",
+              "value": "={{ $json.candidates[0].content.parts[0].text.parseJson()}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2880,
+        272
+      ],
+      "id": "1cb5d4c8-f48f-46a2-a476-1ba3a80878a7",
+      "name": "JSON to string"
+    },
+    {
+      "parameters": {
+        "jsCode": "const jsonString = $json[\"jsonString\"];\nconst parsedData = JSON.parse(jsonString);\nreturn parsedData;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3184,
+        272
+      ],
+      "id": "e2509421-6526-418e-a6d8-348282a6051f",
+      "name": "Parse string"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1DG_PNTC4BZ-ntztsnv8OXDcUvr8RFbIE2XwyLAsE_AA",
+          "mode": "list",
+          "cachedResultName": "Invoice OCR Output",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DG_PNTC4BZ-ntztsnv8OXDcUvr8RFbIE2XwyLAsE_AA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DG_PNTC4BZ-ntztsnv8OXDcUvr8RFbIE2XwyLAsE_AA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Invoice Date": "={{ $json['Invoice Date'] }}",
+            "Category": "={{ $json.Category }}",
+            "Sender": "={{ $json.Sender }}",
+            "Description": "={{ $json.Description }}",
+            "Amount (0% VAT)": "={{ $json['Amount (0% VAT)'] }}",
+            "VAT %": "={{ $json['VAT %'] }}",
+            "Total": "={{ $json.Total }}",
+            "Note": "={{ $json.Note }}",
+            "File Name": "={{ $('Google Drive Trigger New Files').item.json.name }}",
+            "File URL": "={{ $('Google Drive Trigger New Files').item.json.webViewLink }}",
+            "Currency": "={{ $json.Currency }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Invoice Date",
+              "displayName": "Invoice Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Sender",
+              "displayName": "Sender",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Amount (0% VAT)",
+              "displayName": "Amount (0% VAT)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "VAT %",
+              "displayName": "VAT %",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Total",
+              "displayName": "Total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Currency",
+              "displayName": "Currency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "File Name",
+              "displayName": "File Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "File URL",
+              "displayName": "File URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3488,
+        272
+      ],
+      "id": "5e9c1dc1-7600-4dfe-9746-ac31aa7b7eb8",
+      "name": "Add to Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "rWfK5XMB2wKoDUkh",
+          "name": "Datatdiziworld Google Sheets account "
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1712,
+        144
+      ],
+      "id": "ba5dd2b2-54c8-4de8-9a5e-277156267e47",
+      "name": "Google Drive Get Receipt",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AjNwXeFt6clYXdfz",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {
+          "download": true
+        }
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1040,
+        1424
+      ],
+      "id": "f6ea1d7e-1021-470b-a02c-f688d65b6f3a",
+      "name": "Telegram Trigger Image",
+      "webhookId": "ef2f6b1f-b608-4e2f-9abe-02fe8ae0f085",
+      "credentials": {
+        "telegramApi": {
+          "id": "AZ6P8JcpXiBj5VdX",
+          "name": "bot skibidi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "labelIds": [
+            "Label_4733721735027761040"
+          ]
+        },
+        "options": {
+          "dataPropertyAttachmentsPrefixName": "data",
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1040,
+        768
+      ],
+      "id": "9f7e3cd8-3a7b-459b-9019-0627126ef168",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Fg55jxhEa3jhDgbS",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let results = [];\n\nfor (item of items) {\n    for (key of Object.keys(item.binary)) {\n        results.push({\n            json: {\n                fileName: item.binary[key].fileName,\n            sender: item.json.from.value[0].address\n            },\n            binary: {\n                data: item.binary[key],\n            }\n        });\n    }\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2256,
+        1088
+      ],
+      "id": "e1efac46-36aa-4448-8330-c0ae5d780d12",
+      "name": "Split Out Binary Files"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2080,
+        752
+      ],
+      "id": "545eee2f-47d0-49e2-9861-abc922de91c4",
+      "name": "Loop Over Attachments"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e1009efc-c67d-48bd-a6c9-f801ba386d5d",
+              "leftValue": "={{  $('Loop Over Emails').item.binary  }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1824,
+        960
+      ],
+      "id": "0fbae3c1-cd56-48af-adf2-a7fbe5a0d357",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "batchSize": "={{ $('Gmail Trigger').all().length }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1392,
+        768
+      ],
+      "id": "1a36a9cd-ac1e-4c97-a9fa-457bb3ebed3d",
+      "name": "Loop Over Emails"
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3008,
+        768
+      ],
+      "id": "f0da9c6a-7b3d-4ce1-af4a-385e3c1f8992",
+      "name": "Wait For Saving",
+      "webhookId": "a6742af7-28b5-469a-92d6-3f74845692fd"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1392,
+        128
+      ],
+      "id": "f39dc9c9-7703-4404-a56f-170a2e290ffd",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "jsCode": "let today = new Date();\nconst createdDate = today.toISOString().split('T')[0] + '_';\nconst filename = createdDate.toString() + $input.item.json.sender.split(\"@\").shift();\n\nreturn { json: {'filename' : filename},\n       binary: {\n                data: $input.item.binary.data,\n            }};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2400,
+        768
+      ],
+      "id": "ffa00948-5fb8-4426-9456-041f082ad12d",
+      "name": "Create File Name"
+    },
+    {
+      "parameters": {
+        "jsCode": "let today = new Date();\nconst createdDate = today.toISOString().split('T')[0] + '_';\nconst filename = createdDate.toString() + \"Telegram\";\n\nreturn { json: {'filename' : filename},\n       binary: {\n                data: $input.item.binary.data,\n            }};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1392,
+        1424
+      ],
+      "id": "beb24f63-6a29-4673-a3e8-e1f2678c6669",
+      "name": "Create File Name For Telegram"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "14o_rWG04W9ejiBn4g-Bg98Tavlbi5AsY",
+          "mode": "list",
+          "cachedResultName": "Template - Invoice OCR Pool",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/14o_rWG04W9ejiBn4g-Bg98Tavlbi5AsY"
+        },
+        "event": "fileCreated",
+        "options": {
+          "fileType": "all"
+        }
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        128
+      ],
+      "id": "322d4252-cf3d-4e6b-afd1-126b0ad863e2",
+      "name": "Google Drive Trigger New Files",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AjNwXeFt6clYXdfz",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Import Attachments From Gmail To Google Drive",
+        "height": 536,
+        "width": 1943,
+        "color": 2
+      },
+      "id": "b392650d-32eb-41d7-bd17-dfba929d38f5",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1264,
+        688
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Import Attachments From Telegram To Google Drive",
+        "height": 296,
+        "width": 1983,
+        "color": 2
+      },
+      "id": "fe39e05f-c80a-4ac9-8cc1-9703b77a51f1",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1264,
+        1344
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Extract Information From Files And Import To Google Sheets",
+        "height": 496,
+        "width": 2763,
+        "color": 2
+      },
+      "id": "e5d64da9-f189-42cf-94e9-9d3d07956347",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1264,
+        32
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "name": "={{ $json.filename }}",
+        "driveId": {
+          "__rl": true,
+          "value": "0AKPPy6FuV32kUk9PVA",
+          "mode": "list",
+          "cachedResultName": "AI Automation Pro",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/0AKPPy6FuV32kUk9PVA"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "14o_rWG04W9ejiBn4g-Bg98Tavlbi5AsY",
+          "mode": "list",
+          "cachedResultName": "Template - Invoice OCR Pool",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/14o_rWG04W9ejiBn4g-Bg98Tavlbi5AsY"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1728,
+        1424
+      ],
+      "id": "1023f889-37ac-462a-8378-a9bb43e32e3d",
+      "name": "Google Save Files 2",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AjNwXeFt6clYXdfz",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "=data",
+        "name": "={{ $json.filename }}",
+        "driveId": {
+          "__rl": true,
+          "value": "0AKPPy6FuV32kUk9PVA",
+          "mode": "list",
+          "cachedResultName": "AI Automation Pro",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/0AKPPy6FuV32kUk9PVA"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "14o_rWG04W9ejiBn4g-Bg98Tavlbi5AsY",
+          "mode": "list",
+          "cachedResultName": "Template - Invoice OCR Pool",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/14o_rWG04W9ejiBn4g-Bg98Tavlbi5AsY"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2704,
+        768
+      ],
+      "id": "77ea1c22-3e8f-48a7-96ff-a7de12db272a",
+      "name": "Google Drive Save Files",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AjNwXeFt6clYXdfz",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3808,
+        272
+      ],
+      "id": "06cb659c-5957-428b-b9ae-de3243e75a49",
+      "name": "Wait For Saving Data",
+      "webhookId": "211ca61f-1915-4fb7-9ebf-8304c75d536e"
+    },
+    {
+      "parameters": {
+        "content": "Automate Invoice & Receipt OCR (Google Drive, Gmail, Telegram) to Google Sheets via Gemini API\n\n### Template Description:\n\nAutomatically process invoices and receipts using Gemini OCR, extracting data directly into Google Sheets from multiple sources including Google Drive, Gmail, and Telegram. This powerful, free (for a limited time) workflow ensures your bookkeeping is always accurate, organized, and efficient, significantly reducing manual effort and potential errors.\n\n**Who is this for?**\n\nThis workflow is ideal for busy entrepreneurs, startup founders, freelancers, small business owners, bookkeepers, and accountants who aim to eliminate manual, repetitive, and error-prone bookkeeping tasks. Whether you regularly manage expenses from physical paper receipts, digital invoices, or email attachments, this workflow will dramatically streamline your bookkeeping processes and save you significant time and effort each month.\n\n### **What problem is this workflow solving?**\n\nManual data entry of invoices and receipts is notoriously tedious, incredibly time-consuming, and highly susceptible to human error. Mistakes in bookkeeping can lead to financial inaccuracies, compliance issues, and wasted resources. By automating the extraction of invoice data, this workflow streamlines your financial management process, significantly improves accuracy, reduces operational overhead, and allows you to redirect valuable resources and attention toward strategic, revenue-generating business activities.\n\n### **What this workflow does**\n\nThis template provides a powerful, automated solution for invoice and receipt data extraction using Google's Gemini API for OCR (Optical Character Recognition) via direct HTTP requests.\n\n1. Main Flow (Google Drive Trigger): The main workflow triggers (Google Drive Trigger New Files) whenever a new file (PDF or image) is added to a designated Google Drive folder. It uses a SplitInBatches node (Loop Over Items) to process incoming files one by one. For each file, it:  \n   * Downloads the file (Google Drive Get Receipt).  \n   * Converts it to base64 (Move file to base64 string).  \n   * Sends the file data and a detailed prompt to the Gemini API (gemini-2.0-flash model specified in the Prompt node, sent via the Gemini API HTTP Request node). The prompt requests structured JSON output with specific fields and formatting (like comma decimal separators, no currency symbols, and a dedicated currency field).  \n   * Parses the JSON response (JSON to string, Parse string nodes).  \n   * Appends the extracted data (Invoice Date, Category, Sender, Currency, etc.), along with the original filename and a link to the file, to a specified Google Sheet (Add to Google Sheets).  \n   * Includes Wait nodes to help manage potential rate limits.  \n2. Supplementary flow 1 (Gmail Trigger): An additional trigger (Gmail Trigger) monitors your Gmail account for emails with a specific label. When a matching email with attachments arrives:  \n   * It loops through emails and attachments.  \n   * It renames the attachment using the format YYYY-MM-DD\\_SenderUsername (e.g., 2025-04-19\\_some.sender) using the Create File Name node.  \n   * It saves the renamed attachment to the designated Google Drive folder (Google Drive Save Files), which then triggers the core OCR process above.  \n3. Supplementary Trigger 2 (Telegram Trigger): Another optional trigger (Telegram Trigger Image) allows you to forward photos of physical receipts to your configured Telegram bot:  \n   * It renames the image file using the format YYYY-MM-DD\\_Telegram (e.g., 2025-04-19\\_Telegram) via the Create File Name For Telegram node.  \n   * It saves the renamed image to the designated Google Drive folder (Google Save Files 2), also triggering the core OCR process.\n\n### **Setup**\n\n1. Credentials: Add the following credentials in n8n, using the names specified in the template or your own:  \n   * Google OAuth2: For Google Drive, Google Sheets, Gmail.   \n   * Telegram: For the Telegram bot trigger   \n   * Gemini API Key: Obtain a free API key from [Google AI Studio](https://aistudio.google.com/). You will need to paste this key directly into the Query Parameters of the Gemini API (HTTP Request) node in the workflow.  \n2. Google Drive: Create a specific folder in your Google Drive where all invoices/receipts will be stored *and* processed from. Update the target Folder in the Google Drive Trigger New Files, Google Drive Save Files, and Google Save Files 2 nodes to use your designated folder.  \n3. Google Sheets: Create a new Google Sheet, or clone [this Sheet template](https://docs.google.com/spreadsheets/d/1HX12aLkBrFjKSvtMlhFbDQkvn8MQrhZQVkkxpXY5c0M/edit?usp=sharing). Ensure it has columns matching the desired output fields (see default list below, including Currency). Update the target Spreadsheet and Sheet Name in the Add to Google Sheets node to point to your sheet.  \n4. Gmail (Optional): Create a label in Gmail (e.g., \"receipts\"). Update the Label filter in the Gmail Trigger node to use the label you created. Consider setting up filters in Gmail to automatically apply this label to relevant emails.  \n5. Telegram (Optional): Configure the Telegram Trigger Image node with your bot credentials.  \n6. Gemini API Node: Open the Gemini API (HTTP Request) node. In the \"Query Parameters\" section, replace the placeholder API key with your actual Gemini API Key. Verify the URL uses the correct model name by referencing the Prompt node's model value (gemini-2.0-flash by default).  \n7. Customize Prompt: Open the Prompt (Set) node.  \n   * Crucially, change the first line \"My company is Sisu Digital...\" to reflect your company or remove it if not needed.  \n   * Review the list of categories and the specific formatting instructions (e.g., comma for decimals, no currency symbols, date format, \"N/A\" for notes) to ensure they match your requirements. You can adjust these details here.  \n8. Activate Workflow: Test each trigger path (Drive upload, labeled Gmail, Telegram photo) with sample files/emails/messages, then activate the workflow.\n\n### **How to customize this workflow to your needs**\n\n* Gemini Prompt/Model: Modify the prompt text, the list of categories, or the detailed formatting instructions within the Prompt (Set) node. You can also change the model value in the Prompt node to use a different Gemini model (ensure the model supports the API endpoint used in the HTTP Request node).  \n* Extracted Fields: Modify the prompt in the Prompt node to extract different fields or change formatting. Update the parsing logic in the Parse string node if needed, and ensure your Google Sheet columns match in the Add to Google Sheets node. The default extracted fields (based on the updated prompt) are:  \n  * Invoice Date: (DD/MM/YYYY)  \n  * Category: (From predefined list)  \n  * Sender: (Issuing company)  \n  * Description: (Brief details)  \n  * Amount (0% VAT): (Net amount, comma decimal, no currency symbol)  \n  * VAT %: (Rate number, comma decimal, no % sign, \"0,0\" if none)  \n  * Total: (Gross amount, comma decimal, no currency symbol)  \n  * Currency: (Uppercase abbreviation, e.g., \"EUR\", \"USD\")  \n  * Note: (Relevant notes, or \"N/A\")  \n  * *(Added by workflow):* File Name, File URL  \n* Triggers & Targets: Enable/disable or modify the Gmail and Telegram triggers. Select your desired Google Drive folder, Google Sheet, and Gmail label directly within the respective nodes.  \n* File Naming: Adjust the Javascript code in the Create File Name (for Gmail) or Create File Name For Telegram nodes to change the renaming pattern. Current formats: YYYY-MM-DD\\_SenderUsername (Gmail), YYYY-MM-DD\\_Telegram (Telegram).  \n* Configuration Method: Update configuration like folders, sheets, and labels directly within the relevant nodes. For easier management of multiple settings, consider adding a central 'Set' node at the beginning of the workflow to define these values and use expressions to reference them in other nodes.\n\n### **Important Considerations**\n\n* AI Accuracy: AI models can make mistakes. Always review the data extracted into Google Sheets for accuracy, especially with specific formatting like decimal separators. This workflow automates heavily but requires final verification.  \n* Gemini API Usage: This template uses the Gemini API via HTTP Request. Be mindful of Google's API rate limits, usage policies, and potential costs associated with the model used (gemini-2.0-flash by default), especially if you change it. Monitor Google's terms.  \n* Loops and Waits: The workflow uses SplitInBatches and Wait nodes to process items individually and pause execution, which helps prevent hitting API rate limits but processes files sequentially rather than in parallel.\n\n### **Support Disclaimer:** \n\n* This workflow is provided as-is for your convenience. Use it responsibly, and feel free to build upon it for your unique needs\\!  \n* This workflow has been thoroughly tested and is confirmed to be working flawlessly at the time of release. However, setup complexity or unexpected errors may occur depending on your environment, customizations, or API changes.  \n* Please note that I cannot offer personalized support or troubleshooting for this template (without a fee\\!). If you encounter an issue, feel free to send me a message describing the problem. If the issue is determined to be a genuine bug within the shared template, I will do my best to fix it and update the workflow. Otherwise, the issue is likely due to a setup misconfiguration or modification on your side. In those cases, I recommend using ChatGPT or referring to n8n documentation to debug the problem.",
+        "height": 2380,
+        "width": 640
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3f959f4d-0ed7-41fd-84bc-eba852143ace",
+      "name": "Sticky Note2"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-18T09:16:33.000Z",
+  "versionId": "85e9d505-1622-4763-b362-d8abbe6fc1c4"
+}
