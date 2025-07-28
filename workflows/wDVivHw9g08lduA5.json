@@ -1,0 +1,737 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Lấy ìnor app & token shorrt meta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ID BM": {
+      "main": [
+        [
+          {
+            "node": "Token dài hạn đúng không",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bm & token": {
+      "main": [
+        [
+          {
+            "node": "ID BM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Token dài hạn đúng không": {
+      "main": [
+        [
+          {
+            "node": "Generate Monthly Ranges",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Create token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize data": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Normalize data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy ìnor app & token shorrt meta": {
+      "main": [
+        [
+          {
+            "node": "Bm & token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Ads Data": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create token": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Monthly Ranges": {
+      "main": [
+        [
+          {
+            "node": "Fetch Ads Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Creates records lark": {
+      "main": [
+        []
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize data1": {
+      "main": [
+        []
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        []
+      ]
+    },
+    "Create token1": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Create token1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-29T16:16:21.509Z",
+  "id": "wDVivHw9g08lduA5",
+  "isArchived": false,
+  "meta": null,
+  "name": "Ads Tuyển Dụng Theo Ngày từ tháng 7 về sau",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 23,
+              "triggerAtMinute": 59
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -160,
+        272
+      ],
+      "id": "56a31658-d24a-4d22-99a8-69990c39807a",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v21.0/{{ $('Bm & token').item.json['<BUSINESS_ID>'] }}/owned_ad_accounts?fields=name,account_id&access_token={{ $('Lấy ìnor app & token shorrt meta').item.json.short_token }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        0
+      ],
+      "id": "158e49a8-8c2d-48ac-a30c-a49cec6634de",
+      "name": "ID BM"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cb3cddfb-0644-463a-b573-c119185f7d5c",
+              "name": "<BUSINESS_ID>",
+              "value": "1937407066269295",
+              "type": "string"
+            },
+            {
+              "id": "cbc1c925-8c82-4edf-a7c3-35c7b3b85b12",
+              "name": "app_id",
+              "value": "600453229146956",
+              "type": "string"
+            },
+            {
+              "id": "b1787f5d-3e42-4eda-91bd-82375339250a",
+              "name": "app_secret",
+              "value": "6f1e40629b6e123e5f0491ff9f3f6a81",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        128,
+        272
+      ],
+      "id": "6887d2b2-fc23-4ba8-baba-4bfb684e0a41",
+      "name": "Bm & token"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/oauth/access_token",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "grant_type",
+              "value": "fb_exchange_token"
+            },
+            {
+              "name": "client_id",
+              "value": "={{ $('Bm & token').item.json.app_id }}"
+            },
+            {
+              "name": "client_secret",
+              "value": "={{ $('Bm & token').item.json.app_secret }}"
+            },
+            {
+              "name": "fb_exchange_token",
+              "value": "={{ $('Lấy ìnor app & token shorrt meta').item.json.short_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        368,
+        288
+      ],
+      "id": "c027d98a-25b4-436e-9185-f3a3248fe51c",
+      "name": "Token dài hạn đúng không"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "02d8fef1-66c0-4e59-8713-7d4e7ca33e32",
+              "name": "app_id",
+              "value": "cli_a7f1cfbe36b81010",
+              "type": "string"
+            },
+            {
+              "id": "32404746-b39b-4078-8463-5e0f865f35d0",
+              "name": "app_scret",
+              "value": "IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1632,
+        -80
+      ],
+      "id": "9be17653-fe43-4d0a-813b-13692157f84c",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "77775875-fff9-4792-9778-a8f2d4deb7d4",
+              "name": "Meta_ads_data.camp",
+              "value": "={{ $json.campaign_name }}",
+              "type": "string"
+            },
+            {
+              "id": "6a315617-d1c9-4320-b851-e3dcc5207b4b",
+              "name": "Meta_ads_data.adset",
+              "value": "={{ $json.adset_name }}",
+              "type": "string"
+            },
+            {
+              "id": "65d1994d-f4b8-478a-8cf1-490990e6639d",
+              "name": "Meta_ads_data.ad",
+              "value": "={{ $json.ad_name }}",
+              "type": "string"
+            },
+            {
+              "id": "61bc8b24-0976-448d-9c2e-e648127a27e3",
+              "name": "Meta_ads_data.clicks",
+              "value": "={{ $json.clicks }}",
+              "type": "string"
+            },
+            {
+              "id": "e4a932a1-41a2-4062-b8ae-7524c9b17635",
+              "name": "Meta_ads_data.spend",
+              "value": "={{ $json.spend }}",
+              "type": "string"
+            },
+            {
+              "id": "81d74014-2803-44fe-8e35-ce584f3b9d3e",
+              "name": "Meta_ads_data.frequency",
+              "value": "={{ $('Fetch Ads Data').item.json.data[0].frequency }}",
+              "type": "string"
+            },
+            {
+              "id": "7cc2a725-79c5-41b8-b0ca-29270bf8c3c2",
+              "name": "Meta_ads_data.cpc",
+              "value": "={{ $('Fetch Ads Data').item.json.data[0].cpc }}",
+              "type": "string"
+            },
+            {
+              "id": "ec9d6551-eeb4-4be3-8f0b-0241b7141b12",
+              "name": "Meta_ads_data.cpm",
+              "value": "={{ $('Fetch Ads Data').item.json.data[0].cpm }}",
+              "type": "string"
+            },
+            {
+              "id": "75d55059-d495-4470-b964-7c0a68f336ad",
+              "name": "Meta_ads_data.reach",
+              "value": "={{ $('Fetch Ads Data').item.json.data[0].reach }}",
+              "type": "string"
+            },
+            {
+              "id": "2b720bc6-df57-45e9-8b59-4fd90e51280a",
+              "name": "Meta_ads_data.start",
+              "value": "={{ $json.date_start }}",
+              "type": "string"
+            },
+            {
+              "id": "5494091e-aca5-40e0-9955-a8f3b75ac57c",
+              "name": "Meta_ads_data.stop",
+              "value": "={{ $json.date_stop }}",
+              "type": "string"
+            },
+            {
+              "id": "d22336c5-45bd-4289-b557-2a72551ee82c",
+              "name": "Meta_ads_data.total_messaging_connection",
+              "value": "={{ $json.actions[0].value }}",
+              "type": "string"
+            },
+            {
+              "id": "d2e953ec-b3d3-40c0-bdba-8a5299070578",
+              "name": "Meta_ads_data.page_engagement",
+              "value": "={{ $json.actions[1].value }}",
+              "type": "string"
+            },
+            {
+              "id": "3787790a-a1b8-4c5e-bfca-7eae5391c577",
+              "name": "Meta_ads_data.post_engagement",
+              "value": "={{ $json.actions[2].value }}",
+              "type": "string"
+            },
+            {
+              "id": "96f72f12-c8e0-463b-b2e6-cefdf9e99c0e",
+              "name": "Meta_ads_data.comment",
+              "value": "={{ $json.actions[3].value }}",
+              "type": "string"
+            },
+            {
+              "id": "b33a74c5-3b22-4813-b5ec-719ed2c88ecc",
+              "name": "Meta_ads_data.messaging_first_reply",
+              "value": "={{ $json.actions[4].value }}",
+              "type": "string"
+            },
+            {
+              "id": "de4c28be-4654-49b3-bb91-85f8e0a0a8ae",
+              "name": "Meta_ads_data.messaging_welcome_message_view",
+              "value": "={{ $json.actions[6].value }}",
+              "type": "string"
+            },
+            {
+              "id": "373132b4-30b9-43b8-86b4-8ff31c3eb4b7",
+              "name": "Meta_ads_data.like",
+              "value": "={{ $json.actions[7].value }}",
+              "type": "string"
+            },
+            {
+              "id": "2d375945-49c8-43fd-ac7d-af4be44ddec3",
+              "name": "Meta_ads_data.impressions",
+              "value": "={{ $json.impressions }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "include": "except",
+        "excludeFields": "user_data.name",
+        "options": {}
+      },
+      "id": "69f5e524-e7fa-4f76-9885-772f77a06a9d",
+      "name": "Normalize data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1424,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        -80
+      ],
+      "id": "48a75cde-58b4-4f5f-8448-a8a2d9b9d282",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cbc1c925-8c82-4edf-a7c3-35c7b3b85b12",
+              "name": "app_id",
+              "value": "600453229146956",
+              "type": "string"
+            },
+            {
+              "id": "b1787f5d-3e42-4eda-91bd-82375339250a",
+              "name": "app_secret",
+              "value": "6f1e40629b6e123e5f0491ff9f3f6a81",
+              "type": "string"
+            },
+            {
+              "id": "290a0e7e-2b5d-4af1-9d11-8ef1ef42dccb",
+              "name": "short_token",
+              "value": "EAAIiGZBltc0wBOzgYMHKbG8ZCpYD1gwyvSXmiZBE4L8XHA8v6CluzF5wt1JgFEvkxX5Q3VAauwjChMFvnrk2EtywDd2OjGH7sGbAZCts4hhZCSukQdKik9V9R43rwPsFNZCndbYsZC6ke1iR23fX93gBiH0znYGI2HwqUGqDnXmg7GJtEBPDXJhEpikfydoMcEErKb6UqdGOz8ZBdOFg",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8cbf378d-cd5a-4b67-9a77-0fed30390818",
+      "name": "Lấy ìnor app & token shorrt meta"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v21.0/{{ $('ID BM').item.json.data[1].id }}/insights?fields=campaign_name,adset_name,ad_name,impressions,clicks,spend,frequency,cpc,cpm,reach&level=ad&time_range={\"since\":\"{{ $('Generate Monthly Ranges').item.json.timestamp }}\",\"until\":\"{{ $('Generate Monthly Ranges').item.json.timestamp }}\"}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Token dài hạn đúng không').item.json.access_token }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        784,
+        -80
+      ],
+      "id": "125bc080-61fe-49a6-9b8e-447360af1980",
+      "name": "Fetch Ads Data"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/OpeLbegRjakQ23sc4gmlL6zLgZf/tables/tblxmSIipWUFxyNo/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"campaign_name\": \"{{ $('Normalize data').item.json.campaign_name }}\",\n    \"adset_name\": \"{{ $('Normalize data').item.json.adset_name }}\",\n    \"ad_name\": \"{{ $('Normalize data').item.json.ad_name }}\",\n    \"impressions\": {{ Number($('Normalize data').item.json.Meta_ads_data.impressions || 0) }},\n    \"spend\": {{ Number($('Normalize data').item.json.Meta_ads_data.spend || 0) }},\n    \"frequency\": {{ Number($('Normalize data').item.json.Meta_ads_data.frequency || 0) }},\n    \"cpc\": {{ Number($('Normalize data').item.json.Meta_ads_data.cpc || 0) }},\n    \"cpm\": {{ Number($('Normalize data').item.json.Meta_ads_data.cpm || 0) }},\n    \"reach\": {{ Number($('Normalize data').item.json.Meta_ads_data.reach || 0) }},\n\n    \"total_messaging_connection\": {{ Number($('Normalize data').item.json.Meta_ads_data.total_messaging_connection || 0) }},\n    \"page_engagement\": {{ Number($('Normalize data').item.json.Meta_ads_data.page_engagement || 0) }},\n    \"post_engagement\": {{ Number($('Normalize data').item.json.Meta_ads_data.post_engagement || 0) }},\n    \"comment\": {{ Number($('Normalize data').item.json.Meta_ads_data.comment || 0) }},\n    \"messaging_first_reply\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_first_reply || 0) }},\n    \"messaging_user_depth_3_message_send\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_user_depth_3_message_send || 0) }},\n    \"messaging_welcome_message_view\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_welcome_message_view || 0) }},\n    \"like\": {{ Number($('Normalize data').item.json.Meta_ads_data.like || 0) }},\n    \"messaging_conversation_replied_7d\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_conversation_replied_7d || 0) }}\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2000,
+        -80
+      ],
+      "id": "8e696f70-80cb-478c-995f-295eb97c0689",
+      "name": "Creates records lark"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_scret }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"{{ $json.app_id }}\",\n    \"app_secret\": \"{{ $json.app_scret }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1824,
+        -80
+      ],
+      "id": "91e4a046-a54c-416b-a1c2-5bc5e5327289",
+      "name": "Create token"
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date(new Date().toLocaleString(\"en-US\", { timeZone: \"Asia/Ho_Chi_Minh\" }));\nnow.setDate(now.getDate() ); // 🔥 Lùi lại 1 ngày tùy setup\n\nconst date = now.toISOString().split('T')[0];\n\nreturn [{ json: { timestamp: date } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "id": "d11c57f8-245b-489f-952d-16c76b04e57c",
+      "name": "Generate Monthly Ranges"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v21.0/act_2883772628427159/insights?fields=campaign_name,adset_name,ad_name,impressions,clicks,spend,actions,action_values&level=ad&time_range={'since':'{{ $('Generate Monthly Ranges').item.json.timestamp }}','until':'{{ $('Generate Monthly Ranges').item.json.timestamp }}'}&access_token={{ $('Token dài hạn đúng không').item.json.access_token }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        992,
+        -80
+      ],
+      "id": "c0a9c304-7ba7-4a18-a62b-1724447d811b",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "02d8fef1-66c0-4e59-8713-7d4e7ca33e32",
+              "name": "app_id",
+              "value": "cli_a7f1cfbe36b81010",
+              "type": "string"
+            },
+            {
+              "id": "32404746-b39b-4078-8463-5e0f865f35d0",
+              "name": "app_scret",
+              "value": "IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1552,
+        240
+      ],
+      "id": "51e862f6-18a4-464a-b969-e08d8ab98563",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "includeOtherFields": true,
+        "include": "except",
+        "excludeFields": "user_data.name",
+        "options": {}
+      },
+      "id": "1bbfbae0-fb77-456e-b3ff-8f3818fdc977",
+      "name": "Normalize data1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1264,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        960,
+        224
+      ],
+      "id": "2b278a23-8cf6-4be9-92c8-c569de911609",
+      "name": "Split Out1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/bitable/v1/apps/OpeLbegRjakQ23sc4gmlL6zLgZf/tables/tblxmSIipWUFxyNo/records/batch_update",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"total_messaging_connection\": {{ Number($(\"Normalize data1\").item.json.Meta_ads_data.total_messaging_connection || 0) }},\n    \"page_engagement\": {{ Number($(\"Normalize data1\").item.json.Meta_ads_data.page_engagement || 0) }},\n    \"post_engagement\": {{ Number($(\"Normalize data1\").item.json.Meta_ads_data.post_engagement || 0) }},\n    \"comment\": {{ Number($(\"Normalize data1\").item.json.Meta_ads_data.comment || 0) }},\n    \"messaging_first_reply\": {{ Number($(\"Normalize data1\").item.json.Meta_ads_data.messaging_first_reply || 0) }},\n    \"messaging_user_depth_3_message_send\": {{ Number($(\"Normalize data1\").item.json.Meta_ads_data.messaging_user_depth_3_message_send || 0) }},\n    \"messaging_welcome_message_view\": {{ Number($(\"Normalize data1\").item.json.Meta_ads_data.messaging_welcome_message_view || 0) }},\n    \"like\": {{ Number($(\"Normalize data1\").item.json.Meta_ads_data.like || 0) }},\n    \"messaging_conversation_replied_7d\": {{ Number($(\"Normalize data1\").item.json.Meta_ads_data.messaging_conversation_replied_7d || 0) }}\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2000,
+        272
+      ],
+      "id": "3da7bc87-effb-4e1e-9067-7cc9a40c8367",
+      "name": "Creates records lark1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_scret }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"{{ $json.app_id }}\",\n    \"app_secret\": \"{{ $json.app_scret }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1760,
+        240
+      ],
+      "id": "9eaa7c1a-4f67-402c-bbda-d9d5a34e7920",
+      "name": "Create token1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-16T11:47:14.000Z",
+  "versionId": "b4c2f5a2-bfa4-4701-b8d5-05f80201a2a4"
+}
