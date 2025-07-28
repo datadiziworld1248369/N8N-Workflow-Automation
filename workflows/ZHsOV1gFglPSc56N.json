@@ -1,0 +1,445 @@
+{
+  "active": false,
+  "connections": {
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Join completed text with double new line",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Prep Parts for Translate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Generate Binary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Expose Binary": {
+      "main": [
+        [
+          {
+            "node": "Extract text from Binary File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Respond with file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Binary": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split SRT Lines": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Translate": {
+      "main": [
+        [
+          {
+            "node": "Clean Translations & Group Titles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prep Parts for Translate": {
+      "main": [
+        [
+          {
+            "node": "Google Translate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract text from Binary File": {
+      "main": [
+        [
+          {
+            "node": "Split SRT Lines",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Receive SRT File to Translate": {
+      "main": [
+        [
+          {
+            "node": "Expose Binary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean Translations & Group Titles": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Join completed text with double new line": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-05T04:07:18.220Z",
+  "id": "ZHsOV1gFglPSc56N",
+  "isArchived": true,
+  "meta": null,
+  "name": "My workflow 19",
+  "nodes": [
+    {
+      "parameters": {
+        "fieldToSplitOut": "txt",
+        "options": {}
+      },
+      "id": "5b77004e-525e-4d2d-9161-3e58d21c919f",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        900,
+        420
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "text": "={{ JSON.stringify($json.parts.secondPart) }}",
+        "translateTo": "={{ $json.language }}"
+      },
+      "id": "691401cf-99e8-41b1-b254-2e0a41a81155",
+      "name": "Google Translate",
+      "type": "n8n-nodes-base.googleTranslate",
+      "position": [
+        1340,
+        420
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "16af5a27-6f1a-45c4-8ef3-d04a3bd9b0e6",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "position": [
+        240,
+        620
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "498c663a-f372-40fb-9ac9-79f7a60875cc",
+              "name": "complete_text",
+              "type": "string",
+              "value": "={{ $json.complete_text }}"
+            },
+            {
+              "id": "34f3bc06-151d-4819-b6b8-515cf9c05c60",
+              "name": "file",
+              "type": "object",
+              "value": "={{$('Receive SRT File to Translate').first().json}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "852ce7f5-1cdf-4b1a-aa23-ca2118e6f304",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        680,
+        620
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "=data",
+        "binaryPropertyName": "file",
+        "options": {
+          "fileName": "={{ $json['Upload SRT file'].filename.replaceAll('.srt',` ${$('Prep Parts for Translate').first().json.language}.srt`)}}",
+          "mimeType": "={{ $json['Upload SRT file'].mimetype }}"
+        }
+      },
+      "id": "7d4fad33-8b38-4aee-b9d1-acd922ec1ec7",
+      "name": "Convert to File",
+      "type": "n8n-nodes-base.convertToFile",
+      "position": [
+        1120,
+        620
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let text = $json.data\n\ndelete $json.base64\ndelete $json.binary\n\n\n// Split by single newlines\nconst lines = text.split('\\n')\n\n// Create an array to hold grouped subtitle entries\nlet subtitleGroups = []\nlet currentGroup = []\n\n// Process each line\nfor (let i = 0; i < lines.length; i++) {\n  const line = lines[i].trim()\n  \n  // If line is empty and we have content in currentGroup, \n  // it's the end of a subtitle entry\n  if (line === '' && currentGroup.length > 0) {\n    subtitleGroups.push(currentGroup.join('\\n'))\n    currentGroup = []\n  } \n  // If line is not empty, add to current group\n  else if (line !== '') {\n    currentGroup.push(line)\n  }\n}\n\n// Add the last group if it has content\nif (currentGroup.length > 0) {\n  subtitleGroups.push(currentGroup.join('\\n'))\n}\n\n// Remove any quotes at the beginning and end of the first and last entries\nif (subtitleGroups.length > 0) {\n  subtitleGroups[0] = subtitleGroups[0].replace(/^\"/, '')\n  subtitleGroups[subtitleGroups.length - 1] = subtitleGroups[subtitleGroups.length - 1].replace(/\"$/, '')\n}\n\n// Store the result\n$input.item.json.txt = subtitleGroups\n\nreturn $input.item;"
+      },
+      "id": "46632d46-8ac9-4630-8f62-d86e3c8cfeef",
+      "name": "Split SRT Lines",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        680,
+        420
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function encodeBase64(text) {\n  try {\n    // For browser environments\n    if (typeof window !== 'undefined') {\n      // First, create a UTF-8 encoded string\n      const utf8String = encodeURIComponent(text)\n        .replace(/%([0-9A-F]{2})/g, (_, hex) => {\n          return String.fromCharCode(parseInt(hex, 16));\n        });\n      \n      // Then encode to Base64\n      return btoa(utf8String);\n    } \n    // For Node.js environments\n    else if (typeof Buffer !== 'undefined') {\n      return Buffer.from(text).toString('base64');\n    }\n    \n    throw new Error('Environment not supported for Base64 encoding');\n  } catch (error) {\n    console.error('Error encoding to Base64:', error);\n    return null;\n  }\n}\n\nlet data = encodeBase64($json.complete_text);\n\nconsole.log(data)\n\nlet file = $json.file\n\nfile.data = data;\n\nlet paddingCount = 0;\nif (data.endsWith('==')) paddingCount = 2;\nelse if (data.endsWith('=')) paddingCount = 1;\n\n// Calculate the decoded size (in bytes)\nfile.size = Math.floor(data.length * 3 / 4) - paddingCount;\n\n\nreturn file"
+      },
+      "id": "b89b0988-87a5-4f7f-97fc-12ce492d9000",
+      "name": "Generate Binary",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        900,
+        620
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function splitBySecondNewline(text) {\n  // Find the position of the first newline\n  const firstNewlinePos = text.indexOf('\\n');\n  \n  if (firstNewlinePos === -1) {\n    return { firstPart: text, secondPart: '' }; // No newlines found\n  }\n  \n  // Find the position of the second newline\n  const secondNewlinePos = text.indexOf('\\n', firstNewlinePos + 1);\n  \n  if (secondNewlinePos === -1) {\n    return { firstPart: text, secondPart: '' }; // Only one newline found\n  }\n  \n  // Split the string at the second newline\n  const firstPart = text.substring(0, secondNewlinePos);\n  const secondPart = text.substring(secondNewlinePos + 1);\n  \n  return { firstPart, secondPart };\n}\n\nlet lang = $('Receive SRT File to Translate').first().json['Translate to Language']\n\nreturn {\n  parts: splitBySecondNewline($json.txt),\n  language: lang\n}"
+      },
+      "id": "2255d6e1-62b6-4edf-a12d-388bd411ee72",
+      "name": "Prep Parts for Translate",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1120,
+        420
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let translated = $json.translatedText.replaceAll(\"\\\\n\",\"\\n\").replaceAll('&quot;',\"\").replaceAll('&#39;',\"'\");\n\nfunction splitIntoTwoLines(text, maxLength = 40) {\n  // If text already contains a newline or is short enough, return as is\n  if (text.includes('\\n') || text.length <= maxLength) {\n    return text;\n  }\n  \n  // Find the last space before or at the maxLength\n  let splitIndex = text.lastIndexOf(' ', maxLength);\n  \n  // If no space was found (rare case with very long words)\n  if (splitIndex === -1) {\n    splitIndex = maxLength; // Force split at maxLength\n  }\n  \n  // Split the text and join with a newline\n  const firstLine = text.substring(0, splitIndex);\n  const secondLine = text.substring(splitIndex + 1); // +1 to skip the space\n  \n  return firstLine + '\\n' + secondLine;\n}\n\n// Add a new field called 'myNewField' to the JSON of the item\n$input.item.json.complete = `${$('Prep Parts for Translate').item.json.parts.firstPart}\\n` + splitIntoTwoLines(translated)\n\nreturn $input.item;"
+      },
+      "id": "7f6841da-4671-4ba7-a2ca-29f7240dbb8a",
+      "name": "Clean Translations & Group Titles",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        20,
+        620
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let texts = $json.data.map(item=>{\n  return item.complete\n})\n\n\n$input.item.json.complete_text = texts.join('\\n\\n')\n\nreturn $input.item;"
+      },
+      "id": "24d8ecd5-1f2e-4a2d-8fe1-39483dabb9f8",
+      "name": "Join completed text with double new line",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        460,
+        620
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "returnBinary",
+        "completionTitle": "Done",
+        "inputDataFieldName": "file",
+        "options": {}
+      },
+      "id": "fe44b354-477f-4130-876d-e6e572d74991",
+      "name": "Respond with file",
+      "type": "n8n-nodes-base.form",
+      "position": [
+        1340,
+        620
+      ],
+      "webhookId": "b783b857-21b3-41a3-85da-2dbf2d85da54",
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "formTitle": "=upload srt",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Translate to Language",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "EN"
+                  },
+                  {
+                    "option": "JP"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Upload SRT file",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "acceptFileTypes": ".srt",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "601fec9d-c6f1-46f7-a65b-997d768467e9",
+      "name": "Receive SRT File to Translate",
+      "type": "n8n-nodes-base.formTrigger",
+      "position": [
+        20,
+        420
+      ],
+      "webhookId": "8f3c089f-4cbe-4994-9d0e-d86518ef855c",
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "content": "## Required Credentials\nhttps://docs.n8n.io/integrations/builtin/credentials/google/\n\n## Selecting Language\nYou can update the form to include your preferred language code (that you are translating to), by updating the dropdown field with a new option. \nOr update the Google Translate node language option back to 'fixed' and select your desired language. This will ignore the form option, but is safe to do.",
+        "height": 300,
+        "width": 760
+      },
+      "id": "ba97b1fb-eb97-46af-8c43-bd6113df97e5",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "binaryPropertyName": "Upload_SRT_file",
+        "options": {}
+      },
+      "id": "feef1acc-5176-4030-a857-a8a0ec31122c",
+      "name": "Extract text from Binary File",
+      "type": "n8n-nodes-base.extractFromFile",
+      "position": [
+        460,
+        420
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Add a new field called 'myNewField' to the JSON of the item\n$input.item.json.binary = $binary;\n\nreturn $input.item;"
+      },
+      "id": "f73589a7-73b3-4dc4-b0af-7b3c0beba428",
+      "name": "Expose Binary",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        240,
+        420
+      ],
+      "typeVersion": 2
+    }
+  ],
+  "pinData": {
+    "Receive SRT File to Translate": [
+      {
+        "json": {
+          "formMode": "production",
+          "submittedAt": "2025-04-20T05:46:13.787-04:00",
+          "Upload SRT file": {
+            "size": 7748,
+            "filename": "example_file.srt",
+            "mimetype": "application/octet-stream"
+          },
+          "Translate to Language": "EN"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-23T04:33:58.000Z",
+  "versionId": "a4521998-56f8-4690-91e0-0e1d1e84bb90"
+}
