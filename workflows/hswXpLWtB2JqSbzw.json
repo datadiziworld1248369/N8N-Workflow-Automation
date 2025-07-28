@@ -1,0 +1,296 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ID BM": {
+      "main": [
+        [
+          {
+            "node": "Token dài hạn đúng không",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        [
+          {
+            "node": "Lấy token app2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy token app2": {
+      "main": [
+        [
+          {
+            "node": "Bm & token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bm & token": {
+      "main": [
+        [
+          {
+            "node": "ID BM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Token dài hạn đúng không": {
+      "main": [
+        [
+          {
+            "node": "Lấy data ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy data ads": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-05-05T15:19:20.630Z",
+  "id": "hswXpLWtB2JqSbzw",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Lấy data ads",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "840141a4-d6d9-4407-8471-4bf5763a39c5",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -420,
+        220
+      ],
+      "id": "96da2bf1-a220-4784-a8a0-13849ed690d3",
+      "name": "Webhook",
+      "webhookId": "840141a4-d6d9-4407-8471-4bf5763a39c5"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v21.0/{{ $('Bm & token').item.json['<BUSINESS_ID>'] }}/owned_ad_accounts?fields=name,account_id&access_token={{ $('Lấy token app2').item.json.short_token }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        420,
+        220
+      ],
+      "id": "aef564a5-10a1-4b5b-be47-6729f4247384",
+      "name": "ID BM"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -180,
+        220
+      ],
+      "id": "e25d42ba-347d-4b85-9e77-62a4ebfd7d70",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cbc1c925-8c82-4edf-a7c3-35c7b3b85b12",
+              "name": "app_id",
+              "value": "600453229146956",
+              "type": "string"
+            },
+            {
+              "id": "b1787f5d-3e42-4eda-91bd-82375339250a",
+              "name": "app_secret",
+              "value": "6f1e40629b6e123e5f0491ff9f3f6a81",
+              "type": "string"
+            },
+            {
+              "id": "290a0e7e-2b5d-4af1-9d11-8ef1ef42dccb",
+              "name": "short_token",
+              "value": "EAAIiGZBltc0wBO221JdaqZCD4sisO75HFWa4dNmyT7AHUSI70Y9c6OMwJsLEVIOnqXJIcPjQqH9hCdysoqhyhvqJ1SoOY7fTnYpfArCHHmZBUG1ZCmCZAitVZCFN6t8zMSZCfdBGbDznedM8J0J9PcjG9qx6bVHSa0ySZBXHLlxJpi0pISFiYPVcvhRXY9RqBOfn2zcGZB9QWu7DVlQZDZD",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        40,
+        220
+      ],
+      "id": "1dfc9eac-0a8f-42c7-b647-9a8218be23f5",
+      "name": "Lấy token app2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cb3cddfb-0644-463a-b573-c119185f7d5c",
+              "name": "<BUSINESS_ID>",
+              "value": "1937407066269295",
+              "type": "string"
+            },
+            {
+              "id": "c612507d-3786-485f-99dd-f3af985bdf05",
+              "name": "<ACCESS_TOKEN>",
+              "value": "EAAIiGZBltc0wBO8OZCvqg4dXwCRnIZAbOYHCmMDaZBgFUZAN99oZC3fKFWYvott8MoDOgqLNgzzATwwOuapZCRpzAG2rQ0UqPDMljVscZBepjHze9EfVu4Mzj4X3ijemGFegkKh4JXQZBAJdZAiiltkBGEbiaIErvDvLQERf6kEx45G7frh9R4Mg6cibsYvQ0GVXrfvZASZAvTiJX17l5dCzyQOSq2wZD",
+              "type": "string"
+            },
+            {
+              "id": "cbc1c925-8c82-4edf-a7c3-35c7b3b85b12",
+              "name": "app_id",
+              "value": "600453229146956",
+              "type": "string"
+            },
+            {
+              "id": "b1787f5d-3e42-4eda-91bd-82375339250a",
+              "name": "app_secret",
+              "value": "6f1e40629b6e123e5f0491ff9f3f6a81",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        220
+      ],
+      "id": "a82d80d7-d74b-41e4-8c67-69c7c9a0a366",
+      "name": "Bm & token"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/oauth/access_token",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "grant_type",
+              "value": "fb_exchange_token"
+            },
+            {
+              "name": "client_id",
+              "value": "={{ $('Bm & token').item.json.app_id }}"
+            },
+            {
+              "name": "client_secret",
+              "value": "={{ $('Bm & token').item.json.app_secret }}"
+            },
+            {
+              "name": "fb_exchange_token",
+              "value": "={{ $('Bm & token').item.json['<ACCESS_TOKEN>'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        620,
+        220
+      ],
+      "id": "91d34947-42cd-4929-bcbc-86431659bb9c",
+      "name": "Token dài hạn đúng không"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v21.0/{{ $('ID BM').item.json.data[2].id }}/insights?fields=campaign_name,adset_name,ad_name,impressions,clicks,spend,frequency,cpc,cpm,reach&level=ad&time_range={\"since\":\"2024-01-01\",\"until\":\"2025-05-05\"}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.access_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        840,
+        220
+      ],
+      "id": "fe1ff8a2-3700-4631-84f7-857ed3e5a14e",
+      "name": "Lấy data ads"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2025-05-06T10:50:56.304Z",
+      "updatedAt": "2025-05-06T10:50:56.304Z",
+      "id": "PMHwZ813GiVXvBiA",
+      "name": "oauth"
+    },
+    {
+      "createdAt": "2025-05-06T10:50:56.245Z",
+      "updatedAt": "2025-05-06T10:50:56.245Z",
+      "id": "avCEb1e7HciS34jq",
+      "name": "token"
+    },
+    {
+      "createdAt": "2025-05-06T10:50:56.303Z",
+      "updatedAt": "2025-05-06T10:50:56.303Z",
+      "id": "fb4NTBpeUzkpX5gb",
+      "name": "facebook"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-23T04:35:46.000Z",
+  "versionId": "a93b620a-a8d0-44a2-93bd-cef2f86c44ca"
+}
