@@ -1,0 +1,1347 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Video Catagory",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hailuo AI": {
+      "main": [
+        [
+          {
+            "node": "Wait Hailou done process",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Video Catagory": {
+      "main": [
+        [
+          {
+            "node": "Generate Transcript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Transcript": {
+      "main": [
+        [
+          {
+            "node": "Fetch Elevenlabs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Audio": {
+      "main": [
+        [
+          {
+            "node": "Map Public Link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Elevenlabs": {
+      "main": [
+        [
+          {
+            "node": "Save Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Public Link": {
+      "main": [
+        [
+          {
+            "node": "Download Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Audio": {
+      "main": [
+        [
+          {
+            "node": "Open AI Whisper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a list of Image Text": {
+      "main": [
+        [
+          {
+            "node": "Split Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Image Prompt": {
+      "main": [
+        [
+          {
+            "node": "Split Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Image Base 64": {
+      "main": [
+        [
+          {
+            "node": "Convert Base64 to Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Image": {
+      "main": [
+        [
+          {
+            "node": "Limit only first Image to video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Hailuo Status": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Get Hailuo Download Link",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait Hailou done process",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Hailuo Download Link": {
+      "main": [
+        [
+          {
+            "node": "Download Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Video": {
+      "main": [
+        [
+          {
+            "node": "Save Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Video": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Combine Transcript": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Open AI Whisper": {
+      "main": [
+        [
+          {
+            "node": "Combine Transcript",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Create a list of Image Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Music and Video": {
+      "main": [
+        [
+          {
+            "node": "Create Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Video": {
+      "main": [
+        [
+          {
+            "node": "Wait1 andynocode combine video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Video Progress": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Set Final Video URL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait1 andynocode combine video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Final Video URL": {
+      "main": [
+        [
+          {
+            "node": "Get Captions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Captions": {
+      "main": [
+        [
+          {
+            "node": "JSON to Object",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JSON to Object": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Map Music and Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Image": {
+      "main": [
+        [
+          {
+            "node": "Generate Image Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Prompt": {
+      "main": [
+        [
+          {
+            "node": "Get Image Base 64",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert Base64 to Data": {
+      "main": [
+        [
+          {
+            "node": "Save Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit only first Image to video": {
+      "main": [
+        [
+          {
+            "node": "Hailuo AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait Hailou done process": {
+      "main": [
+        [
+          {
+            "node": "Get Hailuo Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1 andynocode combine video": {
+      "main": [
+        [
+          {
+            "node": "Get Video Progress",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-06T14:04:42.753Z",
+  "id": "kDM2Ps8B7Tdd4TjU",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Tạo kịch bản và ghép tiếng duy lụm trên mạng",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        112
+      ],
+      "id": "96e4ab00-3777-46d2-819b-76e4b6c7cc82",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.minimaxi.chat/v1/video_generation",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "first_frame_image",
+              "value": "=https://storage.googleapis.com/{{ $json.bucket }}/{{ $json.name }}"
+            },
+            {
+              "name": "model",
+              "value": "video-01"
+            },
+            {
+              "name": "prompt",
+              "value": "={{ $('Generate Image Prompt').item.json.choices[0].message.content }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        752
+      ],
+      "id": "79065f8a-27fe-4938-812e-b0c63ef10ac8",
+      "name": "Hailuo AI",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "32b891e4-a2f0-4198-851a-f0aea381d782",
+              "name": "Video Category",
+              "value": "=Cute Duck Story in The Jungle",
+              "type": "string"
+            },
+            {
+              "id": "e03686aa-a45b-4646-add2-4e82f66f6d5f",
+              "name": "Bucket Name",
+              "value": "=haismartlife",
+              "type": "string"
+            },
+            {
+              "id": "f75f8937-c564-433e-9652-4e9ae82fe43b",
+              "name": "Unique ID",
+              "value": "={{ $now.valueOf()}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        32,
+        112
+      ],
+      "id": "2a831ef6-2e2b-4d19-bb68-fab53d7c4615",
+      "name": "Video Catagory"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.together.xyz/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"deepseek-ai/DeepSeek-V3\",\n  \"messages\": [\n    {\n      \"role\":\"system\",\n      \"content\": {{ JSON.stringify('You are a YouTube video scriptwriter specializing in ultra-short narratives. Craft a 15-second voiceover script that transforms a given video category (e.g., cooking, tech, fitness) into a captivating micro-story.\\n\\nRequirements:\\n\\nHook Immediately: Start with a surprising fact, question, or twist tied to the category. \\n\\nEmotional Arc: Condense a beginning, middle, and end into 3–4 sentences.\\n\\nVivid Language: Use sensory words (e.g., sizzle, whisper, blaze) to spark imagination.\\n\\nPunchy Conclusion: End with a witty, mysterious, or thought-provoking line.\\n\\nExample (Fitness Category):\\n\\n“Your heartbeat thrums—three seconds left. The weight’s crushing, but so was your boss’s email. Muscles scream, but you grin. Because today, the world bends… not you. \\n\\nRules:\\n\\nNo \\\", \\' and all other punctuations\"\\n\\nNo scene directions, titles, or visuals—voiceover text only.\\n\\nAvoid generic phrases (“Imagine a world…”). Be specific and unexpected.\\n\\nPrioritize rhythm and pacing for 15-second retention..\\n\\nDeliverable:\\n\\nA standalone script that turns a category into a story viewers feel in 15 seconds.') }}\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"{{ $json['Video Category'] }}\"\n\n    }\n\n  ],\n  \"stream\": false\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        112
+      ],
+      "id": "d8dcb657-907a-4a9c-b792-b00e8badaefc",
+      "name": "Generate Transcript",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "object",
+        "operation": "create",
+        "bucketName": "={{ $('Video Catagory').first().json['Bucket Name'] }}",
+        "objectName": "=Voice-{{ $('Video Catagory').first().json['Unique ID'] }}.mp3",
+        "createData": {},
+        "createQuery": {},
+        "encryptionHeaders": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.googleCloudStorage",
+      "typeVersion": 1,
+      "position": [
+        688,
+        112
+      ],
+      "id": "4d1cc99e-0c66-4904-b579-dec93bd4b5f6",
+      "name": "Save Audio",
+      "credentials": {
+        "googleCloudStorageOAuth2Api": {
+          "id": "bVrEHpdIKg2X8CBr",
+          "name": "Google Cloud Storage account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v1/text-to-speech/N2lVS1w4EtoT3dr4eOWO",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.choices[0].message.content }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        464,
+        112
+      ],
+      "id": "9739e434-8160-4439-a833-5d2b72701f03",
+      "name": "Fetch Elevenlabs",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c834c5c4-760c-4a45-b01b-4df4ad8a3bad",
+              "name": "=Audio URL",
+              "value": "=https://{{ $('Video Catagory').first().json['Bucket Name'] }}.storage.googleapis.com/Voice-{{ $('Video Catagory').first().json['Unique ID'] }}.mp3",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        928,
+        112
+      ],
+      "id": "6a544bd7-c369-4af1-a15b-a84a6b0b3a76",
+      "name": "Map Public Link"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json['Audio URL'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        32,
+        400
+      ],
+      "id": "c1ea37a9-4ef4-4b3f-877e-071112b7d3f6",
+      "name": "Download Audio"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n    const words = item.json.words; // Assuming the words are stored in item.json.words\n    const result = [];\n\n    let startTime = words[0].start; // Start time for the first word\n    let endTime = startTime + 6; // Set the 6-second interval\n\n    let currentGroup = []; // Holds the current group of words\n\n    // Loop through each word and group them into 6-second intervals\n    let index = 0;\n    for (const word of words) {\n        if (word.start < endTime) {\n            // If the word's start time is within the current 6-second interval\n            currentGroup.push(word.word);\n        } else {\n            index++;\n            // If the word's start time exceeds the current interval, save the group\n            result.push({\n                text: currentGroup.join(' '),\n                start: startTime,\n                end: word.end,\n                index: index\n            });\n\n            // Start a new group for the next interval\n            startTime = word.start;\n            endTime = startTime + 6;\n            currentGroup = [word.word]; // Start with the current word\n        }\n    }\n\n    // Push the last group if there are any remaining words\n    if (currentGroup.length > 0) {\n        index++;\n        result.push({\n           text: currentGroup.join(' '),\n            start: startTime,\n            end: words[words.length - 1].end,\n            index: index\n        });\n    }\n\n    return {\n        json: {\n            groups: result,\n        },\n    };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        432,
+        400
+      ],
+      "id": "432ca0eb-e01f-4540-8a09-ca3bd301f377",
+      "name": "Create a list of Image Text"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.together.xyz/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"deepseek-ai/DeepSeek-V3\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": {{ JSON.stringify('You are an image prompt designer, your task is to convert the following transcript text into an image prompt for an image generation model. Take the context of the whole video story and create a custom image prompt for a snippet of transcript.\\n\\nHere are the style of the image:\\nStyle: Hyperrealism, 8K\\n\\n***Video Story******' +$('Generate Transcript').first().json.choices[0].message.content+'***SAMPLE OUTPUT*** \\nA serene white cat with bright, inquisitive eyes and a fluffy coat, is captured in a side view, walking gingerly over the frozen Han River in Korea, with the majestic Seoul skyline and the iconic Hannam Bridge visible in the background. The cat\\'s tiny paws leave gentle footprints on the snow-covered ice as it makes its way across the river, its tail twitching slightly with each step. The winter landscape is bathed in a soft, pale blue light, with the frosty air misting up from the river\\'s surface, adding to the tranquil atmosphere. The bridge\\'s steel arches and suspension cables create a striking contrast to the delicate, snow-dusted trees and the frozen riverbank, while the cat remains the focal point, exuding an irresistible air of cuteness and curiosity.\\n\\n***Don\\'t Include ***Image Prompt:** ***') }}\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"{{ $json.text }}\"\n    }\n  ],\n  \"stream\": false\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        784,
+        400
+      ],
+      "id": "c8c00571-cf7c-4d9a-94aa-73bdf364f323",
+      "name": "Generate Image Prompt",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.together.xyz/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"black-forest-labs/FLUX.1-schnell\",\n  \"prompt\": {{ JSON.stringify($json.prompt) }},\n  \"negative_prompt\": \"text, watermark, signature, paragraph, wording, letters, symbols, writing, nude, nudity, explicit content, obscense, inappropriate, offensive, forbidden, illegal, prohibited, sexual, graphic, violence, gore, blood, disturbing\",\n  \"steps\": 4,\n  \"n\": 1,\n  \"height\": 1024,\n  \"width\": 1024,\n  \"response_format\": \"b64_json\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1152,
+        400
+      ],
+      "id": "01ce4619-5feb-4c2f-b4da-fc8b3c42cd6c",
+      "name": "Get Image Base 64",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "object",
+        "operation": "create",
+        "bucketName": "={{ $('Video Catagory').first().json['Bucket Name'] }}",
+        "objectName": "=image-{{ $('Video Catagory').first().json['Unique ID'] }}-{{ $itemIndex + 1 }}.jpeg",
+        "createData": {},
+        "createQuery": {},
+        "encryptionHeaders": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.googleCloudStorage",
+      "typeVersion": 1,
+      "position": [
+        1552,
+        400
+      ],
+      "id": "b89707cb-9f0d-49d4-962f-673bfe2ce919",
+      "name": "Save Image",
+      "credentials": {
+        "googleCloudStorageOAuth2Api": {
+          "id": "bVrEHpdIKg2X8CBr",
+          "name": "Google Cloud Storage account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.minimaxi.chat/v1/query/video_generation?task_id={{ $json.task_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        704,
+        752
+      ],
+      "id": "b37e4db0-4f69-4c38-ac15-07c90abf0dcb",
+      "name": "Get Hailuo Status",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ff27dffa-d763-4f0c-b861-419eabcc11ca",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "Success",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        880,
+        752
+      ],
+      "id": "97c3ea92-a675-4505-ba6b-2c3f5628f8f3",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.minimaxi.chat/v1/files/retrieve?GroupId=1897286060182872214&file_id={{ $json.file_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "authority",
+              "value": "api.minimaxi.chat"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1120,
+        784
+      ],
+      "id": "e0fb05b1-481f-4f82-acd3-063ced0b18e5",
+      "name": "Get Hailuo Download Link",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.file.download_url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1328,
+        784
+      ],
+      "id": "72e13568-3d31-41fc-b3c8-7b2f1f0e400b",
+      "name": "Download Video"
+    },
+    {
+      "parameters": {
+        "resource": "object",
+        "operation": "create",
+        "bucketName": "={{ $('Video Catagory').first().json['Bucket Name'] }}",
+        "objectName": "=video-{{ $('Video Catagory').first().json['Unique ID'] }}.mp4",
+        "createData": {},
+        "createQuery": {},
+        "encryptionHeaders": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.googleCloudStorage",
+      "typeVersion": 1,
+      "position": [
+        1552,
+        784
+      ],
+      "id": "46e92cd2-7d15-4f08-8a43-229d0ada37e2",
+      "name": "Save Video",
+      "credentials": {
+        "googleCloudStorageOAuth2Api": {
+          "id": "bVrEHpdIKg2X8CBr",
+          "name": "Google Cloud Storage account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return $items().map(item => {\n    const words = item.json.words;\n    const result = [];\n\n    for (let i = 0; i < words.length; i += 3) {\n        const chunk = words.slice(i, i + 3);\n        result.push({\n            words: chunk.map(word => word.word.charAt(0).toUpperCase() + word.word.slice(1)).join(' '),\n            start: chunk[0].start,\n            end: chunk[chunk.length - 1].end,\n        });\n    }\n\n    return {\n        json: {\n            chunks: result,\n        },\n    };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        32,
+        1104
+      ],
+      "id": "e0bad67a-6662-4053-9429-bdceb45bdcf0",
+      "name": "Combine Transcript"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/audio/transcriptions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "timestamp_granularities[]",
+              "value": "word"
+            },
+            {
+              "name": "model",
+              "value": "whisper-1"
+            },
+            {
+              "name": "response_format",
+              "value": "verbose_json"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        224,
+        400
+      ],
+      "id": "d322610c-3995-4485-838d-0d66645b016f",
+      "name": "Open AI Whisper",
+      "credentials": {
+        "openAiApi": {
+          "id": "G0kYDiotLWQzJgzj",
+          "name": "Duy"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d77e839d-5711-4dd3-aaec-f8db5b6e10bd",
+              "name": "Music URL",
+              "value": "=https://storage.googleapis.com/{{ $('Video Catagory').first().json['Bucket Name'] }}/bg.mp3",
+              "type": "string"
+            },
+            {
+              "id": "d5a7ec66-f3b5-4025-88df-5fdcadb99fe8",
+              "name": "Video URL",
+              "value": "=https://storage.googleapis.com/{{ $('Video Catagory').first().json['Bucket Name'] }}/video-{{ $('Video Catagory').first().json['Unique ID'] }}.mp4",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        368,
+        1088
+      ],
+      "id": "3bc9b01e-07b7-449d-b1bf-b2a39c980ff4",
+      "name": "Map Music and Video"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://ai-automation-community.vercel.app/api/function/video-generation/mix-video",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"type\": \"MixVideo\",\n    \"data\": {\n        \"background_url\": \"{{ $json['Music URL'] }}\",\n        \"media_list\": [\"{{ $json['Video URL']}}\", {{ Array.from({length: $('Create a list of Image Text').first().json.groups.length - 1}, (_, i) => `\"http://storage.googleapis.com/${$('Video Catagory').first().json['Bucket Name']}/image-${$('Video Catagory').first().json['Unique ID']}-${i+2}.jpeg\"`) }} ],\n        \"voice_url\": \"{{ $('Map Public Link').first().json['Audio URL'] }}\",\n        \"transcripts\": {{  JSON.stringify($('Combine Transcript').first().json.chunks) }}\n    }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        528,
+        1088
+      ],
+      "id": "5e5017a7-a2de-45a5-806d-066a8b6c7ad7",
+      "name": "Create Video"
+    },
+    {
+      "parameters": {
+        "url": "=http://ai-automation-community.vercel.app/api/function/video-generation/Progress/{{ $json.data.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        864,
+        1088
+      ],
+      "id": "5a2edb37-3117-4f76-b406-e07402d1f1b0",
+      "name": "Get Video Progress"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ff27dffa-d763-4f0c-b861-419eabcc11ca",
+              "leftValue": "={{ $json.data.status }}",
+              "rightValue": "done",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1024,
+        1088
+      ],
+      "id": "835fcb70-e75e-4d55-8d7a-9c5a63185568",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e734ad4f-ff06-43cf-90d4-3610b9d6d907",
+              "name": "Final Video URL",
+              "value": "=https://api.andynocode.com{{ $json.data.url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1200,
+        1072
+      ],
+      "id": "8fe6cb29-9f9a-47ce-b1bb-7d3807bf1c68",
+      "name": "Set Final Video URL"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.together.xyz/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"model\": \"deepseek-ai/DeepSeek-V3\",\n    \"messages\": [\n        {\n            \"role\": \"system\",\n            \"content\": {{ JSON.stringify('Transform the following transcript into a YouTube Shorts title and caption. The title should be punchy and attention-grabbing (max 30 words), while the caption should be concise, engaging, and visually descriptive (max 500 words). Focus on keeping the tone energetic and appealing to YouTube Shorts viewers. Incorporate a clear call-to-action where relevant, while preserving the transcript\\'s core message. Avoid using emojis.\\n\\n**RETURN JSON String only, don\\'t add json text and other informative text. Don\\'t add \\`\\`\\`json or \\`\\`\\`\\n\\nOutput Schema:\\n{\\n  \\\"title\\\": \\\"String\\\",\\n  \\\"caption\\\": \\\"String\\\"}') }}\n        },\n        {\n            \"role\": \"user\",\n            \"content\": \"{{ $('Generate Transcript').first().json.choices[0].message.content }}\"\n        }\n    ],\n    \"stream\": false\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1344,
+        1200
+      ],
+      "id": "486ea7c8-57a9-42fd-89e8-b6fb35e3a617",
+      "name": "Get Captions",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nconst updatedItems = items.map((item) => {\n    try {\n        const content = JSON.parse(item?.json?.choices[0]?.message?.content);\n        item.json.choices[0].message.content = content;\n    } catch (error) {\n        console.log(\"Error parsing JSON string\", error);\n    }\n\n    return item;\n});\n\nreturn updatedItems;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1488,
+        1200
+      ],
+      "id": "793d58b8-8b94-4377-8796-bc1e8e710d64",
+      "name": "JSON to Object"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        208,
+        1088
+      ],
+      "id": "98ed5075-6607-46f6-9f37-5e0aef33d177",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "content": "### Bước 1: Tạo kịch bản và ghép tiếng [Link video](https://haismartlife.com/)\n### Step 1: Generate Script and voiceover\n",
+        "height": 260,
+        "width": 1120
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e1f6e219-5372-4bc8-88d5-22cecff8433f",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "### Bước 2: Tạo Prompts cho ảnh và tạo ảnh [Link video](https://haismartlife.com/)\n### Step 2: Create Image Prompts and Generate Images",
+        "height": 260,
+        "width": 1800,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        304
+      ],
+      "id": "a7bc8091-1cd6-480f-88ef-7a03e3a7b8de",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "### Bước 3: Tạo video từ Hailuo AI cho bức ảnh Đầu tiền [Link video](https://haismartlife.com/)\n### Step 3: Create Video from Hailuo AI for first Image",
+        "height": 340,
+        "width": 1800,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        608
+      ],
+      "id": "6f3953b4-d2a3-4e13-a503-89f418f664fa",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "### Bước 4: Tạo bản ghi và tạo video sử dụng công cụ Andynocde [Link video](https://haismartlife.com/)\n### Step 4: Create Transcripts and Generate video using Andynocode",
+        "height": 340,
+        "width": 1800,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        1008
+      ],
+      "id": "cefdb81d-0851-4844-a98f-0268927e6b98",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "groups",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        608,
+        400
+      ],
+      "id": "3a3b9636-0a05-44f4-8c35-d407b4a3d0ea",
+      "name": "Split Image"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "choices[0].message.content",
+        "options": {
+          "destinationFieldName": "prompt"
+        }
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        992,
+        400
+      ],
+      "id": "929ade81-a988-44ce-bbd4-a7341ada5da6",
+      "name": "Split Prompt"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "output.choices[0].image_base64",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1344,
+        400
+      ],
+      "id": "124c2d8d-7d55-404e-9e8e-b32fabf98819",
+      "name": "Convert Base64 to Data"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        32,
+        752
+      ],
+      "id": "0317b6ea-14e6-4878-a358-e62b52038386",
+      "name": "Limit only first Image to video"
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        480,
+        752
+      ],
+      "id": "d3278829-c09c-4e25-a0dd-ba4db8d11886",
+      "name": "Wait Hailou done process",
+      "webhookId": "ca07eaaf-27f4-4350-9b5f-56b918aa31f3"
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        704,
+        1088
+      ],
+      "id": "4bad2f91-12b7-4e68-98d6-4b2217198ac7",
+      "name": "Wait1 andynocode combine video",
+      "webhookId": "9445c43d-1289-473b-b9cc-80991450bc80"
+    },
+    {
+      "parameters": {
+        "content": "## Google node\n**Used to save the link created by web andynocode and add some setup parameters according to your wishes."
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        1040
+      ],
+      "id": "d3bf2ed5-d899-4ec3-a146-47931ad30bcf",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1_2Br9XDICO7k8kITh3BLVIVO-eg027UMDtysoJGmIQA",
+          "mode": "list",
+          "cachedResultName": "Youtube Post",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_2Br9XDICO7k8kITh3BLVIVO-eg027UMDtysoJGmIQA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_2Br9XDICO7k8kITh3BLVIVO-eg027UMDtysoJGmIQA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Video Url": "={{ $('Set Final Video URL').item.json['Final Video URL'] }}",
+            "Video Title": "={{ $json.choices[0].message.content.title }}",
+            "Instagram Post Status": "Pending",
+            "Tiktok Post Status": "Pending",
+            "Youtube Post Status": "Pending",
+            "Captions": "={{ $json.choices[0].message.content.caption }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Video Title",
+              "displayName": "Video Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Video Url",
+              "displayName": "Video Url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Instagram Post Status",
+              "displayName": "Instagram Post Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tiktok Post Status",
+              "displayName": "Tiktok Post Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Youtube Post Status",
+              "displayName": "Youtube Post Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Post Time",
+              "displayName": "Post Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Captions",
+              "displayName": "Captions",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Issues",
+              "displayName": "Issues",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1600,
+        1040
+      ],
+      "id": "6c1cb93c-91dc-4fac-a9b7-b478d672963a",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "rWfK5XMB2wKoDUkh",
+          "name": "Datatdiziworld Google Sheets account "
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-24T04:27:42.000Z",
+  "versionId": "68e1446d-2002-4e10-b7b7-733fbf4f2a0d"
+}
