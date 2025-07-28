@@ -1,0 +1,452 @@
+{
+  "active": false,
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Get Token Lark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Normalize data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        []
+      ]
+    },
+    "Normalize data": {
+      "main": [
+        [
+          {
+            "node": "Encrypt data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Encrypt data": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send event to Meta": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Token Lark": {
+      "main": [
+        [
+          {
+            "node": "Get data in lark base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get data in lark base": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Send event to Meta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-08T08:36:06.158Z",
+  "id": "zvQh1cy033iyhthc",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Đẩy Event Phurba lên Meta",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "02d8fef1-66c0-4e59-8713-7d4e7ca33e32",
+              "name": "app_id",
+              "value": "cli_a7f1cfbe36b81010",
+              "type": "string"
+            },
+            {
+              "id": "32404746-b39b-4078-8463-5e0f865f35d0",
+              "name": "app_scret",
+              "value": "IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        60
+      ],
+      "id": "985d67d4-5b0c-4cc1-9d54-1be5c0db2747",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data.items",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        740,
+        60
+      ],
+      "id": "f9fab4ae-6c5e-4d87-a95a-f4c8d32279e0",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "037e3645-f2b2-42a9-a33b-81ea455543a1",
+              "name": "Short_token",
+              "value": "EAAIiGZBltc0wBO7F7FEsKouJvaQGYOu4fXvKAkdAXDGF4xRjo9EPMzRZAsT1vwDXHKC4i5YZA5IwZAZCuEcQUbkiq2V5DtIz25PHhz2s7631lQZBH8VzEvXR5pXNdDGD1xt7t9g1uFS4JErzQkW6pNgGa81ngM8FgQpdfmPsIQfkQiIJAO5nQkHImIPo4VzWXZCMBxLCcCclNC0l04ZD",
+              "type": "string"
+            },
+            {
+              "id": "50142565-8469-4eb6-81c2-c7e9d115d01c",
+              "name": "link_ladi",
+              "value": "https://hebekery.vn/",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        420,
+        440
+      ],
+      "id": "0b20286d-0c56-4460-b798-1eca7c7791cb",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "=v22.0",
+        "node": "468436841049517",
+        "edge": "=events",
+        "options": {
+          "queryParametersJson": "={\n  \"data\": [\n    {\n      \"event_name\": \"Purchase\",\n      \"event_time\": \"{{ $now.toISO() }}\",\n      \"user_data\": {\n        \"em\": \"{{ $json.user_data.email }}\",\n        \"ph\": \"{{ $json.user_data.phone }}\",\n        \"fn\": \"{{ $json.user_data.name }}\"\n      },\n      \"custom_data\": {\n        \"value\": 50000000,\n        \"currency\": \"VND\"\n      }\n    }\n  ],\n  \"test_event_code\": \"TEST39921\"\n}\n"
+        }
+      },
+      "id": "746d9d5e-af4f-42af-90e1-34aa9316963b",
+      "name": "Send event to Meta",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        80
+      ],
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "bf4mclSQN8yn7sSJ",
+          "name": "Long_token_05082025_phurba"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "65d1994d-f4b8-478a-8cf1-490990e6639d",
+              "name": "Meta_data.phone",
+              "value": "={{ $json[\"data.items\"].fields[\"Số điện thoại\"][0].text }}",
+              "type": "string"
+            },
+            {
+              "id": "e914397d-1f40-42a2-84c8-6a6d877e8db4",
+              "name": "Lark.record_id",
+              "value": "={{ $json[\"data.items\"].record_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "include": "except",
+        "excludeFields": "user_data.name",
+        "options": {}
+      },
+      "id": "bb1f2162-fa06-4bfb-aef1-d4e531fb8202",
+      "name": "Normalize data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1e87a997-5b78-48d8-9616-edfb1b910743",
+              "name": "user_data.phone",
+              "value": "={{ $json.Meta_data.phone?.hash('sha256') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "ce48f2fe-6627-4030-80e9-9efe76324f15",
+      "name": "Encrypt data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1240,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_scret }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"app_id\": \"cli_a7f1cfbe36b81010\",\n    \"app_secret\": \"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        340,
+        60
+      ],
+      "id": "30c73b5b-018c-4c4d-a158-2dd0bad37e28",
+      "name": "Get Token Lark"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/WkwXbhdCSaQrZnsDqiUlAt5kgVd/tables/tblxH2thd0TiuZet/records/search",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"{{ $('Edit Fields').item.json.app_id }}\",\n    \"app_secret\": \"{{ $('Edit Fields').item.json.app_scret }}\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        60
+      ],
+      "id": "7ac804aa-e88c-47d8-a0a4-90bb008fed2c",
+      "name": "Get data in lark base"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/bitable/v1/apps/WkwXbhdCSaQrZnsDqiUlAt5kgVd/tables/tblxH2thd0TiuZet/records/batch_update",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "ignore_consistency_check",
+              "value": "true"
+            },
+            {
+              "name": "user_id_type",
+              "value": "open_id"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Get Token Lark').item.json.app_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"records\": [\n    {\n      \"fields\": {\n        \"Xác nhận\": \"Đã gửi Event thành công\"\n      },\n      \"record_id\": \"{{ $('Normalize data').item.json.Lark.record_id }}\"\n    }\n  ]\n}\n",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2080,
+        80
+      ],
+      "id": "95f2ee41-bb6e-4da7-9a6c-60a6e4ecf0bc",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "path": "nhan_event",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -20,
+        60
+      ],
+      "id": "5a98818c-e88f-4cc1-92b6-009818b4ba61",
+      "name": "Webhook",
+      "webhookId": "03858510-ae50-4b13-bfcb-41a807044b9f"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2400,
+        80
+      ],
+      "id": "087270a3-41c3-4eef-964d-b70d3396d9ea",
+      "name": "Wait",
+      "webhookId": "a3d8c500-404e-4828-8df9-25177faf566b"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1480,
+        60
+      ],
+      "id": "16bbdb78-fa4b-476a-bb8e-a6e726c20e0f",
+      "name": "Loop Over Items"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-27T08:50:49.000Z",
+  "versionId": "7e8330e8-b74d-4137-b6e8-8d8eeb535d8a"
+}
