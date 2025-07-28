@@ -1,0 +1,276 @@
+{
+  "active": false,
+  "connections": {
+    "ChatWoot_Message_Out": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-05-14T08:12:43.922Z",
+  "id": "jAzbESgHqBUqt7nM",
+  "isArchived": false,
+  "meta": null,
+  "name": "Chatwoot lấy từ anh bình",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{DOMAIN_CHAT}/api/v1/accounts/{ACCOUNT_ID}/conversations/filter",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"payload\": [\n    {\n      \"attribute_key\": \"zalo_uid\",\n      \"filter_operator\": \"eq\",\n      \"values\": [\n        \"{ZALO_THREAD_ID}\"\n      ],\n      \"query_operator\": null\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        272,
+        288
+      ],
+      "id": "ee158b4d-b258-4283-bb64-97da6c588c74",
+      "name": "get_conversation",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://{DOMAIN_CHAT}/api/v1/accounts/{ACCOUNT_ID}/contacts/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "={THREAD_ID}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        48,
+        448
+      ],
+      "id": "ca1380c5-3abd-4770-81d7-2a310b2656e5",
+      "name": "get_contact",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://{DOMAIN_CHAT}/api/v1/accounts/{ACCOUNT_ID}/contacts",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{{\n\nJSON.stringify({\n  \"inbox_id\": 2,\n  \"name\": \"Nguyễn Văn A\",\n  \"phone_number\": \"+84987654321\",\n  \"avatar_url\": \"https://example.com/avatar.jpg\",\n  \"identifier\": \"12345678\",\n  \"custom_attributes\": {\n    \"status\": \"active\"\n  }\n})\n\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        48,
+        304
+      ],
+      "id": "bf4dd397-591c-41d0-b47c-d45cc24deb67",
+      "name": "create contact chat woot",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{DOMAIN_CHAT}/api/v1/accounts/{ACCOUNT_ID}/conversations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"source_id\": \"zalo_12345\",\n  \"inbox_id\": 2,\n  \"contact_id\": 98765,\n  \"additional_attributes\": {},\n  \"custom_attributes\": {\n    \"zalo_uid\": \"user_zalo_123456789\",\n    \"priority_conversation_number\": 3\n  },\n  \"status\": \"open\",\n  \"assignee_id\": \"\",\n  \"team_id\": \"\",\n  \"message\": {\n    \"content\": \"Xin chào, tôi cần hỗ trợ về sản phẩm\",\n    \"template_params\": {\n      \"name\": \"sample_issue_resolution\",\n      \"category\": \"UTILITY\",\n      \"language\": \"vi_VN\",\n      \"processed_params\": {\n        \"1\": \"Chatwoot\"\n      }\n    }\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        272,
+        448
+      ],
+      "id": "6a046ab8-d700-4a2c-a792-5a992b46813d",
+      "name": "create converstaion",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{DOMAIN_CHAT}/api/v1/accounts/{ACCOUNT_ID}/conversations/{CONVERSATION_ID}/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"content\": \"Xin chào, tôi cần được tư vấn về sản phẩm\",\n  \"message_type\": \"incoming\",\n  \"private\": false,\n  \"content_type\": \"text\",\n  \"content_attributes\": {},\n  \"template_params\": {\n    \"name\": \"sample_issue_resolution\",\n    \"category\": \"UTILITY\",\n    \"language\": \"vi_VN\",\n    \"processed_params\": {\n      \"1\": \"Chatwoot\"\n    }\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        48,
+        640
+      ],
+      "id": "2ee3cf7e-fae8-43af-95a7-fdd8592ca4d8",
+      "name": "đẩy tin vào chat woot",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Hướng dẫn tích hợp Chatwoot vào bất kì kênh chat nào\nVí dụ: Chat zalo cá nhân\n\n### Tin nhắn (INCOME) đến từ kênh Chat (Vd: Zalo) vào Chat Woot\nCần có contact (thông tin khách)\nCần có conversation (id luồng chat)\nChưa có thì mình sẽ tạo. \nCó thì đưa ID conversation, và id contact vào để đưa tin nhắn đó vào Chat Woot\n\n",
+        "height": 800,
+        "width": 440
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "9b6eb34f-f55c-48bd-a95c-dc34dfa14749",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "### Đưa message (OUT) trả lời ngược lại Chat Woot\n\nCó 2 cách gửi tin nhắn đi từ chatWoot.\n1. Là lên chatwood trả lời tin nhắn\n2. Là dùng AI Agent hoặc API nhắn tin trả lời\n\nở đây khi dùng AI trả lời thì mình cần bắn ngược tin nhắn này vào Chat Woot. Ở đây thì mới hiện tin trong Chatwoot chứ chưa gửi tới kênh chat",
+        "height": 420,
+        "width": 400
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        608,
+        432
+      ],
+      "id": "9718a130-e31d-4355-beb6-5126dc8b57a8",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{DOMAIN_CHAT}/api/v1/accounts/2/conversations/{CONVERSATION_ID}/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"content\": \"Cảm ơn quý khách đã liên hệ. Chúng tôi sẽ hỗ trợ ngay!\",\n  \"message_type\": \"outgoing\",\n  \"private\": false,\n  \"content_type\": \"text\",\n  \"content_attributes\": {},\n  \"template_params\": {\n    \"name\": \"sample_issue_resolution\",\n    \"category\": \"UTILITY\",\n    \"language\": \"vi_VN\",\n    \"processed_params\": {\n      \"1\": \"Chatwoot\"\n    }\n  }\n}",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        752,
+        672
+      ],
+      "id": "bf626e78-de6f-447a-be64-e8441d4345d5",
+      "name": "send_message_answer_into_chatwoot",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "### Tin nhắn đi từ ChatWoot ra kênh chat (VD: Zalo)\n\nChat woot sẽ bắn webhook cho chúng ta.\nTừ website nhận được là tin nhắn out",
+        "height": 340,
+        "width": 380
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1088,
+        384
+      ],
+      "id": "e6765938-6c21-4b58-a52a-3bb2f35dbd2e",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tu_van",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1104,
+        592
+      ],
+      "id": "b6c485ea-4d55-4585-883c-1e8653197ecd",
+      "name": "ChatWoot_Message_Out",
+      "webhookId": "95eef6c7-c334-4f1f-b072-261a4b5e0e6b"
+    },
+    {
+      "parameters": {
+        "content": "Tạo channel API: \nhttps://www.chatwoot.com/hc/user-guide/articles/1677839703-how-to-create-an-api-channel-inbox\n\nTài liệu API:\nhttps://www.chatwoot.com/developers/api/\n\nAPI Key: \nAuthorize bằng header api_access_token\n\nKey lấy trong Profile -> Setting -> mục Access Token",
+        "height": 280,
+        "width": 360
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        608,
+        0
+      ],
+      "id": "17ceb5d1-e1c1-4404-8d8f-dbc9203b06d8",
+      "name": "Sticky Note3"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-03-06T07:14:55.182Z",
+      "updatedAt": "2025-03-06T07:14:55.182Z",
+      "id": "Wd8DssRLJj6S53M6",
+      "name": "share"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-23T04:35:22.000Z",
+  "versionId": "9105ab09-9620-4a69-99a4-d23f9619bcca"
+}
