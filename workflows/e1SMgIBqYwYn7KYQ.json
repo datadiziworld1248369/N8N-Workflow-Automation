@@ -1,0 +1,63 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-06T12:17:21.074Z",
+  "id": "e1SMgIBqYwYn7KYQ",
+  "isArchived": true,
+  "meta": null,
+  "name": "My workflow 7",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.hebekery.vn/webhook-test/api/oauth/actopensupport/get_signature",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "\n                        {\n                        \"data\": \"Test callback\",\n                        \"key\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\"\n                        }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        -160
+      ],
+      "id": "1bc3aa83-2a3d-4062-8d43-d2453a43236b",
+      "name": "HTTP Request",
+      "retryOnFail": true,
+      "maxTries": 5
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        660,
+        -160
+      ],
+      "id": "37e0a947-b24a-4411-9c55-a04548b18836",
+      "name": "When clicking ‘Test workflow’"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-23T04:35:43.000Z",
+  "versionId": "0cd290af-1c21-4370-9275-cd7ac1642831"
+}
