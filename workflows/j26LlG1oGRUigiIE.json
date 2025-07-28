@@ -1,0 +1,308 @@
+{
+  "active": false,
+  "connections": {
+    "Embeddings": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Weaviate Insert",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Weaviate Query",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Weaviate Query": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Tool",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "RAG Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "RAG Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "RAG Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RAG Agent": {
+      "main": [
+        [
+          {
+            "node": "Append Sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Slack Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-27T00:26:40.231Z",
+  "id": "j26LlG1oGRUigiIE",
+  "isArchived": false,
+  "meta": null,
+  "name": "Monthly soicial media report ( mốt mò sau)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "Placeholder for Monthly Social Media Report",
+        "height": 530,
+        "width": 1100,
+        "color": 5
+      },
+      "id": "69f4a1cc-e026-4579-82d5-e12f4c016841",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -672,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "monthly-social-media-report",
+        "options": {}
+      },
+      "id": "c8e2b3d9-b47b-4626-a3f3-8955dc4b07a1",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -496,
+        336
+      ],
+      "webhookId": "f29ada6c-5142-4b83-bc68-77f36f149ebb"
+    },
+    {
+      "parameters": {
+        "chunkSize": 400,
+        "chunkOverlap": 40
+      },
+      "id": "6aa988e3-7998-4c46-8558-34692a7744c5",
+      "name": "Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        336
+      ]
+    },
+    {
+      "parameters": {
+        "model": "text-embedding-3-small",
+        "options": {}
+      },
+      "id": "05b11378-c0c3-443a-87a8-c9c3f82590c2",
+      "name": "Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        400
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "G0kYDiotLWQzJgzj",
+          "name": "Duy"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "weaviateCollection": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "id": "20e2c683-30e9-49d0-83df-a9ea81320c4b",
+      "name": "Weaviate Insert",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreWeaviate",
+      "typeVersion": 1,
+      "position": [
+        64,
+        464
+      ]
+    },
+    {
+      "parameters": {
+        "weaviateCollection": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "id": "5725ff35-f77a-440e-a7b5-2eed9752cda7",
+      "name": "Weaviate Query",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreWeaviate",
+      "typeVersion": 1,
+      "position": [
+        80,
+        144
+      ]
+    },
+    {
+      "parameters": {
+        "name": "Weaviate",
+        "description": "Vector context"
+      },
+      "id": "b2041f22-53d0-4efb-b953-6fa21f289fa0",
+      "name": "Vector Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1,
+      "position": [
+        592,
+        48
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c14619dc-2eb2-41f7-8210-8d56b8d9461b",
+      "name": "Window Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        640,
+        528
+      ]
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20240620",
+        "options": {}
+      },
+      "id": "fb5e2d51-ba13-4869-af2a-d8e164dbf158",
+      "name": "Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1,
+      "position": [
+        512,
+        528
+      ]
+    },
+    {
+      "parameters": {
+        "text": "Handle data",
+        "options": {
+          "systemMessage": "You are an assistant for Monthly Social Media Report"
+        }
+      },
+      "id": "2fa011f5-5f17-4004-a8c5-0cf0d10ca962",
+      "name": "RAG Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1,
+      "position": [
+        544,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Monthly Social Media Report"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Log",
+          "mode": "list",
+          "cachedResultName": "Log"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": "Status",
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "1e886c84-b7dc-4e19-9f8c-1ef08e00a503",
+      "name": "Append Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        960,
+        240
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "rWfK5XMB2wKoDUkh",
+          "name": "Datatdiziworld Google Sheets account "
+        }
+      }
+    },
+    {
+      "parameters": {
+        "channel": "#alerts",
+        "text": "Monthly Social Media Report error: {$json.error.message}",
+        "otherOptions": {},
+        "attachments": []
+      },
+      "id": "681965cc-db95-4714-914d-8dcd5e8efb02",
+      "name": "Slack Alert",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        960,
+        480
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-27T00:29:46.000Z",
+  "versionId": "64dd7c2b-63e9-41e9-b89f-d84929336da7"
+}
