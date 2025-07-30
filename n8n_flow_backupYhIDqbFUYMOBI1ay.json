@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Ultimate Assistant": {
       "main": [
@@ -553,6 +553,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-07-11T07:51:28.000Z",
+  "updatedAt": "2025-07-30T04:54:48.000Z",
   "versionId": "7d1c71f4-e125-4997-a2f1-849ada447095"
 }
