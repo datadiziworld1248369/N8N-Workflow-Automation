@@ -534,8 +534,7 @@
         "rule": {
           "interval": [
             {
-              "field": "hours",
-              "hoursInterval": 2
+              "field": "weeks"
             }
           ]
         }
@@ -736,6 +735,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-07-28T10:39:32.000Z",
-  "versionId": "9c7e488b-26a0-43b0-ab56-dbf5b3346b4e"
+  "updatedAt": "2025-07-31T08:30:01.000Z",
+  "versionId": "4e0a7e9d-2376-43ca-ad24-83e046b49fa9"
 }
