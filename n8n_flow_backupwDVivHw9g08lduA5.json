@@ -182,8 +182,8 @@
         "rule": {
           "interval": [
             {
-              "triggerAtHour": 23,
-              "triggerAtMinute": 59
+              "triggerAtHour": 7,
+              "triggerAtMinute": null
             }
           ]
         }
@@ -427,6 +427,18 @@
               "name": "Meta_ads_data.impressions",
               "value": "={{ $json.impressions }}",
               "type": "string"
+            },
+            {
+              "id": "ecaf09cf-7485-4c1b-b1af-a4c7e9c1a504",
+              "name": "Date_start",
+              "value": "={{ $json.date_start }}",
+              "type": "string"
+            },
+            {
+              "id": "0d6c39da-3f9e-4f23-9c1b-3f60a6d6b144",
+              "name": "Date_stop",
+              "value": "={{ $json.date_stop }}",
+              "type": "string"
             }
           ]
         },
@@ -521,7 +533,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/OpeLbegRjakQ23sc4gmlL6zLgZf/tables/tblxmSIipWUFxyNo/records",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/OpeLbegRjakQ23sc4gmlL6zLgZf\n/tables/tblBQ8R3R7jeuKt4/records",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -533,7 +545,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"fields\": {\n    \"campaign_name\": \"{{ $('Normalize data').item.json.campaign_name }}\",\n    \"adset_name\": \"{{ $('Normalize data').item.json.adset_name }}\",\n    \"ad_name\": \"{{ $('Normalize data').item.json.ad_name }}\",\n    \"impressions\": {{ Number($('Normalize data').item.json.Meta_ads_data.impressions || 0) }},\n    \"spend\": {{ Number($('Normalize data').item.json.Meta_ads_data.spend || 0) }},\n    \"frequency\": {{ Number($('Normalize data').item.json.Meta_ads_data.frequency || 0) }},\n    \"cpc\": {{ Number($('Normalize data').item.json.Meta_ads_data.cpc || 0) }},\n    \"cpm\": {{ Number($('Normalize data').item.json.Meta_ads_data.cpm || 0) }},\n    \"reach\": {{ Number($('Normalize data').item.json.Meta_ads_data.reach || 0) }},\n\n    \"total_messaging_connection\": {{ Number($('Normalize data').item.json.Meta_ads_data.total_messaging_connection || 0) }},\n    \"page_engagement\": {{ Number($('Normalize data').item.json.Meta_ads_data.page_engagement || 0) }},\n    \"post_engagement\": {{ Number($('Normalize data').item.json.Meta_ads_data.post_engagement || 0) }},\n    \"comment\": {{ Number($('Normalize data').item.json.Meta_ads_data.comment || 0) }},\n    \"messaging_first_reply\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_first_reply || 0) }},\n    \"messaging_user_depth_3_message_send\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_user_depth_3_message_send || 0) }},\n    \"messaging_welcome_message_view\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_welcome_message_view || 0) }},\n    \"like\": {{ Number($('Normalize data').item.json.Meta_ads_data.like || 0) }},\n    \"messaging_conversation_replied_7d\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_conversation_replied_7d || 0) }}\n  }\n}\n",
+        "jsonBody": "={\n  \"fields\": {\n    \"campaign_name\": \"{{ $('Normalize data').item.json.campaign_name }}\",\n    \"adset_name\": \"{{ $('Normalize data').item.json.adset_name }}\",\n    \"ad_name\": \"{{ $('Normalize data').item.json.ad_name }}\",\n    \n    \"impressions\": {{ Number($('Normalize data').item.json.Meta_ads_data.impressions || 0) }},\n    \"spend\": {{ Number($('Normalize data').item.json.Meta_ads_data.spend || 0) }},\n    \"frequency\": {{ Number($('Normalize data').item.json.Meta_ads_data.frequency || 0) }},\n    \"cpc\": {{ Number($('Normalize data').item.json.Meta_ads_data.cpc || 0) }},\n    \"cpm\": {{ Number($('Normalize data').item.json.Meta_ads_data.cpm || 0) }},\n    \"reach\": {{ Number($('Normalize data').item.json.Meta_ads_data.reach || 0) }},\n\n    \"total_messaging_connection\": {{ Number($('Normalize data').item.json.Meta_ads_data.total_messaging_connection || 0) }},\n    \"page_engagement\": {{ Number($('Normalize data').item.json.Meta_ads_data.page_engagement || 0) }},\n    \"post_engagement\": {{ Number($('Normalize data').item.json.Meta_ads_data.post_engagement || 0) }},\n    \"comment\": {{ Number($('Normalize data').item.json.Meta_ads_data.comment || 0) }},\n    \"messaging_first_reply\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_first_reply || 0) }},\n    \"messaging_user_depth_3_message_send\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_user_depth_3_message_send || 0) }},\n    \"messaging_welcome_message_view\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_welcome_message_view || 0) }},\n    \"like\": {{ Number($('Normalize data').item.json.Meta_ads_data.like || 0) }},\n    \"messaging_conversation_replied_7d\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_conversation_replied_7d || 0) }},\n    \n    \"Date_start\": {{ new Date($('Normalize data').item.json.Date_start).getTime() }},\n    \"Date_stop\": {{ new Date($('Normalize data').item.json.Date_stop).getTime() }}\n  }\n}\n",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -578,7 +590,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const now = new Date(new Date().toLocaleString(\"en-US\", { timeZone: \"Asia/Ho_Chi_Minh\" }));\nnow.setDate(now.getDate() ); // 🔥 Lùi lại 1 ngày tùy setup\n\nconst date = now.toISOString().split('T')[0];\n\nreturn [{ json: { timestamp: date } }];\n"
+        "jsCode": "const now = new Date(new Date().toLocaleString(\"en-US\", { timeZone: \"Asia/Ho_Chi_Minh\" }));\nnow.setDate(now.getDate() -1 ); // 🔥 Lùi lại 1 ngày tùy setup\n\nconst date = now.toISOString().split('T')[0];\n\nreturn [{ json: { timestamp: date } }];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -719,6 +731,19 @@
       ],
       "id": "9eaa7c1a-4f67-402c-bbda-d9d5a34e7920",
       "name": "Create token1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date(new Date().toLocaleString(\"en-US\", { timeZone: \"Asia/Ho_Chi_Minh\" }));\nnow.setDate(now.getDate() -1 ); // 🔥 Lùi lại 1 ngày tùy setup\n\nconst date = now.toISOString().split('T')[0];\n\nreturn [{ json: { timestamp: date } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        704,
+        208
+      ],
+      "id": "dc425ffe-9d98-4f87-baa7-ddc1d052ca2f",
+      "name": "Generate Monthly Ranges1"
     }
   ],
   "pinData": {},
@@ -732,6 +757,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-07-16T11:47:14.000Z",
-  "versionId": "b4c2f5a2-bfa4-4701-b8d5-05f80201a2a4"
+  "updatedAt": "2025-08-04T13:26:26.000Z",
+  "versionId": "45ab8209-b2ea-4114-a7dc-5f57bc355f00"
 }
