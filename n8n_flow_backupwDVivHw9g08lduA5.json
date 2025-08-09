@@ -182,7 +182,7 @@
         "rule": {
           "interval": [
             {
-              "triggerAtHour": 7,
+              "triggerAtHour": 9,
               "triggerAtMinute": null
             }
           ]
@@ -757,6 +757,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-04T13:26:26.000Z",
-  "versionId": "45ab8209-b2ea-4114-a7dc-5f57bc355f00"
+  "updatedAt": "2025-08-04T14:02:09.000Z",
+  "versionId": "cbac7238-1172-4a0b-9aee-d98586299c0b"
 }
