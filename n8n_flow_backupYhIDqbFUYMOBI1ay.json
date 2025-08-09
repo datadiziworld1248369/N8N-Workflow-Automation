@@ -3,7 +3,13 @@
   "connections": {
     "Ultimate Assistant": {
       "main": [
-        []
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Email Agent": {
@@ -72,20 +78,67 @@
         ]
       ]
     },
+    "Set 'Text'": {
+      "main": [
+        [
+          {
+            "node": "Ultimate Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Download File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set 'Text'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download File": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "If": {
       "main": [
         [],
-        []
-      ]
-    },
-    "OpenAI1": {
-      "main": [
-        []
+        [
+          {
+            "node": "Send an audio file",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Post and publish blog to Website": {
       "ai_tool": [
-        []
+        [
+          {
+            "node": "Ultimate Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
       ]
     },
     "Content Creator Agent": {
@@ -99,11 +152,6 @@
         ]
       ]
     },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        []
-      ]
-    },
     "Google Gemini Chat Model": {
       "ai_languageModel": [
         [
@@ -115,26 +163,27 @@
         ]
       ]
     },
-    "Telegram Trigger": {
+    "Analyze audio": {
       "main": [
         []
       ]
     },
-    "OpenAI": {
-      "main": [
-        []
-      ]
-    },
-    "Telegram": {
-      "main": [
-        []
-      ]
-    },
-    "When chat message received": {
+    "Transcribe a recording": {
       "main": [
         [
           {
             "node": "Ultimate Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
             "type": "main",
             "index": 0
           }
@@ -153,19 +202,18 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "={{ $json.chatInput }}",
-        "hasOutputParser": true,
+        "text": "={{ $json.content.parts[0].text }}",
         "options": {
-          "systemMessage": "=\n#### **IMPERATIVE RULES**\n1.  The user's name is **Duy Messi**. You must always address him as \"Duy Messi\" in your responses.\n2.  When Duy Messi asks a question in Vietnamese, you **must** respond entirely in Vietnamese.\n3. Your knowledge is update immediately to {{ $now }}\n\n#### **ROLE & PHILOSOPHY**\nYou are **Kai**, a specialist in decision-making and strategic planning. You are not the suit-and-tie type who speaks in confusing jargon, but a smart, practical, and sometimes witty partner who helps users untangle their most complex problems.\n\n**Core Philosophy:** Life and work are complicated enough. The user's job is to present the problem; your job is to analyze it from every angle, pointing out the pitfalls and the clearest path forward. Consider the user the CEO, and you are their trusted advisory board.\n\n#### **THE \"INTERNAL EXPERT COUNCIL\" (The \"Thinking\" Part)**\nTo form a strategy, you consult your \"internal expert council,\" with each member representing a different analytical lens:\n\n1.  **The Data Detective:** \"Where's the truth? What do the numbers say?\" (Often relies on the **Tavily** tool to gather data).\n2.  **The Big-Picture Strategist:** \"Where will this decision lead in 5 years?\"\n3.  **The Risk Manager:** \"What's the worst that could happen?\"\n4.  **The Human-Centric Empath:** \"How will this affect people?\"\n5.  **The Creative Innovator:** \"Why must we follow the beaten path?\"\n6.  **The Jaded Veteran:** \"Seen it, done that.\" This persona's job is to puncture overly optimistic ideas with brutally honest, real-world analogies. **This voice is dominant in \"Barstool Advice\" Mode.**\n\n#### **AVAILABLE TOOLS & SUB-WORKFLOWS (The \"Doing\" Part)**\nTo execute tasks and gather information, you have access to the following sub-workflows:\n\n* **emailAgent:** The email wizard who never sleeps—like a super-busy secretary who also doesn’t take vacations.\n* **calendarAgent:** The scheduling guru who tries to turn your day into a masterpiece… even though you probably didn’t have time to drink your coffee.\n* **contactAgent:** The thinking phonebook that remembers names, emails, and even the Facebook nickname of that kid you sat next to in 3rd grade.\n* **Tavily:** The modern-day detective of Google, capable of finding anything except your missing car keys.\n* **Publish blog:** The emotionally detached but oddly passionate writer who turns any input into a blog post and publishes it online faster than you can say “Instagram story.”\n* **contentCreator:** The rapid-fire researcher who digs up everything from sci-fi theories to how to boil eggs without burning the pot.\n\n#### **OPERATING MODES**\nYou have two consultation modes. The user selects a mode at the beginning of the conversation.\n\n1.  **Standard Mode (Default):** Professional, objective, and practical. The \"Internal Expert Council\" operates in a balanced manner.\n2.  **\"Barstool Advice\" Mode:** The tone becomes informal, blunt, and much more \"real-world.\" **The Jaded Veteran** gets a much louder voice, using cynical humor and harsh-but-true analogies. The analysis still follows the C.O.R.E framework, but the delivery is as casual as two friends complaining about work over a beer.\n\n#### **THE C.O.R.E. FRAMEWORK**\nAll of your consultations must follow a clear, 4-step process:\n1.  **C - Clarify the Context**\n2.  **O - Outline the Options**\n3.  **R - Recommend the Optimal Path**\n4.  **E - Establish an Action Plan**\n\n#### **MANDATORY RESPONSE STRUCTURE**\nWhen providing a consultation, you must strictly adhere to the following format:\n\n> **THE PROBLEM:** `[Summarize Duy Messi's problem]`\n>\n> ---\n>\n> ### **1. SITUATIONAL ANALYSIS (Clarify)**\n> * **Primary Goal:** `[...]`\n> * **Key Context & Facts:** `[...]`\n> * **The Core Question:** `[...]`\n>\n> ### **2. OPTIONS ON THE TABLE (Options)**\n> 🔵 **Option 1:** `[...]`\n> 🟡 **Option 2:** `[...]`\n> 💡 **The Out-of-the-Box Option:** `[...]`\n>\n> ### **3. KAI'S RECOMMENDATION (Recommend)**\n> **Optimal Choice:** `[...]`\n> **Rationale:** `[...]`\n>\n> ### **4. THE ACTION PLAN (Execute)**\n> 1. `[...]`\n> 2. `[...]`\n> 3. `[...]`\n>\n> ---\n>\n> ### **THE BOTTOM LINE (IN PLAIN ENGLISH)**\n> *(This section is added at the end of every response, especially in \"Barstool Advice\" Mode)*\n>\n> **To put it simply, Duy Messi, your situation is like:** `[Use a humorous, real-world analogy to summarize the entire problem and recommendation. For example: \"To put it simply, Duy Messi, your situation is like trying to catch a shark with a fishing rod made for a goldfish. The first step is to upgrade your 'fishing rod' before you even think about heading out to sea.\"]`\n\n#### **WELCOME MESSAGE**\nWhen starting a new conversation, display exactly this:\n\n\"Xin chào, tui được Duy Messi tạo ra để giúp bạn nè hihi\""
+          "systemMessage": "=# Overview\nYou are the ultimate personal assistant. Your job is to send the user's query to the correct tool. You should never be writing emails, or creating even summaries, you just need to call the correct tool.\n\n## Tools\n- emailAgent: Use this tool to take action in email\n- calendarAgent: Use this tool to take action in calendar\n- contactAgent: Use this tool to get, update, or add contacts\n- Tavily: Use this tool to search the web\n- Publish blog: Use create content tool to create a long-form blog post and publish to a pre-defined website.\n- contentCreator: Call this tool to research information \n\n## Rules\n- Some actions require you to look up contact information first. For the following actions, you must get contact information and send that to the agent who needs it:\n  - sending emails\n  - drafting emails\n  - creating calendar event with attendee\n\n## Examples\n1) \n- Input: send an email to nate herkelman asking him what time he wants to leave\n  - Action: Use contactAgent to get nate herkelman's email\n  - Action: Use emailAgent to send the email. You will pass the tool a query like \"send nate herkelman an email to ask what time he wants to leave. here is his email: [email address]\n- Output: The email has been sent to Nate Herkelman. Anything else I can help you with?\n\n\n## Final Reminders\nHere is the current date/time: {{ $now }}\nALWAYS USE VIETNAMESE"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        -700,
-        320
+        -240,
+        -224
       ],
-      "id": "cc83fd5b-4540-4e0a-90d5-8a436f8e58b4",
+      "id": "f11658be-190c-4652-9176-970942039d6e",
       "name": "Ultimate Assistant"
     },
     {
@@ -190,10 +238,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        -800,
-        720
+        -480,
+        320
       ],
-      "id": "d93db842-4d83-4682-899e-33cd4cdd639e",
+      "id": "6f852988-9aa6-4f73-af2a-7cf5a09276d5",
       "name": "Email Agent"
     },
     {
@@ -218,10 +266,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        -580,
-        720
+        32,
+        336
       ],
-      "id": "0027e8ae-2ce7-4df8-b61f-801e0760d670",
+      "id": "09b3ca07-f07b-48b2-a0a2-9938bc9bcd54",
       "name": "Contact Agent"
     },
     {
@@ -246,25 +294,24 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        -140,
-        560
+        480,
+        176
       ],
-      "id": "9e50fd82-0912-43f6-8868-3e7cbb06e228",
+      "id": "9efe426e-e037-47e1-82f9-e4776acbc3c0",
       "name": "Content Creator Agent"
     },
     {
       "parameters": {
         "sessionIdType": "customKey",
-        "sessionKey": "={{ $json.chatInput }}",
-        "contextWindowLength": 50000
+        "sessionKey": "={{ $('Telegram Trigger').item.json.message.chat.id }}"
       },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -960,
-        600
+        -640,
+        208
       ],
-      "id": "6fcfe876-147e-4952-9a7b-aebf581f4663",
+      "id": "94d046ac-f5cd-42bd-b132-4cb5ddec5bd8",
       "name": "Window Buffer Memory"
     },
     {
@@ -274,7 +321,7 @@
         "url": "https://api.tavily.com/search",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"api_key\": \"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\",\n    \"query\": \"{searchTerm}\",\n    \"search_depth\": \"basic\",\n    \"include_answer\": true,\n    \"topic\": \"news\",\n    \"include_raw_content\": true,\n    \"max_results\": 3\n} ",
+        "jsonBody": "={\n    \"api_key\": \"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\",\n    \"query\": \"{searchTerm}\",\n    \"search_depth\": \"basic\",\n    \"include_answer\": true,\n    \"topic\": \"news\",\n    \"include_raw_content\": true,\n    \"max_results\": 3\n} ",
         "placeholderDefinitions": {
           "values": [
             {
@@ -288,10 +335,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
       "position": [
-        -400,
-        720
+        208,
+        336
       ],
-      "id": "69145754-4714-4d9e-afba-733552fc157f",
+      "id": "ea1f5f85-410a-40de-9da4-276864f3102b",
       "name": "Tavily"
     },
     {
@@ -299,10 +346,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolCalculator",
       "typeVersion": 1,
       "position": [
-        -240,
-        720
+        368,
+        336
       ],
-      "id": "d89ac66a-8afe-4b90-ab70-c5c4e4b02435",
+      "id": "5ae4a647-8204-467e-9389-57dcdd7fe312",
       "name": "Calculator"
     },
     {
@@ -327,11 +374,122 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        -720,
-        700
+        -320,
+        320
       ],
-      "id": "bd5f1a61-13c5-46ec-9082-abd006595110",
+      "id": "157b7b91-fde4-4544-a0a0-bce1b58392d7",
       "name": "Calendar Agent"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fe7ecc99-e1e8-4a5e-bdd6-6fce9757b234",
+              "name": "text",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fe4e2900-e79d-405a-a8b7-7b7e3175e6e1",
+      "name": "Set 'Text'",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -512,
+        -144
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.voice.file_id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Voice"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "8c844924-b2ed-48b0-935c-c66a8fd0c778",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Text"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "eec4f1d8-ef4a-4595-944c-cb7ff094ee6c",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -768,
+        -208
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.voice.file_id }}",
+        "additionalFields": {}
+      },
+      "id": "3d565ad6-a49f-4df9-bb10-d24652c94242",
+      "name": "Download File",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -576,
+        -304
+      ],
+      "webhookId": "83bb7385-33f6-4105-8294-1a91c0ebbee5",
+      "credentials": {
+        "telegramApi": {
+          "id": "AZ6P8JcpXiBj5VdX",
+          "name": "bot skibidi"
+        }
+      }
     },
     {
       "parameters": {
@@ -344,10 +502,10 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -40,
-        280
+        608,
+        -384
       ],
-      "id": "41a79839-a9fe-4f19-84ee-bf0d8dc4050e",
+      "id": "2d1b2937-7b0b-4920-a652-7e5d2e423c9f",
       "name": "Telegram",
       "webhookId": "fb6817dd-e7bd-4bbd-9be9-715902a3b066",
       "credentials": {
@@ -369,7 +527,7 @@
           "conditions": [
             {
               "id": "c5fa1460-c604-46ce-b2c5-49c201404a1e",
-              "leftValue": "={{ $json.output }}",
+              "leftValue": "={{ $('Switch').item.json.message.text }}",
               "rightValue": "",
               "operator": {
                 "type": "string",
@@ -385,32 +543,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -1720,
-        340
+        176,
+        -208
       ],
-      "id": "04835a55-85c6-46cc-8bfd-fc55f069124e",
+      "id": "38cba35d-5089-4399-9c09-63109756272e",
       "name": "If"
-    },
-    {
-      "parameters": {
-        "resource": "audio",
-        "input": "={{ $json.output }}",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.openAi",
-      "typeVersion": 1.7,
-      "position": [
-        -1560,
-        400
-      ],
-      "id": "1b08115c-3c0b-4ccd-9f1e-092d43b52b73",
-      "name": "OpenAI1",
-      "credentials": {
-        "openAiApi": {
-          "id": "G0kYDiotLWQzJgzj",
-          "name": "Duy"
-        }
-      }
     },
     {
       "parameters": {
@@ -434,48 +571,23 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        -820,
-        60
+        -160,
+        304
       ],
-      "id": "d1a945ee-88d8-498a-a5b5-606e3cce28a3",
+      "id": "238a530a-6512-47e6-b01b-02bca83b1cb2",
       "name": "Post and publish blog to Website"
     },
     {
       "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4o-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        -1420,
-        560
-      ],
-      "id": "941b975f-5156-4bd3-b68c-0d6634879054",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "G0kYDiotLWQzJgzj",
-          "name": "Duy"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "modelName": "models/gemini-2.5-pro",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -1100,
-        520
+        -736,
+        96
       ],
-      "id": "af5c7bb1-485a-4da0-acec-6bd0f34c8f45",
+      "id": "1a90b67b-0ca9-4130-ada8-d78680d11d71",
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
@@ -486,21 +598,75 @@
     },
     {
       "parameters": {
+        "resource": "audio",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "inputType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -464
+      ],
+      "id": "62019572-447e-471f-9e2c-c7124cd8c6d6",
+      "name": "Analyze audio",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "FNvJ4uxnoR1jl3eg",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "inputType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        -416,
+        -304
+      ],
+      "id": "3c416788-c780-44e5-936b-234c2f06deb9",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "FNvJ4uxnoR1jl3eg",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
         "updates": [
-          "message",
-          "*"
+          "message"
         ],
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.2,
       "position": [
-        -1540,
-        140
+        -1088,
+        -192
       ],
-      "id": "0ca0e75e-cb1c-46da-8fd1-6561f674a5e3",
+      "id": "91c98fe8-e737-4b66-b530-6e1724a135de",
       "name": "Telegram Trigger",
-      "webhookId": "0a6ab6e1-7c09-414f-82cd-49dc75dbb7d5",
+      "webhookId": "db5f4eb0-37f8-45ba-bc56-41bfe163c24d",
       "credentials": {
         "telegramApi": {
           "id": "AZ6P8JcpXiBj5VdX",
@@ -510,40 +676,25 @@
     },
     {
       "parameters": {
-        "resource": "audio",
-        "input": "xin chào\n",
-        "options": {}
+        "operation": "sendAudio",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "additionalFields": {}
       },
-      "type": "@n8n/n8n-nodes-langchain.openAi",
-      "typeVersion": 1.8,
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
       "position": [
-        -1480,
-        380
+        736,
+        -32
       ],
-      "id": "69328f9b-fc4d-40ad-b9d6-b5c285faed63",
-      "name": "OpenAI",
+      "id": "dc40090d-5620-4d68-87a8-62e7c1227152",
+      "name": "Send an audio file",
+      "webhookId": "b2abc1f3-ffe7-47fc-a230-4109e2ef36f0",
       "credentials": {
-        "openAiApi": {
-          "id": "G0kYDiotLWQzJgzj",
-          "name": "Duy"
+        "telegramApi": {
+          "id": "AZ6P8JcpXiBj5VdX",
+          "name": "bot skibidi"
         }
       }
-    },
-    {
-      "parameters": {
-        "public": true,
-        "initialMessages": "Xin chào thằng nhóc\nCần bố giúp gì không cu",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1.1,
-      "position": [
-        -960,
-        260
-      ],
-      "id": "43b4c8da-92f9-4975-8f65-6da4b633bb36",
-      "name": "When chat message received",
-      "webhookId": "c330b992-b712-420c-882a-735246074863"
     }
   ],
   "pinData": {},
@@ -551,8 +702,15 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2025-03-06T07:14:55.182Z",
+      "updatedAt": "2025-03-06T07:14:55.182Z",
+      "id": "Wd8DssRLJj6S53M6",
+      "name": "share"
+    }
+  ],
   "triggerCount": 2,
-  "updatedAt": "2025-07-30T04:54:48.000Z",
-  "versionId": "7d1c71f4-e125-4997-a2f1-849ada447095"
+  "updatedAt": "2025-08-08T17:13:02.000Z",
+  "versionId": "6bc53c11-0773-4624-bcc4-f361ea102ff5"
 }
