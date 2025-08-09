@@ -1,0 +1,1000 @@
+{
+  "active": false,
+  "connections": {
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Tạo_story_board",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code Trung Chuyển Dữ Liệu 1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code Trung Chuyển Dữ Liệu 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Tạo_TVC&VOICE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Tạo Storyboard": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent3": {
+      "main": [
+        [
+          {
+            "node": "Suno_prompt&Music_description",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Tạo Lời Đọc": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code Trung Chuyển Dữ Liệu 1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code Trung Chuyển Dữ Liệu 2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Creates records lark": {
+      "main": [
+        [
+          {
+            "node": "Update SUCCESS vào lark base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create token": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chuẩn hóa data": {
+      "main": [
+        [
+          {
+            "node": "Create token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create token1": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chuẩn hóa data1": {
+      "main": [
+        [
+          {
+            "node": "Create token1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create token3": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chuẩn hóa data3": {
+      "main": [
+        [
+          {
+            "node": "Create token3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tạo_story_board": {
+      "main": [
+        [
+          {
+            "node": "Chuẩn hóa data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tạo_TVC&VOICE": {
+      "main": [
+        []
+      ]
+    },
+    "Bỏ_/n_prompt_input_1": {
+      "main": [
+        [
+          {
+            "node": "Chuẩn hóa data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bỏ_/n_prompt_input_2": {
+      "main": [
+        [
+          {
+            "node": "Chuẩn hóa data3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Suno_prompt&Music_description": {
+      "main": [
+        [
+          {
+            "node": "Lấy_prompt_input_từ _Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy_prompt_input_từ _Webhook": {
+      "main": [
+        [
+          {
+            "node": "Bỏ_/n_prompt_input_1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy_prompt_input_từ _Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Bỏ_/n_prompt_input_2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Tạo Lời Đọc1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-08T16:23:12.978Z",
+  "id": "pPk0TFsh6PLX4xQz",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 26",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query.prompt_input }}",
+        "options": {
+          "systemMessage": "=Bạn là một Biên kịch và Đạo diễn phim chuyên nghiệp, một bậc thầy về kể chuyện bằng hình ảnh (visual storytelling).\n\nNhiệm vụ của bạn là nhận một ý tưởng hoặc một câu chuyện gốc, sau đó phát triển nó thành một kịch bản phân cảnh (storyboard) hoàn chỉnh, giàu cảm xúc, với lời dẫn truyện (voice-over) chi tiết cho từng cảnh.\n\nBạn thực hiện tuần tự các công việc sau:\n1.  **Phân tích Ý tưởng:** Nghiên cứu sâu sắc ý tưởng để nắm bắt linh hồn câu chuyện, nhân vật, và thông điệp cốt lõi.\n2.  **Sáng tạo Kịch bản & Lời dẫn:** Phát triển câu chuyện thành đúng số lượng cảnh yêu cầu. Với MỖI CẢNH, bạn phải viết đồng thời cả mô tả hình ảnh và lời dẫn truyện (voice-over) tương ứng. Lời dẫn phải có văn phong lôi cuốn, giàu cảm xúc và khớp với hình ảnh.\n3.  **Thiết kế Quay phim:** Chỉ định góc máy, chuyển động camera để tối ưu hóa hiệu quả kể chuyện và cảm xúc.\n4.  **Phân tích & Tối ưu hóa:** Đánh giá mức độ khả thi sản xuất của từng cảnh và đề xuất phương án đơn giản hơn nếu cần, nhưng phải đảm bảo giữ được ý đồ nghệ thuật và góc máy.\n5.  **Tạo Prompt cho AI khác:** Dựa trên kịch bản cuối cùng, tạo ra các prompt tiếng Anh cho AI tạo hình ảnh và video.\n6.  **Định dạng Output:** Trả về kết quả cuối cùng là một MẢNG JSON duy nhất, không có văn bản giải thích thừa.\n\n---\n### QUY TẮC BẮT BUỘC\n\n#### 1. Nguyên tắc Kể chuyện bằng Hình ảnh\n* **Ưu tiên Cảm xúc:** Luôn đặt câu chuyện và cảm xúc lên hàng đầu. Sử dụng kết hợp đa dạng các góc máy (Rộng, Trung, Cận) để dẫn dắt cảm xúc của người xem, tạo nhịp điệu và nhấn mạnh các chi tiết quan trọng.\n* **Logic Dẫn dắt:** Cảnh mở đầu thường là góc rộng (Wide Shot) để thiết lập bối cảnh, nhưng bạn có thể phá vỡ quy tắc này nếu ý đồ nghệ thuật (ví dụ: mở đầu bằng một chi tiết cận cảnh bí ẩn) phục vụ câu chuyện tốt hơn.\n\n#### 2. Đánh giá Mức độ Khả thi\n* **Dễ:** Cảnh tĩnh, ít chi tiết, camera tĩnh hoặc zoom in nhẹ.\n* **Trung bình:** 1-2 nhân vật, chuyển động đơn giản, camera lia ngang chậm.\n* **Khó:** 3-4 nhân vật tương tác, hành động nhanh, nhiều chi tiết chuyển động, sản phẩm có chữ to.\n* **Rất khó / Rủi ro cao:** Cảnh đám đông, tương tác vật lý tinh vi, hiệu ứng biến đổi, sản phẩm có chữ nhỏ, camera zoom out hoặc xoay vòng.\n\n#### 3. Đề xuất & Tạo Prompt\n* Nếu cảnh 'Khó' hoặc 'Rất khó', BẮT BUỘC phải có `suggestion_prompt`.\n* Đề xuất phải **giữ nguyên góc máy** của kịch bản gốc.\n* `imagePrompt` và `videoPrompt` phải được tạo dựa trên `suggestion_prompt` (nếu có), nếu không thì mới dựa trên mô tả gốc.\n\n---\n### CONCEPT TỪ NGƯỜI DÙNG:\n{{ $json.query.prompt_input }}\n---\n### CẤU TRÚC JSON OUTPUT (BẮT BUỘC):\nHãy sáng tạo và điền đầy đủ thông tin vào một MẢNG JSON có cấu trúc như sau cho mỗi cảnh:\n\n[\n  {\n    \"scene\": \"Số thứ tự cảnh.\",\n    \"description\": \"Tóm tắt nội dung chính của cảnh trong 2 câu.\",\n    \"context\": \"Mô tả chi tiết bối cảnh, không khí.\",\n    \"subject\": \"Mô tả cụ thể đối tượng, nhân vật.\",\n    \"motion\": \"Mô tả chuyển động của chủ thể.\",\n    \"camera\": \"Chỉ dẫn về khung hình, góc và di chuyển máy quay, tuân thủ quy tắc Cinematic Flow.\",\n    \"visualEffect\": \"Hiệu ứng hình ảnh.\",\n    \"audioEffect\": \"Hiệu ứng âm thanh.\",\n    \"feasibilityLevel\": \"Đánh giá mức độ khả thi (Dễ, Trung bình, Khó, Rất khó / Rủi ro cao).\",\n    \"feasibilityNote\": \"Ghi chú lý do đánh giá.\",\n    \"suggestion_prompt\": \"Đề xuất kịch bản thay thế khả thi hơn (chỉ điền nếu cảnh khó).\",\n    \"suggestion_feasibility\": \"Mức độ khả thi mới của phương án đề xuất.\",\n    \"imagePrompt\": \"Prompt tiếng Anh cho AI tạo ảnh, dựa trên kịch bản cuối cùng (gốc hoặc đề xuất).\",\n    \"videoPrompt\": \"Prompt tiếng Anh cho AI tạo video, dựa trên kịch bản cuối cùng (gốc hoặc đề xuất).\"\n  }\n]"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -432,
+        368
+      ],
+      "id": "69218ba5-d2a1-4420-8ded-981a84c5d5bc",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.query.prompt_input }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -320,
+        560
+      ],
+      "id": "51284d88-dd7f-4b97-8d46-7b50daf601d7",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.storyboard }}",
+        "options": {
+          "systemMessage": "Bạn là một giám đốc sáng tạo quảng cáo, chuyên viết lời dẫn và định hướng giọng đọc (voice casting).\n\nNhiệm-vụ của bạn là nhận vào một kịch bản storyboard và trả về một đối tượng JSON DUY NHẤT có 2 khóa: \"tvcScript\" và \"voiceSuggestion\".\n\nQUY TẮC:\n- \"tvcScript\" phải chứa lời dẫn TVC có cấu trúc 3 phần, sâu sắc và cảm xúc.\n- \"voiceSuggestion\" phải chứa một chuỗi văn bản mô tả chi tiết về Giới tính, Khoảng độ tuổi, và Tông giọng phù hợp.\n- Chỉ trả về duy nhất đối tượng JSON, không có giải thích nào khác.\n\n---\nCHI TIẾT STORYBOARD ĐẦY ĐỦ:\n{{$json.output}}\n---\n\nDựa vào storyboard trên, hãy tạo ra một đối tượng JSON với cấu trúc chính xác như sau:\n\n{\n  \"tvcScript\": \"Nội dung lời dẫn TVC được viết ở đây.\",\n  \"voiceSuggestion\": \"Gợi ý giọng đọc chi tiết được viết ở đây (VD: Giới tính: Nữ, Tuổi: 25-35, Tông giọng: Ấm áp, truyền cảm).\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        240,
+        272
+      ],
+      "id": "ae3c6a26-4b0c-4dfd-9343-45773dcbd7ba",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro",
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        592
+      ],
+      "id": "ad4aa86e-4b73-4412-87a5-e578f0089e68",
+      "name": "Google Gemini Tạo Storyboard",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "FNvJ4uxnoR1jl3eg",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Tạo prompt nhạc nền cho video quảng cáo dựa trên thông tin sau:\n\n- Thể loại video: {{ $json.videoType }}\n- Thời lượng: {{ $json.duration }}s\n- Tone & mood: {{ $json.tone }}\n- Nội dung tổng thể: {{ $json.summary }}\n\nTrả kết quả dưới dạng object JSON theo đúng mẫu sau:\n\n```json\n{\n  \"sunoPrompt\": \"Create a [duration]-second soundtrack for a [videoType]. Tempo should be around [BPM] BPM. Overall mood: [tone]. Instruments: [gợi ý nhạc cụ].\n\n[Intro] (0–[s]): [mô tả mở đầu].\n\n[Middle] ([s]–[s]): [mô tả phần giữa].\n\n[Outro] ([s]–[s]): [mô tả kết thúc].\",\n\n  \"musicDescription\": \"Tóm tắt cảm xúc, nhạc cụ chính, tốc độ BPM, tông nhạc bằng tiếng Việt.\"\n}\n",
+        "options": {
+          "systemMessage": "=Bạn là một Giám đốc Âm nhạc và chuyên gia sáng tạo prompt cho các công cụ AI tạo nhạc như Suno, với khả năng phân tích kịch bản và yêu cầu để tạo ra định hướng âm nhạc chi tiết.\n\nNhiệm vụ của bạn là nhận vào một YÊU CẦU GỐC và một STORYBOARD CHI TIẾT, sau đó thực hiện một chuỗi các bước suy luận để tạo ra một đối tượng JSON hoàn chỉnh.\n\n**QUY TRÌNH SUY LUẬN BẮT BUỘC:**\n\n**Bước 1: Phân tích Yêu cầu Gốc.**\n* Đọc kỹ \"YÊU CẦU GỐC CỦA NGƯỜI DÙNG\".\n* Trích xuất chính xác các thông tin sau:\n    * **[DURATION]:** Lấy giá trị số từ \"Thời lượng\".\n    * **[VIDEO_TYPE_VIETNAMESE]:** Lấy giá trị từ \"Thể loại video\".\n    * **[TONE_MOOD_VIETNAMESE]:** Lấy giá trị từ \"Tone & mood\".\n\n**Bước 2: Dịch và Tra cứu.**\n* Dịch [VIDEO_TYPE_VIETNAMESE] sang tiếng Anh (ví dụ: \"video quảng cáo\" -> \"a commercial video\").\n* Dịch [TONE_MOOD_VIETNAMESE] sang tiếng Anh (ví dụ: \"tươi sáng, tích cực\" -> \"bright, positive\").\n* Dựa vào [TONE_MOOD_VIETNAMESE], tra cứu BPM từ bảng sau và chọn một số cụ thể:\n    * **Nhẹ nhàng, thư giãn, chữa lành:** 60–80 BPM\n    * **Tươi sáng, tích cực:** 90–110 BPM\n    * **Sôi động, hiện đại:** 110–130 BPM\n    * **Tập trung, chuyên nghiệp:** 70–90 BPM\n\n**Bước 3: Tổng hợp Sáng tạo.**\n* Đọc \"STORYBOARD CHI TIẾT\" để nắm bắt hành trình cảm xúc.\n* Dựa trên cảm xúc chung, đề xuất 2-3 loại nhạc cụ chính phù hợp.\n* Viết mô tả sáng tạo cho 3 phần Intro, Middle, Outro bằng tiếng Anh.\n\n**Bước 4: Hoàn thành Output.**\n* Lắp ráp tất cả các thông tin đã phân tích và sáng tạo ở trên vào đúng cấu trúc JSON được yêu cầu dưới đây.\n* **Chỉ trả về duy nhất đối tượng JSON, không có bất kỳ giải thích nào khác.**\n\n---\n### DỮ LIỆU ĐẦU VÀO\n\n**YÊU CẦU GỐC CỦA NGƯỜI DÙNG:**\n{{ $json.originalRequest }}\n\n**STORYBOARD CHI TIẾT:**\n{{ $json.storyboard }}\n---\n\n### CẤU TRÚC JSON OUTPUT (BẮT BUỘC):\n\n{\n  \"sunoPrompt\": \"Create a [DURATION]-second instrumental track for a [VIDEO_TYPE_ENGLISH]. The overall mood is [MOOD_IN_ENGLISH]. Tempo: around [BPM] BPM. Main instruments: [LIST_OF_INSTRUMENTS].\\n\\n[Intro] (0-[tính toán]s): [Sáng tạo mô tả cho Intro bằng tiếng Anh].\\n\\n[Middle] ([tính toán]s): [Sáng tạo mô tả cho Middle bằng tiếng Anh].\\n\\n[Outro] ([tính toán]s): [Sáng tạo mô tả cho Outro bằng tiếng Anh].\",\n  \"musicDescription\": \"Bản nhạc này mang cảm xúc [TONE_MOOD_VIETNAMESE], với tiết tấu khoảng [BPM] BPM. Nhạc cụ chính được đề xuất là [danh sách nhạc cụ bằng tiếng Việt], tạo nên không khí [mô tả cảm xúc chung bằng tiếng Việt].\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        288,
+        704
+      ],
+      "id": "8571ff7e-13e4-46f6-b76f-fbd7a935251a",
+      "name": "AI Agent3"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro",
+        "options": {
+          "temperature": 0.6
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        176,
+        432
+      ],
+      "id": "c2317ffe-77a6-478c-8453-bd0b69cd1377",
+      "name": "Google Gemini Tạo Lời Đọc",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "FNvJ4uxnoR1jl3eg",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy output là chuỗi JSON từ AI Agent\nconst storyboardJsonString = $json.output;\n\n// Lấy yêu cầu gốc của người dùng từ node trigger\n// QUAN TRỌNG: Đảm bảo tên node trigger của anh là \"When chat message received\"\nconst originalRequest = $('Webhook').first().json.text;\n\n// Tạo một đối tượng mới chứa cả hai thông tin\nconst combinedData = {\n  storyboard: storyboardJsonString,\n  originalRequest: originalRequest\n};\n\n// Trả về dữ liệu đã được gộp\nreturn {\n  originalRequest: originalRequest,\n  storyboard: storyboardJsonString\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -16,
+        272
+      ],
+      "id": "f8281147-da23-4342-848f-1818138e3882",
+      "name": "Code Trung Chuyển Dữ Liệu 1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy nội dung từ ChatInput và storyboard từ AI Agent\nconst originalText = String($('Webhook').first().json.chatInput || '');\nconst storyboard = $json.output || $json.storyboard || '';  // lấy đúng field trả ra từ AI Agent\n\n// Hàm trích xuất nội dung sau nhãn\nconst extract = (label) => {\n  const regex = new RegExp(`${label}:\\\\s*(.*)`);\n  const lines = originalText.split('\\n');\n  for (const line of lines) {\n    const match = line.match(regex);\n    if (match) return match[1].trim();\n  }\n  return null;\n};\n\n// Trích xuất các trường cần thiết\nconst videoType = extract(\"Thể loại video\");\nconst tone = extract(\"Tone & mood\");\nconst durationRaw = extract(\"Thời lượng\");\nconst duration = durationRaw ? parseInt(durationRaw) : 30;\n\n// Gán toàn bộ storyboard là summary\nconst summary = storyboard;\n\n// Trả về kết quả\nreturn [{\n  videoType,\n  tone,\n  duration,\n  summary\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -16,
+        704
+      ],
+      "id": "7b37f5ac-526c-406d-bdf1-00a50148bc23",
+      "name": "Code Trung Chuyển Dữ Liệu 2"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "storu_board",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -704,
+        368
+      ],
+      "id": "fa4762b1-2599-4aae-8cf9-29f5d19f993d",
+      "name": "Webhook",
+      "webhookId": "15461a07-18de-4a6a-9ce5-a1a591224e23"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/RKbTbhcFzaHu4vsRjlClj8G3gce/tables/tblPlPKxbOp8DBNv/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Scene\": {{ Number($('Chuẩn hóa data').item.json.Sence) || 0 }},\n    \"Description\": \"{{ $('Chuẩn hóa data').item.json.Description }}\",\n    \"Context\": \"{{ $('Chuẩn hóa data').item.json.Context }}\",\n    \"Subject\": \"{{ $('Chuẩn hóa data').item.json.Subject }}\",\n    \"Motion\": \"{{ $('Chuẩn hóa data').item.json.Motion }}\",\n    \"Camera\": \"{{ $('Chuẩn hóa data').item.json.Camera }}\",\n    \"Visual Effect\": \"{{ $('Chuẩn hóa data').item.json['Visual Effect'] }}\",\n    \"Sound Effect\": \"{{ $('Chuẩn hóa data').item.json['Sound Effect'] }}\",\n    \"Feasibility Level\": \"{{ $('Chuẩn hóa data').item.json['Feasibility Level'] }}\",\n    \"Feasibility Note\": \"{{ $('Chuẩn hóa data').item.json['Feasibility Note'] }}\",\n    \"Alternative Proposal\": \"{{ $('Chuẩn hóa data').item.json['Alternative Proposal'] }}\",\n    \"New Feasibility Level\": \"{{ $('Chuẩn hóa data').item.json['New Feasibility Level'] }}\",\n    \"Image Prompt\": \"{{ $('Chuẩn hóa data').item.json['Image Prompt'] }}\",\n    \"Video Prompt\": \"{{ $('Chuẩn hóa data').item.json['Video Prompt'] }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        704,
+        0
+      ],
+      "id": "1c1e7f0b-574f-4260-aedd-5114302a650f",
+      "name": "Creates records lark"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        0
+      ],
+      "id": "d920e8e0-6cf2-4d75-be55-ca402d1508ca",
+      "name": "Create token"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "faf8d201-e279-474b-89bf-bab1bdbd9dd7",
+              "name": "Sence",
+              "value": "={{ $json.scene }}",
+              "type": "string"
+            },
+            {
+              "id": "9b19a4f9-036e-46cc-9fb6-035c0cc93782",
+              "name": "Description",
+              "value": "={{ $json.description }}",
+              "type": "string"
+            },
+            {
+              "id": "88579201-b4a8-4a3e-8bfa-32e6e124fb8a",
+              "name": "Context",
+              "value": "={{ $json.context }}",
+              "type": "string"
+            },
+            {
+              "id": "557f9560-6ea9-4896-b93e-0790e053deb9",
+              "name": "Subject",
+              "value": "={{ $json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "0b8156b8-0bcf-4aec-96b3-005453151a3a",
+              "name": "Motion",
+              "value": "={{ $json.motion }}",
+              "type": "string"
+            },
+            {
+              "id": "aae38a93-64d3-4d1d-8c29-d3d94a32ec10",
+              "name": "Camera",
+              "value": "={{ $json.camera }}",
+              "type": "string"
+            },
+            {
+              "id": "1b8f3ab7-20ff-41bf-9a25-0e7e48dfa123",
+              "name": "Visual Effect",
+              "value": "={{ $json.visualEffect }}",
+              "type": "string"
+            },
+            {
+              "id": "62f0bf65-9c26-43de-a8d7-859593fb6d68",
+              "name": "Sound Effect",
+              "value": "={{ $json.audioEffect }}",
+              "type": "string"
+            },
+            {
+              "id": "e7baab1c-98c7-4f4a-ac5e-289a1a50db19",
+              "name": "Feasibility Level",
+              "value": "={{ $json.feasibilityLevel }}",
+              "type": "string"
+            },
+            {
+              "id": "84f3a8f8-021f-45d1-9f43-a1734020609c",
+              "name": "Feasibility Note",
+              "value": "={{ $json.feasibilityNote }}",
+              "type": "string"
+            },
+            {
+              "id": "878f94ff-8a2c-4a21-828c-645c6a8a0cc0",
+              "name": "Alternative Proposal",
+              "value": "={{ $json.suggestion_prompt }}",
+              "type": "string"
+            },
+            {
+              "id": "63911fbc-1c9c-457f-9e08-4af6947bca40",
+              "name": "New Feasibility Level",
+              "value": "={{ $json.suggestion_feasibility }}",
+              "type": "string"
+            },
+            {
+              "id": "f668fa44-7f88-48cf-96a0-5ee0db0761ec",
+              "name": "Image Prompt",
+              "value": "={{ $json.imagePrompt }}",
+              "type": "string"
+            },
+            {
+              "id": "56244573-1d22-4364-948c-95424b088080",
+              "name": "Video Prompt",
+              "value": "={{ $json.videoPrompt }}",
+              "type": "string"
+            },
+            {
+              "id": "a3d8e551-9861-4f19-a3d3-dcbc3d09b4b1",
+              "name": "Voice Off",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "9382f451-9150-4530-8a87-d23320960be9",
+              "name": "Theme",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        0
+      ],
+      "id": "c6cf9c55-b6b6-48ae-8b0c-5e72a8f60288",
+      "name": "Chuẩn hóa data"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=  https://open.larksuite.com/open-apis/bitable/v1/apps/RKbTbhcFzaHu4vsRjlClj8G3gce/tables/tblIhglXENSZdHzt/records ",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Prompt_input\": \"{{ $('Bỏ_/n_prompt_input_1').item.json.prompt_input }}\",\n    \"Tvc_Script\": \"{{ $('Tạo_TVC&VOICE').item.json.tvcScript }}\",\n    \"Voice_Suggestion\": \"{{ $('Tạo_TVC&VOICE').item.json.voiceSuggestion }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1840,
+        272
+      ],
+      "id": "fe45fe90-7140-460e-b676-8a891f218911",
+      "name": "Creates records lark1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1648,
+        272
+      ],
+      "id": "adfc2f3c-12ba-446b-b874-293f5ebbb31d",
+      "name": "Create token1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "faf8d201-e279-474b-89bf-bab1bdbd9dd7",
+              "name": "tvcscripts",
+              "value": "={{ $json.tvcScript }}",
+              "type": "string"
+            },
+            {
+              "id": "9b19a4f9-036e-46cc-9fb6-035c0cc93782",
+              "name": "Voicesuggestion",
+              "value": "={{ $json.voiceSuggestion }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1392,
+        272
+      ],
+      "id": "a79eece0-af12-471a-9c82-9fb78b84cf17",
+      "name": "Chuẩn hóa data1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=  https://open.larksuite.com/open-apis/bitable/v1/apps/RKbTbhcFzaHu4vsRjlClj8G3gce/tables/tbl6GSdYnNjkS43U/records ",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Prompt_input\": \"{{ $('Bỏ_/n_prompt_input_2').item.json.prompt_input }}\",\n    \"Suno_prompt\": \"{{ $('Suno_prompt&Music_description').item.json.sunoPrompt }}\",\n    \"Music_Descriptions\": \"{{ $('Suno_prompt&Music_description').item.json.musicDescription }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1664,
+        704
+      ],
+      "id": "63f08d6b-dd9c-433b-a596-97f880b1b615",
+      "name": "Creates records lark7"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1472,
+        704
+      ],
+      "id": "d1384e86-9950-4221-a9a1-264bd68a055d",
+      "name": "Create token3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "faf8d201-e279-474b-89bf-bab1bdbd9dd7",
+              "name": "tvcscripts",
+              "value": "={{ $('Suno_prompt&Music_description').item.json.sunoPrompt }}",
+              "type": "string"
+            },
+            {
+              "id": "9b19a4f9-036e-46cc-9fb6-035c0cc93782",
+              "name": "Music_des",
+              "value": "={{ $('Suno_prompt&Music_description').item.json.musicDescription }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1216,
+        704
+      ],
+      "id": "9815a770-8539-4e53-aa9c-d17a327088e1",
+      "name": "Chuẩn hóa data3"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/RKbTbhcFzaHu4vsRjlClj8G3gce/tables/tbls5gfpagINDwFy/records/{{ $('Webhook').item.json.query.Record_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $('Create token').item.json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"AI Status\": \"SUCCESS\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        0
+      ],
+      "id": "e7b5a1ce-084f-4f5e-b236-e8cf13c8d26e",
+      "name": "Update SUCCESS vào lark base"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Bước 1: Lấy output từ node AI bằng đúng tên biến là \"output\"\nconst rawOutput = $json.output || '';\n\n// Kiểm tra xem có lấy được dữ liệu không\nif (!rawOutput) {\n    throw new Error('Không nhận được dữ liệu từ node AI. Biến $json.output đang rỗng.');\n}\n\nlet jsonString;\n\n// Ưu tiên tìm khối markdown ```json ... ``` trước\nconst markdownMatch = rawOutput.match(/```json\\s*([\\s\\S]*?)\\s*```/);\n\nif (markdownMatch && markdownMatch[1]) {\n    jsonString = markdownMatch[1].trim();\n} else {\n    // Nếu không, tìm chuỗi JSON/JSON Array trong output thô\n    const startIndex = rawOutput.search(/[[{]/);\n    if (startIndex === -1) {\n        throw new Error('Đã nhận được dữ liệu, nhưng không tìm thấy ký tự [ hoặc {.');\n    }\n\n    const lastBracket = rawOutput.lastIndexOf(']');\n    const lastBrace = rawOutput.lastIndexOf('}');\n    const endIndex = Math.max(lastBracket, lastBrace);\n    if (endIndex === -1) {\n        throw new Error('Đã nhận được dữ liệu, nhưng không tìm thấy ký tự ] hoặc }.');\n    }\n    \n    jsonString = rawOutput.substring(startIndex, endIndex + 1).trim();\n}\n\n// Parse chuỗi JSON đã được làm sạch\nlet parsed;\ntry {\n    parsed = JSON.parse(jsonString);\n} catch (e) {\n    throw new Error('Lỗi parse JSON: ' + e.message + '. Chuỗi đã cố gắng parse: ' + jsonString);\n}\n\n// Nếu AI trả về một mảng, return trực tiếp. Nếu trả về một object, bọc nó trong mảng.\nif (Array.isArray(parsed)) {\n    return parsed;\n} else {\n    return [parsed];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c85f8290-ffff-4736-a62d-6ff70fbed117",
+      "name": "Tạo_story_board"
+    },
+    {
+      "parameters": {
+        "jsCode": "const rawOutput = $json.output || '';\nlet jsonString;\n\n// Nếu không có rawOutput thì fallback sang Webhook.prompt_input\nif (!rawOutput && $node[\"Webhook\"]) {\n  jsonString = JSON.stringify({\n    prompt_input: $node[\"Webhook\"].json.query.prompt_input\n  });\n} else {\n  // Tìm markdown block\n  const markdownMatch = rawOutput.match(/```json\\s*([\\s\\S]+?)\\s*```/);\n\n  if (markdownMatch && markdownMatch[1]) {\n    jsonString = markdownMatch[1].trim();\n  } else {\n    const startIndex = rawOutput.search(/[{\\[]/);\n    if (startIndex !== -1) {\n      jsonString = rawOutput.substring(startIndex).trim();\n    } else {\n      throw new Error(\"Không tìm thấy JSON trong output.\");\n    }\n  }\n}\n\ntry {\n  const parsed = JSON.parse(jsonString);\n\n  // ✅ Làm sạch tất cả chuỗi: bỏ `\\n`, gom khoảng trắng\n  for (const key in parsed) {\n    if (typeof parsed[key] === 'string') {\n      parsed[key] = parsed[key].replace(/\\\\n/g, ' ').replace(/\\s+/g, ' ').trim();\n    }\n  }\n\n  return [parsed];\n} catch (e) {\n  throw new Error(\"Lỗi parse JSON: \" + e.message + \". Chuỗi đã cố gắng parse:\\n\" + jsonString);\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        624,
+        272
+      ],
+      "id": "7dbb948b-5206-47d5-97ab-3c0debdfb44c",
+      "name": "Tạo_TVC&VOICE"
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  const prompt = item.json.prompt_input || \"\";\n\n  // Bỏ \\n và gom khoảng trắng dư\n  const cleaned = prompt.replace(/\\\\n/g, ' ').replace(/\\s+/g, ' ').trim();\n\n  // Ghi đè lại field\n  item.json.prompt_input = cleaned;\n}\n\nreturn $input.all();\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1216,
+        272
+      ],
+      "id": "4d5ca336-5fb3-4a3b-88ff-534a3e06e9c7",
+      "name": "Bỏ_/n_prompt_input_1"
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  const prompt = item.json.prompt_input || \"\";\n\n  // Bỏ \\n và gom khoảng trắng dư\n  const cleaned = prompt.replace(/\\\\n/g, ' ').replace(/\\s+/g, ' ').trim();\n\n  // Ghi đè lại field\n  item.json.prompt_input = cleaned;\n}\n\nreturn $input.all();\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        704
+      ],
+      "id": "eabb447e-1a50-4a7a-80ee-651e8dc3e10b",
+      "name": "Bỏ_/n_prompt_input_2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const rawOutput = $json.output || '';\nlet jsonString;\n\n// Nếu không có rawOutput thì fallback sang Webhook.prompt_input\nif (!rawOutput && $node[\"Webhook\"]) {\n  jsonString = JSON.stringify({\n    prompt_input: $node[\"Webhook\"].json.query.prompt_input\n  });\n} else {\n  // Tìm markdown block\n  const markdownMatch = rawOutput.match(/```json\\s*([\\s\\S]+?)\\s*```/);\n\n  if (markdownMatch && markdownMatch[1]) {\n    jsonString = markdownMatch[1].trim();\n  } else {\n    const startIndex = rawOutput.search(/[{\\[]/);\n    if (startIndex !== -1) {\n      jsonString = rawOutput.substring(startIndex).trim();\n    } else {\n      throw new Error(\"Không tìm thấy JSON trong output.\");\n    }\n  }\n}\n\ntry {\n  const parsed = JSON.parse(jsonString);\n\n  // ✅ Làm sạch tất cả chuỗi: bỏ `\\n`, gom khoảng trắng\n  for (const key in parsed) {\n    if (typeof parsed[key] === 'string') {\n      parsed[key] = parsed[key].replace(/\\\\n/g, ' ').replace(/\\s+/g, ' ').trim();\n    }\n  }\n\n  return [parsed];\n} catch (e) {\n  throw new Error(\"Lỗi parse JSON: \" + e.message + \". Chuỗi đã cố gắng parse:\\n\" + jsonString);\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        704
+      ],
+      "id": "d10457b9-7fc1-451a-bf0a-76f9f2b2af1d",
+      "name": "Suno_prompt&Music_description"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "61663a41-ec7f-44c0-82d2-408ee23b8943",
+              "name": "prompt_input",
+              "value": "={{ $('Webhook').item.json.query.prompt_input }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1040,
+        272
+      ],
+      "id": "565217f2-1b57-4ecc-ae8a-3447931814cd",
+      "name": "Lấy_prompt_input_từ _Webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "61663a41-ec7f-44c0-82d2-408ee23b8943",
+              "name": "prompt_input",
+              "value": "={{ $('Webhook').item.json.query.prompt_input }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        864,
+        704
+      ],
+      "id": "08bea087-9f50-4341-ac7c-93b75e121049",
+      "name": "Lấy_prompt_input_từ _Webhook1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro",
+        "options": {
+          "temperature": 0.6
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        272,
+        976
+      ],
+      "id": "2735b1c6-7b43-43f4-9f40-1f53c55211cc",
+      "name": "Google Gemini Tạo Lời Đọc1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "FNvJ4uxnoR1jl3eg",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sseEndpoint": "https://anycross-sg.larksuite.com/mcp/lark_base/stream?key=lEbj6UOsk7o6Z9y5DJGEPO-NkoG6-xnfg3eehsB1hmC0klnp0UNNfnalHGrGkpIq"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        768,
+        544
+      ],
+      "id": "bf0aec07-dcf6-4c78-97a1-6a5fcf7ce68c",
+      "name": "MCP Client"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.hebekery.vn",
+            "user-agent": "Go-http-client/2.0",
+            "content-length": "2",
+            "accept-encoding": "gzip",
+            "content-type": "application/json",
+            "via": "2.0 Caddy",
+            "x-base-automation-ua": "automation/1.0.0",
+            "x-forwarded-for": "3.225.193.57",
+            "x-forwarded-host": "n8n.hebekery.vn",
+            "x-forwarded-proto": "https",
+            "x-tt-env": "prod",
+            "x-tt-logid": "02175300684009200000000000000000000ffffd5455457772936"
+          },
+          "params": {},
+          "query": {
+            "Record_id": "rectsjc0iA",
+            "prompt_input": "Thể loại video: video quảng cáo\nPhong cách video: phong cách siêu thật, light academia\nChủ thể: Nến cát thơm cao cấp Deember\nTone & mood: tươi sáng, thư giãn, tích cực\nThời lượng: 40s\nSố lượng phân cảnh: 10 phân cảnh\nNội dung: sản phẩm nến cát thơm cao cấp Deember từ London Anh Quốc. Nguồn gốc thiên nhiên, lành tính phù hợp cho phụ nữ thành thị. Sản phẩm rất cao cấp sang trọng, phù hợp với phụ nữ Anh Quốc hiện đại và hay được đặt cùng bình hoa hồng quý tộc. Mở đầu bằng một khung cảnh rộng từ con phố quyến rũ ở Kensington, London và kết thúc video bằng packsot Thương hiệu Deember quý tộc trên nền giấy mỹ thuật cao cấp"
+          },
+          "body": {},
+          "webhookUrl": "https://n8n.hebekery.vn/webhook/storu_board",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-08T16:23:12.978Z",
+  "versionId": "0e7223a4-fd72-4d65-bbdf-dffeb2ed2a16"
+}
