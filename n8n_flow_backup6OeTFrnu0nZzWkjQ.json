@@ -25,24 +25,12 @@
     },
     "HTTP Request4": {
       "main": [
-        [
-          {
-            "node": "Split Out",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Edit Fields": {
       "main": [
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Create token": {
@@ -69,13 +57,7 @@
     },
     "Normalize data": {
       "main": [
-        [
-          {
-            "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Split Out": {
@@ -93,7 +75,7 @@
       "main": [
         [
           {
-            "node": "Normalize data",
+            "node": "Normalize data1",
             "type": "main",
             "index": 0
           }
@@ -142,7 +124,7 @@
       "main": [
         [
           {
-            "node": "HTTP Request4",
+            "node": "Tồn kho",
             "type": "main",
             "index": 0
           }
@@ -154,6 +136,39 @@
         [
           {
             "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tồn kho": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize data1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
@@ -172,7 +187,7 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -760,
+        -768,
         -1040
       ],
       "id": "4804b33e-abb6-4f98-a5e8-695367d67e1a",
@@ -190,7 +205,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -520,
+        -528,
         -1040
       ],
       "id": "b0c7ace6-e409-4067-bac0-8984aab9818b",
@@ -217,8 +232,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -420,
-        -140
+        -416,
+        -144
       ],
       "id": "4ac49c40-24fd-42b4-b18d-6ef6889da226",
       "name": "HTTP Request1"
@@ -245,7 +260,7 @@
       "typeVersion": 4.2,
       "position": [
         -720,
-        -540
+        -544
       ],
       "id": "5d0f3692-9bfd-447f-883d-9925547d9211",
       "name": "HTTP Request3"
@@ -271,8 +286,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        0,
-        -1040
+        448,
+        -576
       ],
       "id": "a7b90ac1-b751-40f7-a244-1843a74da9c4",
       "name": "HTTP Request4"
@@ -280,7 +295,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://actapp.misa.vn/apir/sync/actopen/get_dictionary",
+        "url": "https://actapp.misa.vn/apir/sync/actopen/get_list_inventory_balance",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -298,8 +313,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -420,
-        -620
+        -416,
+        -624
       ],
       "id": "5c7e65e1-cd33-471f-9c81-aab8211d5612",
       "name": "HTTP Request5"
@@ -325,8 +340,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -460,
-        -380
+        -464,
+        -384
       ],
       "id": "38f5267b-cac2-44ac-bbf8-c745343547b1",
       "name": "HTTP Request9"
@@ -352,8 +367,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -760,
-        -280
+        -768,
+        -288
       ],
       "id": "5cd8df1c-9f59-4063-9597-552a2176e02b",
       "name": "HTTP Request10"
@@ -379,7 +394,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -140,
+        -144,
         -400
       ],
       "id": "e1c86883-d448-4dbc-80f4-1b31b2171074",
@@ -406,7 +421,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -760,
+        -768,
         0
       ],
       "id": "fd4e31aa-82dc-42c2-b0d6-2ddc763e0fc6",
@@ -433,8 +448,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -40,
-        -100
+        -48,
+        -96
       ],
       "id": "0ba04766-a3db-4f1f-b817-f841cb953dc4",
       "name": "HTTP Request8"
@@ -446,7 +461,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        440,
+        448,
         -1040
       ],
       "id": "45681f3f-7dff-4ded-84ea-3e0c80879cd9",
@@ -475,8 +490,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        840,
-        -1040
+        752,
+        -704
       ],
       "id": "33376ebf-6bce-4f98-882a-eb0983e94bab",
       "name": "Edit Fields"
@@ -506,8 +521,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1320,
-        -1020
+        1328,
+        -1024
       ],
       "id": "235f5a1c-aaa7-437c-be6a-6398f92ea07a",
       "name": "Create token"
@@ -515,7 +530,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/EFWPbB04eaPBWGse700lEg1Mg6M/tables/tblQbWxWO0FM29zU/records",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/JMPjbVInEaHXoHsAfMYlUUyBghf/tables/tblty0l4pO5QrB0R/records",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -527,14 +542,14 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"fields\": {\n    \"Mã đối tác\": \"{{ $('Normalize data').item.json.Amis_data.code }}\",\n    \"Tên đối tác\": \"{{ $('Normalize data').item.json.Amis_data.name }}\",\n    \"Địa chỉ\": \"{{ $('Normalize data').item.json.Amis_data.address }}\",\n    \"Mã số thuế\": \"{{ $('Normalize data').item.json.Amis_data.tax_code }}\"\n  }\n}",
+        "jsonBody": "={\n  \"fields\": {\n    \"inventory_item_id\": \"{{ $('Normalize data1').item.json.inventory_item_id }}\",\n    \"inventory_item_code\": \"{{ $('Normalize data1').item.json.inventory_item_code }}\",\n    \"inventory_item_name\": \"{{ $('Normalize data1').item.json.inventory_item_name }}\",\n    \"stock_id\": \"{{ $('Normalize data1').item.json.stock_id }}\",\n    \"stock_code\": \"{{ $('Normalize data1').item.json.stock_code }}\",\n    \"stock_name\": \"{{ $('Normalize data1').item.json.stock_name }}\",\n    \"organization_unit_id\": \"{{ $('Normalize data1').item.json.organization_unit_id }}\",\n    \"organization_unit_code\": \"{{ $('Normalize data1').item.json.organization_unit_code }}\",\n    \"organization_unit_name\": \"{{ $('Normalize data1').item.json.organization_unit_name }}\",\n    \"quantity_balance\": \"{{ $('Normalize data1').item.json.quantity_balance }}\",\n    \"amount_balance\": \"{{ $('Normalize data1').item.json.amount_balance }}\",\n    \"unit_price\": \"{{ $('Normalize data1').item.json.unit_price }}\"\n  }\n}\n",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1500,
-        -1020
+        1504,
+        -1024
       ],
       "id": "f4606b7e-ed0e-4fe3-b8e7-6718e792c971",
       "name": "Creates records lark"
@@ -577,8 +592,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        660,
-        -1040
+        368,
+        -768
       ]
     },
     {
@@ -627,8 +642,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1620,
-        -360
+        1632,
+        -368
       ]
     },
     {
@@ -638,8 +653,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1800,
-        -1020
+        1808,
+        -1024
       ],
       "id": "5da26f99-60ad-446c-99c3-da8fd416d29e",
       "name": "Wait1",
@@ -653,7 +668,7 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        1100,
+        1104,
         -1040
       ],
       "id": "b170b825-738e-4afb-8634-369b3fb96eff",
@@ -665,8 +680,8 @@
       "name": "Replace Me",
       "typeVersion": 1,
       "position": [
-        2060,
-        -360
+        2064,
+        -368
       ],
       "id": "9901cdf5-01c9-42b3-9925-3723132c00ae"
     },
@@ -677,7 +692,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -280,
+        -288,
         -1040
       ],
       "id": "0579f18f-24e6-4849-a6c9-7e9fd5c64f34",
@@ -695,6 +710,179 @@
       ],
       "id": "c538ba22-1ab6-47f1-9139-4fca60033255",
       "name": "Code3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://actapp.misa.vn/apir/sync/actopen/get_list_inventory_balance",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-MISA-AccessToken",
+              "value": "={{ $json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"org_company_code\": \"congtydemoketnoiact\",\n                        \"stock_id\": null,\n                        \"branch_id\": null,\n                        \"skip\": \"0\",\n                        \"take\": \"900\",\n                        \"last_sync_time\": \"2024-12-09T09:13:22.5115115+07:00\"\n                        }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -80,
+        -1040
+      ],
+      "id": "ce6f44f0-e7cc-4024-8b8e-7688aa642e96",
+      "name": "Tồn kho"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "77775875-fff9-4792-9778-a8f2d4deb7d4",
+              "name": "Amis_data.inventory_item_id",
+              "value": "={{ $json.inventory_item_id }}",
+              "type": "string"
+            },
+            {
+              "id": "6a315617-d1c9-4320-b851-e3dcc5207b4b",
+              "name": "Amis_data.inventory_item_code",
+              "value": "={{ $json.inventory_item_code }}",
+              "type": "string"
+            },
+            {
+              "id": "2b720bc6-df57-45e9-8b59-4fd90e51280a",
+              "name": "Amis_data.inventory_item_name",
+              "value": "={{ $json.inventory_item_name }}",
+              "type": "string"
+            },
+            {
+              "id": "5494091e-aca5-40e0-9955-a8f3b75ac57c",
+              "name": "Amis_data.stock_id",
+              "value": "={{ $json.stock_id }}",
+              "type": "string"
+            },
+            {
+              "id": "d9693dd3-9647-432d-8556-f8265bf66ebd",
+              "name": "Amis_data.stock_code",
+              "value": "={{ $json.stock_code }}",
+              "type": "string"
+            },
+            {
+              "id": "1506db61-ab11-42f4-9a3b-739766372e69",
+              "name": "Amis_data.stock_name",
+              "value": "={{ $json.stock_name }}",
+              "type": "string"
+            },
+            {
+              "id": "fff35456-561d-47b9-be53-00814b6dc1dd",
+              "name": "Amis_data.organization_unit_id",
+              "value": "={{ $json.organization_unit_id }}",
+              "type": "string"
+            },
+            {
+              "id": "7a92c65e-c21f-4650-a404-b19c9a06e8a5",
+              "name": "Amis_data.organization_unit_code",
+              "value": "={{ $json.organization_unit_code }}",
+              "type": "string"
+            },
+            {
+              "id": "f280613f-d0b1-4848-b429-cf13e83ce5b4",
+              "name": "Amis_data.organization_unit_name",
+              "value": "={{ $json.organization_unit_name }}",
+              "type": "string"
+            },
+            {
+              "id": "b6535bbd-5f3a-4a22-8432-9daedd6a472e",
+              "name": "Amis_data.quantity_balance",
+              "value": "={{ $json.quantity_balance }}",
+              "type": "string"
+            },
+            {
+              "id": "1a93794d-3910-404b-bda1-598c391a59f6",
+              "name": "Amis_data.amount_balance",
+              "value": "={{ $json.amount_balance }}",
+              "type": "string"
+            },
+            {
+              "id": "8bcd37dd-fc1f-40da-95fc-5546b7871e3b",
+              "name": "Amis_data.unit_price",
+              "value": "={{ $json.unit_price }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "38b8beb2-e86a-40ce-8ff0-b80147520ab3",
+      "name": "Normalize data1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        656,
+        -1040
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "02d8fef1-66c0-4e59-8713-7d4e7ca33e32",
+              "name": "app_id",
+              "value": "cli_a72ffec19c78d02f",
+              "type": "string"
+            },
+            {
+              "id": "32404746-b39b-4078-8463-5e0f865f35d0",
+              "name": "app_scret",
+              "value": "9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        -1024
+      ],
+      "id": "b6f13ac8-41df-477e-9f0a-5c62c6cc2bfc",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://actapp.misa.vn/apir/sync/actopen/get_list_inventory_balance",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-MISA-AccessToken",
+              "value": "={{ $json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"org_company_code\": \"congtydemoketnoiact\",\n                        \"stock_id\": null,\n                        \"branch_id\": null,\n                        \"skip\": \"0\",\n                        \"take\": \"900\",\n                        \"last_sync_time\": \"2024-12-09T09:13:22.5115115+07:00\"\n                        }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        64,
+        -896
+      ],
+      "id": "c212b2a8-c134-4f8e-a4db-19ccc30c9120",
+      "name": "Tồn kho1"
     }
   ],
   "pinData": {},
@@ -704,6 +892,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-06-23T05:24:03.000Z",
-  "versionId": "6236ebd7-e8da-4cf9-84c3-682288ff11b5"
+  "updatedAt": "2025-08-14T09:10:01.000Z",
+  "versionId": "31ce6d24-6f73-4a09-ad3e-a2b5c341617a"
 }
