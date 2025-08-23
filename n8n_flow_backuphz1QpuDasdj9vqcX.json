@@ -1,0 +1,43 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-08-20T01:09:05.113Z",
+  "id": "hz1QpuDasdj9vqcX",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 28",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "path": "bf305193-083f-4ff7-8b46-f142ded2111b"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "22686562-720a-4cb4-a22c-e4de4584dfd1",
+      "name": "MCP Server Trigger",
+      "webhookId": "bf305193-083f-4ff7-8b46-f142ded2111b",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "QsBu4fnyhWmOSMwH",
+          "name": "Header Auth account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-20T01:35:01.000Z",
+  "versionId": "cb506436-4696-43d4-bccb-8506820809b3"
+}
