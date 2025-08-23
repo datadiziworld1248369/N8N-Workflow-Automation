@@ -1,0 +1,183 @@
+{
+  "active": true,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-19T16:36:22.026Z",
+  "id": "SQyhRdB06F1cswSG",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Agent with mcp",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        -48
+      ],
+      "id": "3be48f8d-e91d-4db1-8c4f-fd4f2fcd6dba",
+      "name": "When chat message received",
+      "webhookId": "c629e6eb-30fc-4400-828b-baa8c6fdf640"
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "=system_message: |\n  Bạn là một Agent chạy trong n8n, nhận input từ Lark Chat (chat trigger) và xử lý yêu cầu thông qua MCP Client.\n\n  🎯 Nhiệm vụ:\n  - Hiểu yêu cầu tự nhiên từ tin nhắn trong Lark Chat.\n  - Xác định tác vụ tương ứng (ví dụ: tạo bảng, thêm record, cập nhật dữ liệu, gửi thông báo).\n  - Thực hiện tác vụ bằng cách gọi Lark API qua MCP Client.\n  - Phản hồi kết quả lại cho người dùng trong Chat.\n\n  🧩 Ngữ cảnh hoạt động:\n  - Input là một tin nhắn từ chat trigger (text).\n  - Bạn có thể gặp 2 loại input:\n    1. Yêu cầu thao tác dữ liệu: “Tạo bảng Orders”, “Thêm đơn hàng 1234 với số tiền 500000”.\n    2. Yêu cầu truy vấn: “Liệt kê các đơn hàng hôm nay”, “Có bao nhiêu record trong bảng Customers”.\n  - Bạn phải phân tích ngữ cảnh, map thành action tương ứng, và gọi tool MCP phù hợp.\n\n  📦 Quy tắc xử lý:\n  - Nếu yêu cầu liên quan đến Lark Base → sử dụng các tool `base.createTable`, `base.insertRecord`, `base.queryRecord`.\n  - Nếu yêu cầu là nhắc nhở/thông báo → dùng `chat.sendMessage`.\n  - Luôn confirm lại bằng output rõ ràng cho người dùng.\n  - Nếu thiếu thông tin (ví dụ: tên bảng không có, field không rõ) → hỏi lại trong chat thay vì thực hiện sai.\n  - Khi khai báo parameter schema cho tool, đảm bảo:\n      • Nếu dùng enum → tất cả giá trị enum đều là string (\"1\", \"2\", \"3\" …).\n      • Nếu giá trị là số, chuyển sang string trước khi truyền vào (ví dụ \"500000\" thay vì 500000).\n      • Luôn match type chính xác theo JSON Schema (string, integer, boolean).\n\n  💬 Phong cách phản hồi:\n  - Ngắn gọn, dễ hiểu, có ID xác nhận khi thao tác thành công.\n  - Nếu lỗi, nói rõ nguyên nhân (thiếu quyền, token sai, bảng chưa tồn tại).\n  - Khi cần clarification, hỏi lại user trong chat theo cách tự nhiên.\n\n  🚀 Ví dụ hành vi:\n  - User nhắn: “Tạo bảng Orders có cột order_id, customer, amount”\n    → Agent gọi MCP tạo bảng → Trả lời: “✅ Đã tạo bảng Orders với ID tbl_12345”\n  - User nhắn: “Thêm đơn hàng 5678 của khách An, giá 2000000”\n    → Agent gọi MCP insertRecord → Output: “✅ Đơn hàng 5678 đã lưu (record_id rec_99999)”\n  - User nhắn: “Liệt kê đơn hàng hôm nay”\n    → Agent queryRecord → Output: “📊 Có 12 đơn hàng hôm nay, tổng giá trị 24000000”\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        -48
+      ],
+      "id": "31034406-9658-4349-bbbf-fb9d4849648d",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        240
+      ],
+      "id": "db75d118-21b5-45e9-943e-3e31a6aaaa07",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "DO3eNJoYSeKcYIVp",
+          "name": "DUyAPI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 5e+71
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        336,
+        256
+      ],
+      "id": "343f1171-aca7-4ca0-bc96-956af694fa4c",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://anycross-sg.larksuite.com/mcp/b9195369-b3d1-4d77-a895-f6be57714379/stream?key=X1jIlyRQN0usXiS1EZ68ZdMzCuxRRZ-mgH6BxX_EXZCyQ_Mb_dGZuyJf8WXzlVjB",
+        "serverTransport": "httpStreamable",
+        "authentication": "headerAuth",
+        "include": "except"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.1,
+      "position": [
+        544,
+        192
+      ],
+      "id": "a1059298-6c49-4dd4-b362-57b9509489b3",
+      "name": "MCP Client",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "3C2Zgpa4fIQiLocs",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        144,
+        240
+      ],
+      "id": "e1aa157a-05d0-4458-b183-045a36ae86c9",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "DO3eNJoYSeKcYIVp",
+          "name": "DUyAPI"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-20T01:34:38.000Z",
+  "versionId": "a18e7457-3fd3-47e4-8e7c-ab7302d4df38"
+}
