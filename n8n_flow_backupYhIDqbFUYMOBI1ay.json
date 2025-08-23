@@ -34,17 +34,6 @@
         ]
       ]
     },
-    "Window Buffer Memory": {
-      "ai_memory": [
-        [
-          {
-            "node": "Ultimate Assistant",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Tavily": {
       "ai_tool": [
         [
@@ -120,14 +109,14 @@
     },
     "If": {
       "main": [
-        [],
         [
           {
-            "node": "Send an audio file",
+            "node": "Send a text message",
             "type": "main",
             "index": 0
           }
-        ]
+        ],
+        []
       ]
     },
     "Post and publish blog to Website": {
@@ -189,6 +178,55 @@
           }
         ]
       ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "Ultimate Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "Ultimate Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "Ultimate Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        []
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Ultimate Assistant",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-05-06T16:14:33.779Z",
@@ -202,9 +240,9 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "={{ $json.content.parts[0].text }}",
+        "text": "={{ $json.text }}",
         "options": {
-          "systemMessage": "=# Overview\nYou are the ultimate personal assistant. Your job is to send the user's query to the correct tool. You should never be writing emails, or creating even summaries, you just need to call the correct tool.\n\n## Tools\n- emailAgent: Use this tool to take action in email\n- calendarAgent: Use this tool to take action in calendar\n- contactAgent: Use this tool to get, update, or add contacts\n- Tavily: Use this tool to search the web\n- Publish blog: Use create content tool to create a long-form blog post and publish to a pre-defined website.\n- contentCreator: Call this tool to research information \n\n## Rules\n- Some actions require you to look up contact information first. For the following actions, you must get contact information and send that to the agent who needs it:\n  - sending emails\n  - drafting emails\n  - creating calendar event with attendee\n\n## Examples\n1) \n- Input: send an email to nate herkelman asking him what time he wants to leave\n  - Action: Use contactAgent to get nate herkelman's email\n  - Action: Use emailAgent to send the email. You will pass the tool a query like \"send nate herkelman an email to ask what time he wants to leave. here is his email: [email address]\n- Output: The email has been sent to Nate Herkelman. Anything else I can help you with?\n\n\n## Final Reminders\nHere is the current date/time: {{ $now }}\nALWAYS USE VIETNAMESE"
+          "systemMessage": "=# Overview\nYou are the ultimate personal assistant. Your job is to send the user's query to the correct tool. You should never be writing emails, or creating even summaries, you just need to call the correct tool.\n\n## Tools\n- emailAgent: Use this tool to take action in email\n- calendarAgent: Use this tool to take action in calendar\n- contactAgent: Use this tool to get, update, or add contacts\n- Tavily: Use this tool to search the web\n- Publish blog: Use create content tool to create a long-form blog post and publish to a pre-defined website.\n- contentCreator: Call this tool to research information \n- Think: use to optimize the answser\n- MCP Client: use to do task with Lark the most important tool\n\n\n## Rules\n- Some actions require you to look up contact information first. For the following actions, you must get contact information and send that to the agent who needs it:\n  - sending emails\n  - drafting emails\n  - creating calendar event with attendee\n  - always use tool Think to give user best answers\n\n## Examples\n1) \n- Input: send an email to nate herkelman asking him what time he wants to leave\n  - Action: Use contactAgent to get nate herkelman's email\n  - Action: Use emailAgent to send the email. You will pass the tool a query like \"send nate herkelman an email to ask what time he wants to leave. here is his email: [email address]\n- Output: The email has been sent to Nate Herkelman. Anything else I can help you with?\n\n\n## Final Reminders\nHere is the current date/time: {{ $now }}\nALWAYS USE VIETNAMESE"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -302,20 +340,6 @@
     },
     {
       "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $('Telegram Trigger').item.json.message.chat.id }}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        -640,
-        208
-      ],
-      "id": "94d046ac-f5cd-42bd-b132-4cb5ddec5bd8",
-      "name": "Window Buffer Memory"
-    },
-    {
-      "parameters": {
         "toolDescription": "Use this tool to search the internet",
         "method": "POST",
         "url": "https://api.tavily.com/search",
@@ -389,6 +413,12 @@
               "name": "text",
               "value": "={{ $json.message.text }}",
               "type": "string"
+            },
+            {
+              "id": "038e7481-0623-46a0-b66c-60fdeb38b87f",
+              "name": "",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
             }
           ]
         },
@@ -400,7 +430,7 @@
       "typeVersion": 3.4,
       "position": [
         -512,
-        -144
+        -176
       ]
     },
     {
@@ -465,8 +495,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -768,
-        -208
+        -848,
+        -192
       ]
     },
     {
@@ -480,8 +510,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -576,
-        -304
+        -608,
+        -480
       ],
       "webhookId": "83bb7385-33f6-4105-8294-1a91c0ebbee5",
       "credentials": {
@@ -591,8 +621,8 @@
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
-          "id": "FNvJ4uxnoR1jl3eg",
-          "name": "Google Gemini(PaLM) Api account"
+          "id": "DO3eNJoYSeKcYIVp",
+          "name": "DUyAPI"
         }
       }
     },
@@ -639,8 +669,8 @@
       "type": "@n8n/n8n-nodes-langchain.googleGemini",
       "typeVersion": 1,
       "position": [
-        -416,
-        -304
+        -448,
+        -496
       ],
       "id": "3c416788-c780-44e5-936b-234c2f06deb9",
       "name": "Transcribe a recording",
@@ -654,15 +684,16 @@
     {
       "parameters": {
         "updates": [
-          "message"
+          "message",
+          "*"
         ],
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.2,
       "position": [
-        -1088,
-        -192
+        -1072,
+        -160
       ],
       "id": "91c98fe8-e737-4b66-b530-6e1724a135de",
       "name": "Telegram Trigger",
@@ -675,10 +706,23 @@
       }
     },
     {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1.1,
+      "position": [
+        352,
+        -48
+      ],
+      "id": "4940691f-e88d-4ff9-95da-1a78c2a240d3",
+      "name": "Think"
+    },
+    {
       "parameters": {
-        "operation": "sendAudio",
         "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
-        "additionalFields": {}
+        "text": "={{$json.output.replace(/\\*/g, '\\\\*').replace(/_/g, '\\\\_')}}\n",
+        "additionalFields": {
+          "appendAttribution": false
+        }
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
@@ -687,7 +731,7 @@
         -32
       ],
       "id": "dc40090d-5620-4d68-87a8-62e7c1227152",
-      "name": "Send an audio file",
+      "name": "Send a text message",
       "webhookId": "b2abc1f3-ffe7-47fc-a230-4109e2ef36f0",
       "credentials": {
         "telegramApi": {
@@ -695,6 +739,87 @@
           "name": "bot skibidi"
         }
       }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.perplexity.ai/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $PPLX_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"model\": \"sonar\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"Be precise and concise.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Summarize the latest on vector databases in 5 bullets.\"\n    }\n  ],\n  \"temperature\": 0.2,\n  \"max_tokens\": 512\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        -96,
+        -16
+      ],
+      "id": "5ac9ece8-c852-4f39-a4b3-f3f8c6af24a0",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://anycross-sg.larksuite.com/mcp/lark_base/stream?key=lEbj6UOsk7o6Z9y5DJGEPO-NkoG6-xnfg3eehsB1hmC0klnp0UNNfnalHGrGkpIq",
+        "serverTransport": "httpStreamable",
+        "authentication": "headerAuth",
+        "include": "except",
+        "excludeTools": [
+          "batch_create_records"
+        ]
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.1,
+      "position": [
+        144,
+        -80
+      ],
+      "id": "ecd663af-e189-41da-b0d9-d55529c84c94",
+      "name": "MCP Client",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "QsBu4fnyhWmOSMwH",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -1472,
+        -96
+      ],
+      "id": "92bbd72b-1b22-4902-aa72-96a451cc8552",
+      "name": "When chat message received",
+      "webhookId": "5749ac14-0f8b-4e17-b0dc-50dd720b26f4"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "contextWindowLength": 500
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -400,
+        32
+      ],
+      "id": "ec64c527-4dc9-444d-8ab3-af4e2bb038df",
+      "name": "Simple Memory"
     }
   ],
   "pinData": {},
@@ -711,6 +836,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-08-08T17:13:02.000Z",
-  "versionId": "6bc53c11-0773-4624-bcc4-f361ea102ff5"
+  "updatedAt": "2025-08-20T03:34:18.000Z",
+  "versionId": "46b73803-115a-405d-aa82-427444fd8a2b"
 }
