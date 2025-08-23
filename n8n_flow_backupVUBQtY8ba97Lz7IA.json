@@ -151,7 +151,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        300,
+        304,
         -160
       ]
     },
@@ -174,8 +174,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        300,
-        -340
+        304,
+        -336
       ]
     },
     {
@@ -191,8 +191,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.6,
       "position": [
-        -300,
-        -260
+        -304,
+        -256
       ],
       "onError": "continueErrorOutput"
     },
@@ -208,8 +208,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -620,
-        100
+        -624,
+        112
       ],
       "id": "6803ac5d-f2bc-4172-8131-638519149299",
       "name": "Send Email",
@@ -234,8 +234,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        20,
-        200
+        32,
+        208
       ],
       "id": "fdf99965-0eb1-4e58-b62b-aed4f3678d71",
       "name": "Get Emails",
@@ -260,8 +260,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -140,
-        220
+        -144,
+        224
       ],
       "id": "a44fece0-5d87-4e6c-a3d0-6905175e48dd",
       "name": "Create Draft",
@@ -285,7 +285,7 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -460,
+        -464,
         160
       ],
       "id": "e5af4e23-8deb-4b98-8548-e1d157152e69",
@@ -306,8 +306,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        140,
-        140
+        144,
+        144
       ],
       "id": "94fc74d6-4be3-4fcf-ad28-c2e0d6aa7d7e",
       "name": "Get Labels",
@@ -328,8 +328,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -300,
-        200
+        -304,
+        208
       ],
       "id": "d754a65a-8eb9-428e-9988-e5e4da9b9bf5",
       "name": "Label Emails",
@@ -349,7 +349,7 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        280,
+        288,
         80
       ],
       "id": "f6b3ae59-4e3b-4bd5-baa1-347d84732933",
@@ -369,8 +369,8 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        -540,
-        -260
+        -544,
+        -256
       ],
       "id": "84481b13-8ead-452e-9a9a-c95efe8a5446",
       "name": "When Executed by Another Workflow"
@@ -387,8 +387,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        -700,
-        -40
+        -704,
+        -48
       ],
       "id": "d12bd90e-9dab-495e-813b-63d65b911099",
       "name": "OpenAI Chat Model",
@@ -401,21 +401,20 @@
     },
     {
       "parameters": {
-        "modelName": "models/gemini-2.5-flash",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
         -560,
-        -100
+        -96
       ],
       "id": "3340c9aa-8008-4014-90ef-77462c9eb927",
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
-          "id": "FNvJ4uxnoR1jl3eg",
-          "name": "Google Gemini(PaLM) Api account"
+          "id": "DO3eNJoYSeKcYIVp",
+          "name": "DUyAPI"
         }
       }
     }
@@ -427,6 +426,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-07-02T14:36:09.000Z",
-  "versionId": "dd6f88be-a2d6-4dfd-8187-c8deb4a10877"
+  "updatedAt": "2025-08-20T03:34:32.000Z",
+  "versionId": "8720ec07-676b-4643-adc4-aa4fbddbd320"
 }
