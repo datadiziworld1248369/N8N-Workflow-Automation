@@ -87,7 +87,7 @@
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
       "position": [
-        -220,
+        -224,
         320
       ],
       "id": "ff8a693e-996a-4dd8-b869-37ae44ba2d5c",
@@ -104,7 +104,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        -440,
+        -448,
         80
       ],
       "id": "b483b962-fb67-4870-b034-6297a8f673e6",
@@ -152,7 +152,7 @@
       "typeVersion": 3.4,
       "position": [
         0,
-        180
+        192
       ],
       "id": "a75ac8e2-09f2-4496-9775-1730c09aac7b",
       "name": "Try Again"
@@ -164,7 +164,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        -700,
+        -704,
         80
       ],
       "id": "4f4cca54-30df-4c5a-8221-ed735d5feecd",
@@ -184,7 +184,7 @@
       "typeVersion": 1.2,
       "position": [
         -480,
-        300
+        304
       ],
       "id": "c55fed59-955c-46df-b4d3-4066c647b343",
       "name": "OpenRouter",
@@ -203,15 +203,15 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -600,
+        -608,
         240
       ],
       "id": "673951c3-ae05-47cb-9177-2626db6bc63c",
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
-          "id": "FNvJ4uxnoR1jl3eg",
-          "name": "Google Gemini(PaLM) Api account"
+          "id": "DO3eNJoYSeKcYIVp",
+          "name": "DUyAPI"
         }
       }
     }
@@ -223,6 +223,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-07-23T04:34:26.000Z",
-  "versionId": "25766520-e355-4f02-b986-22b0796401ed"
+  "updatedAt": "2025-08-20T03:35:37.000Z",
+  "versionId": "46bbea7e-1e5a-4ff9-8f07-22813a795282"
 }
