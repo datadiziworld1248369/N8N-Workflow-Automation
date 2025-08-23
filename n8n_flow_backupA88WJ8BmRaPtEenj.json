@@ -1,0 +1,190 @@
+{
+  "active": false,
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-20T03:08:12.652Z",
+  "id": "A88WJ8BmRaPtEenj",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 29",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7222f168-e92f-4e5f-a6b8-bf4a2257d38c",
+              "name": "Token",
+              "value": "AIzaSyA24BDvyY-yjp0M1UGR7cU--uOpymi1zKs",
+              "type": "string"
+            },
+            {
+              "id": "f9987717-3421-4dba-a868-99176367437f",
+              "name": "Ask",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            },
+            {
+              "id": "ff473346-f97d-42d9-bb97-c1c1ea10e6f2",
+              "name": "chat_id",
+              "value": "7639756919",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "72e003a0-b7bc-4241-9f22-97fda799ac7b",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-goog-api-key",
+              "value": "={{ $json.Token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": \"{{ $json.Ask }}\"\n        }\n      ]\n    }\n  ]\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "ee6cef7b-9c12-41b5-90c6-c3f9c8b5e189",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy text từ response\nconst text = $json.candidates[0].content.parts[0].text;\n\n// Xoá ký tự xuống dòng \"\\n\"\nreturn {\n  answer: text.replace(/\\n/g, \"\")\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        624,
+        0
+      ],
+      "id": "b054dd57-709c-446a-b6df-7abe98005862",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Edit Fields').item.json.chat_id }}",
+        "text": "={{ $json.answer }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        896,
+        0
+      ],
+      "id": "87c5ef17-ad17-412b-b6e7-3037b17430c3",
+      "name": "Send a text message",
+      "webhookId": "b2abc1f3-ffe7-47fc-a230-4109e2ef36f0",
+      "credentials": {
+        "telegramApi": {
+          "id": "AZ6P8JcpXiBj5VdX",
+          "name": "bot skibidi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "*"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "861fe156-6ff9-46a5-8f3e-5da4e6a0b9ec",
+      "name": "Telegram Trigger",
+      "webhookId": "dee6d72b-2782-453c-9189-2006762c08e2",
+      "credentials": {
+        "telegramApi": {
+          "id": "AZ6P8JcpXiBj5VdX",
+          "name": "bot skibidi"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-20T03:23:50.000Z",
+  "versionId": "341dba95-d3d7-4818-b30a-9d4561469d8d"
+}
