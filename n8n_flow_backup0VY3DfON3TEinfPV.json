@@ -119,8 +119,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        -920,
-        360
+        -928,
+        368
       ],
       "credentials": {
         "openAiApi": {
@@ -149,7 +149,7 @@
       "typeVersion": 3.4,
       "position": [
         0,
-        200
+        208
       ]
     },
     {
@@ -188,8 +188,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.6,
       "position": [
-        -680,
-        100
+        -688,
+        112
       ],
       "onError": "continueErrorOutput"
     },
@@ -213,8 +213,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        -220,
-        360
+        -224,
+        368
       ],
       "id": "c83e7097-1b79-4362-a3a6-4f3480ab976b",
       "name": "Create Event with Attendee",
@@ -243,8 +243,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        -360,
-        460
+        -368,
+        464
       ],
       "id": "b2ffaea0-c44b-4709-a525-f1a386b013fd",
       "name": "Create Event",
@@ -271,8 +271,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        -500,
-        500
+        -496,
+        512
       ],
       "id": "e91aa9b4-a36e-4e37-8c7c-1b0434934e27",
       "name": "Get Events",
@@ -328,8 +328,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        -780,
-        440
+        -784,
+        448
       ],
       "id": "926d4774-c5b2-4d3e-a4b5-23a9bd875f97",
       "name": "Update Event",
@@ -347,8 +347,8 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        -920,
-        100
+        -928,
+        112
       ],
       "id": "a83a30cb-45c2-4e0c-bdbd-ce1bb7107b28",
       "name": "When Executed by Another Workflow"
@@ -361,15 +361,15 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -840,
-        260
+        -848,
+        272
       ],
       "id": "b14e10ef-ba48-4f1e-a9b4-c80ca636aff8",
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
-          "id": "FNvJ4uxnoR1jl3eg",
-          "name": "Google Gemini(PaLM) Api account"
+          "id": "DO3eNJoYSeKcYIVp",
+          "name": "DUyAPI"
         }
       }
     }
@@ -381,6 +381,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-07-02T14:26:08.000Z",
-  "versionId": "b9207346-8609-4bf1-90f2-6804b76bd4bf"
+  "updatedAt": "2025-08-20T03:35:16.000Z",
+  "versionId": "1f644911-1465-40c3-8208-ad4b21f2c762"
 }
