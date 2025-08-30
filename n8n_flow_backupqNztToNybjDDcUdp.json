@@ -1,0 +1,148 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "API&PROMPT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API&PROMPT": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-26T16:28:15.172Z",
+  "id": "qNztToNybjDDcUdp",
+  "isArchived": false,
+  "meta": null,
+  "name": "api freepik",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "be1cda7e-0267-460b-8bf4-8487f8afa7d2",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "652a511f-9d5d-467e-b740-4a714856e7ec",
+              "name": "Key",
+              "value": "FPSX30ece594ce694e18d409de372eeb74d5",
+              "type": "string"
+            },
+            {
+              "id": "19617c10-3a06-49de-9e1a-8c3dd8cd8862",
+              "name": "prompt",
+              "value": "A positive, energetic young person standing confidently in a sunlit modern room, smiling brightly, full of motivation and optimism. The background shows plants, motivational posters, and sunlight streaming through large windows. The person is dressed casually, looks creative and inspired, and radiates good vibes. Digital art, vibrant colors, uplifting atmosphere.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "48886910-e73b-42f3-830e-b4fadbdfb522",
+      "name": "API&PROMPT"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.freepik.com/v1/ai/mystic",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-freepik-api-key",
+              "value": "={{ $json.Key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "prompt",
+              "value": "={{ $json.prompt }}"
+            },
+            {
+              "name": "webhook_url",
+              "value": "https://n8n.hebekery.vn/webhook/8ece36be-0983-488d-98ef-9bcd69797cd1"
+            },
+            {
+              "name": "resolution",
+              "value": "2k"
+            },
+            {
+              "name": "aspect_ratio",
+              "value": "square_1_1"
+            },
+            {
+              "name": "model",
+              "value": "realism"
+            },
+            {
+              "name": "creative_detailing",
+              "value": "33"
+            },
+            {
+              "name": "engine",
+              "value": "automatic"
+            },
+            {
+              "name": "fixed_generation",
+              "value": "false"
+            },
+            {
+              "name": "filter_nsfw",
+              "value": "true"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "62f39ac1-5909-409d-91d0-378f2097a53c",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-26T16:38:10.000Z",
+  "versionId": "7cdcc4cd-0317-4e7d-ae6c-4090b8ed88b7"
+}
