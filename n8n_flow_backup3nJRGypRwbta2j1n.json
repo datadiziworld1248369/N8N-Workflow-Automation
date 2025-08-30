@@ -1,0 +1,36 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2025-08-26T16:31:30.306Z",
+  "id": "3nJRGypRwbta2j1n",
+  "isArchived": false,
+  "meta": null,
+  "name": "lấy ảnh freepik",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "8ece36be-0983-488d-98ef-9bcd69797cd1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8aaa41b3-4233-4fd4-865a-6088a1fbd4cc",
+      "name": "Webhook",
+      "webhookId": "8ece36be-0983-488d-98ef-9bcd69797cd1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-26T16:31:49.000Z",
+  "versionId": "2350afc3-b6db-4ad2-997c-55e0e664308e"
+}
