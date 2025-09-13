@@ -1,0 +1,72 @@
+{
+  "active": true,
+  "connections": {
+    "Call n8n Workflow Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-10T13:07:23.161Z",
+  "id": "QeheFN4Bkw3rEV08",
+  "isArchived": false,
+  "meta": null,
+  "name": "Gọi API lấy data ads",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "1dcd78e2-0d47-4924-8089-e252ffd2c431"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "185ab413-5326-4b5a-b304-6b20ee5ad166",
+      "name": "MCP Server Trigger",
+      "webhookId": "1dcd78e2-0d47-4924-8089-e252ffd2c431"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "FMnBqZIU58z9FGJZ",
+          "mode": "list",
+          "cachedResultName": "Lấy data ads mcp"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        96,
+        208
+      ],
+      "id": "c6263115-1c85-483a-bb6f-080a3aeaaae5",
+      "name": "Call n8n Workflow Tool"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-09-10T13:11:11.000Z",
+  "versionId": "d8457d82-de17-43b3-b9c6-8a5807aca643"
+}
