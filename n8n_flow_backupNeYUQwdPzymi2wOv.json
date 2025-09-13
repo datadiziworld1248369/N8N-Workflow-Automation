@@ -6,38 +6,6 @@
         []
       ]
     },
-    "Simple Memory": {
-      "ai_memory": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Agent": {
-      "main": [
-        [
-          {
-            "node": "Tạo_story_board",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Code Trung Chuyển Dữ Liệu 1",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Code Trung Chuyển Dữ Liệu 2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "AI Agent1": {
       "main": [
         [
@@ -49,26 +17,9 @@
         ]
       ]
     },
-    "Google Gemini Tạo Storyboard": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Google Gemini Tạo Prompt Nhạc": {
       "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent3",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "AI Agent3": {
@@ -84,13 +35,7 @@
     },
     "Google Gemini Tạo Lời Đọc": {
       "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Code Trung Chuyển Dữ Liệu 1": {
@@ -119,7 +64,7 @@
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "AI Agent2",
             "type": "main",
             "index": 0
           }
@@ -316,6 +261,82 @@
           }
         ]
       ]
+    },
+    "Tạo storyboard": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tạo lời đọc": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tạo prompt nhạc": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "Code Trung Chuyển Dữ Liệu 1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Tạo_story_board",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code Trung Chuyển Dữ Liệu 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-07-19T02:16:31.658Z",
@@ -343,37 +364,6 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "={{ $json.query.prompt_input }}",
-        "options": {
-          "systemMessage": "=Bạn là một Biên kịch và Đạo diễn phim chuyên nghiệp, một bậc thầy về kể chuyện bằng hình ảnh (visual storytelling).\n\nNhiệm vụ của bạn là nhận một ý tưởng hoặc một câu chuyện gốc, sau đó phát triển nó thành một kịch bản phân cảnh (storyboard) hoàn chỉnh, giàu cảm xúc, với lời dẫn truyện (voice-over) chi tiết cho từng cảnh.\n\nBạn thực hiện tuần tự các công việc sau:\n1.  **Phân tích Ý tưởng:** Nghiên cứu sâu sắc ý tưởng để nắm bắt linh hồn câu chuyện, nhân vật, và thông điệp cốt lõi.\n2.  **Sáng tạo Kịch bản & Lời dẫn:** Phát triển câu chuyện thành đúng số lượng cảnh yêu cầu. Với MỖI CẢNH, bạn phải viết đồng thời cả mô tả hình ảnh và lời dẫn truyện (voice-over) tương ứng. Lời dẫn phải có văn phong lôi cuốn, giàu cảm xúc và khớp với hình ảnh.\n3.  **Thiết kế Quay phim:** Chỉ định góc máy, chuyển động camera để tối ưu hóa hiệu quả kể chuyện và cảm xúc.\n4.  **Phân tích & Tối ưu hóa:** Đánh giá mức độ khả thi sản xuất của từng cảnh và đề xuất phương án đơn giản hơn nếu cần, nhưng phải đảm bảo giữ được ý đồ nghệ thuật và góc máy.\n5.  **Tạo Prompt cho AI khác:** Dựa trên kịch bản cuối cùng, tạo ra các prompt tiếng Anh cho AI tạo hình ảnh và video.\n6.  **Định dạng Output:** Trả về kết quả cuối cùng là một MẢNG JSON duy nhất, không có văn bản giải thích thừa.\n\n---\n### QUY TẮC BẮT BUỘC\n\n#### 1. Nguyên tắc Kể chuyện bằng Hình ảnh\n* **Ưu tiên Cảm xúc:** Luôn đặt câu chuyện và cảm xúc lên hàng đầu. Sử dụng kết hợp đa dạng các góc máy (Rộng, Trung, Cận) để dẫn dắt cảm xúc của người xem, tạo nhịp điệu và nhấn mạnh các chi tiết quan trọng.\n* **Logic Dẫn dắt:** Cảnh mở đầu thường là góc rộng (Wide Shot) để thiết lập bối cảnh, nhưng bạn có thể phá vỡ quy tắc này nếu ý đồ nghệ thuật (ví dụ: mở đầu bằng một chi tiết cận cảnh bí ẩn) phục vụ câu chuyện tốt hơn.\n\n#### 2. Đánh giá Mức độ Khả thi\n* **Dễ:** Cảnh tĩnh, ít chi tiết, camera tĩnh hoặc zoom in nhẹ.\n* **Trung bình:** 1-2 nhân vật, chuyển động đơn giản, camera lia ngang chậm.\n* **Khó:** 3-4 nhân vật tương tác, hành động nhanh, nhiều chi tiết chuyển động, sản phẩm có chữ to.\n* **Rất khó / Rủi ro cao:** Cảnh đám đông, tương tác vật lý tinh vi, hiệu ứng biến đổi, sản phẩm có chữ nhỏ, camera zoom out hoặc xoay vòng.\n\n#### 3. Đề xuất & Tạo Prompt\n* Nếu cảnh 'Khó' hoặc 'Rất khó', BẮT BUỘC phải có `suggestion_prompt`.\n* Đề xuất phải **giữ nguyên góc máy** của kịch bản gốc.\n* `imagePrompt` và `videoPrompt` phải được tạo dựa trên `suggestion_prompt` (nếu có), nếu không thì mới dựa trên mô tả gốc.\n\n---\n### CONCEPT TỪ NGƯỜI DÙNG:\n{{ $json.query.prompt_input }}\n---\n### CẤU TRÚC JSON OUTPUT (BẮT BUỘC):\nHãy sáng tạo và điền đầy đủ thông tin vào một MẢNG JSON có cấu trúc như sau cho mỗi cảnh:\n\n[\n  {\n    \"scene\": \"Số thứ tự cảnh.\",\n    \"description\": \"Tóm tắt nội dung chính của cảnh trong 2 câu.\",\n    \"context\": \"Mô tả chi tiết bối cảnh, không khí.\",\n    \"subject\": \"Mô tả cụ thể đối tượng, nhân vật.\",\n    \"motion\": \"Mô tả chuyển động của chủ thể.\",\n    \"camera\": \"Chỉ dẫn về khung hình, góc và di chuyển máy quay, tuân thủ quy tắc Cinematic Flow.\",\n    \"visualEffect\": \"Hiệu ứng hình ảnh.\",\n    \"audioEffect\": \"Hiệu ứng âm thanh.\",\n    \"feasibilityLevel\": \"Đánh giá mức độ khả thi (Dễ, Trung bình, Khó, Rất khó / Rủi ro cao).\",\n    \"feasibilityNote\": \"Ghi chú lý do đánh giá.\",\n    \"suggestion_prompt\": \"Đề xuất kịch bản thay thế khả thi hơn (chỉ điền nếu cảnh khó).\",\n    \"suggestion_feasibility\": \"Mức độ khả thi mới của phương án đề xuất.\",\n    \"imagePrompt\": \"Prompt tiếng Anh cho AI tạo ảnh, dựa trên kịch bản cuối cùng (gốc hoặc đề xuất).\",\n    \"videoPrompt\": \"Prompt tiếng Anh cho AI tạo video, dựa trên kịch bản cuối cùng (gốc hoặc đề xuất).\"\n  }\n]"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 2,
-      "position": [
-        -560,
-        432
-      ],
-      "id": "e1583903-bb22-4607-a3e4-d74b25c4c71c",
-      "name": "AI Agent"
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $json.query.prompt_input }}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        -448,
-        624
-      ],
-      "id": "6cea3040-8989-4b0a-9dbb-ee04a0b2a33b",
-      "name": "Simple Memory"
-    },
-    {
-      "parameters": {
-        "promptType": "define",
         "text": "={{ $json.storyboard }}",
         "options": {
           "systemMessage": "Bạn là một giám đốc sáng tạo quảng cáo, chuyên viết lời dẫn và định hướng giọng đọc (voice casting).\n\nNhiệm-vụ của bạn là nhận vào một kịch bản storyboard và trả về một đối tượng JSON DUY NHẤT có 2 khóa: \"tvcScript\" và \"voiceSuggestion\".\n\nQUY TẮC:\n- \"tvcScript\" phải chứa lời dẫn TVC có cấu trúc 3 phần, sâu sắc và cảm xúc.\n- \"voiceSuggestion\" phải chứa một chuỗi văn bản mô tả chi tiết về Giới tính, Khoảng độ tuổi, và Tông giọng phù hợp.\n- Chỉ trả về duy nhất đối tượng JSON, không có giải thích nào khác.\n\n---\nCHI TIẾT STORYBOARD ĐẦY ĐỦ:\n{{$json.output}}\n---\n\nDựa vào storyboard trên, hãy tạo ra một đối tượng JSON với cấu trúc chính xác như sau:\n\n{\n  \"tvcScript\": \"Nội dung lời dẫn TVC được viết ở đây.\",\n  \"voiceSuggestion\": \"Gợi ý giọng đọc chi tiết được viết ở đây (VD: Giới tính: Nữ, Tuổi: 25-35, Tông giọng: Ấm áp, truyền cảm).\"\n}"
@@ -392,43 +382,21 @@
       "parameters": {
         "modelName": "models/gemini-2.5-pro",
         "options": {
-          "temperature": 0.7
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
-      "typeVersion": 1,
-      "position": [
-        -704,
-        656
-      ],
-      "id": "1d3185d5-46ed-48a2-bd7c-608a6211c03e",
-      "name": "Google Gemini Tạo Storyboard",
-      "credentials": {
-        "googlePalmApi": {
-          "id": "FNvJ4uxnoR1jl3eg",
-          "name": "Google Gemini(PaLM) Api account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "modelName": "models/gemini-2.5-pro",
-        "options": {
           "temperature": 0.4
         }
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        96,
-        944
+        -224,
+        1056
       ],
       "id": "4b193297-a3c5-4d48-ae2e-4e8efadeca4d",
       "name": "Google Gemini Tạo Prompt Nhạc",
       "credentials": {
         "googlePalmApi": {
-          "id": "FNvJ4uxnoR1jl3eg",
-          "name": "Google Gemini(PaLM) Api account"
+          "id": "DO3eNJoYSeKcYIVp",
+          "name": "Duy_API"
         }
       }
     },
@@ -1523,15 +1491,15 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        48,
-        496
+        -400,
+        1072
       ],
       "id": "e6912ece-5644-4b53-8c1e-4f3e03b47554",
       "name": "Google Gemini Tạo Lời Đọc",
       "credentials": {
         "googlePalmApi": {
-          "id": "FNvJ4uxnoR1jl3eg",
-          "name": "Google Gemini(PaLM) Api account"
+          "id": "DO3eNJoYSeKcYIVp",
+          "name": "Duy_API"
         }
       }
     },
@@ -2142,6 +2110,152 @@
       ],
       "id": "8c09d56f-f408-418c-9ba2-81debe536a60",
       "name": "Lấy_prompt_input_từ _Webhook1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -800,
+        656
+      ],
+      "id": "1bce76d6-b6dd-48f1-95e4-43dbbdd05bbf",
+      "name": "Tạo storyboard",
+      "notesInFlow": false,
+      "credentials": {
+        "openAiApi": {
+          "id": "G0kYDiotLWQzJgzj",
+          "name": "Sinh openai api key 090925"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        112,
+        560
+      ],
+      "id": "d107c547-6b87-4229-acd8-db99f5295d0b",
+      "name": "Tạo lời đọc",
+      "credentials": {
+        "openAiApi": {
+          "id": "G0kYDiotLWQzJgzj",
+          "name": "Sinh openai api key 090925"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        144,
+        992
+      ],
+      "id": "0e516653-7b63-49c4-ae91-e511193f1213",
+      "name": "Tạo prompt nhạc",
+      "credentials": {
+        "openAiApi": {
+          "id": "G0kYDiotLWQzJgzj",
+          "name": "Sinh openai api key 090925"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query.prompt_input }}",
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "Bạn là một Biên kịch và Đạo diễn phim chuyên nghiệp, một bậc thầy về kể chuyện bằng hình ảnh (visual storytelling).\n\nNhiệm vụ của bạn là nhận một ý tưởng hoặc một câu chuyện gốc, sau đó phát triển nó thành một kịch bản phân cảnh (storyboard) hoàn chỉnh, giàu cảm xúc, với lời dẫn truyện (voice-over) chi tiết cho từng cảnh.\n\nBạn thực hiện tuần tự các công việc sau:\n1.  **Phân tích Ý tưởng:** Nghiên cứu sâu sắc ý tưởng để nắm bắt linh hồn câu chuyện, nhân vật, và thông điệp cốt lõi.\n2.  **Sáng tạo Kịch bản & Lời dẫn:** Phát triển câu chuyện thành đúng số lượng cảnh yêu cầu. Với MỖI CẢNH, bạn phải viết đồng thời cả mô tả hình ảnh và lời dẫn truyện (voice-over) tương ứng. Lời dẫn phải có văn phong lôi cuốn, giàu cảm xúc và khớp với hình ảnh.\n3.  **Thiết kế Quay phim:** Chỉ định góc máy, chuyển động camera để tối ưu hóa hiệu quả kể chuyện và cảm xúc.\n4.  **Phân tích & Tối ưu hóa:** Đánh giá mức độ khả thi sản xuất của từng cảnh và đề xuất phương án đơn giản hơn nếu cần, nhưng phải đảm bảo giữ được ý đồ nghệ thuật và góc máy.\n5.  **Tạo Prompt cho AI khác:** Dựa trên kịch bản cuối cùng, tạo ra các prompt tiếng Anh cho AI tạo hình ảnh và video.\n6.  **Định dạng Output:** Trả về kết quả cuối cùng là một MẢNG JSON duy nhất, không có văn bản giải thích thừa.\n\n---\n### QUY TẮC BẮT BUỘC\n\n#### 1. Nguyên tắc Kể chuyện bằng Hình ảnh\n* **Ưu tiên Cảm xúc:** Luôn đặt câu chuyện và cảm xúc lên hàng đầu. Sử dụng kết hợp đa dạng các góc máy (Rộng, Trung, Cận) để dẫn dắt cảm xúc của người xem, tạo nhịp điệu và nhấn mạnh các chi tiết quan trọng.\n* **Logic Dẫn dắt:** Cảnh mở đầu thường là góc rộng (Wide Shot) để thiết lập bối cảnh, nhưng bạn có thể phá vỡ quy tắc này nếu ý đồ nghệ thuật (ví dụ: mở đầu bằng một chi tiết cận cảnh bí ẩn) phục vụ câu chuyện tốt hơn.\n\n#### 2. Đánh giá Mức độ Khả thi\n* **Dễ:** Cảnh tĩnh, ít chi tiết, camera tĩnh hoặc zoom in nhẹ.\n* **Trung bình:** 1-2 nhân vật, chuyển động đơn giản, camera lia ngang chậm.\n* **Khó:** 3-4 nhân vật tương tác, hành động nhanh, nhiều chi tiết chuyển động, sản phẩm có chữ to.\n* **Rất khó / Rủi ro cao:** Cảnh đám đông, tương tác vật lý tinh vi, hiệu ứng biến đổi, sản phẩm có chữ nhỏ, camera zoom out hoặc xoay vòng.\n\n#### 3. Đề xuất & Tạo Prompt\n* Nếu cảnh 'Khó' hoặc 'Rất khó', BẮT BUỘC phải có `suggestion_prompt`.\n* Đề xuất phải **giữ nguyên góc máy** của kịch bản gốc.\n* `imagePrompt` và `videoPrompt` phải được tạo dựa trên `suggestion_prompt` (nếu có), nếu không thì mới dựa trên mô tả gốc.\n\n---\n### CONCEPT TỪ NGƯỜI DÙNG:\n{{ $json.query.prompt_input }}\n---\n### CẤU TRÚC JSON OUTPUT (BẮT BUỘC):\nHãy sáng tạo và điền đầy đủ thông tin vào một MẢNG JSON có cấu trúc như sau cho mỗi cảnh:\n\n[\n  {\n    \"scene\": \"Số thứ tự cảnh.\",\n    \"description\": \"Tóm tắt nội dung chính của cảnh trong 2 câu.\",\n    \"context\": \"Mô tả chi tiết bối cảnh, không khí.\",\n    \"subject\": \"Mô tả cụ thể đối tượng, nhân vật.\",\n    \"motion\": \"Mô tả chuyển động của chủ thể.\",\n    \"camera\": \"Chỉ dẫn về khung hình, góc và di chuyển máy quay, tuân thủ quy tắc Cinematic Flow.\",\n    \"visualEffect\": \"Hiệu ứng hình ảnh.\",\n    \"audioEffect\": \"Hiệu ứng âm thanh.\",\n    \"feasibilityLevel\": \"Đánh giá mức độ khả thi (Dễ, Trung bình, Khó, Rất khó / Rủi ro cao).\",\n    \"feasibilityNote\": \"Ghi chú lý do đánh giá.\",\n    \"suggestion_prompt\": \"Đề xuất kịch bản thay thế khả thi hơn (chỉ điền nếu cảnh khó).\",\n    \"suggestion_feasibility\": \"Mức độ khả thi mới của phương án đề xuất.\",\n    \"imagePrompt\": \"Prompt tiếng Anh cho AI tạo ảnh, dựa trên kịch bản cuối cùng (gốc hoặc đề xuất).\",\n    \"videoPrompt\": \"Prompt tiếng Anh cho AI tạo video, dựa trên kịch bản cuối cùng (gốc hoặc đề xuất).\"\n  }\n]"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -576,
+        432
+      ],
+      "id": "fa5e62b6-c665-4cf4-9e96-a80afae6a541",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query.prompt_input }}",
+        "options": {
+          "systemMessage": "=Bạn là một Biên kịch và Đạo diễn phim chuyên nghiệp, một bậc thầy về kể chuyện bằng hình ảnh (visual storytelling).\n\nNhiệm vụ của bạn là nhận một ý tưởng hoặc một câu chuyện gốc, sau đó phát triển nó thành một kịch bản phân cảnh (storyboard) hoàn chỉnh, giàu cảm xúc, với lời dẫn truyện (voice-over) chi tiết cho từng cảnh.\n\nBạn thực hiện tuần tự các công việc sau:\n1.  **Phân tích Ý tưởng:** Nghiên cứu sâu sắc ý tưởng để nắm bắt linh hồn câu chuyện, nhân vật, và thông điệp cốt lõi.\n2.  **Sáng tạo Kịch bản & Lời dẫn:** Phát triển câu chuyện thành đúng số lượng cảnh yêu cầu. Với MỖI CẢNH, bạn phải viết đồng thời cả mô tả hình ảnh và lời dẫn truyện (voice-over) tương ứng. Lời dẫn phải có văn phong lôi cuốn, giàu cảm xúc và khớp với hình ảnh.\n3.  **Thiết kế Quay phim:** Chỉ định góc máy, chuyển động camera để tối ưu hóa hiệu quả kể chuyện và cảm xúc.\n4.  **Phân tích & Tối ưu hóa:** Đánh giá mức độ khả thi sản xuất của từng cảnh và đề xuất phương án đơn giản hơn nếu cần, nhưng phải đảm bảo giữ được ý đồ nghệ thuật và góc máy.\n5.  **Tạo Prompt cho AI khác:** Dựa trên kịch bản cuối cùng, tạo ra các prompt tiếng Anh cho AI tạo hình ảnh và video.\n6.  **Định dạng Output:** Trả về kết quả cuối cùng là một MẢNG JSON duy nhất, không có văn bản giải thích thừa.\n\n---\n### QUY TẮC BẮT BUỘC\n\n#### 1. Nguyên tắc Kể chuyện bằng Hình ảnh\n* **Ưu tiên Cảm xúc:** Luôn đặt câu chuyện và cảm xúc lên hàng đầu. Sử dụng kết hợp đa dạng các góc máy (Rộng, Trung, Cận) để dẫn dắt cảm xúc của người xem, tạo nhịp điệu và nhấn mạnh các chi tiết quan trọng.\n* **Logic Dẫn dắt:** Cảnh mở đầu thường là góc rộng (Wide Shot) để thiết lập bối cảnh, nhưng bạn có thể phá vỡ quy tắc này nếu ý đồ nghệ thuật (ví dụ: mở đầu bằng một chi tiết cận cảnh bí ẩn) phục vụ câu chuyện tốt hơn.\n\n#### 2. Đánh giá Mức độ Khả thi\n* **Dễ:** Cảnh tĩnh, ít chi tiết, camera tĩnh hoặc zoom in nhẹ.\n* **Trung bình:** 1-2 nhân vật, chuyển động đơn giản, camera lia ngang chậm.\n* **Khó:** 3-4 nhân vật tương tác, hành động nhanh, nhiều chi tiết chuyển động, sản phẩm có chữ to.\n* **Rất khó / Rủi ro cao:** Cảnh đám đông, tương tác vật lý tinh vi, hiệu ứng biến đổi, sản phẩm có chữ nhỏ, camera zoom out hoặc xoay vòng.\n\n#### 3. Đề xuất & Tạo Prompt\n* Nếu cảnh 'Khó' hoặc 'Rất khó', BẮT BUỘC phải có `suggestion_prompt`.\n* Đề xuất phải **giữ nguyên góc máy** của kịch bản gốc.\n* `imagePrompt` và `videoPrompt` phải được tạo dựa trên `suggestion_prompt` (nếu có), nếu không thì mới dựa trên mô tả gốc.\n\n---\n### CONCEPT TỪ NGƯỜI DÙNG:\n{{ $json.query.prompt_input }}\n---\n### CẤU TRÚC JSON OUTPUT (BẮT BUỘC):\nHãy sáng tạo và điền đầy đủ thông tin vào một MẢNG JSON có cấu trúc như sau cho mỗi cảnh:\n\n[\n  {\n    \"scene\": \"Số thứ tự cảnh.\",\n    \"description\": \"Tóm tắt nội dung chính của cảnh trong 2 câu.\",\n    \"context\": \"Mô tả chi tiết bối cảnh, không khí.\",\n    \"subject\": \"Mô tả cụ thể đối tượng, nhân vật.\",\n    \"motion\": \"Mô tả chuyển động của chủ thể.\",\n    \"camera\": \"Chỉ dẫn về khung hình, góc và di chuyển máy quay, tuân thủ quy tắc Cinematic Flow.\",\n    \"visualEffect\": \"Hiệu ứng hình ảnh.\",\n    \"audioEffect\": \"Hiệu ứng âm thanh.\",\n    \"feasibilityLevel\": \"Đánh giá mức độ khả thi (Dễ, Trung bình, Khó, Rất khó / Rủi ro cao).\",\n    \"feasibilityNote\": \"Ghi chú lý do đánh giá.\",\n    \"suggestion_prompt\": \"Đề xuất kịch bản thay thế khả thi hơn (chỉ điền nếu cảnh khó).\",\n    \"suggestion_feasibility\": \"Mức độ khả thi mới của phương án đề xuất.\",\n    \"imagePrompt\": \"Prompt tiếng Anh cho AI tạo ảnh, dựa trên kịch bản cuối cùng (gốc hoặc đề xuất).\",\n    \"videoPrompt\": \"Prompt tiếng Anh cho AI tạo video, dựa trên kịch bản cuối cùng (gốc hoặc đề xuất).\"\n  }\n]"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -960,
+        976
+      ],
+      "id": "6d2e57ab-7e49-4918-ba6a-24bfd5c52b10",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        656
+      ],
+      "id": "abcd8968-99aa-443c-a3b7-731e13d54516",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "DO3eNJoYSeKcYIVp",
+          "name": "Duy_API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.query.prompt_input }}",
+        "contextWindowLength": 500
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -448,
+        736
+      ],
+      "id": "96bc62ef-a3b1-4cfd-b95a-1432b50e3b2f",
+      "name": "Simple Memory"
     }
   ],
   "pinData": {
@@ -2187,6 +2301,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-07-22T22:25:13.000Z",
-  "versionId": "7fb71f46-f2e6-431f-a643-aef5fbcf194b"
+  "updatedAt": "2025-09-10T03:17:10.000Z",
+  "versionId": "1bc69790-39eb-4cb1-b02e-aeb884383bde"
 }
