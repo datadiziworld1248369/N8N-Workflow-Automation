@@ -1,6 +1,58 @@
 {
   "active": false,
   "connections": {
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant Vector Store1": {
+      "ai_tool": [
+        []
+      ],
+      "main": [
+        [
+          {
+            "node": "Redis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "When clicking ‘Execute workflow’": {
       "main": [
         [
@@ -16,7 +68,7 @@
       "main": [
         [
           {
-            "node": "Qdrant Vector Store",
+            "node": "Extract from File",
             "type": "main",
             "index": 0
           }
@@ -30,17 +82,109 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "My workflow 31",
+  "name": "chatbot rag",
   "nodes": [
+    {
+      "parameters": {
+        "modelName": "models/gemini-embedding-exp-03-07"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        944,
+        336
+      ],
+      "id": "87d36cad-e87d-4e85-a200-c1932ca3e000",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "DO3eNJoYSeKcYIVp",
+          "name": "Duy_API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=bạn là chatbot dùng để truy vấn dữ liệu\ncông cụ bạn sử dụng là Qdrant Vector Store1\nnếu bạn không tìm được câu trả lời, bạn phải nói là không biết và yêu cầu người dùng thêm thông tin từ câu {{ $json.chatInput }} của họ"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        496,
+        368
+      ],
+      "id": "e9448511-9e56-43f1-a21a-aac5358e8121",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        400,
+        432
+      ],
+      "id": "2d4e585c-8924-444b-9f78-34019aeb207d",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "DO3eNJoYSeKcYIVp",
+          "name": "Duy_API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 500000
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        800,
+        416
+      ],
+      "id": "fda18493-c575-442c-9b84-f60aac349bab",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "Học n8n anh bình",
+          "mode": "list",
+          "cachedResultName": "Học n8n anh bình"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1.3,
+      "position": [
+        976,
+        64
+      ],
+      "id": "8c160139-0c42-4f4d-8d17-5f9375d99659",
+      "name": "Qdrant Vector Store1",
+      "credentials": {
+        "qdrantApi": {
+          "id": "cvaydL94cjm0NmPp",
+          "name": "QdrantApi account"
+        }
+      }
+    },
     {
       "parameters": {},
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        0,
-        0
+        -32,
+        80
       ],
-      "id": "ab45f8dd-0c65-4876-8a84-4106dc9d35ff",
+      "id": "6859b2bc-e9e9-4125-a819-d82848dd43b6",
       "name": "When clicking ‘Execute workflow’"
     },
     {
@@ -48,18 +192,20 @@
         "operation": "download",
         "fileId": {
           "__rl": true,
-          "value": "https://drive.google.com/file/d/1WXU7L6QNgjYF4BIgT1-M8lASVWnZksY3/view?usp=sharing",
-          "mode": "url"
+          "value": "1WXU7L6QNgjYF4BIgT1-M8lASVWnZksY3",
+          "mode": "list",
+          "cachedResultName": "500-cong-thuc-chay.md",
+          "cachedResultUrl": "https://drive.google.com/file/d/1WXU7L6QNgjYF4BIgT1-M8lASVWnZksY3/view?usp=drivesdk"
         },
         "options": {}
       },
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        208,
-        0
+        272,
+        80
       ],
-      "id": "8487567e-9e91-4012-96e7-217ae47947db",
+      "id": "90a8bc9e-7eb2-4e8f-a342-77816557c81e",
       "name": "Download file",
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -70,28 +216,38 @@
     },
     {
       "parameters": {
-        "mode": "insert",
-        "qdrantCollection": {
-          "__rl": true,
-          "mode": "list",
-          "value": ""
-        },
+        "operation": "get",
+        "key": "l",
         "options": {}
       },
-      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
-      "typeVersion": 1.3,
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
       "position": [
-        416,
-        0
+        1328,
+        64
       ],
-      "id": "6af4074d-ecf3-4d39-a090-8d4c9b98511a",
-      "name": "Qdrant Vector Store",
+      "id": "e069e004-89cd-4c9d-916d-a7ea2f9177fa",
+      "name": "Redis",
       "credentials": {
-        "qdrantApi": {
-          "id": "kZQCwHnGJUyqaR43",
-          "name": "QdrantApi account"
+        "redis": {
+          "id": "SwIcdt6gMENM0Zcy",
+          "name": "Redis account"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        480,
+        80
+      ],
+      "id": "b6405009-5208-4b9e-8db7-626e53cf4340",
+      "name": "Extract from File"
     }
   ],
   "pinData": {},
@@ -101,6 +257,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-06T01:54:49.000Z",
-  "versionId": "d38261e1-7a6f-45c2-911a-9dcd0a72db9f"
+  "updatedAt": "2025-09-09T10:54:32.000Z",
+  "versionId": "dab52d8e-a334-4621-8beb-86f937878f4e"
 }
