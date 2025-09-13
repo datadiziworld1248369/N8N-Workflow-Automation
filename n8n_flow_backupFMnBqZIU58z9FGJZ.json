@@ -1,0 +1,284 @@
+{
+  "active": false,
+  "connections": {
+    "ID BM": {
+      "main": [
+        [
+          {
+            "node": "Token dài hạn đúng không",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bm & token": {
+      "main": [
+        [
+          {
+            "node": "ID BM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Token dài hạn đúng không": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy ìnor app & token shorrt meta": {
+      "main": [
+        [
+          {
+            "node": "Bm & token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Lấy ìnor app & token shorrt meta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Lấy ìnor app & token shorrt meta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-10T13:08:01.337Z",
+  "id": "FMnBqZIU58z9FGJZ",
+  "isArchived": true,
+  "meta": null,
+  "name": "Lấy data ads mcp",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v21.0/{{ $('Bm & token').item.json['<BUSINESS_ID>'] }}/owned_ad_accounts?fields=name,account_id&access_token={{ $('Lấy ìnor app & token shorrt meta').item.json.short_token }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -544,
+        80
+      ],
+      "id": "1836d837-c2d1-45fa-8210-cad5ccc9c5e9",
+      "name": "ID BM"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cb3cddfb-0644-463a-b573-c119185f7d5c",
+              "name": "<BUSINESS_ID>",
+              "value": "1937407066269295",
+              "type": "string"
+            },
+            {
+              "id": "cbc1c925-8c82-4edf-a7c3-35c7b3b85b12",
+              "name": "app_id",
+              "value": "600453229146956",
+              "type": "string"
+            },
+            {
+              "id": "b1787f5d-3e42-4eda-91bd-82375339250a",
+              "name": "app_secret",
+              "value": "6f1e40629b6e123e5f0491ff9f3f6a81",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -656,
+        352
+      ],
+      "id": "06b53206-67c2-452c-8c23-938be1bac822",
+      "name": "Bm & token"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/oauth/access_token",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "grant_type",
+              "value": "fb_exchange_token"
+            },
+            {
+              "name": "client_id",
+              "value": "={{ $('Bm & token').item.json.app_id }}"
+            },
+            {
+              "name": "client_secret",
+              "value": "={{ $('Bm & token').item.json.app_secret }}"
+            },
+            {
+              "name": "fb_exchange_token",
+              "value": "={{ $('Lấy ìnor app & token shorrt meta').item.json.short_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -416,
+        368
+      ],
+      "id": "a381c602-1967-4bfb-a729-350cc0498f23",
+      "name": "Token dài hạn đúng không"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cbc1c925-8c82-4edf-a7c3-35c7b3b85b12",
+              "name": "app_id",
+              "value": "600453229146956",
+              "type": "string"
+            },
+            {
+              "id": "b1787f5d-3e42-4eda-91bd-82375339250a",
+              "name": "app_secret",
+              "value": "6f1e40629b6e123e5f0491ff9f3f6a81",
+              "type": "string"
+            },
+            {
+              "id": "290a0e7e-2b5d-4af1-9d11-8ef1ef42dccb",
+              "name": "short_token",
+              "value": "EAAIiGZBltc0wBPQwUjUlYd7NIpji6Vv1ZCIa2rx6RR5v1WVZATZC02C4oUe16X2mYF42RQ0G3bn98xvmpPXI3PhnxVOy3UADabZCFuZAZAjNNtI5ZCtGtIJng56mDlVBgjDMZA4gmE5UmTIX5FzZAxb69hrkv15ej38ylHrS0PGaCxiGK05UcZCcnuIeVpZCUbYijDfWP6uu8lIHC6NxrEUm",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -784,
+        80
+      ],
+      "id": "b5febfce-a248-41e6-ab62-f6b77cd240cb",
+      "name": "Lấy ìnor app & token shorrt meta"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v21.0/act_2883772628427159/insights\n?fields=campaign_name,adset_name,ad_name,impressions,clicks,spend,actions,action_values\n&level=ad\n&date_preset={{ $json.datePreset }}&access_token={{ $('Token dài hạn đúng không').item.json.access_token }}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "27faa8ee-c5bb-4db3-afa4-30835c6471c1",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1104,
+        80
+      ],
+      "id": "644aaea8-47db-44fc-a1c1-9fa0568989e8",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1072,
+        304
+      ],
+      "id": "5163c07c-8af7-457a-a3d2-cf20404190c3",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d680eda0-08ba-434e-8a22-66a61d13daf2",
+              "name": "datePreset",
+              "value": "this_year",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -208,
+        368
+      ],
+      "id": "1924a89a-416f-4b76-a19b-1b55461a1e77",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {
+    "When clicking ‘Execute workflow’": [
+      {
+        "json": {}
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-10T14:11:52.000Z",
+  "versionId": "836e6646-a2e5-483f-8f31-560159578fc0"
+}
