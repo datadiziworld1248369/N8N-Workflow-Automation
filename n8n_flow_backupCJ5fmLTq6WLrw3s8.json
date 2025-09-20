@@ -1,0 +1,2147 @@
+{
+  "active": true,
+  "connections": {
+    "Prompt": {
+      "main": [
+        [
+          {
+            "node": "Gemini API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Move file to base64 string": {
+      "main": [
+        [
+          {
+            "node": "Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini API": {
+      "main": [
+        [
+          {
+            "node": "JSON to string",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JSON to string": {
+      "main": [
+        [
+          {
+            "node": "Parse string",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse string": {
+      "main": [
+        [
+          {
+            "node": "Get_lark_token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive Get Receipt": {
+      "main": [
+        [
+          {
+            "node": "Move file to base64 string",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger Image": {
+      "main": [
+        [
+          {
+            "node": "Create File Name For Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out Binary Files": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Attachments": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Create File Name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Split Out Binary Files",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Emails": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Attachments",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait For Saving": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Attachments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Google Drive Get Receipt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create File Name": {
+      "main": [
+        [
+          {
+            "node": "Google Drive Save Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create File Name For Telegram": {
+      "main": [
+        [
+          {
+            "node": "Google Save Files 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive Trigger New Files": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive Save Files": {
+      "main": [
+        [
+          {
+            "node": "Wait For Saving",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait For Saving Data": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Creates records lark1": {
+      "main": [
+        []
+      ]
+    },
+    "Get_lark_token": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out Binary Files1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Emails1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Attachments1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Split Out Binary Files1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Emails1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Emails1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Attachments1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait For Saving1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Attachments1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive Save Files1": {
+      "main": [
+        [
+          {
+            "node": "Wait For Saving1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Emails",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Emails1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt1": {
+      "main": [
+        [
+          {
+            "node": "Gemini API1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Move file to base64 string1": {
+      "main": [
+        [
+          {
+            "node": "Prompt1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini API1": {
+      "main": [
+        [
+          {
+            "node": "JSON to string1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JSON to string1": {
+      "main": [
+        [
+          {
+            "node": "Parse string1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse string1": {
+      "main": [
+        [
+          {
+            "node": "Chuẩn hóa data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive Get Receipt1": {
+      "main": [
+        [
+          {
+            "node": "Move file to base64 string1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Google Drive Get Receipt1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive Trigger New Files1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait For Saving Data1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get_lark_token1": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create File Name2": {
+      "main": [
+        [
+          {
+            "node": "Google Drive Save Files1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Create File Name2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chuẩn hóa data": {
+      "main": [
+        [
+          {
+            "node": "Get_lark_token1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Creates records lark": {
+      "main": [
+        []
+      ]
+    },
+    "Creates records lark2": {
+      "main": [
+        [
+          {
+            "node": "Wait For Saving Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Creates records lark3": {
+      "main": [
+        [
+          {
+            "node": "Wait For Saving Data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-18T04:54:14.793Z",
+  "id": "CJ5fmLTq6WLrw3s8",
+  "isArchived": false,
+  "meta": null,
+  "name": "Hóa đơn OCR hoàn thiện",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ae25506d-5f84-4a61-b06e-399f0c0e4604",
+              "name": "prompt",
+              "value": "You are an expert in extracting key fields from invoices.\n\nTask: From the attached invoice document, return a single JSON object with these exact keys and in this order:\n\n{\n  \"sellerName\": string,\n  \"sellerTaxId\": string,\n  \"sellerAddress\": string,\n  \"buyerName\": string,\n  \"buyerTaxId\": string | null,\n  \"buyerAddress\": string,\n  \"contactName\": string | null,\n  \"contactEmail\": string | null,\n  \"contactPhone\": string | null,\n  \"invoiceNumber\": string,\n  \"invoiceDate\": \"YYYY-MM-DD\",\n  \"contractNumber\": string | null,\n  \"serviceDescription\": string,\n  \"note\": string | null,\n  \"subtotalVND\": number,\n  \"taxRatePercent\": number,\n  \"taxAmountVND\": number,\n  \"totalAmountVND\": number\n}\n\nRequirements:\n- Read only the provided invoice.\n- Output **valid JSON only**, no markdown, no explanation.\n- Numbers: return as pure numbers (e.g., 21000000), no commas or currency symbols.\n- Dates: format strictly as YYYY-MM-DD.\n- If any field is missing, use null.\n",
+              "type": "string"
+            },
+            {
+              "id": "1eec8912-eec6-49cb-be01-4a6f606ea283",
+              "name": "model",
+              "value": "gemini-2.0-flash",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2304,
+        144
+      ],
+      "id": "fd43c383-b2dd-4b7e-bfd7-0274bda279ff",
+      "name": "Prompt"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "binaryPropertyName": "=data",
+        "destinationKey": "base64",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        144
+      ],
+      "id": "6eff2b5f-31f9-4635-8206-fb7acc67ac8d",
+      "name": "Move file to base64 string"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/{{ $json.model }}:generateContent",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "AIzaSyCN4yGz1mKO6dUuagUqnuDzrXxVrb15FR8"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"role\": \"user\",\n      \"parts\": [\n        {\n          \"inlineData\": {\n            \"mimeType\": {{ JSON.stringify($('Google Drive Get Receipt').first().json.mimeType) }},\n            \"data\": {{ JSON.stringify($('Move file to base64 string').item.json.base64) }}\n          }\n        },\n        {\n          \"text\": {{ JSON.stringify($('Prompt').item.json.prompt) }}\n        }\n      ]\n    }\n  ],\n  \"generationConfig\": {\n    \"temperature\": 0,\n    \"topK\": 1,\n    \"topP\": 0.95,\n    \"maxOutputTokens\": 1024,\n    \"responseMimeType\": \"application/json\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2592,
+        144
+      ],
+      "id": "a12c1c4d-6c57-4ffa-83c2-eb3cd246976a",
+      "name": "Gemini API"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1400480d-72cc-4ce9-8e38-61d21d32a4f9",
+              "name": "jsonString",
+              "value": "={{ $json.candidates[0].content.parts[0].text.parseJson()}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2768,
+        144
+      ],
+      "id": "0e468266-55b1-4e4c-b863-0dc6acd90de7",
+      "name": "JSON to string"
+    },
+    {
+      "parameters": {
+        "jsCode": "let raw = $json[\"jsonString\"] || \"\";\n\n// 1) bỏ nhãn ```json và backticks ở đầu/cuối\nraw = raw\n  .replace(/^\\s*```?\\s*json\\s*/i, \"\")  // chỉ ở đầu chuỗi\n  .replace(/\\s*```?\\s*$/i, \"\")         // chỉ ở cuối chuỗi\n  .replace(/\\r/g, \"\");\n\n// 2) chỉ lấy phần có vẻ là JSON: từ { đầu tiên tới } cuối cùng\nconst start = raw.indexOf(\"{\");\nconst end   = raw.lastIndexOf(\"}\");\n\nif (start === -1 || end === -1 || end <= start) {\n  throw new Error(\"Chuỗi không chứa JSON đầy đủ (thiếu { hoặc }).\");\n}\n\nconst jsonSlice = raw.slice(start, end + 1).trim();\n\n// 3) parse\nlet data;\ntry {\n  data = JSON.parse(jsonSlice);\n} catch (e) {\n  // gợi ý vị trí lỗi để soi nhanh\n  throw new Error(`JSON không hợp lệ. Có thể chuỗi bị cắt cụt: ${e.message}`);\n}\n\nreturn data;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2960,
+        144
+      ],
+      "id": "9d6a6491-c3ec-40b6-831b-26668c393f03",
+      "name": "Parse string"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1792,
+        144
+      ],
+      "id": "777c46ad-554c-4227-bb36-3c13c5746fd6",
+      "name": "Google Drive Get Receipt",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AjNwXeFt6clYXdfz",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {
+          "download": true
+        }
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1056,
+        2336
+      ],
+      "id": "062fbcaf-101d-4d13-91e8-e0f920cfeabf",
+      "name": "Telegram Trigger Image",
+      "webhookId": "ef2f6b1f-b608-4e2f-9abe-02fe8ae0f085",
+      "credentials": {
+        "telegramApi": {
+          "id": "AZ6P8JcpXiBj5VdX",
+          "name": "bot skibidi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "labelIds": [
+            "INBOX"
+          ]
+        },
+        "options": {
+          "dataPropertyAttachmentsPrefixName": "data",
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1040,
+        768
+      ],
+      "id": "bb535447-e047-4e2e-a48b-fda309f7fd53",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Fg55jxhEa3jhDgbS",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let results = [];\n\nfor (item of items) {\n    for (key of Object.keys(item.binary)) {\n        results.push({\n            json: {\n                fileName: item.binary[key].fileName,\n            sender: item.json.from.value[0].address\n            },\n            binary: {\n                data: item.binary[key],\n            }\n        });\n    }\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3200,
+        1024
+      ],
+      "id": "a3f93cd5-bb7d-4a8b-9943-b0695a85283b",
+      "name": "Split Out Binary Files"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2288,
+        752
+      ],
+      "id": "4e90dcab-7391-4826-a622-964ed7e7ed00",
+      "name": "Loop Over Attachments"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e1009efc-c67d-48bd-a6c9-f801ba386d5d",
+              "leftValue": "={{  $('Loop Over Emails').item.binary  }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2000,
+        960
+      ],
+      "id": "ffb1afe2-9b75-4409-9e42-20132c4bf6be",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "batchSize": "={{ $('Gmail Trigger').all().length }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1600,
+        768
+      ],
+      "id": "b3d11381-0376-4fde-907c-07f78cedd5ff",
+      "name": "Loop Over Emails"
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3216,
+        768
+      ],
+      "id": "628dcbca-6ba2-4835-a3a8-7e5994e50bc1",
+      "name": "Wait For Saving",
+      "webhookId": "a6742af7-28b5-469a-92d6-3f74845692fd"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1392,
+        128
+      ],
+      "id": "6b88715d-3571-44e3-82c8-de40f1a46bfb",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "jsCode": "// YYYYMMDD\nconst dateCode = new Date().toISOString().split('T')[0].replace(/-/g,'');\n\n// Tên file cố định\nconst filename = `VNTT${dateCode}-CÔNG TY TNHH THỰC PHẨM VÌ SỰ SỐNG VINA-Invoice.pdf`;\n\n// Lấy binary của item hiện tại\nconst bin = $input.item.binary || {};\nconst keys = Object.keys(bin);\nif (!keys.length) {\n  throw new Error('Item không có binary. Kiểm tra node trước đó (Split Out Binary Files/Gmail, v.v.)');\n}\n\n// Lấy key binary đầu tiên và **đổi tên thành `data`** để Drive node nhận được\nconst firstKey = keys[0];\n\nreturn {\n  json: { filename, mimeType: 'application/pdf' },\n  binary: { data: bin[firstKey] },\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2608,
+        768
+      ],
+      "id": "9d2d2870-ab8f-48f1-bfdb-2a4d284d19a3",
+      "name": "Create File Name"
+    },
+    {
+      "parameters": {
+        "jsCode": "let today = new Date();\nconst createdDate = today.toISOString().split('T')[0] + '_';\nconst filename = createdDate.toString() + \"Telegram\";\n\nreturn { json: {'filename' : filename},\n       binary: {\n                data: $input.item.binary.data,\n            }};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        2336
+      ],
+      "id": "8aa0d6f5-7b50-4a97-a683-a61d64f1a920",
+      "name": "Create File Name For Telegram"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1NB7-FO2TCyWc9iyy4Fm1h1qY9bqk427T",
+          "mode": "list",
+          "cachedResultName": "Hóa đơn TikTok",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1NB7-FO2TCyWc9iyy4Fm1h1qY9bqk427T"
+        },
+        "event": "fileCreated",
+        "options": {
+          "fileType": "all"
+        }
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        128
+      ],
+      "id": "18915536-8e3e-4602-bede-fefb4ccb31c4",
+      "name": "Google Drive Trigger New Files",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AjNwXeFt6clYXdfz",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Import Attachments From Gmail To Google Drive",
+        "height": 536,
+        "width": 1943,
+        "color": 2
+      },
+      "id": "a62615d3-475b-479a-a90a-3e8a62160512",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        4576,
+        368
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Import Attachments From Telegram To Google Drive",
+        "height": 296,
+        "width": 1983,
+        "color": 2
+      },
+      "id": "2aedb226-4757-4738-a4c4-3326e5a36ecf",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        944,
+        2128
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Extract Information From Files And Import To Google Sheets",
+        "height": 864,
+        "width": 2763,
+        "color": 2
+      },
+      "id": "cc00a7ca-d72b-4cf5-8f58-bf23338bca9d",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1280,
+        -48
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "name": "={{ $json.filename }}",
+        "driveId": {
+          "__rl": true,
+          "value": "0AKPPy6FuV32kUk9PVA",
+          "mode": "list",
+          "cachedResultName": "AI Automation Pro",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/0AKPPy6FuV32kUk9PVA"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "14o_rWG04W9ejiBn4g-Bg98Tavlbi5AsY",
+          "mode": "list",
+          "cachedResultName": "Template - Invoice OCR Pool",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/14o_rWG04W9ejiBn4g-Bg98Tavlbi5AsY"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2736,
+        2352
+      ],
+      "id": "f62356e0-feda-4458-aac3-9459a0085e4d",
+      "name": "Google Save Files 2",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AjNwXeFt6clYXdfz",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "=data",
+        "name": "={{ $json.filename }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1NB7-FO2TCyWc9iyy4Fm1h1qY9bqk427T",
+          "mode": "list",
+          "cachedResultName": "Hóa đơn TikTok",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1NB7-FO2TCyWc9iyy4Fm1h1qY9bqk427T"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2912,
+        768
+      ],
+      "id": "18166366-9b4f-40be-acd8-a6cd2b4f30b1",
+      "name": "Google Drive Save Files",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AjNwXeFt6clYXdfz",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3808,
+        144
+      ],
+      "id": "f6a655b7-bca7-403a-9e7d-038d38605565",
+      "name": "Wait For Saving Data",
+      "webhookId": "211ca61f-1915-4fb7-9ebf-8304c75d536e"
+    },
+    {
+      "parameters": {
+        "content": "Automate Invoice & Receipt OCR (Google Drive, Gmail, Telegram) to Google Sheets via Gemini API\n\n### Template Description:\n\nAutomatically process invoices and receipts using Gemini OCR, extracting data directly into Google Sheets from multiple sources including Google Drive, Gmail, and Telegram. This powerful, free (for a limited time) workflow ensures your bookkeeping is always accurate, organized, and efficient, significantly reducing manual effort and potential errors.\n\n**Who is this for?**\n\nThis workflow is ideal for busy entrepreneurs, startup founders, freelancers, small business owners, bookkeepers, and accountants who aim to eliminate manual, repetitive, and error-prone bookkeeping tasks. Whether you regularly manage expenses from physical paper receipts, digital invoices, or email attachments, this workflow will dramatically streamline your bookkeeping processes and save you significant time and effort each month.\n\n### **What problem is this workflow solving?**\n\nManual data entry of invoices and receipts is notoriously tedious, incredibly time-consuming, and highly susceptible to human error. Mistakes in bookkeeping can lead to financial inaccuracies, compliance issues, and wasted resources. By automating the extraction of invoice data, this workflow streamlines your financial management process, significantly improves accuracy, reduces operational overhead, and allows you to redirect valuable resources and attention toward strategic, revenue-generating business activities.\n\n### **What this workflow does**\n\nThis template provides a powerful, automated solution for invoice and receipt data extraction using Google's Gemini API for OCR (Optical Character Recognition) via direct HTTP requests.\n\n1. Main Flow (Google Drive Trigger): The main workflow triggers (Google Drive Trigger New Files) whenever a new file (PDF or image) is added to a designated Google Drive folder. It uses a SplitInBatches node (Loop Over Items) to process incoming files one by one. For each file, it:  \n   * Downloads the file (Google Drive Get Receipt).  \n   * Converts it to base64 (Move file to base64 string).  \n   * Sends the file data and a detailed prompt to the Gemini API (gemini-2.0-flash model specified in the Prompt node, sent via the Gemini API HTTP Request node). The prompt requests structured JSON output with specific fields and formatting (like comma decimal separators, no currency symbols, and a dedicated currency field).  \n   * Parses the JSON response (JSON to string, Parse string nodes).  \n   * Appends the extracted data (Invoice Date, Category, Sender, Currency, etc.), along with the original filename and a link to the file, to a specified Google Sheet (Add to Google Sheets).  \n   * Includes Wait nodes to help manage potential rate limits.  \n2. Supplementary flow 1 (Gmail Trigger): An additional trigger (Gmail Trigger) monitors your Gmail account for emails with a specific label. When a matching email with attachments arrives:  \n   * It loops through emails and attachments.  \n   * It renames the attachment using the format YYYY-MM-DD\\_SenderUsername (e.g., 2025-04-19\\_some.sender) using the Create File Name node.  \n   * It saves the renamed attachment to the designated Google Drive folder (Google Drive Save Files), which then triggers the core OCR process above.  \n3. Supplementary Trigger 2 (Telegram Trigger): Another optional trigger (Telegram Trigger Image) allows you to forward photos of physical receipts to your configured Telegram bot:  \n   * It renames the image file using the format YYYY-MM-DD\\_Telegram (e.g., 2025-04-19\\_Telegram) via the Create File Name For Telegram node.  \n   * It saves the renamed image to the designated Google Drive folder (Google Save Files 2), also triggering the core OCR process.\n\n### **Setup**\n\n1. Credentials: Add the following credentials in n8n, using the names specified in the template or your own:  \n   * Google OAuth2: For Google Drive, Google Sheets, Gmail.   \n   * Telegram: For the Telegram bot trigger   \n   * Gemini API Key: Obtain a free API key from [Google AI Studio](https://aistudio.google.com/). You will need to paste this key directly into the Query Parameters of the Gemini API (HTTP Request) node in the workflow.  \n2. Google Drive: Create a specific folder in your Google Drive where all invoices/receipts will be stored *and* processed from. Update the target Folder in the Google Drive Trigger New Files, Google Drive Save Files, and Google Save Files 2 nodes to use your designated folder.  \n3. Google Sheets: Create a new Google Sheet, or clone [this Sheet template](https://docs.google.com/spreadsheets/d/1HX12aLkBrFjKSvtMlhFbDQkvn8MQrhZQVkkxpXY5c0M/edit?usp=sharing). Ensure it has columns matching the desired output fields (see default list below, including Currency). Update the target Spreadsheet and Sheet Name in the Add to Google Sheets node to point to your sheet.  \n4. Gmail (Optional): Create a label in Gmail (e.g., \"receipts\"). Update the Label filter in the Gmail Trigger node to use the label you created. Consider setting up filters in Gmail to automatically apply this label to relevant emails.  \n5. Telegram (Optional): Configure the Telegram Trigger Image node with your bot credentials.  \n6. Gemini API Node: Open the Gemini API (HTTP Request) node. In the \"Query Parameters\" section, replace the placeholder API key with your actual Gemini API Key. Verify the URL uses the correct model name by referencing the Prompt node's model value (gemini-2.0-flash by default).  \n7. Customize Prompt: Open the Prompt (Set) node.  \n   * Crucially, change the first line \"My company is Sisu Digital...\" to reflect your company or remove it if not needed.  \n   * Review the list of categories and the specific formatting instructions (e.g., comma for decimals, no currency symbols, date format, \"N/A\" for notes) to ensure they match your requirements. You can adjust these details here.  \n8. Activate Workflow: Test each trigger path (Drive upload, labeled Gmail, Telegram photo) with sample files/emails/messages, then activate the workflow.\n\n### **How to customize this workflow to your needs**\n\n* Gemini Prompt/Model: Modify the prompt text, the list of categories, or the detailed formatting instructions within the Prompt (Set) node. You can also change the model value in the Prompt node to use a different Gemini model (ensure the model supports the API endpoint used in the HTTP Request node).  \n* Extracted Fields: Modify the prompt in the Prompt node to extract different fields or change formatting. Update the parsing logic in the Parse string node if needed, and ensure your Google Sheet columns match in the Add to Google Sheets node. The default extracted fields (based on the updated prompt) are:  \n  * Invoice Date: (DD/MM/YYYY)  \n  * Category: (From predefined list)  \n  * Sender: (Issuing company)  \n  * Description: (Brief details)  \n  * Amount (0% VAT): (Net amount, comma decimal, no currency symbol)  \n  * VAT %: (Rate number, comma decimal, no % sign, \"0,0\" if none)  \n  * Total: (Gross amount, comma decimal, no currency symbol)  \n  * Currency: (Uppercase abbreviation, e.g., \"EUR\", \"USD\")  \n  * Note: (Relevant notes, or \"N/A\")  \n  * *(Added by workflow):* File Name, File URL  \n* Triggers & Targets: Enable/disable or modify the Gmail and Telegram triggers. Select your desired Google Drive folder, Google Sheet, and Gmail label directly within the respective nodes.  \n* File Naming: Adjust the Javascript code in the Create File Name (for Gmail) or Create File Name For Telegram nodes to change the renaming pattern. Current formats: YYYY-MM-DD\\_SenderUsername (Gmail), YYYY-MM-DD\\_Telegram (Telegram).  \n* Configuration Method: Update configuration like folders, sheets, and labels directly within the relevant nodes. For easier management of multiple settings, consider adding a central 'Set' node at the beginning of the workflow to define these values and use expressions to reference them in other nodes.\n\n### **Important Considerations**\n\n* AI Accuracy: AI models can make mistakes. Always review the data extracted into Google Sheets for accuracy, especially with specific formatting like decimal separators. This workflow automates heavily but requires final verification.  \n* Gemini API Usage: This template uses the Gemini API via HTTP Request. Be mindful of Google's API rate limits, usage policies, and potential costs associated with the model used (gemini-2.0-flash by default), especially if you change it. Monitor Google's terms.  \n* Loops and Waits: The workflow uses SplitInBatches and Wait nodes to process items individually and pause execution, which helps prevent hitting API rate limits but processes files sequentially rather than in parallel.\n\n### **Support Disclaimer:** \n\n* This workflow is provided as-is for your convenience. Use it responsibly, and feel free to build upon it for your unique needs\\!  \n* This workflow has been thoroughly tested and is confirmed to be working flawlessly at the time of release. However, setup complexity or unexpected errors may occur depending on your environment, customizations, or API changes.  \n* Please note that I cannot offer personalized support or troubleshooting for this template (without a fee\\!). If you encounter an issue, feel free to send me a message describing the problem. If the issue is determined to be a genuine bug within the shared template, I will do my best to fix it and update the workflow. Otherwise, the issue is likely due to a setup misconfiguration or modification on your side. In those cases, I recommend using ChatGPT or referring to n8n documentation to debug the problem.",
+        "height": 2380,
+        "width": 640
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "06fb1d9b-2d60-436e-bd76-a5115e6d5af2",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=  https://open.larksuite.com/open-apis/bitable/v1/apps/DmEXbKWyOadOKUsJisFlICcPgPh/tables/tblrglxvGyH7oT41/records ",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Seller_Name\": \"{{ $('Parse string').item.json.sellerName }}\",\n    \"Seller_Tax ID\": \"{{$('Parse string').item.json.sellerTaxId}}\",\n    \"Seller_Address\": \"{{$('Parse string').item.json.sellerAddress}}\",                      \"Buyer_Name\": \"{{$('Parse string').item.json.buyerName}}\",\n    \"Buyer_Tax_ID\": \"{{$('Parse string').item.json.buyerTaxId.tojsonstring()}}\",                           \"Buyer_Address\": \"{{$('Parse string').item.json.buyerAddress}}\",                        \"Contact_Name\": \"{{$('Parse string').item.json.contactName}}\",                          \"Contact_Email\": \"{{$('Parse string').item.json.contactEmail}}\",\n    \"Contact_Phone\": \"{{$('Parse string').item.json.contactPhone}}\",\n    \"Invoice_Number\": \"{{$('Parse string').item.json.invoiceNumber}}\", \n    \"Invoice_Date\": \"{{$('Parse string').item.json.invoiceDate}}\", \n    \"Contract_Number\": \"{{$('Parse string').item.json.contractNumber}}\",\n    \"Service_Description\": \"{{$('Parse string').item.json.serviceDescription}}\",\n    \"Note\": \"{{$('Parse string').item.json.note}}\",\n    \"Subtotal_VND\": \"{{$('Parse string').item.json.subtotalVND}}\",\n    \"Tax_Rate_%\": \"{{$('Parse string').item.json.taxRatePercent}}\",\n    \"Tax_Amount_VND\": \"{{$('Parse string').item.json.taxAmountVND}}\",\n    \"Total_Amount_VND\": \"{{$('Parse string').item.json.totalAmountVND}}\",\n    \"Link\": \"{{$('Google Drive Trigger New Files').item.json.webViewLink}}\"  \n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3488,
+        0
+      ],
+      "id": "385af83a-a8d9-474e-a32f-e60439dee8d9",
+      "name": "Creates records lark1",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3168,
+        144
+      ],
+      "id": "5dc8902c-bbf8-4910-abc6-e3c6fa95fac1",
+      "name": "Get_lark_token"
+    },
+    {
+      "parameters": {
+        "jsCode": "let results = [];\n\nfor (item of items) {\n    for (key of Object.keys(item.binary)) {\n        results.push({\n            json: {\n                fileName: item.binary[key].fileName,\n            sender: item.json.from.value[0].address\n            },\n            binary: {\n                data: item.binary[key],\n            }\n        });\n    }\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2928,
+        1664
+      ],
+      "id": "3abdd40b-3b9e-4fc6-bf96-9b77f3d0b971",
+      "name": "Split Out Binary Files1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1728,
+        1392
+      ],
+      "id": "af6290a2-d831-4f91-afeb-6028e1250b68",
+      "name": "Loop Over Attachments1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e1009efc-c67d-48bd-a6c9-f801ba386d5d",
+              "leftValue": "={{  $('Loop Over Emails1').item.binary  }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1728,
+        1600
+      ],
+      "id": "d64350ee-3f7b-436f-a0a9-da7095c229f6",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "batchSize": "={{ $('Gmail Trigger').all().length }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1328,
+        1408
+      ],
+      "id": "e2e30ec0-72b8-4774-b6d9-478149e34061",
+      "name": "Loop Over Emails1"
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3888,
+        1392
+      ],
+      "id": "fceef297-b6ff-4ff2-8e90-fc2c7abd8736",
+      "name": "Wait For Saving1",
+      "webhookId": "a6742af7-28b5-469a-92d6-3f74845692fd"
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "=data",
+        "name": "={{ $json.binary['meta_receipt.pdf'] }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1DhDAqQRjuOl94-PzwlI_hwJw61HOnrbv",
+          "mode": "list",
+          "cachedResultName": "Hóa đơn Facebook",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1DhDAqQRjuOl94-PzwlI_hwJw61HOnrbv"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        3200,
+        1392
+      ],
+      "id": "501b9247-27a2-4f20-b481-9663b4bfe4ca",
+      "name": "Google Drive Save Files1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AjNwXeFt6clYXdfz",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.subject }}",
+                    "rightValue": "=TikTok For Business Invoice",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "b522b1c8-6f3c-4e7c-bd2e-656207667fae"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "bd9782ee-76e4-437d-a0ea-11f52f663671",
+                    "leftValue": "={{ $json.subject }}",
+                    "rightValue": "Your Meta ads receipt",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1248,
+        768
+      ],
+      "id": "74fd4b29-d539-418a-a5de-029bc8bd054e",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ae25506d-5f84-4a61-b06e-399f0c0e4604",
+              "name": "prompt",
+              "value": "You are an expert in extracting key fields from Meta Ads receipts.\n\nTask: From the attached Meta Ads receipt document, return a single JSON object with these exact keys and in this order:\n\n{\n  \"platform\": \"Meta\",\n  \"transactionId\": string,\n  \"accountName\": string,\n  \"accountId\": string | null,\n  \"dateRangeStart\": \"YYYY-MM-DD\",\n  \"dateRangeEnd\": \"YYYY-MM-DD\",\n  \"billingReason\": string,\n  \"productType\": string,\n  \"paymentMethod\": string,\n  \"referenceNumber\": string | null,\n  \"subtotalVND\": number,\n  \"taxRatePercent\": number,\n  \"taxAmountVND\": number,\n  \"totalAmountVND\": number,\n  \"campaigns\": [\n    {\n      \"name\": string,\n      \"impressions\": number,\n      \"amountVND\": number\n    }\n  ]\n}\n\n\nRequirements:\n\nRead only the provided Meta Ads receipt.\n\nOutput valid JSON only, no markdown, no explanation.\n\nNumbers: return as pure numbers (e.g., 3623039), no commas or currency symbols.\n\nDates: format strictly as YYYY-MM-DD.\n\nIf any field is missing, use null.\n\nIn campaigns, list all campaigns shown, each with its impressions and amount.",
+              "type": "string"
+            },
+            {
+              "id": "1eec8912-eec6-49cb-be01-4a6f606ea283",
+              "name": "model",
+              "value": "gemini-2.0-flash",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2288,
+        464
+      ],
+      "id": "99b93d0c-d932-41c0-9106-0d79f7ff2c4c",
+      "name": "Prompt1"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "binaryPropertyName": "=data",
+        "destinationKey": "base64",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1984,
+        464
+      ],
+      "id": "2e6842b4-4e2d-457d-85d6-3fdc3e6d3012",
+      "name": "Move file to base64 string1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/{{ $json.model }}:generateContent",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "AIzaSyCN4yGz1mKO6dUuagUqnuDzrXxVrb15FR8"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"role\": \"user\",\n      \"parts\": [\n        {\n          \"inlineData\": {\n            \"mimeType\": {{ JSON.stringify($('Google Drive Get Receipt1').first().json.mimeType) }},\n            \"data\": {{ JSON.stringify($('Move file to base64 string1').item.json.base64) }}\n          }\n        },\n        {\n          \"text\": {{ JSON.stringify($('Prompt1').item.json.prompt) }}\n        }\n      ]\n    }\n  ],\n  \"generationConfig\": {\n    \"temperature\": 0,\n    \"topK\": 1,\n    \"topP\": 0.95,\n    \"maxOutputTokens\": 1024,\n    \"responseMimeType\": \"application/json\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2576,
+        464
+      ],
+      "id": "036b5047-5506-479f-aff0-1bdea82f52b2",
+      "name": "Gemini API1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1400480d-72cc-4ce9-8e38-61d21d32a4f9",
+              "name": "jsonString",
+              "value": "={{ $json.candidates[0].content.parts[0].text.parseJson()}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2752,
+        464
+      ],
+      "id": "33920ea0-b2f4-4c82-a022-cbd13e3164bc",
+      "name": "JSON to string1"
+    },
+    {
+      "parameters": {
+        "jsCode": "let raw = $json[\"jsonString\"] || \"\";\n\n// 1) bỏ nhãn ```json và backticks ở đầu/cuối\nraw = raw\n  .replace(/^\\s*```?\\s*json\\s*/i, \"\")  // chỉ ở đầu chuỗi\n  .replace(/\\s*```?\\s*$/i, \"\")         // chỉ ở cuối chuỗi\n  .replace(/\\r/g, \"\");\n\n// 2) chỉ lấy phần có vẻ là JSON: từ { đầu tiên tới } cuối cùng\nconst start = raw.indexOf(\"{\");\nconst end   = raw.lastIndexOf(\"}\");\n\nif (start === -1 || end === -1 || end <= start) {\n  throw new Error(\"Chuỗi không chứa JSON đầy đủ (thiếu { hoặc }).\");\n}\n\nconst jsonSlice = raw.slice(start, end + 1).trim();\n\n// 3) parse\nlet data;\ntry {\n  data = JSON.parse(jsonSlice);\n} catch (e) {\n  // gợi ý vị trí lỗi để soi nhanh\n  throw new Error(`JSON không hợp lệ. Có thể chuỗi bị cắt cụt: ${e.message}`);\n}\n\nreturn data;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2944,
+        464
+      ],
+      "id": "4e38e138-86a4-4fd2-a4e8-5415bc8e21ec",
+      "name": "Parse string1"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1696,
+        464
+      ],
+      "id": "32150fa7-4998-4ba0-a86e-1bda3de0f977",
+      "name": "Google Drive Get Receipt1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AjNwXeFt6clYXdfz",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1376,
+        448
+      ],
+      "id": "9459d47b-25f3-41ea-9285-a812cf33ecbe",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1DhDAqQRjuOl94-PzwlI_hwJw61HOnrbv",
+          "mode": "list",
+          "cachedResultName": "Hóa đơn Facebook",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1DhDAqQRjuOl94-PzwlI_hwJw61HOnrbv"
+        },
+        "event": "fileCreated",
+        "options": {
+          "fileType": "all"
+        }
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        1024,
+        448
+      ],
+      "id": "1eea776f-d003-4c9f-84d9-faa0d9415023",
+      "name": "Google Drive Trigger New Files1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AjNwXeFt6clYXdfz",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3792,
+        464
+      ],
+      "id": "fade9f9a-0736-45ac-a878-b395cca2af44",
+      "name": "Wait For Saving Data1",
+      "webhookId": "211ca61f-1915-4fb7-9ebf-8304c75d536e"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/DmEXbKWyOadOKUsJisFlICcPgPh/tables/tblBua3aonaq0iob/records ",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Platform\": \"{{ $('Parse string1').item.json.platform }}\",\n    \"Transaction_Id\": \"{{ $('Parse string1').item.json.transactionId }}\",\n    \"Account_Name\": \"{{ $('Parse string1').item.json.accountName }}\",\n    \"Account_Id\": \"{{ $('Parse string1').item.json.accountId }}\",\n    \"Date_Range_Start\": \"{{ $('Parse string1').item.json.dateRangeStart }}\",\n    \"Date_Range_End\": \"{{ $('Parse string1').item.json.dateRangeEnd }}\",\n    \"Billing_Reason\": \"{{ $('Parse string1').item.json.billingReason }}\",\n    \"Product_Type\": \"{{ $('Parse string1').item.json.productType }}\",\n    \"Payment_Method\": \"{{ $('Parse string1').item.json.paymentMethod }}\",\n    \"Reference_Number\": \"{{ $('Parse string1').item.json.referenceNumber }}\",\n    \"Subtotal_Vnd\": \"{{ $('Parse string1').item.json.subtotalVND }}\",\n    \"Tax_Rate_Percent\": \"{{ $('Parse string1').item.json.taxRatePercent }}\",\n    \"Tax_Amount_Vnd\": \"{{ $('Parse string1').item.json.taxAmountVND }}\",\n    \"Total_Amount_Vnd\": \"{{ $('Parse string1').item.json.totalAmountVND }}\",\n   \"Link\": \"{{ $('Google Drive Trigger New Files1').item.json.webViewLink }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3792,
+        0
+      ],
+      "id": "d3dc3351-6a67-438c-b45e-61566db6dc8c",
+      "name": "Creates records lark"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3360,
+        464
+      ],
+      "id": "bbd7132c-941f-46e4-b14c-495146b4ee5e",
+      "name": "Get_lark_token1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// YYYYMMDD\nconst dateCode = new Date().toISOString().slice(0,10).replace(/-/g,'');\n\n// ⚡ Đổi tên file ở đây\nconst filename = `VNFB${dateCode}-CÔNG TY TNHH THỰC PHẨM VÌ SỰ SỐNG VINA-Invoice.pdf`;\n\nreturn items.map(item => {\n  const bin = item.binary || {};\n  const key = Object.keys(bin)[0];       // thường là 'data'\n  if (!key) throw new Error('Không có binary – kiểm tra node HTTP Request (Download=true, Response=File).');\n  bin[key].fileName = filename;          // chỉ set tên, không đổi định dạng\n  return item;\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2816,
+        1392
+      ],
+      "id": "e88e9f0e-12fe-47b9-8a18-a953e3d3bc27",
+      "name": "Create File Name2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Helpers\nconst pick = (re, s, i=1) => {\n  const m = re.exec(s);\n  return m ? m[i].trim() : \"\";\n};\nconst num = s => Number((s||\"\").replace(/[^\\d]/g,\"\")) || 0;\nconst toVN = n => n.toLocaleString('vi-VN'); // format tiền\n\n// Lấy HTML/ text\nconst html = $json.html || $json.textAsHtml || \"\";\nconst plain = $json.text || \"\";\n\n// Nguồn ưu tiên regex: html (giữ cấu trúc), fallback: plain\nconst src = html || plain;\n\n// Các trường chính\nconst totalStr = pick(/>\\s*Total\\s*<[\\s\\S]*?>\\s*₫([\\d.,]+)/i, src) || pick(/Total[\\s\\S]*?₫([\\d.,]+)/i, src);\nconst taxPct   = pick(/Tax[\\s\\S]*?\\((\\d+)\\%\\)/i, src) || \"10\";\nconst taxAmtStr= pick(/Tax[\\s\\S]*?\\(\\d+%\\)\\s*₫([\\d.,]+)/i, src);\nconst amtBilledStr = pick(/Amount billed[\\s\\S]*?₫([\\d.,]+)\\s*VND/i, src); // thường = Total\nconst productType  = pick(/Product type[\\s\\S]*?>([^<]+)</i, src) || pick(/Product type[\\s\\S]*?([A-Za-z ]+)/i, src);\nconst payMethod    = pick(/PAYMENT METHOD[\\s\\S]*?>([^<]+)</i, src) || pick(/PAYMENT METHOD[\\s\\S]*?([A-Za-z0-9·\\s]+)/i, src);\nconst refNumber    = pick(/Reference number[\\s\\S]*?>([A-Z0-9]+)</i, src) || pick(/Reference number[\\s\\S]*?([A-Z0-9]+)/i, src);\n\n// Date range\nconst d1 = pick(/Date range[\\s\\S]*?(\\d{1,2}\\s\\w+\\s\\d{4}).*?-\\s*(\\d{1,2}\\s\\w+\\s\\d{4})/i, src, 1);\nconst d2 = pick(/Date range[\\s\\S]*?(\\d{1,2}\\s\\w+\\s\\d{4}).*?-\\s*(\\d{1,2}\\s\\w+\\s\\d{4})/i, src, 2);\n\n// Account ID + Transaction ID\nconst accountId = pick(/account ID:\\s*(\\d+)/i, src) || pick(/\\((\\d{10,})\\)/, src);\nconst txnId = pick(/Transaction ID[\\s\\S]*?>([\\d-]+)</i, src) || pick(/Transaction ID[\\s\\S]*?([-\\d]+)/i, src);\n\n// Tính số\nconst total = num(totalStr);\nconst taxAmount = num(taxAmtStr);\nconst net = total && taxAmount ? (total - taxAmount) : num(amtBilledStr) || 0;\n\n// Chi tiết chiến dịch (đơn giản: quét các dòng có ký hiệu ₫ trong phần “Detailed report”)\nconst detailSection = (() => {\n  const m = /Detailed report([\\s\\S]*)$/i.exec(src);\n  return m ? m[1] : src;\n})();\nconst rows = [];\nconst rowRe = />([^<>]{3,120})<\\/td>[\\s\\S]*?>\\s*₫([\\d.,]+)\\s*</gim;\nlet rm;\nwhile ((rm = rowRe.exec(detailSection)) !== null) {\n  const name = rm[1].replace(/\\s+/g,' ').trim();\n  const amount = num(rm[2]);\n  if (amount > 0 && !/Results|Amount|Impressions|Campaign/i.test(name)) {\n    rows.push({ campaign: name, amount, amount_fmt: `₫${toVN(amount)}` });\n  }\n}\n\n// Chuẩn hóa ngày về DD/MM/YYYY nếu cần đưa vào Lark\nconst toDDMMYYYY = (s) => {\n  if (!s) return \"\";\n  const d = new Date(s.replace(/(\\d{1,2}) (\\w+) (\\d{4})/, '$1 $2 $3'));\n  if (isNaN(d)) return s;\n  const dd = String(d.getDate()).padStart(2,'0');\n  const mm = String(d.getMonth()+1).padStart(2,'0');\n  const yyyy = d.getFullYear();\n  return `${dd}/${mm}/${yyyy}`;\n};\n\n// JSON output\nreturn {\n  json: {\n    platform: \"Facebook/Meta Ads\",\n    accountId,\n    transactionId: txnId,\n    dateRangeStart: d1 || \"\",\n    dateRangeEnd: d2 || \"\",\n    dateRangeStart_ddmmyyyy: toDDMMYYYY(d1),\n    dateRangeEnd_ddmmyyyy: toDDMMYYYY(d2),\n    productType: productType || \"Meta ads\",\n    paymentMethod: payMethod || \"\",\n    referenceNumber: refNumber || \"\",\n    currency: \"VND\",\n    total_VND: total,\n    total_fmt: `₫${toVN(total)}`,\n    vat_percent: taxPct ? Number(taxPct) : null,\n    vat_amount_VND: taxAmount,\n    vat_amount_fmt: `₫${toVN(taxAmount)}`,\n    net_before_vat_VND: net,\n    net_before_vat_fmt: `₫${toVN(net)}`,\n    campaigns: rows,           // mảng phân rã\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1952,
+        1392
+      ],
+      "id": "14e2a10e-1748-4738-9f5d-30931da01334",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pdfendpoint.com/v1/convert",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer pdfe_live_62e5557d1436b7ee3b5ed805a1c6eaaea48a"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "html",
+              "value": "={{ $('Gmail Trigger').item.json.html }}"
+            },
+            {
+              "name": "orientation",
+              "value": "vertical"
+            },
+            {
+              "name": "page_size",
+              "value": "A2"
+            },
+            {
+              "name": "margin_top",
+              "value": "2cm"
+            },
+            {
+              "name": "margin_bottom",
+              "value": "2cm"
+            },
+            {
+              "name": "margin_left",
+              "value": "2cm"
+            },
+            {
+              "name": "margin_right",
+              "value": "2cm"
+            },
+            {
+              "name": "print_background",
+              "value": "true"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "meta_receipt.pdf"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2144,
+        1392
+      ],
+      "id": "8bcd0a96-30b1-4912-878a-3fbf635051b5",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "binaryPropertyName": "meta_receipt.pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        2368,
+        1392
+      ],
+      "id": "9ea6e296-851b-4505-8c47-b56430840110",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.data.data.url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2576,
+        1392
+      ],
+      "id": "72397ef3-9119-4a7c-8ef4-73feeeb796d8",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e6914a6c-b1fd-4720-bd84-3df98937f05b",
+              "name": "meta.platform",
+              "value": "={{ $json.platform }}",
+              "type": "string"
+            },
+            {
+              "id": "72407c6f-b987-4ba1-96e6-be6a74f09846",
+              "name": "meta.transaction_id",
+              "value": "={{ $json.transactionId }}",
+              "type": "string"
+            },
+            {
+              "id": "9e9a9ca4-42fe-4db4-84d8-f717589998aa",
+              "name": "meta.account_name",
+              "value": "={{ $json.accountName }}",
+              "type": "string"
+            },
+            {
+              "id": "df1cb9bc-c657-4ee0-b719-59beca61e173",
+              "name": "meta.account_id",
+              "value": "={{ $json.accountId }}",
+              "type": "string"
+            },
+            {
+              "id": "dd5ce4b7-10c8-4aee-8536-507c3b46dbbf",
+              "name": "meta.date_range_start",
+              "value": "={{ $json.dateRangeStart }}",
+              "type": "string"
+            },
+            {
+              "id": "448c0019-661f-4436-a8e9-038e86c360f0",
+              "name": "meta.date_range_end",
+              "value": "={{ $json.dateRangeEnd }}",
+              "type": "string"
+            },
+            {
+              "id": "1a19fe86-6f0d-4552-9e0a-45b4e748de1b",
+              "name": "meta.billing_reason",
+              "value": "={{ $json.billingReason }}",
+              "type": "string"
+            },
+            {
+              "id": "5085805d-9e7e-4022-89c1-23960426a68f",
+              "name": "meta.product_type",
+              "value": "={{ $json.productType }}",
+              "type": "string"
+            },
+            {
+              "id": "b473256a-aad8-4ae8-8a64-4c0817d8d383",
+              "name": "meta.payment_method",
+              "value": "={{ $json.paymentMethod }}",
+              "type": "string"
+            },
+            {
+              "id": "e5919a36-cf11-48fa-af52-9879398a8db9",
+              "name": "meta.reference_number",
+              "value": "={{ $json.referenceNumber }}",
+              "type": "string"
+            },
+            {
+              "id": "7a8a3e31-a74c-4e34-bc11-73e2b3f212a0",
+              "name": "meta.subtotal_vnd",
+              "value": "={{ $json.subtotalVND }}",
+              "type": "string"
+            },
+            {
+              "id": "722ff575-8831-4a15-99a8-9551edc29c02",
+              "name": "meta.tax_rate_percent",
+              "value": "={{ $json.taxRatePercent }}",
+              "type": "string"
+            },
+            {
+              "id": "26204766-7885-4028-b4f8-3f2f8e0dedaf",
+              "name": "meta.tax_amount_vnd",
+              "value": "={{ $json.taxAmountVND }}",
+              "type": "string"
+            },
+            {
+              "id": "e2f4ac82-717a-45bb-b7af-269048e6b566",
+              "name": "meta.total_amount_vnd",
+              "value": "={{ $json.totalAmountVND }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3152,
+        464
+      ],
+      "id": "baabe04f-9ece-490f-ac46-5b67880f1e8e",
+      "name": "Chuẩn hóa data"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/CWXJbYt4naQ7mxs4FgclZTzeg9f/tables/tblsPcYPyadqbnax/records ",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Seller_Name\": \"{{ $('Parse string').item.json.sellerName }}\",\n    \"Seller_Tax ID\": \"{{$('Parse string').item.json.sellerTaxId}}\",\n    \"Seller_Address\": \"{{$('Parse string').item.json.sellerAddress}}\",                      \"Buyer_Name\": \"{{$('Parse string').item.json.buyerName}}\",\n    \"Contact_Name\": \"{{$('Parse string').item.json.contactName}}\",                          \"Contact_Email\": \"{{$('Parse string').item.json.contactEmail}}\",\n    \"Contact_Phone\": \"{{$('Parse string').item.json.contactPhone}}\",\n    \"Invoice_Number\": \"{{$('Parse string').item.json.invoiceNumber}}\", \n    \"Invoice_Date\": \"{{$('Parse string').item.json.invoiceDate}}\", \n    \"Contract_Number\": \"{{$('Parse string').item.json.contractNumber}}\",\n    \"Service_Description\": \"{{$('Parse string').item.json.serviceDescription}}\",\n    \"Note\": \"{{$('Parse string').item.json.note}}\",\n    \"Subtotal_VND\": \"{{$('Parse string').item.json.subtotalVND}}\",\n    \"Tax_Rate_%\": \"{{$('Parse string').item.json.taxRatePercent}}\",\n    \"Tax_Amount_VND\": \"{{$('Parse string').item.json.taxAmountVND}}\",\n    \"Total_Amount_VND\": \"{{$('Parse string').item.json.totalAmountVND}}\",\n    \"Link\": \"{{$('Google Drive Trigger New Files').item.json.webViewLink}}\" \n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3440,
+        144
+      ],
+      "id": "e43d341b-92c8-4c7a-908c-f4c928770622",
+      "name": "Creates records lark2",
+      "retryOnFail": true,
+      "maxTries": 5
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/CWXJbYt4naQ7mxs4FgclZTzeg9f/tables/tbl6oRhaOMaeOlMc/records ",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Platform\": \"{{ $('Parse string1').item.json.platform }}\",\n    \"Transaction_Id\": \"{{ $('Parse string1').item.json.transactionId }}\",\n    \"Account_Name\": \"{{ $('Parse string1').item.json.accountName }}\",\n    \"Account_Id\": \"{{ $('Parse string1').item.json.accountId }}\",\n    \"Date_Range_Start\": \"{{ $('Parse string1').item.json.dateRangeStart }}\",\n    \"Date_Range_End\": \"{{ $('Parse string1').item.json.dateRangeEnd }}\",\n    \"Billing_Reason\": \"{{ $('Parse string1').item.json.billingReason }}\",\n    \"Product_Type\": \"{{ $('Parse string1').item.json.productType }}\",\n    \"Payment_Method\": \"{{ $('Parse string1').item.json.paymentMethod }}\",\n    \"Reference_Number\": \"{{ $('Parse string1').item.json.referenceNumber }}\",\n    \"Subtotal_Vnd\": \"{{ $('Parse string1').item.json.subtotalVND }}\",\n    \"Tax_Rate_Percent\": \"{{ $('Parse string1').item.json.taxRatePercent }}\",\n    \"Tax_Amount_Vnd\": \"{{ $('Parse string1').item.json.taxAmountVND }}\",\n    \"Total_Amount_Vnd\": \"{{ $('Parse string1').item.json.totalAmountVND }}\",\n   \"Link\": \"{{ $('Google Drive Trigger New Files1').item.json.webViewLink }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3584,
+        464
+      ],
+      "id": "605a1582-8a25-48c8-89bb-04498a9a80f9",
+      "name": "Creates records lark3"
+    }
+  ],
+  "pinData": {
+    "Google Drive Trigger New Files": [
+      {
+        "json": {
+          "parents": [
+            "1NB7-FO2TCyWc9iyy4Fm1h1qY9bqk427T"
+          ],
+          "lastModifyingUser": {
+            "displayName": "Duy Trịnh Đình",
+            "kind": "drive#user",
+            "me": true,
+            "permissionId": "00492509395059506492",
+            "emailAddress": "trinhdinhduy1206@gmail.com",
+            "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocL-6Jdl31dvZaQI_Zv0jTB6i38UnzEctQvrTU68TcVDoAHCvmE=s64"
+          },
+          "owners": [
+            {
+              "displayName": "Duy Trịnh Đình",
+              "kind": "drive#user",
+              "me": true,
+              "permissionId": "00492509395059506492",
+              "emailAddress": "trinhdinhduy1206@gmail.com",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocL-6Jdl31dvZaQI_Zv0jTB6i38UnzEctQvrTU68TcVDoAHCvmE=s64"
+            }
+          ],
+          "permissions": [
+            {
+              "kind": "drive#permission",
+              "id": "00492509395059506492",
+              "type": "user",
+              "emailAddress": "trinhdinhduy1206@gmail.com",
+              "role": "owner",
+              "displayName": "Duy Trịnh Đình",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocL-6Jdl31dvZaQI_Zv0jTB6i38UnzEctQvrTU68TcVDoAHCvmE=s64",
+              "deleted": false,
+              "pendingOwner": false
+            }
+          ],
+          "spaces": [
+            "drive"
+          ],
+          "capabilities": {
+            "canAcceptOwnership": false,
+            "canAddChildren": false,
+            "canAddMyDriveParent": false,
+            "canChangeCopyRequiresWriterPermission": true,
+            "canChangeItemDownloadRestriction": true,
+            "canChangeSecurityUpdateEnabled": false,
+            "canChangeViewersCanCopyContent": true,
+            "canComment": true,
+            "canCopy": true,
+            "canDelete": true,
+            "canDisableInheritedPermissions": false,
+            "canDownload": true,
+            "canEdit": true,
+            "canEnableInheritedPermissions": true,
+            "canListChildren": false,
+            "canModifyContent": true,
+            "canModifyContentRestriction": true,
+            "canModifyEditorContentRestriction": true,
+            "canModifyOwnerContentRestriction": true,
+            "canModifyLabels": false,
+            "canMoveChildrenWithinDrive": false,
+            "canMoveItemIntoTeamDrive": true,
+            "canMoveItemOutOfDrive": true,
+            "canMoveItemWithinDrive": true,
+            "canReadLabels": false,
+            "canReadRevisions": true,
+            "canRemoveChildren": false,
+            "canRemoveContentRestriction": false,
+            "canRemoveMyDriveParent": true,
+            "canRename": true,
+            "canShare": true,
+            "canTrash": true,
+            "canUntrash": true
+          },
+          "permissionIds": [
+            "00492509395059506492"
+          ],
+          "linkShareMetadata": {
+            "securityUpdateEligible": false,
+            "securityUpdateEnabled": true
+          },
+          "downloadRestrictions": {
+            "itemDownloadRestriction": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            },
+            "effectiveDownloadRestrictionWithContext": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            }
+          },
+          "kind": "drive#file",
+          "id": "1Bnm3ALBtx1bRwhANbFDxi89Bsr36zR0Z",
+          "name": "VNTT20250918-CÔNG TY TNHH THỰC PHẨM VÌ SỰ SỐNG VINA-Invoice.pdf",
+          "mimeType": "application/pdf",
+          "starred": false,
+          "trashed": false,
+          "explicitlyTrashed": false,
+          "version": "4",
+          "webContentLink": "https://drive.google.com/uc?id=1Bnm3ALBtx1bRwhANbFDxi89Bsr36zR0Z&export=download",
+          "webViewLink": "https://drive.google.com/file/d/1Bnm3ALBtx1bRwhANbFDxi89Bsr36zR0Z/view?usp=drivesdk",
+          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/pdf",
+          "hasThumbnail": true,
+          "thumbnailLink": "https://lh3.googleusercontent.com/drive-storage/AJQWtBO-KfM4YM-Pk4V1tRE5vk3GveDiyCs9pcAs3ZPtBdMFFOya5CJropnZRScSwP0n3HYiCVWb_ex11OP6TyOZlEt1LcWClE6NfQOdABdr8BDzZio=s220",
+          "thumbnailVersion": "2",
+          "viewedByMe": false,
+          "createdTime": "2025-09-18T08:31:43.539Z",
+          "modifiedTime": "2025-09-18T08:31:44.583Z",
+          "modifiedByMeTime": "2025-09-18T08:31:44.583Z",
+          "modifiedByMe": true,
+          "shared": false,
+          "ownedByMe": true,
+          "viewersCanCopyContent": true,
+          "copyRequiresWriterPermission": false,
+          "writersCanShare": true,
+          "originalFilename": "Untitled",
+          "fullFileExtension": "pdf",
+          "fileExtension": "pdf",
+          "md5Checksum": "076c9f16f6846ae35f1a1afa094e625b",
+          "sha1Checksum": "47e0f67f8ccf3fdd286555fc52b2017bb831aafc",
+          "sha256Checksum": "9b1e0a0895fdf1e11bcc19bda6b1b14c04dcf23333b95db70cab9d9042bae1df",
+          "size": "55510",
+          "quotaBytesUsed": "55510",
+          "headRevisionId": "0Bx_fF2Ulf-qkV1FzRk4zZ2ZkSUdCek9zYXhYT0h4V3NQMnEwPQ",
+          "isAppAuthorized": true,
+          "inheritedPermissionsDisabled": false
+        }
+      }
+    ],
+    "Google Drive Trigger New Files1": [
+      {
+        "json": {
+          "parents": [
+            "1DhDAqQRjuOl94-PzwlI_hwJw61HOnrbv"
+          ],
+          "lastModifyingUser": {
+            "displayName": "Duy Trịnh Đình",
+            "kind": "drive#user",
+            "me": true,
+            "permissionId": "00492509395059506492",
+            "emailAddress": "trinhdinhduy1206@gmail.com",
+            "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocL-6Jdl31dvZaQI_Zv0jTB6i38UnzEctQvrTU68TcVDoAHCvmE=s64"
+          },
+          "owners": [
+            {
+              "displayName": "Duy Trịnh Đình",
+              "kind": "drive#user",
+              "me": true,
+              "permissionId": "00492509395059506492",
+              "emailAddress": "trinhdinhduy1206@gmail.com",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocL-6Jdl31dvZaQI_Zv0jTB6i38UnzEctQvrTU68TcVDoAHCvmE=s64"
+            }
+          ],
+          "permissions": [
+            {
+              "kind": "drive#permission",
+              "id": "00492509395059506492",
+              "type": "user",
+              "emailAddress": "trinhdinhduy1206@gmail.com",
+              "role": "owner",
+              "displayName": "Duy Trịnh Đình",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocL-6Jdl31dvZaQI_Zv0jTB6i38UnzEctQvrTU68TcVDoAHCvmE=s64",
+              "deleted": false,
+              "pendingOwner": false
+            }
+          ],
+          "spaces": [
+            "drive"
+          ],
+          "capabilities": {
+            "canAcceptOwnership": false,
+            "canAddChildren": false,
+            "canAddMyDriveParent": false,
+            "canChangeCopyRequiresWriterPermission": true,
+            "canChangeItemDownloadRestriction": true,
+            "canChangeSecurityUpdateEnabled": false,
+            "canChangeViewersCanCopyContent": true,
+            "canComment": true,
+            "canCopy": true,
+            "canDelete": true,
+            "canDisableInheritedPermissions": false,
+            "canDownload": true,
+            "canEdit": true,
+            "canEnableInheritedPermissions": true,
+            "canListChildren": false,
+            "canModifyContent": true,
+            "canModifyContentRestriction": true,
+            "canModifyEditorContentRestriction": true,
+            "canModifyOwnerContentRestriction": true,
+            "canModifyLabels": false,
+            "canMoveChildrenWithinDrive": false,
+            "canMoveItemIntoTeamDrive": true,
+            "canMoveItemOutOfDrive": true,
+            "canMoveItemWithinDrive": true,
+            "canReadLabels": false,
+            "canReadRevisions": true,
+            "canRemoveChildren": false,
+            "canRemoveContentRestriction": false,
+            "canRemoveMyDriveParent": true,
+            "canRename": true,
+            "canShare": true,
+            "canTrash": true,
+            "canUntrash": true
+          },
+          "permissionIds": [
+            "00492509395059506492"
+          ],
+          "linkShareMetadata": {
+            "securityUpdateEligible": false,
+            "securityUpdateEnabled": true
+          },
+          "downloadRestrictions": {
+            "itemDownloadRestriction": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            },
+            "effectiveDownloadRestrictionWithContext": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            }
+          },
+          "kind": "drive#file",
+          "id": "1yQfyzg4gISsnjl_XUn4PBIJbgG8FlS0T",
+          "name": "VNFB20250918-CÔNG TY TNHH THỰC PHẨM VÌ SỰ SỐNG VINA-Invoice.pdf",
+          "mimeType": "application/pdf",
+          "starred": false,
+          "trashed": false,
+          "explicitlyTrashed": false,
+          "version": "3",
+          "webContentLink": "https://drive.google.com/uc?id=1yQfyzg4gISsnjl_XUn4PBIJbgG8FlS0T&export=download",
+          "webViewLink": "https://drive.google.com/file/d/1yQfyzg4gISsnjl_XUn4PBIJbgG8FlS0T/view?usp=drivesdk",
+          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/pdf",
+          "hasThumbnail": true,
+          "thumbnailLink": "https://lh3.googleusercontent.com/drive-storage/AJQWtBMMRjz_PdS9t3gIQBSiEBrYJYGHfkS1wJHZZfACpVsqsX2V8e_q4YbFGxOvu8KjVosY_D2QLYrWDArxsg-erLVdUQz_nwxxPyhggOLAAEOChA=s220",
+          "thumbnailVersion": "1",
+          "viewedByMe": false,
+          "createdTime": "2025-09-18T09:44:38.147Z",
+          "modifiedTime": "2025-09-18T09:44:38.891Z",
+          "modifiedByMeTime": "2025-09-18T09:44:38.891Z",
+          "modifiedByMe": true,
+          "shared": false,
+          "ownedByMe": true,
+          "viewersCanCopyContent": true,
+          "copyRequiresWriterPermission": false,
+          "writersCanShare": true,
+          "originalFilename": "Untitled",
+          "fullFileExtension": "pdf",
+          "fileExtension": "pdf",
+          "md5Checksum": "b546200a0eb2eedcfc120f408b35aa50",
+          "sha1Checksum": "fef3203f2ad0fb2e9d1649017351a232cfb5e4f2",
+          "sha256Checksum": "f2a176071dc35d0678a27c26598cbc79e4d528503b8defe97ac832daf5826d25",
+          "size": "173980",
+          "quotaBytesUsed": "173980",
+          "headRevisionId": "0Bx_fF2Ulf-qkc2Y1NmdIVDB1RWVSUE9NYndneitmbytIRE9VPQ",
+          "isAppAuthorized": true,
+          "inheritedPermissionsDisabled": false
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Gmail Trigger": {
+      "Gmail Trigger": {
+        "lastTimeChecked": 1758350079,
+        "possibleDuplicates": [
+          "19965d52fd500128",
+          "199657a234e0cc33"
+        ]
+      }
+    },
+    "node:Google Drive Trigger New Files": {
+      "lastTimeChecked": "2025-09-20T06:34:48Z"
+    },
+    "node:Google Drive Trigger New Files1": {
+      "lastTimeChecked": "2025-09-20T06:35:07Z"
+    }
+  },
+  "tags": [],
+  "triggerCount": 4,
+  "updatedAt": "2025-09-19T05:49:06.000Z",
+  "versionId": "ff1919a8-d3be-43e9-bc03-6e136e212970"
+}
