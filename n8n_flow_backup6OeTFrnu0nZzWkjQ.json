@@ -25,19 +25,31 @@
     },
     "HTTP Request4": {
       "main": [
-        []
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Edit Fields": {
       "main": [
-        []
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Create token": {
       "main": [
         [
           {
-            "node": "Creates records lark",
+            "node": "Creates records lark1",
             "type": "main",
             "index": 0
           }
@@ -46,18 +58,18 @@
     },
     "Creates records lark": {
       "main": [
-        [
-          {
-            "node": "Wait1",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Normalize data": {
       "main": [
-        []
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Split Out": {
@@ -75,7 +87,7 @@
       "main": [
         [
           {
-            "node": "Normalize data1",
+            "node": "Normalize data",
             "type": "main",
             "index": 0
           }
@@ -124,7 +136,7 @@
       "main": [
         [
           {
-            "node": "Tồn kho",
+            "node": "HTTP Request4",
             "type": "main",
             "index": 0
           }
@@ -144,31 +156,24 @@
     },
     "Tồn kho": {
       "main": [
-        [
-          {
-            "node": "Split Out",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Normalize data1": {
       "main": [
-        [
-          {
-            "node": "Edit Fields1",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Edit Fields1": {
       "main": [
+        []
+      ]
+    },
+    "Creates records lark1": {
+      "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Wait1",
             "type": "main",
             "index": 0
           }
@@ -199,7 +204,7 @@
         "url": "https://actapp.misa.vn/api/oauth/actopen/connect",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "                        {\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"access_code\": \"YvVGGBXq8+8qXMzEYd3JX08VtqpzcvjhzDoFQUy0p5a3yiPbvhVHhQSwrzplGrEQjJMDjK1nf/8MBV57gGrx/Sc6h9Ff/vyPPNkTQBWA2ehdYdpvquWhl2ozhr2x/hBn3M/UuREtrrtzbPPTfRCZfaAF+/ZcrQFPBacWszBgT9fzGBj44nkMEmIDq3GkBO9lfdLGFDzrkoLkElNq/JUZq2GQNinsCZxNQOnnuo6ND/i7r4YNVAcncR/qVAtNbsICyyB3BASv38QINZOPYgYkFg==\",\n                        \"org_company_code\": \"congtydemoketnoiact\"\n                        }",
+        "jsonBody": "                        {\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"access_code\": \"VCg11cyftmYfa1ErraGTmu7plt65KwyC8F66Eyo3u9CijUAWlHtFFytbPDhvCR0cSjLtP0CLaws35Ng3jsi4mVgvZikExmt6l20eVN135VYPk/YRY4pTRVh49YbnOp7mQ/zn9RzgBRGdXNKudohC2KeG5+H8qia/I0V6S1Klw7klyk0uEH6qpO9vX13c+pO+TM5cSgyCQrFFV9nPsWbYChZpx848OWXb439Kzj0QWRtPARK7aLgdBEhPt7EwR1y3LG/InjhKEWL5zjcbdhnW+g==\",\n                        \"org_company_code\": \"congtydemoketnoiact\"\n                        }",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -286,8 +291,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        448,
-        -576
+        -16,
+        -1040
       ],
       "id": "a7b90ac1-b751-40f7-a244-1843a74da9c4",
       "name": "HTTP Request4"
@@ -490,8 +495,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        752,
-        -704
+        896,
+        -1040
       ],
       "id": "33376ebf-6bce-4f98-882a-eb0983e94bab",
       "name": "Edit Fields"
@@ -548,8 +553,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1504,
-        -1024
+        656,
+        -864
       ],
       "id": "f4606b7e-ed0e-4fe3-b8e7-6718e792c971",
       "name": "Creates records lark"
@@ -592,8 +597,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        368,
-        -768
+        704,
+        -1040
       ]
     },
     {
@@ -705,7 +710,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        80,
+        176,
         -400
       ],
       "id": "c538ba22-1ab6-47f1-9139-4fca60033255",
@@ -732,8 +737,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -80,
-        -1040
+        -16,
+        -720
       ],
       "id": "ce6f44f0-e7cc-4024-8b8e-7688aa642e96",
       "name": "Tồn kho"
@@ -825,7 +830,7 @@
       "typeVersion": 3.4,
       "position": [
         656,
-        -1040
+        -672
       ]
     },
     {
@@ -851,8 +856,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        880,
-        -1024
+        416,
+        -720
       ],
       "id": "b6f13ac8-41df-477e-9f0a-5c62c6cc2bfc",
       "name": "Edit Fields1"
@@ -883,6 +888,33 @@
       ],
       "id": "c212b2a8-c134-4f8e-a4db-19ccc30c9120",
       "name": "Tồn kho1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/EFWPbB04eaPBWGse700lEg1Mg6M/tables/tblQbWxWO0FM29zU/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Mã đối tác\": \"{{ $('Normalize data').item.json.Amis_data.code }}\",\n    \"Tên đối tác\": \"{{ $('Normalize data').item.json.Amis_data.name }}\",\n    \"Địa chỉ\": \"{{ $('Normalize data').item.json.Amis_data.address }}\",\n    \"Mã số thuế\": \"{{ $('Normalize data').item.json.Amis_data.tax_code }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1568,
+        -1024
+      ],
+      "id": "cf8b36f6-45e5-400e-b835-fb1e721f4e65",
+      "name": "Creates records lark1"
     }
   ],
   "pinData": {},
@@ -892,6 +924,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-08-14T09:10:01.000Z",
-  "versionId": "31ce6d24-6f73-4a09-ad3e-a2b5c341617a"
+  "updatedAt": "2025-09-19T16:40:18.000Z",
+  "versionId": "ccff1304-d78f-4163-9ee3-8e54610b7c3a"
 }
