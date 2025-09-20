@@ -1,33 +1,11 @@
 {
   "active": false,
   "connections": {
-    "Prompt": {
-      "main": [
-        [
-          {
-            "node": "Gemini API",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Move file to base64 string": {
       "main": [
         [
           {
-            "node": "Prompt",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Gemini API": {
-      "main": [
-        [
-          {
-            "node": "JSON to string",
+            "node": "Edit Fields",
             "type": "main",
             "index": 0
           }
@@ -47,24 +25,7 @@
     },
     "Parse string": {
       "main": [
-        [
-          {
-            "node": "Add to Google Sheets",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Add to Google Sheets": {
-      "main": [
-        [
-          {
-            "node": "Wait For Saving Data",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Google Drive Get Receipt": {
@@ -236,6 +197,71 @@
           }
         ]
       ]
+    },
+    "Create token1": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Creates records lark1": {
+      "main": [
+        [
+          {
+            "node": "Wait For Saving Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini PDF Information Extractor1": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "JSON to string",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        []
+      ]
     }
   },
   "createdAt": "2025-07-15T13:17:29.026Z",
@@ -248,35 +274,6 @@
   "nodes": [
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "ae25506d-5f84-4a61-b06e-399f0c0e4604",
-              "name": "prompt",
-              "value": "My company is **Sisu Digital**, which is the **receiver** of the invoice.  \n\nFrom the provided invoice document, extract the following fields and output them as a **JSON object** with the fields in the **exact order** listed below:\n\n---\n\n- **Invoice Date**: The date when the invoice was issued. Format strictly as: `DD/MM/YYYY` (e.g., `15/11/2025`).\n\n- **Category**: Classify the expense into **one of the following predefined categories**:\n    - IT and Software Costs  \n    - Telephone and Communication  \n    - Office Supplies  \n    - Travel and Accommodation  \n    - Marketing and Advertising  \n    - Service Fees  \n    - Subscriptions and Memberships  \n    - Training and Education  \n    - Utilities and Rent  \n    - Professional Services\n\n- **Sender**: The name of the company or individual that issued the invoice. This is **not Sisu Digital**, but the invoicing entity clearly stated on the document.\n\n- **Description**: A brief explanation of the service or product provided.\n\n- **Amount (0% VAT)**: The **net price before VAT**.  \n  - Remove all currency symbols or text (€, $, EUR, USD, etc.).  \n  - Use a **comma as the decimal separator**, not a dot (e.g., `10.90` → `10,90`).  \n  - Example: `\"1200,00\"`\n\n- **VAT %**: The **numerical value of the VAT rate**, using a **comma as the decimal separator** and no percent sign.  \n  - Example: `\"25,5\"` (not `\"25.5\"` or `\"25,5%\"`)  \n  - If no VAT is applied, write `\"0,0\"`\n\n- **Total**: The total amount **including VAT**.  \n  - Remove all currency symbols.  \n  - Format using a **comma as decimal separator**.  \n  - Example: `\"1500,00\"`\n\n- **Currency**: Extract the currency unit separately as an uppercase abbreviation (e.g., `\"EUR\"`, `\"USD\"`).\n\n- **Note**: Any relevant additional notes for bookkeeping or clarification. Use `\"N/A\"` if not applicable.\n\n---\n\n✅ Ensure:\n- **Consistent formatting** across all entries  \n- **No empty fields** (use `\"N/A\"` where needed)  \n- **Strict adherence to structure and order**",
-              "type": "string"
-            },
-            {
-              "id": "1eec8912-eec6-49cb-be01-4a6f606ea283",
-              "name": "model",
-              "value": "gemini-2.0-flash",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        2304,
-        144
-      ],
-      "id": "59ee2378-b3ef-419e-a09d-770af50f8ea1",
-      "name": "Prompt"
-    },
-    {
-      "parameters": {
         "operation": "binaryToPropery",
         "binaryPropertyName": "=data",
         "destinationKey": "base64",
@@ -285,47 +282,11 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        2000,
+        1968,
         144
       ],
       "id": "e317ae6c-f8b1-4ae5-a35a-8ee77dd408e3",
       "name": "Move file to base64 string"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://generativelanguage.googleapis.com/v1beta/models/{{ $json.model }}:generateContent",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "key",
-              "value": "your_gemini_api_key_here"
-            }
-          ]
-        },
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"contents\": [\n    {\n      \"role\": \"user\",\n      \"parts\": [\n        {\n          \"inlineData\": {\n            \"mimeType\": {{ JSON.stringify($('Google Drive Get Receipt').first().json.mimeType) }},\n            \"data\": {{ JSON.stringify($('Move file to base64 string').item.json.base64) }}\n          }\n        },\n        {\n          \"text\": {{ JSON.stringify($('Prompt').item.json.prompt) }}\n        }\n      ]\n    }\n  ],\n  \"generationConfig\": {\n    \"temperature\": 0,\n    \"topK\": 1,\n    \"topP\": 0.95,\n    \"maxOutputTokens\": 1024,\n    \"responseMimeType\": \"application/json\"\n  }\n}\n",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2608,
-        144
-      ],
-      "id": "d05fa5c3-b270-489c-a5b9-0e747bf2b453",
-      "name": "Gemini API"
     },
     {
       "parameters": {
@@ -334,7 +295,7 @@
             {
               "id": "1400480d-72cc-4ce9-8e38-61d21d32a4f9",
               "name": "jsonString",
-              "value": "={{ $json.candidates[0].content.parts[0].text.parseJson()}}",
+              "value": "={{ $json.output }}",
               "type": "string"
             }
           ]
@@ -344,189 +305,24 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2880,
-        272
+        2976,
+        144
       ],
       "id": "1cb5d4c8-f48f-46a2-a476-1ba3a80878a7",
       "name": "JSON to string"
     },
     {
       "parameters": {
-        "jsCode": "const jsonString = $json[\"jsonString\"];\nconst parsedData = JSON.parse(jsonString);\nreturn parsedData;\n"
+        "jsCode": "let raw = $json[\"jsonString\"] || \"\";\n\n// 1) bỏ nhãn ```json và backticks ở đầu/cuối\nraw = raw\n  .replace(/^\\s*```?\\s*json\\s*/i, \"\")  // chỉ ở đầu chuỗi\n  .replace(/\\s*```?\\s*$/i, \"\")         // chỉ ở cuối chuỗi\n  .replace(/\\r/g, \"\");\n\n// 2) chỉ lấy phần có vẻ là JSON: từ { đầu tiên tới } cuối cùng\nconst start = raw.indexOf(\"{\");\nconst end   = raw.lastIndexOf(\"}\");\n\nif (start === -1 || end === -1 || end <= start) {\n  throw new Error(\"Chuỗi không chứa JSON đầy đủ (thiếu { hoặc }).\");\n}\n\nconst jsonSlice = raw.slice(start, end + 1).trim();\n\n// 3) parse\nlet data;\ntry {\n  data = JSON.parse(jsonSlice);\n} catch (e) {\n  // gợi ý vị trí lỗi để soi nhanh\n  throw new Error(`JSON không hợp lệ. Có thể chuỗi bị cắt cụt: ${e.message}`);\n}\n\nreturn data;\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3184,
-        272
+        3360,
+        144
       ],
       "id": "e2509421-6526-418e-a6d8-348282a6051f",
       "name": "Parse string"
-    },
-    {
-      "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "1DG_PNTC4BZ-ntztsnv8OXDcUvr8RFbIE2XwyLAsE_AA",
-          "mode": "list",
-          "cachedResultName": "Invoice OCR Output",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DG_PNTC4BZ-ntztsnv8OXDcUvr8RFbIE2XwyLAsE_AA/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DG_PNTC4BZ-ntztsnv8OXDcUvr8RFbIE2XwyLAsE_AA/edit#gid=0"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "Invoice Date": "={{ $json['Invoice Date'] }}",
-            "Category": "={{ $json.Category }}",
-            "Sender": "={{ $json.Sender }}",
-            "Description": "={{ $json.Description }}",
-            "Amount (0% VAT)": "={{ $json['Amount (0% VAT)'] }}",
-            "VAT %": "={{ $json['VAT %'] }}",
-            "Total": "={{ $json.Total }}",
-            "Note": "={{ $json.Note }}",
-            "File Name": "={{ $('Google Drive Trigger New Files').item.json.name }}",
-            "File URL": "={{ $('Google Drive Trigger New Files').item.json.webViewLink }}",
-            "Currency": "={{ $json.Currency }}"
-          },
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "Invoice Date",
-              "displayName": "Invoice Date",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Category",
-              "displayName": "Category",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Sender",
-              "displayName": "Sender",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Description",
-              "displayName": "Description",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Amount (0% VAT)",
-              "displayName": "Amount (0% VAT)",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "VAT %",
-              "displayName": "VAT %",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Total",
-              "displayName": "Total",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Currency",
-              "displayName": "Currency",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Note",
-              "displayName": "Note",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "File Name",
-              "displayName": "File Name",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "File URL",
-              "displayName": "File URL",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        3488,
-        272
-      ],
-      "id": "5e9c1dc1-7600-4dfe-9746-ac31aa7b7eb8",
-      "name": "Add to Google Sheets",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "rWfK5XMB2wKoDUkh",
-          "name": "Datatdiziworld Google Sheets account "
-        }
-      }
     },
     {
       "parameters": {
@@ -590,7 +386,7 @@
         "simple": false,
         "filters": {
           "labelIds": [
-            "Label_4733721735027761040"
+            "INBOX"
           ]
         },
         "options": {
@@ -716,7 +512,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let today = new Date();\nconst createdDate = today.toISOString().split('T')[0] + '_';\nconst filename = createdDate.toString() + $input.item.json.sender.split(\"@\").shift();\n\nreturn { json: {'filename' : filename},\n       binary: {\n                data: $input.item.binary.data,\n            }};"
+        "jsCode": "// Lấy ngày hiện tại dạng YYYYMMDD (8 số)\nconst dateCode = new Date().toISOString().split('T')[0].replace(/-/g, '');\n\n// Ghép tên file cố định\nconst filename = `VNTT${dateCode}-CÔNG TY TNHH THỰC PHẨM VÌ SỰ SỐNG VINA-Invoice.pdf`;\n\nreturn {\n  json: { filename },\n  binary: {\n    data: $input.item.binary.data\n  }\n};\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -752,10 +548,10 @@
         "triggerOn": "specificFolder",
         "folderToWatch": {
           "__rl": true,
-          "value": "14o_rWG04W9ejiBn4g-Bg98Tavlbi5AsY",
+          "value": "1NB7-FO2TCyWc9iyy4Fm1h1qY9bqk427T",
           "mode": "list",
-          "cachedResultName": "Template - Invoice OCR Pool",
-          "cachedResultUrl": "https://drive.google.com/drive/folders/14o_rWG04W9ejiBn4g-Bg98Tavlbi5AsY"
+          "cachedResultName": "Hóa đơn TikTok",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1NB7-FO2TCyWc9iyy4Fm1h1qY9bqk427T"
         },
         "event": "fileCreated",
         "options": {
@@ -781,15 +577,15 @@
       "parameters": {
         "content": "## Import Attachments From Gmail To Google Drive",
         "height": 536,
-        "width": 1943,
+        "width": 2327,
         "color": 2
       },
       "id": "b392650d-32eb-41d7-bd17-dfba929d38f5",
       "name": "Sticky Note3",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1264,
-        688
+        928,
+        736
       ],
       "typeVersion": 1
     },
@@ -804,7 +600,7 @@
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1264,
+        928,
         1344
       ],
       "typeVersion": 1
@@ -812,16 +608,16 @@
     {
       "parameters": {
         "content": "## Extract Information From Files And Import To Google Sheets",
-        "height": 496,
-        "width": 2763,
+        "height": 864,
+        "width": 2747,
         "color": 2
       },
       "id": "e5d64da9-f189-42cf-94e9-9d3d07956347",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1264,
-        32
+        1024,
+        -144
       ],
       "typeVersion": 1
     },
@@ -865,17 +661,17 @@
         "name": "={{ $json.filename }}",
         "driveId": {
           "__rl": true,
-          "value": "0AKPPy6FuV32kUk9PVA",
+          "value": "My Drive",
           "mode": "list",
-          "cachedResultName": "AI Automation Pro",
-          "cachedResultUrl": "https://drive.google.com/drive/folders/0AKPPy6FuV32kUk9PVA"
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
         },
         "folderId": {
           "__rl": true,
-          "value": "14o_rWG04W9ejiBn4g-Bg98Tavlbi5AsY",
+          "value": "1NB7-FO2TCyWc9iyy4Fm1h1qY9bqk427T",
           "mode": "list",
-          "cachedResultName": "Template - Invoice OCR Pool",
-          "cachedResultUrl": "https://drive.google.com/drive/folders/14o_rWG04W9ejiBn4g-Bg98Tavlbi5AsY"
+          "cachedResultName": "Hóa đơn TikTok",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1NB7-FO2TCyWc9iyy4Fm1h1qY9bqk427T"
         },
         "options": {}
       },
@@ -901,8 +697,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        3808,
-        272
+        4016,
+        144
       ],
       "id": "06cb659c-5957-428b-b9ae-de3243e75a49",
       "name": "Wait For Saving Data",
@@ -922,15 +718,339 @@
       ],
       "id": "3f959f4d-0ed7-41fd-84bc-eba852143ace",
       "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=  https://open.larksuite.com/open-apis/bitable/v1/apps/RKbTbhcFzaHu4vsRjlClj8G3gce/tables/tblIhglXENSZdHzt/records ",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Prompt_input\": \"{{ $('Bỏ_/n_prompt_input_1').item.json.prompt_input }}\",\n    \"Tvc_Script\": \"{{ $('Tạo_TVC&VOICE').item.json.tvcScript }}\",\n    \"Voice_Suggestion\": \"{{ $('Tạo_TVC&VOICE').item.json.voiceSuggestion }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3824,
+        144
+      ],
+      "id": "63017e02-2d4f-4106-86c3-b898cd8b129c",
+      "name": "Creates records lark1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3616,
+        144
+      ],
+      "id": "a1ad6061-68a7-4c11-af8d-bc7da135b7a8",
+      "name": "Create token1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googlePalmApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": \"Extract key fields from the attached invoice and return JSON. Fields: seller, sellerTaxId, invoiceNo, invoiceDate, dueDate, contractNo, buyer, billingAddress, billingContact, billingEmail, billingTel, lines[].description, lines[].note, lines[].amountVND, subtotalVND, taxRatePercent, taxAmountVND, totalAmountVND.\"\n        },\n        {\n          \"inline_data\": {\n            \"mime_type\": \"application/pdf\",\n            \"data\": \"{{ $json.data }}\"\n          }\n        }\n      ]\n    }\n  ],\n  \"generationConfig\": {\n    \"temperature\": 0.1,\n    \"maxOutputTokens\": 500,\n    \"topP\": 0.95,\n    \"topK\": 20,\n    \"responseMimeType\": \"application/json\",\n    \"responseSchema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"seller\":          { \"type\": \"string\", \"nullable\": true },\n        \"sellerTaxId\":     { \"type\": \"string\", \"nullable\": true },\n        \"invoiceNo\":       { \"type\": \"string\", \"nullable\": true },\n        \"invoiceDate\":     { \"type\": \"string\", \"nullable\": true },\n        \"dueDate\":         { \"type\": \"string\", \"nullable\": true },\n        \"contractNo\":      { \"type\": \"string\", \"nullable\": true },\n        \"buyer\":           { \"type\": \"string\", \"nullable\": true },\n        \"billingAddress\":  { \"type\": \"string\", \"nullable\": true },\n        \"billingContact\":  { \"type\": \"string\", \"nullable\": true },\n        \"billingEmail\":    { \"type\": \"string\", \"nullable\": true },\n        \"billingTel\":      { \"type\": \"string\", \"nullable\": true },\n        \"lines\": {\n          \"type\": \"array\",\n          \"items\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"description\": { \"type\": \"string\", \"nullable\": true },\n              \"note\":        { \"type\": \"string\", \"nullable\": true },\n              \"amountVND\":   { \"type\": \"string\", \"nullable\": true }\n            }\n          }\n        },\n        \"subtotalVND\":     { \"type\": \"string\", \"nullable\": true },\n        \"taxRatePercent\":  { \"type\": \"string\", \"nullable\": true },\n        \"taxAmountVND\":    { \"type\": \"string\", \"nullable\": true },\n        \"totalAmountVND\":  { \"type\": \"string\", \"nullable\": true }\n      }\n    }\n  },\n  \"safetySettings\": [\n    { \"category\": \"HARM_CATEGORY_HARASSMENT\",        \"threshold\": \"BLOCK_NONE\" },\n    { \"category\": \"HARM_CATEGORY_HATE_SPEECH\",       \"threshold\": \"BLOCK_NONE\" },\n    { \"category\": \"HARM_CATEGORY_SEXUALLY_EXPLICIT\", \"threshold\": \"BLOCK_NONE\" },\n    { \"category\": \"HARM_CATEGORY_DANGEROUS_CONTENT\", \"threshold\": \"BLOCK_NONE\" }\n  ]\n}\n",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3376,
+        608
+      ],
+      "id": "469fca53-450c-4480-94de-af635c723eb6",
+      "name": "Gemini PDF Information Extractor1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Ud3W2MHpUsFK2iIB",
+          "name": "Duy mới"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d26be11c-bc57-4418-9ece-b83c84f17f54",
+              "name": "prompt",
+              "value": "Extract the fields according to the system rules and schema.  Ensure numbers are numeric (e.g., 21000000 for 21,000,000 VND) and dates are YYYY-MM-DD. Return only the JSON, nothing else.",
+              "type": "string"
+            },
+            {
+              "id": "f1f8380b-d3b2-48a5-bda5-7650161f6fe8",
+              "name": "data",
+              "value": "={{ $json.base64 }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2176,
+        144
+      ],
+      "id": "c060d6ed-aa36-4335-8ad1-338b2e435d44",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "=define",
+        "text": "={{ $json.prompt }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are an INVOICE EXTRACTOR. Read the input is \"{{ $json.data }}\" and return ONLY a single JSON object that conforms exactly to the schema below. No markdown, no explanations, no extra keys.  Rules: 1) Prefer text inside the invoice table and header labels. Ignore decorative text/logos. 2) Map fields by label synonyms:    - seller: company issuing the invoice (e.g., \"TIKTOK PTE. LTD.\")    - sellerTaxId: \"Tax Registration Number\", \"TRN\", \"GST/VAT No\"    - buyer: \"Bill To\", \"Client Name\"    - buyerTaxId: labels like \"Tax #\", \"Tax code\", \"MST\"    - invoiceNo: \"Invoice No\", \"Invoice Number\"    - invoiceDate: \"Invoice Date\"    - dueDate: \"Due Date\" (nullable)    - contractNo: \"Contract No\", \"Contract Number\" (nullable)    - billingAddress: full address under Bill To    - billingContact: person name near Bill To (nullable)    - billingEmail: email near Bill To (nullable)    - billingTel: phone near Bill To (nullable)    - currency: detect (e.g., \"VND\")    - lines[].description: service/product description    - lines[].note: note/remark (nullable)    - lines[].amount: numeric amount for that line    - subtotal: subtotal excluding tax    - taxRatePercent: numeric percent (e.g., 5)    - taxAmount: tax amount    - total: total amount due 3) Normalization:    - Dates => ISO 8601 \"YYYY-MM-DD\".    - Numbers => return as NUMBER (no commas, no spaces). Strip \"VND\", \"%\" etc.    - If a field is missing on the document, return null. 4) Consistency checks:    - If subtotal, taxRatePercent available and taxAmount missing => taxAmount = round(subtotal * taxRatePercent / 100).    - If subtotal + taxAmount != total within ±1 unit => set \"mathCheck\" = \"fail\" and include a brief \"notes\" explaining the discrepancy; else \"mathCheck\" = \"ok\". 5) Output MUST match this JSON schema exactly (keys and types). Do not add or rename keys.  Schema: {   \"seller\": string | null,   \"sellerTaxId\": string | null,   \"buyer\": string | null,   \"buyerTaxId\": string | null,   \"invoiceNo\": string | null,   \"invoiceDate\": string | null,   \"dueDate\": string | null,   \"contractNo\": string | null,   \"billingAddress\": string | null,   \"billingContact\": string | null,   \"billingEmail\": string | null,   \"billingTel\": string | null,   \"currency\": \"VND\" | \"USD\" | \"SGD\" | string | null,   \"lines\": [     {       \"description\": string | null,       \"note\": string | null,       \"amount\": number | null     }   ],   \"subtotal\": number | null,   \"taxRatePercent\": number | null,   \"taxAmount\": number | null,   \"total\": number | null,   \"mathCheck\": \"ok\" | \"fail\",   \"notes\": string | null } Return only the JSON object. "
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        2480,
+        144
+      ],
+      "id": "e007b59b-0f73-428f-ab64-69f1c539fb63",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-pro",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2432,
+        384
+      ],
+      "id": "846e0c5f-7f5b-488c-afbb-256629cf8ecc",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "kQNwjhSMB5PAKdc4",
+          "name": "data"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2032,
+        480
+      ],
+      "id": "515b2bbe-3124-462c-abce-c238c5aa9c71",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "G0kYDiotLWQzJgzj",
+          "name": "Sinh openai api key 090925"
+        }
+      }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Google Drive Trigger New Files": [
+      {
+        "json": {
+          "parents": [
+            "1NB7-FO2TCyWc9iyy4Fm1h1qY9bqk427T"
+          ],
+          "lastModifyingUser": {
+            "displayName": "Duy Trịnh Đình",
+            "kind": "drive#user",
+            "me": true,
+            "permissionId": "00492509395059506492",
+            "emailAddress": "trinhdinhduy1206@gmail.com",
+            "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocL-6Jdl31dvZaQI_Zv0jTB6i38UnzEctQvrTU68TcVDoAHCvmE=s64"
+          },
+          "owners": [
+            {
+              "displayName": "Duy Trịnh Đình",
+              "kind": "drive#user",
+              "me": true,
+              "permissionId": "00492509395059506492",
+              "emailAddress": "trinhdinhduy1206@gmail.com",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocL-6Jdl31dvZaQI_Zv0jTB6i38UnzEctQvrTU68TcVDoAHCvmE=s64"
+            }
+          ],
+          "permissions": [
+            {
+              "kind": "drive#permission",
+              "id": "00492509395059506492",
+              "type": "user",
+              "emailAddress": "trinhdinhduy1206@gmail.com",
+              "role": "owner",
+              "displayName": "Duy Trịnh Đình",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocL-6Jdl31dvZaQI_Zv0jTB6i38UnzEctQvrTU68TcVDoAHCvmE=s64",
+              "deleted": false,
+              "pendingOwner": false
+            }
+          ],
+          "spaces": [
+            "drive"
+          ],
+          "capabilities": {
+            "canAcceptOwnership": false,
+            "canAddChildren": false,
+            "canAddMyDriveParent": false,
+            "canChangeCopyRequiresWriterPermission": true,
+            "canChangeItemDownloadRestriction": true,
+            "canChangeSecurityUpdateEnabled": false,
+            "canChangeViewersCanCopyContent": true,
+            "canComment": true,
+            "canCopy": true,
+            "canDelete": true,
+            "canDisableInheritedPermissions": false,
+            "canDownload": true,
+            "canEdit": true,
+            "canEnableInheritedPermissions": true,
+            "canListChildren": false,
+            "canModifyContent": true,
+            "canModifyContentRestriction": true,
+            "canModifyEditorContentRestriction": true,
+            "canModifyOwnerContentRestriction": true,
+            "canModifyLabels": false,
+            "canMoveChildrenWithinDrive": false,
+            "canMoveItemIntoTeamDrive": true,
+            "canMoveItemOutOfDrive": true,
+            "canMoveItemWithinDrive": true,
+            "canReadLabels": false,
+            "canReadRevisions": true,
+            "canRemoveChildren": false,
+            "canRemoveContentRestriction": false,
+            "canRemoveMyDriveParent": true,
+            "canRename": true,
+            "canShare": true,
+            "canTrash": true,
+            "canUntrash": true
+          },
+          "permissionIds": [
+            "00492509395059506492"
+          ],
+          "linkShareMetadata": {
+            "securityUpdateEligible": false,
+            "securityUpdateEnabled": true
+          },
+          "downloadRestrictions": {
+            "itemDownloadRestriction": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            },
+            "effectiveDownloadRestrictionWithContext": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            }
+          },
+          "kind": "drive#file",
+          "id": "1dWPFa8JonCketMgzzCkxkmkqT7herlBm",
+          "name": "2025-09-15_duy.trinhdinh",
+          "mimeType": "application/pdf",
+          "starred": false,
+          "trashed": false,
+          "explicitlyTrashed": false,
+          "version": "11",
+          "webContentLink": "https://drive.google.com/uc?id=1dWPFa8JonCketMgzzCkxkmkqT7herlBm&export=download",
+          "webViewLink": "https://drive.google.com/file/d/1dWPFa8JonCketMgzzCkxkmkqT7herlBm/view?usp=drivesdk",
+          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/pdf",
+          "hasThumbnail": true,
+          "thumbnailLink": "https://lh3.googleusercontent.com/drive-storage/AJQWtBP1XqX1tEwBWV-KpbVv96xi6ZAXEyfefFWzreIV3RhooAJIjynf1PAKWKjQQ8d98DJKZT5pJkp-_4mbrf254LdQW98ZhUdEmGWEPLhpW2fvx4M=s220",
+          "thumbnailVersion": "1",
+          "viewedByMe": true,
+          "viewedByMeTime": "2025-09-15T12:41:54.439Z",
+          "createdTime": "2025-09-15T12:24:01.287Z",
+          "modifiedTime": "2025-09-15T12:24:04.198Z",
+          "modifiedByMeTime": "2025-09-15T12:24:04.198Z",
+          "modifiedByMe": true,
+          "shared": false,
+          "ownedByMe": true,
+          "viewersCanCopyContent": true,
+          "copyRequiresWriterPermission": false,
+          "writersCanShare": true,
+          "originalFilename": "Untitled",
+          "fullFileExtension": "trinhdinh",
+          "fileExtension": "trinhdinh",
+          "md5Checksum": "4490688a7ac746341b2143f8be785103",
+          "sha1Checksum": "d3746d53e72a6e5b9630f46ee18764c6512f2b71",
+          "sha256Checksum": "47ee738cbcabf305f7feed9caa919209852fa05dce3d6cc18194d7a416826bd7",
+          "size": "55602",
+          "quotaBytesUsed": "55602",
+          "headRevisionId": "0Bx_fF2Ulf-qkZzdObDI1cjJmWGRINjNZWU1FSzBuRFd5cnQ0PQ",
+          "isAppAuthorized": true,
+          "inheritedPermissionsDisabled": false
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-07-18T09:16:33.000Z",
-  "versionId": "85e9d505-1622-4763-b362-d8abbe6fc1c4"
+  "updatedAt": "2025-09-18T08:25:54.000Z",
+  "versionId": "b351fb7d-98e1-46de-a639-28c5d9dcd368"
 }
