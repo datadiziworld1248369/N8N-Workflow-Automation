@@ -1,0 +1,115 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-18T04:18:49.947Z",
+  "id": "m4LcCfH8XUQ3kzro",
+  "isArchived": true,
+  "meta": null,
+  "name": "My workflow 34",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a91e6ede-25ca-4a08-9379-871071499495",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pdfendpoint.com/v1/convert",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_TOKEN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "html",
+              "value": "<!doctype html><html><head><meta charset=\"utf-8\"></head><body><h1>Meta Ads Receipt</h1><div>...HTML META BILL Ở ĐÂY...</div></body></html>"
+            },
+            {
+              "name": "sandbox",
+              "value": "true"
+            },
+            {
+              "name": "orientation",
+              "value": "vertical"
+            },
+            {
+              "name": "page_size",
+              "value": "A4"
+            },
+            {
+              "name": "margin_top",
+              "value": "2cm"
+            },
+            {
+              "name": "margin_bottom",
+              "value": "2cm"
+            },
+            {
+              "name": "margin_left",
+              "value": "2cm"
+            },
+            {
+              "name": "margin_right",
+              "value": "2cm"
+            },
+            {
+              "name": "print_background",
+              "value": "true"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "meta_receipt.pdf"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "b9f63a58-4fe0-4397-a842-ad5f23843470",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-19T05:51:22.000Z",
+  "versionId": "88c29d24-266a-4aa7-b77f-6985f18670e0"
+}
