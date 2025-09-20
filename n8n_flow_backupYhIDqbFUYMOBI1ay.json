@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Ultimate Assistant": {
       "main": [
@@ -100,7 +100,7 @@
       "main": [
         [
           {
-            "node": "Transcribe a recording",
+            "node": "Ultimate Assistant",
             "type": "main",
             "index": 0
           }
@@ -147,22 +147,6 @@
           {
             "node": "Ultimate Assistant",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Analyze audio": {
-      "main": [
-        []
-      ]
-    },
-    "Transcribe a recording": {
-      "main": [
-        [
-          {
-            "node": "Ultimate Assistant",
-            "type": "main",
             "index": 0
           }
         ]
@@ -622,62 +606,7 @@
       "credentials": {
         "googlePalmApi": {
           "id": "DO3eNJoYSeKcYIVp",
-          "name": "DUyAPI"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "audio",
-        "operation": "analyze",
-        "modelId": {
-          "__rl": true,
-          "value": "models/gemini-2.5-flash",
-          "mode": "list",
-          "cachedResultName": "models/gemini-2.5-flash"
-        },
-        "inputType": "binary",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.googleGemini",
-      "typeVersion": 1,
-      "position": [
-        -240,
-        -464
-      ],
-      "id": "62019572-447e-471f-9e2c-c7124cd8c6d6",
-      "name": "Analyze audio",
-      "credentials": {
-        "googlePalmApi": {
-          "id": "FNvJ4uxnoR1jl3eg",
-          "name": "Google Gemini(PaLM) Api account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "audio",
-        "modelId": {
-          "__rl": true,
-          "value": "models/gemini-2.5-flash",
-          "mode": "list",
-          "cachedResultName": "models/gemini-2.5-flash"
-        },
-        "inputType": "binary",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.googleGemini",
-      "typeVersion": 1,
-      "position": [
-        -448,
-        -496
-      ],
-      "id": "3c416788-c780-44e5-936b-234c2f06deb9",
-      "name": "Transcribe a recording",
-      "credentials": {
-        "googlePalmApi": {
-          "id": "FNvJ4uxnoR1jl3eg",
-          "name": "Google Gemini(PaLM) Api account"
+          "name": "Duy"
         }
       }
     },
@@ -836,6 +765,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-08-20T03:34:18.000Z",
-  "versionId": "46b73803-115a-405d-aa82-427444fd8a2b"
+  "updatedAt": "2025-09-15T10:31:28.000Z",
+  "versionId": "5f5c7eac-9bad-419e-a467-82ca9dcad272"
 }
