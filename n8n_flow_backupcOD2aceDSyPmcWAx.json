@@ -1,0 +1,125 @@
+{
+  "active": false,
+  "connections": {
+    "Convert PDF to Base": {
+      "main": [
+        [
+          {
+            "node": "Gemini PDF Information Extractor1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download a file": {
+      "main": [
+        [
+          {
+            "node": "Convert PDF to Base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-15T13:23:09.860Z",
+  "id": "cOD2aceDSyPmcWAx",
+  "isArchived": true,
+  "meta": null,
+  "name": "thượng",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googlePalmApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": \"{{ $('config_prom1').first().json.formattedPrompt }}\"\n        },\n        {\n          \"inline_data\": {\n            \"mime_type\": \"application/pdf\",\n            \"data\": \"{{ $json.data }}\"\n          }\n        }\n      ]\n    }\n  ],\n  \"generationConfig\": {\n    \"temperature\": 0.1,\n    \"maxOutputTokens\": 500,\n    \"topP\": 0.95,\n    \"topK\": 20,\n    \"responseMimeType\": \"application/json\",\n    \"responseSchema\": {\n      \"type\": \"ARRAY\",\n      \"items\": {\n        \"type\": \"OBJECT\",\n        \"properties\": {\n          \"name\": {\n            \"type\": \"STRING\",\n            \"nullable\": true\n          },\n          \"birthday\": {\n            \"type\": \"STRING\",\n            \"nullable\": true\n          },\n          \"policyNumber\": {\n            \"type\": \"STRING\",\n            \"nullable\": true\n          }\n        },\n        \"propertyOrdering\": [\"name\", \"birthday\", \"policyNumber\"]\n      }\n    }\n  },\n  \"safetySettings\": [\n    {\n      \"category\": \"HARM_CATEGORY_HARASSMENT\",\n      \"threshold\": \"BLOCK_NONE\"\n    },\n    {\n      \"category\": \"HARM_CATEGORY_HATE_SPEECH\",\n      \"threshold\": \"BLOCK_NONE\"\n    },\n    {\n      \"category\": \"HARM_CATEGORY_SEXUALLY_EXPLICIT\",\n      \"threshold\": \"BLOCK_NONE\"\n    },\n    {\n      \"category\": \"HARM_CATEGORY_DANGEROUS_CONTENT\",\n      \"threshold\": \"BLOCK_NONE\"\n    }\n  ]\n}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        432,
+        -32
+      ],
+      "id": "8f8fe05a-b868-4072-9421-780949c025c6",
+      "name": "Gemini PDF Information Extractor1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "DO3eNJoYSeKcYIVp",
+          "name": "Duy"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        256,
+        -32
+      ],
+      "id": "54e8439e-940a-434e-8e8e-ef6a13111786",
+      "name": "Convert PDF to Base"
+    },
+    {
+      "parameters": {
+        "bucketName": "demo-mail-sync",
+        "fileKey": "="
+      },
+      "type": "n8n-nodes-base.awsS3",
+      "typeVersion": 2,
+      "position": [
+        64,
+        -32
+      ],
+      "id": "f954a51c-2fa4-40bd-8406-2c8d14287dbf",
+      "name": "Download a file"
+    },
+    {
+      "parameters": {
+        "content": "### 5. Gemini AI Processing\n- Extract thông tin:\n  - **name**: Tên người được bảo hiểm\n  - **birthday**: Ngày sinh (DD/MM/YYYY)\n  - **policyNumber**: Số hợp đồng\n\n- Xử lý multi-person:\n  - 1 file PDF có thể chứa nhiều người\n  - Mỗi người = 1 record riêng\n",
+        "height": 400,
+        "width": 600,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -256
+      ],
+      "id": "92527854-cf30-4024-b04a-5c55bbf2e54b",
+      "name": "Sticky Note6"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-19T05:51:27.000Z",
+  "versionId": "4f4909de-882a-4571-be48-6b5984ad9d94"
+}
