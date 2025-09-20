@@ -1,0 +1,67 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-15T11:36:44.448Z",
+  "id": "31tcnMJOw1K7EDh0",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 33",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3a2d35ee-1a4a-458d-bd9c-01468b388e42",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open-sg.larksuite.com/anycross/trigger/lark/callback/Mzk1Njk0ZDZiODBjN2M3ODIwODI5MjlmZGY4ZTU5ODQw",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "challenge",
+              "value": "test"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "fe1dd0e5-4ca3-441f-a6d8-c6602db4b5e0",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-15T11:36:44.448Z",
+  "versionId": "71d91298-4453-4323-bb12-9665e18f8fd7"
+}
