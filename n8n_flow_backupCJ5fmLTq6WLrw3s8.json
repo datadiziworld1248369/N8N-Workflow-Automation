@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Prompt": {
       "main": [
@@ -2126,22 +2126,22 @@
   "staticData": {
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1758350079,
+        "lastTimeChecked": 1758446744,
         "possibleDuplicates": [
-          "19965d52fd500128",
-          "199657a234e0cc33"
+          "1996b9818ce93030",
+          "1996aa07676e3dae"
         ]
       }
     },
     "node:Google Drive Trigger New Files": {
-      "lastTimeChecked": "2025-09-20T06:34:48Z"
+      "lastTimeChecked": "2025-09-21T09:25:48Z"
     },
     "node:Google Drive Trigger New Files1": {
-      "lastTimeChecked": "2025-09-20T06:35:07Z"
+      "lastTimeChecked": "2025-09-21T09:26:07Z"
     }
   },
   "tags": [],
   "triggerCount": 4,
-  "updatedAt": "2025-09-19T05:49:06.000Z",
+  "updatedAt": "2025-09-21T12:22:01.000Z",
   "versionId": "ff1919a8-d3be-43e9-bc03-6e136e212970"
 }
