@@ -396,7 +396,7 @@
       "credentials": {
         "googlePalmApi": {
           "id": "DO3eNJoYSeKcYIVp",
-          "name": "Duy_API"
+          "name": "Duy"
         }
       }
     },
@@ -1499,7 +1499,7 @@
       "credentials": {
         "googlePalmApi": {
           "id": "DO3eNJoYSeKcYIVp",
-          "name": "Duy_API"
+          "name": "Duy"
         }
       }
     },
@@ -1802,7 +1802,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=  https://open.larksuite.com/open-apis/bitable/v1/apps/RKbTbhcFzaHu4vsRjlClj8G3gce/tables/tblIhglXENSZdHzt/records ",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/RKbTbhcFzaHu4vsRjlClj8G3gce/tables/tblIhglXENSZdHzt/records ",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -1889,7 +1889,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=  https://open.larksuite.com/open-apis/bitable/v1/apps/RKbTbhcFzaHu4vsRjlClj8G3gce/tables/tbl6GSdYnNjkS43U/records ",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/RKbTbhcFzaHu4vsRjlClj8G3gce/tables/tbl6GSdYnNjkS43U/records ",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -2125,7 +2125,7 @@
       "typeVersion": 1.2,
       "position": [
         -800,
-        656
+        640
       ],
       "id": "1bce76d6-b6dd-48f1-95e4-43dbbdd05bbf",
       "name": "Tạo storyboard",
@@ -2230,15 +2230,15 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -576,
-        656
+        -656,
+        720
       ],
       "id": "abcd8968-99aa-443c-a3b7-731e13d54516",
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
           "id": "DO3eNJoYSeKcYIVp",
-          "name": "Duy_API"
+          "name": "Duy"
         }
       }
     },
@@ -2310,6 +2310,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-09-10T03:17:10.000Z",
-  "versionId": "1bc69790-39eb-4cb1-b02e-aeb884383bde"
+  "updatedAt": "2025-10-06T04:07:14.000Z",
+  "versionId": "3b77221b-597c-44cd-b14b-6e9d8cc2f6da"
 }
