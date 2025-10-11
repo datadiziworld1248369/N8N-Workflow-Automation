@@ -1,0 +1,53 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2025-10-05T09:16:03.746Z",
+  "id": "jFoFf2dwMixluCLb",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 35",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "2129f470-c8fa-4e83-9720-056b860e5aef",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "9996c823-a53e-4118-b8e0-6c406bdcab57",
+      "name": "Webhook",
+      "webhookId": "2129f470-c8fa-4e83-9720-056b860e5aef",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "XeV57V1LMQPsYrKv",
+          "name": "Duy_123"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-05T09:16:03.752Z",
+      "updatedAt": "2025-10-05T09:16:03.752Z",
+      "role": "workflow:owner",
+      "workflowId": "jFoFf2dwMixluCLb",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-05T09:34:40.000Z",
+  "versionId": "2c7af4d6-2d46-499a-a1ed-44fc3f99bfe7"
+}
