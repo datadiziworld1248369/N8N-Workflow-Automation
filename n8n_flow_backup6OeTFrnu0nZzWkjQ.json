@@ -737,8 +737,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -16,
-        -720
+        -48,
+        -416
       ],
       "id": "ce6f44f0-e7cc-4024-8b8e-7688aa642e96",
       "name": "Tồn kho"
@@ -829,8 +829,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        656,
-        -672
+        784,
+        -112
       ]
     },
     {
@@ -883,8 +883,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        64,
-        -896
+        272,
+        -432
       ],
       "id": "c212b2a8-c134-4f8e-a4db-19ccc30c9120",
       "name": "Tồn kho1"
@@ -933,6 +933,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-19T16:40:18.000Z",
-  "versionId": "ccff1304-d78f-4163-9ee3-8e54610b7c3a"
+  "updatedAt": "2025-10-15T17:55:34.000Z",
+  "versionId": "254e21ab-04fe-4188-9d21-80ff27f44fa6"
 }
