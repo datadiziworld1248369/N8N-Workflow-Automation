@@ -1,9 +1,9 @@
 {
-  "active": true,
+  "active": false,
   "connections": {},
   "createdAt": "2025-10-05T09:16:03.746Z",
   "id": "jFoFf2dwMixluCLb",
-  "isArchived": false,
+  "isArchived": true,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -48,6 +48,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-05T09:34:40.000Z",
-  "versionId": "2c7af4d6-2d46-499a-a1ed-44fc3f99bfe7"
+  "updatedAt": "2025-10-14T05:47:25.000Z",
+  "versionId": "1ac47ab8-a732-4b99-9dea-0e583a420538"
 }
