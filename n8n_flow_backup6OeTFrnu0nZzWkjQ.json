@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "Acess_token",
             "type": "main",
             "index": 0
           }
@@ -49,7 +49,7 @@
       "main": [
         [
           {
-            "node": "Creates records lark1",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
@@ -120,7 +120,7 @@
         [],
         [
           {
-            "node": "Create token",
+            "node": "Creates records lark1",
             "type": "main",
             "index": 0
           }
@@ -179,21 +179,32 @@
           }
         ]
       ]
+    },
+    "Acess_token": {
+      "main": [
+        [
+          {
+            "node": "Create token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-04-25T10:51:46.046Z",
   "id": "6OeTFrnu0nZzWkjQ",
   "isArchived": false,
   "meta": null,
-  "name": "Danh mục amis",
+  "name": "Danh mục amis_KETOAN_THUE_2024",
   "nodes": [
     {
       "parameters": {},
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -768,
-        -1040
+        -608,
+        -992
       ],
       "id": "4804b33e-abb6-4f98-a5e8-695367d67e1a",
       "name": "When clicking ‘Test workflow’"
@@ -204,14 +215,14 @@
         "url": "https://actapp.misa.vn/api/oauth/actopen/connect",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "                        {\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"access_code\": \"VCg11cyftmYfa1ErraGTmu7plt65KwyC8F66Eyo3u9CijUAWlHtFFytbPDhvCR0cSjLtP0CLaws35Ng3jsi4mVgvZikExmt6l20eVN135VYPk/YRY4pTRVh49YbnOp7mQ/zn9RzgBRGdXNKudohC2KeG5+H8qia/I0V6S1Klw7klyk0uEH6qpO9vX13c+pO+TM5cSgyCQrFFV9nPsWbYChZpx848OWXb439Kzj0QWRtPARK7aLgdBEhPt7EwR1y3LG/InjhKEWL5zjcbdhnW+g==\",\n                        \"org_company_code\": \"congtydemoketnoiact\"\n                        }",
+        "jsonBody": "=                        {\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"access_code\": \"{{ $('Acess_token').item.json.token }}\",\n                        \"org_company_code\": \"congtydemoketnoiact\"\n                        } ",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -528,
-        -1040
+        128,
+        -1008
       ],
       "id": "b0c7ace6-e409-4067-bac0-8984aab9818b",
       "name": "HTTP Request"
@@ -291,8 +302,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -16,
-        -1040
+        544,
+        -1008
       ],
       "id": "a7b90ac1-b751-40f7-a244-1843a74da9c4",
       "name": "HTTP Request4"
@@ -318,8 +329,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -416,
-        -624
+        336,
+        -160
       ],
       "id": "5c7e65e1-cd33-471f-9c81-aab8211d5612",
       "name": "HTTP Request5"
@@ -466,8 +477,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        448,
-        -1040
+        1008,
+        -1008
       ],
       "id": "45681f3f-7dff-4ded-84ea-3e0c80879cd9",
       "name": "Code"
@@ -495,8 +506,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        896,
-        -1040
+        1456,
+        -1008
       ],
       "id": "33376ebf-6bce-4f98-882a-eb0983e94bab",
       "name": "Edit Fields"
@@ -526,8 +537,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1328,
-        -1024
+        -48,
+        -1008
       ],
       "id": "235f5a1c-aaa7-437c-be6a-6398f92ea07a",
       "name": "Create token"
@@ -553,8 +564,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        656,
-        -864
+        -320,
+        -512
       ],
       "id": "f4606b7e-ed0e-4fe3-b8e7-6718e792c971",
       "name": "Creates records lark"
@@ -597,8 +608,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        704,
-        -1040
+        1264,
+        -1008
       ]
     },
     {
@@ -609,8 +620,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        240,
-        -1040
+        800,
+        -1008
       ],
       "id": "a3e85d53-ee1a-4555-99ec-622d27d37727",
       "name": "Split Out"
@@ -658,8 +669,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1808,
-        -1024
+        2224,
+        -992
       ],
       "id": "5da26f99-60ad-446c-99c3-da8fd416d29e",
       "name": "Wait1",
@@ -667,14 +678,14 @@
     },
     {
       "parameters": {
-        "batchSize": 20,
+        "batchSize": 30,
         "options": {}
       },
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        1104,
-        -1040
+        1776,
+        -1008
       ],
       "id": "b170b825-738e-4afb-8634-369b3fb96eff",
       "name": "Loop Over Items"
@@ -697,8 +708,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -288,
-        -1040
+        320,
+        -1008
       ],
       "id": "0579f18f-24e6-4849-a6c9-7e9fd5c64f34",
       "name": "Code2"
@@ -856,8 +867,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        416,
-        -720
+        576,
+        -192
       ],
       "id": "b6f13ac8-41df-477e-9f0a-5c62c6cc2bfc",
       "name": "Edit Fields1"
@@ -898,7 +909,7 @@
           "parameters": [
             {
               "name": "=Authorization",
-              "value": "=Bearer {{ $json.tenant_access_token }}"
+              "value": "=Bearer {{ $('Create token').item.json.tenant_access_token }}"
             }
           ]
         },
@@ -910,11 +921,34 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1568,
-        -1024
+        2032,
+        -992
       ],
       "id": "cf8b36f6-45e5-400e-b835-fb1e721f4e65",
       "name": "Creates records lark1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "444e29ea-7039-4773-bcda-ed035ffee83f",
+              "name": "token",
+              "value": "UoANQNuSmZCnE240PHO28eww/B/NmkAVa08P6GiC+hq8unjbEARwow2UL2xIEDZnD+8oIW/s8IrWPa90vTo6AaQ8BkqXqm/JdJ/VLAHf2XKsmDO6b8gt6VjBEiZsmZN2Rtn5d7jHdLoJwfFXhy+Sa3Jxu+qD4s4GPraRS7VxwiTvhBcrr14Q0/bOMVOGMZArB8ltSB8X19nb210x67ucgOEpGf6mSXhKNBWXfd/TmeX2TvCc1Lvozl5i0y/FsYpytYzhD0t5/RVuhsDNi5WohA==",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        -1008
+      ],
+      "id": "b273a3dd-9c4b-4a0e-8c70-f09a722147ad",
+      "name": "Acess_token"
     }
   ],
   "pinData": {},
@@ -933,6 +967,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-10-15T17:55:34.000Z",
-  "versionId": "254e21ab-04fe-4188-9d21-80ff27f44fa6"
+  "updatedAt": "2025-10-19T08:22:14.000Z",
+  "versionId": "ba5862b8-bd5e-4a90-aec0-05ce882af9db"
 }
