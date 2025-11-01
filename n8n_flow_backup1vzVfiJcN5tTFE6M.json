@@ -1,0 +1,665 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Create token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Normalize data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy thông tin nhân sự": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        []
+      ]
+    },
+    "Creates records lark1": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize data": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Update SUCCESS vào lark base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create token": {
+      "main": [
+        [
+          {
+            "node": "Lấy thông tin nhân sự",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "search a record1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Creates records lark": {
+      "main": [
+        []
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "search a record1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Create token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-29T13:13:10.657Z",
+  "id": "1vzVfiJcN5tTFE6M",
+  "isArchived": false,
+  "meta": null,
+  "name": "Amis_Vị trí công việc",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -368,
+        0
+      ],
+      "id": "0e537b37-2c72-4717-b544-15b7f3e4f3c7",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy token từ node \"Create token\"\nconst tokenData = $items(\"Create token\")[0].json;\nconst token = tokenData.tenant_access_token || tokenData.app_access_token;\n\n// Lấy danh sách vị trí từ node hiện tại (HTTP Request hoặc JSON input)\nconst data = $json;\n\nfunction clean(v) {\n  return v ?? \"\";\n}\n\n// Chuyển object sang array\nconst jobPositions = Object.values(data).map(item => ({\n  JobPositionID: clean(item.JobPositionID),\n  JobPositionCode: clean(item.JobPositionCode),\n  JobPositionName: clean(item.JobPositionName),\n  token: token // Gắn token vào từng item\n}));\n\n// Debug (nếu cần)\nconsole.log(jobPositions);\n\n// Trả kết quả cho n8n (mỗi job là 1 item)\nreturn jobPositions.map(pos => ({ json: pos }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        736,
+        0
+      ],
+      "id": "0a1edf2a-ee53-4762-a740-e09eb528b923",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "Data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        480,
+        0
+      ],
+      "id": "3627d286-5e13-4bf7-a097-fb894c5ca0d9",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://amisapp.misa.vn/APIS/HRMProfileOpenAPI/api/Open/get-jobposition",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-clientid",
+              "value": "=cffb1315-50d2-4d2f-9302-85a852809f57"
+            },
+            {
+              "name": "x-transactionid",
+              "value": "2bfb5b94-0c4f-11ee-be56-0242ac120002"
+            },
+            {
+              "name": "x-token",
+              "value": "hSqYuESIyzeMpC7soSBuafHEPQbGZxjQpNsc7X2qw1c="
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "PageSize",
+              "value": "50"
+            },
+            {
+              "name": "PageIndex",
+              "value": "1"
+            },
+            {
+              "name": "LastDate"
+            },
+            {
+              "name": "SearchValue"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "bc1c06ed-6f61-4116-9d25-0710e2e8d90a",
+      "name": "Lấy thông tin nhân sự"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3456,
+        1200
+      ],
+      "id": "eee92570-11b4-4f5b-8915-2296b7cfb67b",
+      "name": "Wait1",
+      "webhookId": "2db19d3e-fb49-4ba8-a108-457a6f9edb23"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3424,
+        1104
+      ],
+      "id": "33f59aa1-6feb-4b72-8122-2766f3202101",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/COTcbZmCeantgSsAXxXlpAiUgwc/tables/tblSJkVpOyavUStE/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $('Normalize data').item.json.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"JobPositionID\": \"{{ $('Normalize data').item.json['JobPositionID'] }}\",\n    \"JobPositionCode\": \"{{ $('Normalize data').item.json['JobPositionCode'] }}\",\n    \"JobPositionName\": \"{{ $('Normalize data').item.json['JobPositionName'] }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2768,
+        -128
+      ],
+      "id": "d4b2d9cd-a1e5-4540-920d-aaa554d66a81",
+      "name": "Creates records lark1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f27913b5-1793-4033-b22f-91e53bc66fa5",
+              "name": "JobPositionID",
+              "value": "={{ $json.JobPositionID }}",
+              "type": "number"
+            },
+            {
+              "id": "3a5e193a-9383-4916-8304-1cb4daa98ece",
+              "name": "JobPositionCode",
+              "value": "={{ $json.JobPositionCode }}",
+              "type": "string"
+            },
+            {
+              "id": "2b1a8e6a-d29c-4375-ad01-734826f4adc7",
+              "name": "JobPositionName",
+              "value": "={{ $json.JobPositionName }}",
+              "type": "string"
+            },
+            {
+              "id": "890e549e-f14e-4f1d-9251-1e9f439398c5",
+              "name": "",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "1a081e48-906c-42cf-afea-aa491d96895c",
+              "name": "token",
+              "value": "={{ $json.token }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        0
+      ],
+      "id": "96c502bd-494f-4f5d-8bb2-7d64c2b19ab1",
+      "name": "Normalize data"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -112,
+        0
+      ],
+      "id": "cd8d3dfb-45f7-4512-ad71-f277cfc8b52f",
+      "name": "Create token",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3840,
+        -96
+      ],
+      "id": "2279846b-ef80-43de-b50e-89f056e8f18c",
+      "name": "Wait3",
+      "webhookId": "b796dc21-ec6a-4e81-8aaf-44f339cd5b2c"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "87e38320-bec7-4bae-9c15-392cba496219",
+              "leftValue": "={{ $json.data.total }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2384,
+        -112
+      ],
+      "id": "48e807d6-1f10-4140-be5f-13cdaa2c4d18",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/COTcbZmCeantgSsAXxXlpAiUgwc/tables/tblSJkVpOyavUStE/records/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "page_size",
+              "value": "500"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"filter\": {\n    \"conjunction\": \"and\",\n    \"conditions\": [\n      {\n        \"field_name\": \"JobPositionID\",\n        \"operator\": \"is\",\n        \"value\": [\n          \"{{ $json.JobPositionID }}\"\n        ]\n      }\n    ]\n  },\n  \"automatic_fields\": false\n}",
+        "options": {
+          "pagination": {
+            "pagination": {
+              "parameters": {
+                "parameters": [
+                  {
+                    "name": "page_token",
+                    "value": "={{ $response ? $response.body.data.page_token : '' }}"
+                  }
+                ]
+              },
+              "paginationCompleteWhen": "other",
+              "completeExpression": "={{ !$response.body.data.has_more }}"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1936,
+        -112
+      ],
+      "id": "f3ed4b50-e890-40fd-b4e6-c14f858a2cc7",
+      "name": "search a record1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/LCwabUTe7aEBoZsJltslE89IgYc/tables/tblmYz7dY1el9qvH/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $('Edit Fields').item.json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Dictionary_Type\": \"{{ $('Edit Fields').item.json.dictionary_type }}\",\n    \"Inventory_Item_ID\": \"{{ $('Edit Fields').item.json.inventory_item_id }}\",\n    \"Inventory_Item_Name\": \"{{ $('Edit Fields').item.json.inventory_item_name }}\",\n    \"Inventory_Item_Code\": \"{{ $('Edit Fields').item.json.inventory_item_code }}\",\n    \"Inventory_Item_Type\": \"{{ $('Edit Fields').item.json.inventory_item_type }}\",\n    \"Unit_ID\": \"{{ $('Edit Fields').item.json.unit_id }}\",\n    \"Minimum_Stock\": \"{{ $('Edit Fields').item.json.minimum_stock }}\",\n    \"Branch_ID\": \"{{ $('Edit Fields').item.json.branch_id }}\",\n    \"Discount_Type\": \"{{ $('Edit Fields').item.json.discount_type }}\",\n    \"Inventory_Item_Cost_Method\": \"{{ $('Edit Fields').item.json.inventory_item_cost_method }}\",\n    \"Is_Unit_Price_After_Tax\": \"{{ $('Edit Fields').item.json.is_unit_price_after_tax }}\",\n    \"Is_System\": \"{{ $('Edit Fields').item.json.is_system }}\",\n    \"Inactive\": \"{{ $('Edit Fields').item.json.inactive }}\",\n    \"Is_Follow_Serial_Number\": \"{{ $('Edit Fields').item.json.is_follow_serial_number }}\",\n    \"Is_Allow_Duplicate_Serial_Number\": \"{{ $('Edit Fields').item.json.is_allow_duplicate_serial_number }}\",\n    \"Purchase_Discount_Rate\": \"{{ $('Edit Fields').item.json.purchase_discount_rate }}\",\n    \"Unit_Price\": \"{{ $('Edit Fields').item.json.unit_price }}\",\n    \"Sale_Price1\": \"{{ $('Edit Fields').item.json.sale_price1 }}\",\n    \"Sale_Price2\": \"{{ $('Edit Fields').item.json.sale_price2 }}\",\n    \"Sale_Price3\": \"{{ $('Edit Fields').item.json.sale_price3 }}\",\n    \"Fixed_Sale_Price\": \"{{ $('Edit Fields').item.json.fixed_sale_price }}\",\n    \"Import_Tax_Rate\": \"{{ $('Edit Fields').item.json.import_tax_rate }}\",\n    \"Export_Tax_Rate\": \"{{ $('Edit Fields').item.json.export_tax_rate }}\",\n    \"Fixed_Unit_Price\": \"{{ $('Edit Fields').item.json.fixed_unit_price }}\",\n    \"Discount_Account\": \"{{ $('Edit Fields').item.json.discount_account }}\",\n    \"Sale_Off_Account\": \"{{ $('Edit Fields').item.json.sale_off_account }}\",\n    \"Return_Account\": \"{{ $('Edit Fields').item.json.return_account }}\",\n    \"Purchase_Description\": \"{{ $('Edit Fields').item.json.purchase_description }}\",\n    \"Sale_Description\": \"{{ $('Edit Fields').item.json.sale_description }}\",\n    \"COGS_Account\": \"{{ $('Edit Fields').item.json.cogs_account }}\",\n    \"Sale_Account\": \"{{ $('Edit Fields').item.json.sale_account }}\",\n    \"Unit_List\": \"{{ $('Edit Fields').item.json.unit_list }}\",\n    \"Unit_Name\": \"{{ $('Edit Fields').item.json.unit_name }}\",\n    \"RefType\": \"{{ $('Edit Fields').item.json.reftype }}\",\n    \"Purchase_Last_Unit_Price_List\": \"{{ $('Edit Fields').item.json.purchase_last_unit_price_list }}\",\n    \"Quantity_BarCode\": \"{{ $('Edit Fields').item.json.quantityBarCode }}\",\n    \"Allocation_Type\": \"{{ $('Edit Fields').item.json.allocation_type }}\",\n    \"Allocation_Account\": \"{{ $('Edit Fields').item.json.allocation_account }}\",\n    \"Tax_Reduction_Type\": \"{{ $('Edit Fields').item.json.tax_reduction_type }}\",\n    \"Purchase_Last_Unit_Price\": \"{{ $('Edit Fields').item.json.purchase_last_unit_price }}\",\n    \"Is_Specific_Inventory_Item\": \"{{ $('Edit Fields').item.json.is_specific_inventory_item }}\",\n    \"Has_Delete_Fixed_Unit_Price\": \"{{ $('Edit Fields').item.json.has_delete_fixed_unit_price }}\",\n    \"Has_Delete_Unit_Price\": \"{{ $('Edit Fields').item.json.has_delete_unit_price }}\",\n    \"Has_Delete_Discount\": \"{{ $('Edit Fields').item.json.has_delete_discount }}\",\n    \"Has_Delete_Unit_Convert\": \"{{ $('Edit Fields').item.json.has_delete_unit_convert }}\",\n    \"Has_Delete_Norm\": \"{{ $('Edit Fields').item.json.has_delete_norm }}\",\n    \"Has_Delete_Serial_Type\": \"{{ $('Edit Fields').item.json.has_delete_serial_type }}\",\n    \"Is_Edit_Multiple\": \"{{ $('Edit Fields').item.json.is_edit_multiple }}\",\n    \"CRM_ID\": \"{{ $('Edit Fields').item.json.crm_id }}\",\n    \"Is_Not_Sync_CRM\": \"{{ $('Edit Fields').item.json.is_not_sync_crm }}\",\n    \"Is_Update_Rebundant\": \"{{ $('Edit Fields').item.json.isUpdateRebundant }}\",\n    \"Is_Special_Inv\": \"{{ $('Edit Fields').item.json.is_special_inv }}\",\n    \"Is_From_Process_Balance\": \"{{ $('Edit Fields').item.json.isFromProcessBalance }}\",\n    \"Specific_Product_Type\": \"{{ $('Edit Fields').item.json.specific_product_type }}\",\n    \"Specific_Product_Type_Name\": \"{{ $('Edit Fields').item.json.specific_product_type_name }}\",\n    \"Is_Drug\": \"{{ $('Edit Fields').item.json.is_drug }}\",\n    \"Status_Sync_Medicine_National\": \"{{ $('Edit Fields').item.json.status_sync_medicine_national }}\",\n    \"Is_Sync_Corp\": \"{{ $('Edit Fields').item.json.is_sync_corp }}\",\n    \"Convert_Rate\": \"{{ $('Edit Fields').item.json.convert_rate }}\",\n    \"Is_Update_Main_Unit\": \"{{ $('Edit Fields').item.json.is_update_main_unit }}\",\n    \"Is_Image_Duplicate\": \"{{ $('Edit Fields').item.json.is_image_duplicate }}\",\n    \"Is_Temp_Master_Sync_ID\": \"{{ $('Edit Fields').item.json.is_temp_master_sync_id }}\",\n    \"Is_Save_From_Master_Data\": \"{{ $('Edit Fields').item.json.IsSaveFromMasterData }}\",\n    \"Is_Delete_Master_Data\": \"{{ $('Edit Fields').item.json.isDeleteMasterData }}\",\n    \"Is_Add_Master_Data\": \"{{ $('Edit Fields').item.json.isAddMasterData }}\",\n    \"Discount_Value\": \"{{ $('Edit Fields').item.json.discount_value }}\",\n    \"Is_Set_Discount\": \"{{ $('Edit Fields').item.json.is_set_discount }}\",\n    \"Index_Unit_Convert\": \"{{ $('Edit Fields').item.json.index_unit_convert }}\",\n    \"Excel_Row_Index\": \"{{ $('Edit Fields').item.json.excel_row_index }}\",\n    \"Is_Valid\": \"{{ $('Edit Fields').item.json.is_valid }}\",\n    \"Created_Date\": \"{{ $('Edit Fields').item.json.created_date }}\",\n    \"Created_By\": \"{{ $('Edit Fields').item.json.created_by }}\",\n    \"Modified_Date\": \"{{ $('Edit Fields').item.json.modified_date }}\",\n    \"Modified_By\": \"{{ $('Edit Fields').item.json.modified_by }}\",\n    \"Auto_RefNo\": \"{{ $('Edit Fields').item.json.auto_refno }}\",\n    \"Force_Update\": \"{{ $('Edit Fields').item.json.force_update }}\",\n    \"Is_Created_From_Old_DB\": \"{{ $('Edit Fields').item.json.is_created_from_old_db }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3680,
+        1424
+      ],
+      "id": "dc0a9151-1d04-4756-95e7-167d9577e2e8",
+      "name": "Creates records lark"
+    },
+    {
+      "parameters": {
+        "batchSize": 5,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1376,
+        -128
+      ],
+      "id": "108fe614-da58-4472-9698-470dd3cad6ab",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3232,
+        -128
+      ],
+      "id": "869f77fb-338f-422e-9cef-ff0d36b1ab17",
+      "name": "Wait2",
+      "webhookId": "2db19d3e-fb49-4ba8-a108-457a6f9edb23"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/COTcbZmCeantgSsAXxXlpAiUgwc/tables/tblbFhgFHoubThvZ/records/{{ $('Webhook').first().json.query.record_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Status_Get_Vị_Trí_Công_Việc\": \"SUCCESS\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1360,
+        208
+      ],
+      "id": "e25a2606-eabe-4506-9a60-d89ce6efff3b",
+      "name": "Update SUCCESS vào lark base"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "get_vị_tri_cong_viec",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -400,
+        240
+      ],
+      "id": "8eab6dbf-e463-4009-98ec-74cfa70850cc",
+      "name": "Webhook",
+      "webhookId": "a340f471-1ad1-4d9f-9d04-73f701163088"
+    }
+  ],
+  "pinData": {
+    "When clicking ‘Test workflow’": [
+      {
+        "json": {}
+      }
+    ],
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "x-forwarded-host": "n8n.hebekery.vn",
+            "x-forwarded-server": "n8n.hebekery.vn",
+            "x-real-ip": "3.225.193.57",
+            "x-forwarded-for": "3.225.193.57",
+            "x-forwarded-proto": "https",
+            "host": "n8n.hebekery.vn",
+            "connection": "Upgrade",
+            "content-length": "2",
+            "content-type": "application/json",
+            "x-base-automation-ua": "automation/1.0.0",
+            "x-tt-logid": "02176198261820500000000000000000000ffff7d54a796fd3c3f",
+            "x-tt-env": "prod",
+            "accept-encoding": "gzip",
+            "user-agent": "Go-http-client/2.0"
+          },
+          "params": {},
+          "query": {
+            "record_id": "recv1gzEl8d0pN"
+          },
+          "body": {},
+          "webhookUrl": "https://n8n.hebekery.vn/webhook/get_vị_tri_cong_viec",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-29T13:13:10.661Z",
+      "updatedAt": "2025-10-29T13:13:10.661Z",
+      "role": "workflow:owner",
+      "workflowId": "1vzVfiJcN5tTFE6M",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-01T12:32:27.000Z",
+  "versionId": "aba24aa3-fa1e-4222-83f6-2e7f6bc2213a"
+}
