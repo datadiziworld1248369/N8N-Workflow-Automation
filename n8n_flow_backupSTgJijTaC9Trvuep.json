@@ -1,0 +1,1729 @@
+{
+  "active": false,
+  "connections": {
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "search a record1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Creates records lark": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "search a record1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Acess_token1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create token1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acess_token1": {
+      "main": [
+        [
+          {
+            "node": "Create token1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize data1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Normalize data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request5": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Acess_token1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-30T03:39:25.984Z",
+  "id": "STgJijTaC9Trvuep",
+  "isArchived": false,
+  "meta": null,
+  "name": "Amis_Dim_product",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8c565e09-3503-404c-b7e8-fe7a0bdc865b",
+              "name": "dictionary_type",
+              "value": "={{ $json.dictionary_type }}",
+              "type": "number"
+            },
+            {
+              "id": "33264ac7-b6cd-47c8-9446-26f0a5b3fde9",
+              "name": "inventory_item_id",
+              "value": "={{ $json.inventory_item_id }}",
+              "type": "string"
+            },
+            {
+              "id": "89067045-d43c-4cae-b964-83417882b411",
+              "name": "inventory_item_name",
+              "value": "={{ $json.inventory_item_name }}",
+              "type": "string"
+            },
+            {
+              "id": "c94b7f68-fae9-4f49-9cad-c84c8e468340",
+              "name": "inventory_item_code",
+              "value": "={{ $json.inventory_item_code }}",
+              "type": "string"
+            },
+            {
+              "id": "579f50f2-2b19-4848-a684-68dc8f74743f",
+              "name": "inventory_item_type",
+              "value": "={{ $json.inventory_item_type }}",
+              "type": "number"
+            },
+            {
+              "id": "e9cf9f04-e1d2-416c-ba05-da8ecfafd6c8",
+              "name": "unit_id",
+              "value": "={{ $json.unit_id }}",
+              "type": "string"
+            },
+            {
+              "id": "b50e126f-ee00-462f-9059-b60b935c249b",
+              "name": "minimum_stock",
+              "value": "={{ $json.minimum_stock }}",
+              "type": "number"
+            },
+            {
+              "id": "262ec7a8-9486-46a3-b244-2f03eaa2d6cb",
+              "name": "branch_id",
+              "value": "={{ $json.branch_id }}",
+              "type": "string"
+            },
+            {
+              "id": "486a121a-959b-4f9e-aa23-c683f377db16",
+              "name": "discount_type",
+              "value": "={{ $json.discount_type }}",
+              "type": "number"
+            },
+            {
+              "id": "01bda9ca-7ebd-4600-bf65-0c5c0003d609",
+              "name": "inventory_item_cost_method",
+              "value": "={{ $json.inventory_item_cost_method }}",
+              "type": "number"
+            },
+            {
+              "id": "107a7cc7-7d45-4274-a648-072e0f9ee3bf",
+              "name": "is_unit_price_after_tax",
+              "value": "={{ $json.is_unit_price_after_tax }}",
+              "type": "boolean"
+            },
+            {
+              "id": "6688ede7-dd0f-4158-ba71-73a538b1e52d",
+              "name": "is_system",
+              "value": "={{ $json.is_system }}",
+              "type": "boolean"
+            },
+            {
+              "id": "e65cab88-f91d-4d05-b7d5-4d1004a336e7",
+              "name": "inactive",
+              "value": "={{ $json.inactive }}",
+              "type": "boolean"
+            },
+            {
+              "id": "8b07cba2-7b6f-4e73-a520-548a9819a163",
+              "name": "is_follow_serial_number",
+              "value": "={{ $json.is_follow_serial_number }}",
+              "type": "boolean"
+            },
+            {
+              "id": "75123ee7-7e9b-4238-bce7-0501f067236c",
+              "name": "is_allow_duplicate_serial_number",
+              "value": "={{ $json.is_allow_duplicate_serial_number }}",
+              "type": "boolean"
+            },
+            {
+              "id": "b8494ef2-fdb2-4ff1-907a-7e49ee3e8783",
+              "name": "purchase_discount_rate",
+              "value": "={{ $json.purchase_discount_rate }}",
+              "type": "number"
+            },
+            {
+              "id": "eaa70d67-29cb-43d5-9ae3-78846a570118",
+              "name": "unit_price",
+              "value": "={{ $json.unit_price }}",
+              "type": "number"
+            },
+            {
+              "id": "8875f210-b38b-43b9-90e0-a6d275b17c5b",
+              "name": "unit_price",
+              "value": "={{ $json.unit_price }}",
+              "type": "number"
+            },
+            {
+              "id": "4bcba4c0-cc88-4746-ad15-75b6fddc0589",
+              "name": "sale_price1",
+              "value": "={{ $json.sale_price1 }}",
+              "type": "number"
+            },
+            {
+              "id": "f1a82c8d-f97f-4807-8a34-0f0db8dc2386",
+              "name": "sale_price2",
+              "value": "={{ $json.sale_price2 }}",
+              "type": "number"
+            },
+            {
+              "id": "bb1663d8-4e68-433f-98f6-4c3e718f8f51",
+              "name": "sale_price3",
+              "value": "={{ $json.sale_price3 }}",
+              "type": "number"
+            },
+            {
+              "id": "51125aec-5f71-40f2-ae3d-b2657978f775",
+              "name": "fixed_sale_price",
+              "value": "={{ $json.fixed_sale_price }}",
+              "type": "number"
+            },
+            {
+              "id": "0a29f464-6346-48c1-9ef3-a3f07520495a",
+              "name": "import_tax_rate",
+              "value": "={{ $json.import_tax_rate }}",
+              "type": "number"
+            },
+            {
+              "id": "256c8a8d-21bf-4a8a-92e6-8d1f2d9ca3d2",
+              "name": "export_tax_rate",
+              "value": "={{ $json.export_tax_rate }}",
+              "type": "number"
+            },
+            {
+              "id": "63a57a89-2711-42da-b3c2-6244348327f6",
+              "name": "fixed_unit_price",
+              "value": "={{ $json.fixed_unit_price }}",
+              "type": "number"
+            },
+            {
+              "id": "868ddb29-7162-4364-8cf9-5edfdee95e68",
+              "name": "discount_account",
+              "value": "={{ $json.discount_account }}",
+              "type": "string"
+            },
+            {
+              "id": "7bfc5065-5170-4de9-ac6f-10d486ee5c76",
+              "name": "sale_off_account",
+              "value": "={{ $json.sale_off_account }}",
+              "type": "string"
+            },
+            {
+              "id": "9e9ce4b1-788b-4dfd-aec5-1d454e225a65",
+              "name": "return_account",
+              "value": "={{ $json.return_account }}",
+              "type": "string"
+            },
+            {
+              "id": "c8ea1d0e-5c8f-40f6-b069-c6ad3ea5d249",
+              "name": "purchase_description",
+              "value": "={{ $json.purchase_description }}",
+              "type": "string"
+            },
+            {
+              "id": "42a14888-6f96-4a8a-9742-1fcd14c12b0a",
+              "name": "sale_description",
+              "value": "={{ $json.sale_description }}",
+              "type": "string"
+            },
+            {
+              "id": "50dd7d90-56da-4d72-9306-18fe0d837f61",
+              "name": "cogs_account",
+              "value": "={{ $json.cogs_account }}",
+              "type": "string"
+            },
+            {
+              "id": "e7c4985b-ff44-467d-8986-649af4ce9324",
+              "name": "sale_account",
+              "value": "={{ $json.sale_account }}",
+              "type": "string"
+            },
+            {
+              "id": "5526f31d-d0bf-4ad9-9f33-d9b7e751ba25",
+              "name": "unit_list.unit_id",
+              "value": "={{ $json.unit_list[0].unit_id }}",
+              "type": "string"
+            },
+            {
+              "id": "31470564-f976-4175-8506-54e9c7dbbe12",
+              "name": "unit_list.unit_name",
+              "value": "={{ $json.unit_list[0].unit_name }}",
+              "type": "string"
+            },
+            {
+              "id": "06b35552-387b-4fd2-93da-4b0a3f7f87fb",
+              "name": "unit_list[0].exchange_rate_operator",
+              "value": "={{ $json.unit_list[0].exchange_rate_operator }}",
+              "type": "string"
+            },
+            {
+              "id": "adce8a59-5a0e-461b-a418-f65760b018e0",
+              "name": "unit_list[0].convert_rate",
+              "value": "={{ $json.unit_list[0].convert_rate }}",
+              "type": "number"
+            },
+            {
+              "id": "a764af7f-f910-4d2b-ba7d-edaf2b2c8952",
+              "name": "unit_list[0].sort_order",
+              "value": "={{ $json.unit_list[0].sort_order }}",
+              "type": "number"
+            },
+            {
+              "id": "24737ff2-1adb-4a8d-93ff-a57c9f5d8bd4",
+              "name": "unit_list[0].unit_price",
+              "value": "={{ $json.unit_list[0].unit_price }}",
+              "type": "number"
+            },
+            {
+              "id": "536c49a3-9d04-42f7-a63a-04e1a6282805",
+              "name": "unit_list[0].sale_price1",
+              "value": "={{ $json.unit_list[0].sale_price1 }}",
+              "type": "number"
+            },
+            {
+              "id": "375dc6bf-8b0e-4592-9a94-45a7988b07e9",
+              "name": "unit_list[0].sale_price2",
+              "value": "={{ $json.unit_list[0].sale_price2 }}",
+              "type": "number"
+            },
+            {
+              "id": "8bbe5e0b-f4bc-4190-9b1d-1ba96b3de9ce",
+              "name": "unit_list[0].sale_price3",
+              "value": "={{ $json.unit_list[0].sale_price3 }}",
+              "type": "number"
+            },
+            {
+              "id": "5d4b0b7e-7b3d-413a-9c06-082f7a12cd77",
+              "name": "unit_list[0].fixed_sale_price",
+              "value": "={{ $json.unit_list[0].fixed_sale_price }}",
+              "type": "number"
+            },
+            {
+              "id": "64003f84-c0fe-45b3-a2bd-5503ce21d4c2",
+              "name": "unit_name",
+              "value": "={{ $json.unit_name }}",
+              "type": "string"
+            },
+            {
+              "id": "b98e61e3-abec-4ec0-ae6e-6531b298a0a9",
+              "name": "reftype",
+              "value": "={{ $json.reftype }}",
+              "type": "number"
+            },
+            {
+              "id": "26718f13-a230-40f7-afa3-2f17dbc0c680",
+              "name": "purchase_last_unit_price_list[0].currency_id",
+              "value": "={{ $json.purchase_last_unit_price_list[0].currency_id }}",
+              "type": "string"
+            },
+            {
+              "id": "c0be109f-6cc0-43cd-9d00-c6166d377e51",
+              "name": "purchase_last_unit_price_list[0].unit_id",
+              "value": "={{ $json.purchase_last_unit_price_list[0].unit_id }}",
+              "type": "string"
+            },
+            {
+              "id": "3f5d08a2-8821-4fae-be80-5ab2da809a75",
+              "name": "purchase_last_unit_price_list[0].unit_name",
+              "value": "={{ $json.purchase_last_unit_price_list[0].unit_name }}",
+              "type": "string"
+            },
+            {
+              "id": "e0cb7f9a-b22c-4cb4-a6f1-e52f7d0db2d1",
+              "name": "purchase_last_unit_price_list[0].unit_price",
+              "value": "={{ $json.purchase_last_unit_price_list[0].unit_price }}",
+              "type": "string"
+            },
+            {
+              "id": "3fdc1470-2112-49aa-9732-d4d691eb54ef",
+              "name": "quantityBarCode",
+              "value": "={{ $json.quantityBarCode }}",
+              "type": "number"
+            },
+            {
+              "id": "b7fcac37-cf31-405d-853c-e22fee4dae00",
+              "name": "allocation_type",
+              "value": "={{ $json.allocation_type }}",
+              "type": "number"
+            },
+            {
+              "id": "5c316421-2423-48e1-91bf-7a98ab976249",
+              "name": "allocation_account",
+              "value": "={{ $json.allocation_account }}",
+              "type": "string"
+            },
+            {
+              "id": "9b66921d-2a36-4376-8c78-2d7084b126b6",
+              "name": "tax_reduction_type",
+              "value": "={{ $json.tax_reduction_type }}",
+              "type": "number"
+            },
+            {
+              "id": "4f6ecd24-9511-4926-be8f-c2275eb24ccf",
+              "name": "purchase_last_unit_price",
+              "value": "={{ $json.purchase_last_unit_price }}",
+              "type": "number"
+            },
+            {
+              "id": "67acd755-1b67-4d8e-adad-2b573e2bfd73",
+              "name": "is_specific_inventory_item",
+              "value": "={{ $json.is_specific_inventory_item }}",
+              "type": "boolean"
+            },
+            {
+              "id": "f9cc4dc3-226a-40c2-a4f2-005d3b1e8243",
+              "name": "has_delete_fixed_unit_price",
+              "value": "={{ $json.has_delete_fixed_unit_price }}",
+              "type": "boolean"
+            },
+            {
+              "id": "3fb18ed3-d768-49b5-9e2e-4bb7f56a0f33",
+              "name": "has_delete_unit_price",
+              "value": "={{ $json.has_delete_unit_price }}",
+              "type": "boolean"
+            },
+            {
+              "id": "42425d1d-6920-436e-8f13-a82bc4527e13",
+              "name": "has_delete_discount",
+              "value": "={{ $json.has_delete_discount }}",
+              "type": "boolean"
+            },
+            {
+              "id": "bd385722-f1e0-4d27-a514-985457840f1d",
+              "name": "has_delete_unit_convert",
+              "value": "={{ $json.has_delete_unit_convert }}",
+              "type": "boolean"
+            },
+            {
+              "id": "5f8d12a5-ce14-4e6f-bba4-d5b233ccf838",
+              "name": "has_delete_norm",
+              "value": "={{ $json.has_delete_norm }}",
+              "type": "boolean"
+            },
+            {
+              "id": "582b3fcb-efce-4cd1-b7b8-ad8318bda075",
+              "name": "has_delete_serial_type",
+              "value": "={{ $json.has_delete_serial_type }}",
+              "type": "boolean"
+            },
+            {
+              "id": "d00e76f0-3b76-45dc-acff-22272e87f40f",
+              "name": "is_edit_multiple",
+              "value": "={{ $json.is_edit_multiple }}",
+              "type": "boolean"
+            },
+            {
+              "id": "9c64358e-36e1-4ecb-b112-7b3901bfedcf",
+              "name": "crm_id",
+              "value": "={{ $json.crm_id }}",
+              "type": "string"
+            },
+            {
+              "id": "ee7b3934-c184-4899-a0e9-31505dd06407",
+              "name": "is_not_sync_crm",
+              "value": "={{ $json.is_not_sync_crm }}",
+              "type": "boolean"
+            },
+            {
+              "id": "43a7a278-a49b-47cd-ae9d-1f2867d64d70",
+              "name": "isUpdateRebundant",
+              "value": "={{ $json.isUpdateRebundant }}",
+              "type": "boolean"
+            },
+            {
+              "id": "4975fa96-8eb9-41ea-a02e-1a2ee48e83c0",
+              "name": "is_special_inv",
+              "value": "={{ $json.is_special_inv }}",
+              "type": "boolean"
+            },
+            {
+              "id": "23e7b301-2b2e-4009-8639-0f6c49457ffc",
+              "name": "isFromProcessBalance",
+              "value": "={{ $json.isFromProcessBalance }}",
+              "type": "boolean"
+            },
+            {
+              "id": "0b1832cd-28c7-481e-9685-d88529d50bb3",
+              "name": "specific_product_type",
+              "value": "={{ $json.specific_product_type }}",
+              "type": "number"
+            },
+            {
+              "id": "86ed50d3-7667-4280-8f18-21e455991604",
+              "name": "specific_product_type_name",
+              "value": "={{ $json.specific_product_type_name }}",
+              "type": "number"
+            },
+            {
+              "id": "658ad756-0cb2-42fd-b4cf-3e26482f4461",
+              "name": "is_drug",
+              "value": "={{ $json.is_drug }}",
+              "type": "boolean"
+            },
+            {
+              "id": "2ff41a59-774c-48fe-93f0-89a5ced5bf9c",
+              "name": "status_sync_medicine_national",
+              "value": "={{ $json.status_sync_medicine_national }}",
+              "type": "number"
+            },
+            {
+              "id": "03037ff1-7393-4d19-be8c-9225c9a9ca2c",
+              "name": "is_sync_corp",
+              "value": "={{ $json.is_sync_corp }}",
+              "type": "boolean"
+            },
+            {
+              "id": "8afd2d4d-381e-4934-aa9e-bdad4135cb3a",
+              "name": "convert_rate",
+              "value": "={{ $json.convert_rate }}",
+              "type": "number"
+            },
+            {
+              "id": "9f9b5ddd-f507-4679-b8b0-2b2a453a8b94",
+              "name": "is_update_main_unit",
+              "value": "={{ $json.is_update_main_unit }}",
+              "type": "boolean"
+            },
+            {
+              "id": "302de901-7b8a-4f34-b220-f5cc8daef773",
+              "name": "is_image_duplicate",
+              "value": "={{ $json.is_image_duplicate }}",
+              "type": "boolean"
+            },
+            {
+              "id": "be5e81cf-9aaa-4158-9b1f-1fa3049cbe44",
+              "name": "is_temp_master_sync_id",
+              "value": "={{ $json.is_temp_master_sync_id }}",
+              "type": "boolean"
+            },
+            {
+              "id": "f9fd6192-385d-4932-b1ed-ab86c4135c50",
+              "name": "IsSaveFromMasterData",
+              "value": "={{ $json.IsSaveFromMasterData }}",
+              "type": "boolean"
+            },
+            {
+              "id": "2489d0ac-4958-44d8-b8b0-229547fbfeb5",
+              "name": "isDeleteMasterData",
+              "value": "={{ $json.isDeleteMasterData }}",
+              "type": "boolean"
+            },
+            {
+              "id": "173d7b3d-2f54-4485-a01e-ce074118544f",
+              "name": "isAddMasterData",
+              "value": "={{ $json.isAddMasterData }}",
+              "type": "boolean"
+            },
+            {
+              "id": "e53843ae-4aef-40d1-b070-5fd20462d463",
+              "name": "discount_value",
+              "value": "={{ $json.discount_value }}",
+              "type": "number"
+            },
+            {
+              "id": "63c44c99-49bb-4e39-af69-9a3afbdaccee",
+              "name": "is_set_discount",
+              "value": "={{ $json.is_set_discount }}",
+              "type": "boolean"
+            },
+            {
+              "id": "8d43a996-993b-44aa-b906-42cc070f555e",
+              "name": "index_unit_convert",
+              "value": "={{ $json.index_unit_convert }}",
+              "type": "number"
+            },
+            {
+              "id": "17f811b5-805b-4e27-82cd-cfe4e354858d",
+              "name": "excel_row_index",
+              "value": "={{ $json.excel_row_index }}",
+              "type": "number"
+            },
+            {
+              "id": "75d09061-3c9a-4b73-9edf-e64e73d7d058",
+              "name": "is_valid",
+              "value": "={{ $json.is_valid }}",
+              "type": "boolean"
+            },
+            {
+              "id": "462a2adb-32af-4f11-882a-05596374dc7c",
+              "name": "created_date",
+              "value": "={{ $json.created_date }}",
+              "type": "string"
+            },
+            {
+              "id": "fb962585-8198-4796-b440-9c0f8eff18d3",
+              "name": "created_by",
+              "value": "={{ $json.created_by }}",
+              "type": "string"
+            },
+            {
+              "id": "2f0d46e3-e7a0-43cb-9567-98c51a2cb2a0",
+              "name": "modified_date",
+              "value": "={{ $json.modified_date }}",
+              "type": "string"
+            },
+            {
+              "id": "6f54eef3-e07b-44d6-98dd-e119e3ba46f7",
+              "name": "created_by",
+              "value": "={{ $json.created_by }}",
+              "type": "string"
+            },
+            {
+              "id": "236357f6-1cbd-41b7-a840-8dfafcb761ac",
+              "name": "modified_date",
+              "value": "={{ $json.modified_date }}",
+              "type": "string"
+            },
+            {
+              "id": "7de14202-0c15-4d6f-95be-d900a93246a7",
+              "name": "modified_by",
+              "value": "={{ $json.modified_by }}",
+              "type": "string"
+            },
+            {
+              "id": "dea14f57-609d-417f-81d6-baee46d2d828",
+              "name": "auto_refno",
+              "value": "={{ $json.auto_refno }}",
+              "type": "boolean"
+            },
+            {
+              "id": "12c77f87-2c9f-4399-9d6f-1ba1e15ac06e",
+              "name": "force_update",
+              "value": "={{ $json.force_update }}",
+              "type": "boolean"
+            },
+            {
+              "id": "0f2f6cf3-f7de-4097-ab0f-173a4bfff42b",
+              "name": "is_created_from_old_db",
+              "value": "={{ $json.is_created_from_old_db }}",
+              "type": "boolean"
+            },
+            {
+              "id": "9c5ec8bc-6f32-476c-a7a6-82a2d8496e0c",
+              "name": "tenant_access_token",
+              "value": "={{ $json.tenant_access_token }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4432,
+        640
+      ],
+      "id": "2c15e83e-6a1d-4599-ba6a-d74671cebd54",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy toàn bộ dữ liệu từ các item trước\nconst data = items.map(item => item.json);\n\n// Nếu data là mảng → dùng luôn\n// Nếu không phải mảng → thử lấy ra key đầu tiên chứa mảng\nconst arr = Array.isArray(data)\n  ? data\n  : Object.values(data).find(v => Array.isArray(v)) || [data]; // fallback nếu chỉ có 1 object\n\n// Bắt đầu xử lý từng object\nconst result = arr.map(obj => {\n  const newObj = { ...obj };\n  \n  // Danh sách các field cần parse (vì chúng có thể chứa chuỗi JSON)\n  const jsonFields = ['unit_list', 'purchase_last_unit_price_list'];\n\n  jsonFields.forEach(field => {\n    const val = obj[field];\n    // Nếu là string thì thử parse, nếu không thì giữ nguyên\n    if (typeof val === 'string') {\n      try {\n        newObj[field] = JSON.parse(val);\n      } catch (e) {\n        newObj[field] = val; // giữ nguyên nếu lỗi parse\n      }\n    } else {\n      newObj[field] = val; // giữ nguyên object\n    }\n  });\n\n  return newObj;\n});\n\n// Trả kết quả cho n8n\nreturn result.map(r => ({ json: r }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4224,
+        640
+      ],
+      "id": "b81e0ef7-42f6-4222-ba12-e7b6d3f0be1b",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        5296,
+        1504
+      ],
+      "id": "5936d72b-489d-444a-ad8b-7973ce13641b",
+      "name": "Wait3",
+      "webhookId": "b796dc21-ec6a-4e81-8aaf-44f339cd5b2c"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "87e38320-bec7-4bae-9c15-392cba496219",
+              "leftValue": "={{ $json.data.total }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        5712,
+        752
+      ],
+      "id": "637f1cf9-91bf-44f7-92a2-2d590c660cc2",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/LCwabUTe7aEBoZsJltslE89IgYc/tables/tblmYz7dY1el9qvH/records/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "page_size",
+              "value": "500"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"filter\": {\n    \"conjunction\": \"and\",\n    \"conditions\": [\n      {\n        \"field_name\": \"Inventory_Item_Code\",\n        \"operator\": \"is\",\n        \"value\": [\n          \"{{ $json.inventory_item_code }}\"\n        ]\n      }\n    ]\n  },\n  \"automatic_fields\": false\n}",
+        "options": {
+          "pagination": {
+            "pagination": {
+              "parameters": {
+                "parameters": [
+                  {
+                    "name": "page_token",
+                    "value": "={{ $response ? $response.body.data.page_token : '' }}"
+                  }
+                ]
+              },
+              "paginationCompleteWhen": "other",
+              "completeExpression": "={{ !$response.body.data.has_more }}"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5376,
+        704
+      ],
+      "id": "b330f110-f973-4d3a-bd12-20d55a094a6b",
+      "name": "search a record1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/LCwabUTe7aEBoZsJltslE89IgYc/tables/tblmYz7dY1el9qvH/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $('Edit Fields').item.json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Dictionary_Type\": \"{{ $('Edit Fields').item.json.dictionary_type }}\",\n    \"Inventory_Item_ID\": \"{{ $('Edit Fields').item.json.inventory_item_id }}\",\n    \"Inventory_Item_Name\": \"{{ $('Edit Fields').item.json.inventory_item_name }}\",\n    \"Inventory_Item_Code\": \"{{ $('Edit Fields').item.json.inventory_item_code }}\",\n    \"Inventory_Item_Type\": \"{{ $('Edit Fields').item.json.inventory_item_type }}\",\n    \"Unit_ID\": \"{{ $('Edit Fields').item.json.unit_id }}\",\n    \"Minimum_Stock\": \"{{ $('Edit Fields').item.json.minimum_stock }}\",\n    \"Branch_ID\": \"{{ $('Edit Fields').item.json.branch_id }}\",\n    \"Discount_Type\": \"{{ $('Edit Fields').item.json.discount_type }}\",\n    \"Inventory_Item_Cost_Method\": \"{{ $('Edit Fields').item.json.inventory_item_cost_method }}\",\n    \"Is_Unit_Price_After_Tax\": \"{{ $('Edit Fields').item.json.is_unit_price_after_tax }}\",\n    \"Is_System\": \"{{ $('Edit Fields').item.json.is_system }}\",\n    \"Inactive\": \"{{ $('Edit Fields').item.json.inactive }}\",\n    \"Is_Follow_Serial_Number\": \"{{ $('Edit Fields').item.json.is_follow_serial_number }}\",\n    \"Is_Allow_Duplicate_Serial_Number\": \"{{ $('Edit Fields').item.json.is_allow_duplicate_serial_number }}\",\n    \"Purchase_Discount_Rate\": \"{{ $('Edit Fields').item.json.purchase_discount_rate }}\",\n    \"Unit_Price\": \"{{ $('Edit Fields').item.json.unit_price }}\",\n    \"Sale_Price1\": \"{{ $('Edit Fields').item.json.sale_price1 }}\",\n    \"Sale_Price2\": \"{{ $('Edit Fields').item.json.sale_price2 }}\",\n    \"Sale_Price3\": \"{{ $('Edit Fields').item.json.sale_price3 }}\",\n    \"Fixed_Sale_Price\": \"{{ $('Edit Fields').item.json.fixed_sale_price }}\",\n    \"Import_Tax_Rate\": \"{{ $('Edit Fields').item.json.import_tax_rate }}\",\n    \"Export_Tax_Rate\": \"{{ $('Edit Fields').item.json.export_tax_rate }}\",\n    \"Fixed_Unit_Price\": \"{{ $('Edit Fields').item.json.fixed_unit_price }}\",\n    \"Discount_Account\": \"{{ $('Edit Fields').item.json.discount_account }}\",\n    \"Sale_Off_Account\": \"{{ $('Edit Fields').item.json.sale_off_account }}\",\n    \"Return_Account\": \"{{ $('Edit Fields').item.json.return_account }}\",\n    \"Purchase_Description\": \"{{ $('Edit Fields').item.json.purchase_description }}\",\n    \"Sale_Description\": \"{{ $('Edit Fields').item.json.sale_description }}\",\n    \"COGS_Account\": \"{{ $('Edit Fields').item.json.cogs_account }}\",\n    \"Sale_Account\": \"{{ $('Edit Fields').item.json.sale_account }}\",\n    \"Unit_List\": \"{{ $('Edit Fields').item.json.unit_list }}\",\n    \"Unit_Name\": \"{{ $('Edit Fields').item.json.unit_name }}\",\n    \"RefType\": \"{{ $('Edit Fields').item.json.reftype }}\",\n    \"Purchase_Last_Unit_Price_List\": \"{{ $('Edit Fields').item.json.purchase_last_unit_price_list }}\",\n    \"Quantity_BarCode\": \"{{ $('Edit Fields').item.json.quantityBarCode }}\",\n    \"Allocation_Type\": \"{{ $('Edit Fields').item.json.allocation_type }}\",\n    \"Allocation_Account\": \"{{ $('Edit Fields').item.json.allocation_account }}\",\n    \"Tax_Reduction_Type\": \"{{ $('Edit Fields').item.json.tax_reduction_type }}\",\n    \"Purchase_Last_Unit_Price\": \"{{ $('Edit Fields').item.json.purchase_last_unit_price }}\",\n    \"Is_Specific_Inventory_Item\": \"{{ $('Edit Fields').item.json.is_specific_inventory_item }}\",\n    \"Has_Delete_Fixed_Unit_Price\": \"{{ $('Edit Fields').item.json.has_delete_fixed_unit_price }}\",\n    \"Has_Delete_Unit_Price\": \"{{ $('Edit Fields').item.json.has_delete_unit_price }}\",\n    \"Has_Delete_Discount\": \"{{ $('Edit Fields').item.json.has_delete_discount }}\",\n    \"Has_Delete_Unit_Convert\": \"{{ $('Edit Fields').item.json.has_delete_unit_convert }}\",\n    \"Has_Delete_Norm\": \"{{ $('Edit Fields').item.json.has_delete_norm }}\",\n    \"Has_Delete_Serial_Type\": \"{{ $('Edit Fields').item.json.has_delete_serial_type }}\",\n    \"Is_Edit_Multiple\": \"{{ $('Edit Fields').item.json.is_edit_multiple }}\",\n    \"CRM_ID\": \"{{ $('Edit Fields').item.json.crm_id }}\",\n    \"Is_Not_Sync_CRM\": \"{{ $('Edit Fields').item.json.is_not_sync_crm }}\",\n    \"Is_Update_Rebundant\": \"{{ $('Edit Fields').item.json.isUpdateRebundant }}\",\n    \"Is_Special_Inv\": \"{{ $('Edit Fields').item.json.is_special_inv }}\",\n    \"Is_From_Process_Balance\": \"{{ $('Edit Fields').item.json.isFromProcessBalance }}\",\n    \"Specific_Product_Type\": \"{{ $('Edit Fields').item.json.specific_product_type }}\",\n    \"Specific_Product_Type_Name\": \"{{ $('Edit Fields').item.json.specific_product_type_name }}\",\n    \"Is_Drug\": \"{{ $('Edit Fields').item.json.is_drug }}\",\n    \"Status_Sync_Medicine_National\": \"{{ $('Edit Fields').item.json.status_sync_medicine_national }}\",\n    \"Is_Sync_Corp\": \"{{ $('Edit Fields').item.json.is_sync_corp }}\",\n    \"Convert_Rate\": \"{{ $('Edit Fields').item.json.convert_rate }}\",\n    \"Is_Update_Main_Unit\": \"{{ $('Edit Fields').item.json.is_update_main_unit }}\",\n    \"Is_Image_Duplicate\": \"{{ $('Edit Fields').item.json.is_image_duplicate }}\",\n    \"Is_Temp_Master_Sync_ID\": \"{{ $('Edit Fields').item.json.is_temp_master_sync_id }}\",\n    \"Is_Save_From_Master_Data\": \"{{ $('Edit Fields').item.json.IsSaveFromMasterData }}\",\n    \"Is_Delete_Master_Data\": \"{{ $('Edit Fields').item.json.isDeleteMasterData }}\",\n    \"Is_Add_Master_Data\": \"{{ $('Edit Fields').item.json.isAddMasterData }}\",\n    \"Discount_Value\": \"{{ $('Edit Fields').item.json.discount_value }}\",\n    \"Is_Set_Discount\": \"{{ $('Edit Fields').item.json.is_set_discount }}\",\n    \"Index_Unit_Convert\": \"{{ $('Edit Fields').item.json.index_unit_convert }}\",\n    \"Excel_Row_Index\": \"{{ $('Edit Fields').item.json.excel_row_index }}\",\n    \"Is_Valid\": \"{{ $('Edit Fields').item.json.is_valid }}\",\n    \"Created_Date\": \"{{ $('Edit Fields').item.json.created_date }}\",\n    \"Created_By\": \"{{ $('Edit Fields').item.json.created_by }}\",\n    \"Modified_Date\": \"{{ $('Edit Fields').item.json.modified_date }}\",\n    \"Modified_By\": \"{{ $('Edit Fields').item.json.modified_by }}\",\n    \"Auto_RefNo\": \"{{ $('Edit Fields').item.json.auto_refno }}\",\n    \"Force_Update\": \"{{ $('Edit Fields').item.json.force_update }}\",\n    \"Is_Created_From_Old_DB\": \"{{ $('Edit Fields').item.json.is_created_from_old_db }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        6128,
+        736
+      ],
+      "id": "130965ce-02c3-48ed-90b3-f62eaa37928e",
+      "name": "Creates records lark"
+    },
+    {
+      "parameters": {
+        "batchSize": 5,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        4816,
+        608
+      ],
+      "id": "19dafb18-11e4-48c3-a662-2f643d78d232",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        6544,
+        736
+      ],
+      "id": "5e85691f-1a98-4381-860f-3752929b37ed",
+      "name": "Wait2",
+      "webhookId": "2db19d3e-fb49-4ba8-a108-457a6f9edb23"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1808,
+        624
+      ],
+      "id": "35f927be-1e4f-44d4-891b-deeeb053f20b",
+      "name": "Schedule Trigger1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_scret }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2656,
+        640
+      ],
+      "id": "64462c94-31f6-4306-b26f-14c734cdeb86",
+      "name": "Create token1"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n\"token\": \n\"S+HM8tRVhUohuitqevZW87wmPkWYoU8qSwozPbFhi10VVv2gDcFI+8nBuyk8SJagFzPO1DNMiWevRxo90xCTbneoa34LvOxA/eZRsu2zVHM99xrMXVyenRNtJBqOROdrfqFet9wXN632DmyCOeaEyhQC8S7Z1QP+qF+UtipQ9FlBCP+obdzdEQlcNzOgoDjXwwOrMhF27g43iG3q3L3xVTxZKgf9a/MG5BBNdM4T8G0y/PerfNP6IUc6rKECz1UgXV90GEL+zvuThnU122VCWg==\",\n\"app_id\": \n\"cli_a72ffec19c78d02f\",\n\"app_scret\": \n\"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2416,
+        640
+      ],
+      "id": "510a588e-ffd0-41f4-bbc3-fe5c99fd5874",
+      "name": "Acess_token1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Chạy cho từng item\nreturn items.map(item => {\n  const rawData = item.json[\"Data\"]; // Lấy chuỗi JSON từ trường Data\n  const parsed = JSON.parse(rawData); // Parse chuỗi JSON thành object\n\n  return {\n    json: parsed // Trả về object đã parse\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3024,
+        640
+      ],
+      "id": "d0012efa-3f6e-48f6-960b-1b2a42ec52cc",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "Data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        3552,
+        640
+      ],
+      "id": "682d3fa6-a723-4e7a-8ea5-c03d78f631b3",
+      "name": "Split Out1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "eb15df41-c769-4bb3-8806-ad7c6fed1888",
+              "name": "dictionary_type",
+              "value": "={{ $json.dictionary_type }}",
+              "type": "number"
+            },
+            {
+              "id": "861d2e55-63ae-4b4a-8261-a010bf1c92be",
+              "name": "inventory_item_id",
+              "value": "={{ $json.inventory_item_id }}",
+              "type": "string"
+            },
+            {
+              "id": "a533a8de-a862-4fb9-9fb8-185546da657b",
+              "name": "inventory_item_name",
+              "value": "={{ $json.inventory_item_name }}",
+              "type": "string"
+            },
+            {
+              "id": "51a1b6b6-fea1-4866-93b8-8c7df63870e3",
+              "name": "inventory_item_code",
+              "value": "={{ $json.inventory_item_code }}",
+              "type": "string"
+            },
+            {
+              "id": "17414146-f699-4997-a57d-ac9d9e722cf5",
+              "name": "inventory_item_type",
+              "value": "={{ $json.inventory_item_type }}",
+              "type": "number"
+            },
+            {
+              "id": "3b9c13e5-1aa8-4aa6-b182-ce8dc40c0911",
+              "name": "=unit_id",
+              "value": "={{ $json.unit_id }}",
+              "type": "string"
+            },
+            {
+              "id": "43eaa691-9049-4cf6-b9e2-4b14038e71e7",
+              "name": "minimum_stock",
+              "value": "={{ $json.minimum_stock }}",
+              "type": "number"
+            },
+            {
+              "id": "420511cf-df05-47c3-b417-6ada8c4554dd",
+              "name": "branch_id",
+              "value": "={{ $json.branch_id }}",
+              "type": "string"
+            },
+            {
+              "id": "aec9b49b-ed09-435d-ab88-ac466f281fcd",
+              "name": "discount_type",
+              "value": "={{ $json.discount_type }}",
+              "type": "number"
+            },
+            {
+              "id": "b78b6457-1d16-470d-bf28-7e9c083e3e1b",
+              "name": "inventory_item_cost_method",
+              "value": "={{ $json.inventory_item_cost_method }}",
+              "type": "number"
+            },
+            {
+              "id": "75565b99-236c-4592-be6d-b0d42a94c9f3",
+              "name": "is_unit_price_after_tax",
+              "value": "={{ $json.is_unit_price_after_tax }}",
+              "type": "boolean"
+            },
+            {
+              "id": "3c76f8cb-9fb7-4dae-9fdb-96dca178c2bd",
+              "name": "is_system",
+              "value": "={{ $json.is_system }}",
+              "type": "boolean"
+            },
+            {
+              "id": "36828b66-f1b4-495d-809d-c6bdaa95fa90",
+              "name": "is_unit_price_after_tax",
+              "value": "={{ $json.is_unit_price_after_tax }}",
+              "type": "boolean"
+            },
+            {
+              "id": "f3372226-81fb-4196-b199-4796710a6ce5",
+              "name": "is_system",
+              "value": "={{ $json.is_system }}",
+              "type": "boolean"
+            },
+            {
+              "id": "043ee452-8fa3-492d-8b72-567a90b41091",
+              "name": "inactive",
+              "value": "={{ $json.inactive }}",
+              "type": "boolean"
+            },
+            {
+              "id": "7cee5b2d-5140-443e-8dcc-cb246aa78271",
+              "name": "is_follow_serial_number",
+              "value": "={{ $json.is_follow_serial_number }}",
+              "type": "boolean"
+            },
+            {
+              "id": "d0b7fad1-c21b-4ed8-b04f-6a8473d834b9",
+              "name": "is_unit_price_after_tax",
+              "value": "={{ $json.is_unit_price_after_tax }}",
+              "type": "boolean"
+            },
+            {
+              "id": "38c39835-8481-4c44-8032-06b1f0123978",
+              "name": "is_system",
+              "value": "={{ $json.is_system }}",
+              "type": "boolean"
+            },
+            {
+              "id": "70a47bad-6c96-4fa1-958f-ba7f4c844b94",
+              "name": "inactive",
+              "value": "={{ $json.inactive }}",
+              "type": "boolean"
+            },
+            {
+              "id": "1b286165-4bf6-4ce8-856b-5778327b9969",
+              "name": "is_follow_serial_number",
+              "value": "={{ $json.is_follow_serial_number }}",
+              "type": "boolean"
+            },
+            {
+              "id": "593129af-0fed-4586-984a-dbde5b0cc6e9",
+              "name": "is_allow_duplicate_serial_number",
+              "value": "={{ $json.is_allow_duplicate_serial_number }}",
+              "type": "boolean"
+            },
+            {
+              "id": "e5478170-cb41-4d20-9be4-347c1d538b8a",
+              "name": "purchase_discount_rate",
+              "value": "={{ $json.purchase_discount_rate }}",
+              "type": "number"
+            },
+            {
+              "id": "4cde190a-64ac-488b-b83a-63ff38512d23",
+              "name": "unit_price",
+              "value": "={{ $json.unit_price }}",
+              "type": "number"
+            },
+            {
+              "id": "2821c12f-4156-4979-ad09-eae42b7b7526",
+              "name": "sale_price1",
+              "value": "={{ $json.sale_price1 }}",
+              "type": "number"
+            },
+            {
+              "id": "f0acb4bb-0645-49f7-8288-5c33f4ca2ca1",
+              "name": "sale_price2",
+              "value": "={{ $json.sale_price2 }}",
+              "type": "number"
+            },
+            {
+              "id": "74bbdbac-7523-46e2-97e9-349235f0c2d5",
+              "name": "sale_price3",
+              "value": "={{ $json.sale_price3 }}",
+              "type": "number"
+            },
+            {
+              "id": "1217f9f5-5446-45f1-83d0-7723de782d02",
+              "name": "fixed_sale_price",
+              "value": "={{ $json.fixed_sale_price }}",
+              "type": "number"
+            },
+            {
+              "id": "28d5c485-a0b9-44c5-94e1-bc110b32c192",
+              "name": "import_tax_rate",
+              "value": "={{ $json.import_tax_rate }}",
+              "type": "number"
+            },
+            {
+              "id": "0d18eb0b-6141-4aae-859c-0c2c7fa9cb37",
+              "name": "export_tax_rate",
+              "value": "={{ $json.export_tax_rate }}",
+              "type": "number"
+            },
+            {
+              "id": "254c437c-a5d8-4914-ae25-b855d354c849",
+              "name": "fixed_unit_price",
+              "value": "={{ $json.fixed_unit_price }}",
+              "type": "number"
+            },
+            {
+              "id": "e070be48-ef37-4556-ae6c-59ba8e9d3b19",
+              "name": "discount_account",
+              "value": "={{ $json.discount_account }}",
+              "type": "string"
+            },
+            {
+              "id": "269ccb6e-1a00-4230-b778-21e40d4d8529",
+              "name": "sale_off_account",
+              "value": "={{ $json.sale_off_account }}",
+              "type": "string"
+            },
+            {
+              "id": "0dd901fb-04b4-46fd-b5a3-24edee32f59c",
+              "name": "return_account",
+              "value": "={{ $json.return_account }}",
+              "type": "string"
+            },
+            {
+              "id": "7f783cfe-bc08-430c-ad04-4b1d59f79034",
+              "name": "purchase_description",
+              "value": "={{ $json.purchase_description }}",
+              "type": "string"
+            },
+            {
+              "id": "2b1ab5e5-cb78-48a5-b465-de274f2804c2",
+              "name": "sale_description",
+              "value": "={{ $json.sale_description }}",
+              "type": "string"
+            },
+            {
+              "id": "4c34e8f0-1b5e-400c-8b69-491f8a5fc321",
+              "name": "cogs_account",
+              "value": "={{ $json.cogs_account }}",
+              "type": "string"
+            },
+            {
+              "id": "5379fe4d-1504-47cd-af23-3549bfbf9ec8",
+              "name": "sale_account",
+              "value": "={{ $json.sale_account }}",
+              "type": "string"
+            },
+            {
+              "id": "f34c274f-77b8-4fcf-865e-8100229f98b2",
+              "name": "unit_list",
+              "value": "={{ $json.unit_list }}",
+              "type": "string"
+            },
+            {
+              "id": "05080424-d41a-40aa-bddc-2c76e496ea9b",
+              "name": "unit_name",
+              "value": "={{ $json.unit_name }}",
+              "type": "string"
+            },
+            {
+              "id": "8cbcca61-a769-4a06-ba0a-81de8e0ad208",
+              "name": "reftype",
+              "value": "={{ $json.reftype }}",
+              "type": "number"
+            },
+            {
+              "id": "d7ad4942-f849-49c4-9ac5-dbc43c97f670",
+              "name": "reftype_category",
+              "value": "={{ $json.reftype_category }}",
+              "type": "number"
+            },
+            {
+              "id": "272eb45a-cf8b-49ec-8fe9-4cc2903a1e4e",
+              "name": "purchase_last_unit_price_list",
+              "value": "={{ $json.purchase_last_unit_price_list }}",
+              "type": "string"
+            },
+            {
+              "id": "64f21828-8518-4cb3-ab0e-ba2cbbd0daa1",
+              "name": "quantityBarCode",
+              "value": "={{ $json.quantityBarCode }}",
+              "type": "number"
+            },
+            {
+              "id": "e3491904-4a9f-4284-b98a-a86319712561",
+              "name": "allocation_type",
+              "value": "={{ $json.allocation_type }}",
+              "type": "number"
+            },
+            {
+              "id": "5dc869a0-e6aa-459f-9cb7-2f747fad3d9d",
+              "name": "allocation_account",
+              "value": "={{ $json.allocation_account }}",
+              "type": "string"
+            },
+            {
+              "id": "35794469-ca80-463c-933f-5170625b8d0f",
+              "name": "tax_reduction_type",
+              "value": "={{ $json.tax_reduction_type }}",
+              "type": "number"
+            },
+            {
+              "id": "e0abaace-902f-4937-85d9-0bc621685442",
+              "name": "tax_reduction_type",
+              "value": "={{ $json.tax_reduction_type }}",
+              "type": "number"
+            },
+            {
+              "id": "81a3fddc-b48c-4836-ae63-1968321f4528",
+              "name": "purchase_last_unit_price",
+              "value": "={{ $json.purchase_last_unit_price }}",
+              "type": "number"
+            },
+            {
+              "id": "6e4bcbc2-cb2e-45ba-bf4d-7b080e85ebae",
+              "name": "is_specific_inventory_item",
+              "value": "={{ $json.is_specific_inventory_item }}",
+              "type": "boolean"
+            },
+            {
+              "id": "1b4e45ae-84ba-4819-a29b-629eb41db6a2",
+              "name": "has_delete_fixed_unit_price",
+              "value": "={{ $json.has_delete_fixed_unit_price }}",
+              "type": "boolean"
+            },
+            {
+              "id": "41934c35-e5f4-4a55-a2a1-fd8598b813f9",
+              "name": "has_delete_unit_price",
+              "value": "={{ $json.has_delete_unit_price }}",
+              "type": "boolean"
+            },
+            {
+              "id": "e7d6b8fc-d090-47df-ab81-9ffefef0c068",
+              "name": "has_delete_unit_price",
+              "value": "={{ $json.has_delete_unit_price }}",
+              "type": "boolean"
+            },
+            {
+              "id": "5412b1e8-7533-4c85-a0dd-7f807561d9e2",
+              "name": "has_delete_discount",
+              "value": "={{ $json.has_delete_discount }}",
+              "type": "boolean"
+            },
+            {
+              "id": "6186c9f8-f5f9-4e3a-9e0a-ec1488c5bd34",
+              "name": "has_delete_unit_convert",
+              "value": "={{ $json.has_delete_unit_convert }}",
+              "type": "boolean"
+            },
+            {
+              "id": "80de4363-17c9-463c-84f3-98f8d6a3f4b9",
+              "name": "has_delete_norm",
+              "value": "={{ $json.has_delete_norm }}",
+              "type": "boolean"
+            },
+            {
+              "id": "c7cb9bea-1819-4941-ad44-25d81998db27",
+              "name": "has_delete_unit_price",
+              "value": "={{ $json.has_delete_unit_price }}",
+              "type": "boolean"
+            },
+            {
+              "id": "1fbed4bc-a885-42cb-81d0-37155c252857",
+              "name": "has_delete_discount",
+              "value": "={{ $json.has_delete_discount }}",
+              "type": "boolean"
+            },
+            {
+              "id": "016fb4bb-6cf1-424f-8fb2-0b3b2bcaea0e",
+              "name": "has_delete_unit_convert",
+              "value": "={{ $json.has_delete_unit_convert }}",
+              "type": "boolean"
+            },
+            {
+              "id": "4fe031fa-9403-4b48-9364-13233327ca9c",
+              "name": "has_delete_norm",
+              "value": "={{ $json.has_delete_norm }}",
+              "type": "boolean"
+            },
+            {
+              "id": "99dd06fb-e1ce-4212-9266-5bfe00a67f65",
+              "name": "has_delete_serial_type",
+              "value": "={{ $json.has_delete_serial_type }}",
+              "type": "boolean"
+            },
+            {
+              "id": "b98fa5fa-d017-4b20-980b-7247667eecb9",
+              "name": "is_edit_multiple",
+              "value": "={{ $json.is_edit_multiple }}",
+              "type": "boolean"
+            },
+            {
+              "id": "ab9d80a2-5ffe-464f-9f2b-74ccd62d77bb",
+              "name": "crm_id",
+              "value": "={{ $json.crm_id }}",
+              "type": "string"
+            },
+            {
+              "id": "d4ec0d6c-33ba-406e-8c75-c62c8e475624",
+              "name": "is_not_sync_crm",
+              "value": "={{ $json.is_not_sync_crm }}",
+              "type": "boolean"
+            },
+            {
+              "id": "1b0a0a8d-230f-467d-a597-47f278b26454",
+              "name": "isUpdateRebundant",
+              "value": "={{ $json.isUpdateRebundant }}",
+              "type": "boolean"
+            },
+            {
+              "id": "28740b66-74aa-44a0-84c8-9747e7d45a34",
+              "name": "is_special_inv",
+              "value": "={{ $json.is_special_inv }}",
+              "type": "boolean"
+            },
+            {
+              "id": "8a95b131-cbda-4f60-878c-f16eb825b820",
+              "name": "isFromProcessBalance",
+              "value": "={{ $json.isFromProcessBalance }}",
+              "type": "boolean"
+            },
+            {
+              "id": "6be788b9-e36e-405c-b289-94241494250c",
+              "name": "specific_product_type",
+              "value": "={{ $json.specific_product_type }}",
+              "type": "number"
+            },
+            {
+              "id": "851a99ba-068f-4fb5-b293-f2f1475327aa",
+              "name": "specific_product_type_name",
+              "value": "={{ $json.specific_product_type_name }}",
+              "type": "number"
+            },
+            {
+              "id": "5dcc86d9-cc6d-4171-ba00-9b6d397f26fc",
+              "name": "is_drug",
+              "value": "={{ $json.is_drug }}",
+              "type": "boolean"
+            },
+            {
+              "id": "7102dabf-fce5-4457-9150-5591140e9594",
+              "name": "status_sync_medicine_national",
+              "value": "={{ $json.status_sync_medicine_national }}",
+              "type": "number"
+            },
+            {
+              "id": "c688d385-2090-4afa-a027-8139074a349f",
+              "name": "is_sync_corp",
+              "value": "={{ $json.is_sync_corp }}",
+              "type": "boolean"
+            },
+            {
+              "id": "9812fc1f-f109-4cf9-8bbd-b944a1ebd18c",
+              "name": "convert_rate",
+              "value": "={{ $json.convert_rate }}",
+              "type": "number"
+            },
+            {
+              "id": "bd032d9d-e96e-49bb-9c5f-5ba57d8b8dbc",
+              "name": "is_update_main_unit",
+              "value": "={{ $json.is_update_main_unit }}",
+              "type": "boolean"
+            },
+            {
+              "id": "68972750-4b8b-4299-98f7-82c8071222a7",
+              "name": "is_image_duplicate",
+              "value": "={{ $json.is_image_duplicate }}",
+              "type": "boolean"
+            },
+            {
+              "id": "e2785d25-f60f-4f27-904f-95125f03fcaa",
+              "name": "is_temp_master_sync_id",
+              "value": "={{ $json.is_temp_master_sync_id }}",
+              "type": "boolean"
+            },
+            {
+              "id": "6b08ee1e-714a-4b2b-9938-2527f38eb0fa",
+              "name": "IsSaveFromMasterData",
+              "value": "={{ $json.IsSaveFromMasterData }}",
+              "type": "boolean"
+            },
+            {
+              "id": "9d8eb180-7f25-449e-bdd4-264861e4f034",
+              "name": "isDeleteMasterData",
+              "value": "={{ $json.isDeleteMasterData }}",
+              "type": "boolean"
+            },
+            {
+              "id": "79fe09df-9fb7-4378-a83e-b712911c2cbe",
+              "name": "isAddMasterData",
+              "value": "={{ $json.isAddMasterData }}",
+              "type": "boolean"
+            },
+            {
+              "id": "a0bfa9fe-2bc8-47e2-9f1d-400a56ccc6a9",
+              "name": "discount_value",
+              "value": "={{ $json.discount_value }}",
+              "type": "number"
+            },
+            {
+              "id": "271e5e59-19b0-4c32-b946-ec9b06fe5a39",
+              "name": "is_set_discount",
+              "value": "={{ $json.is_set_discount }}",
+              "type": "boolean"
+            },
+            {
+              "id": "bf227146-0780-47c3-a7db-1ef38d497ab8",
+              "name": "index_unit_convert",
+              "value": "={{ $json.index_unit_convert }}",
+              "type": "number"
+            },
+            {
+              "id": "897d70af-36fe-480e-b8d2-475e0a38cf2d",
+              "name": "excel_row_index",
+              "value": "={{ $json.excel_row_index }}",
+              "type": "number"
+            },
+            {
+              "id": "3503ef41-5ab3-4f7f-b6b4-d64c70179baa",
+              "name": "is_valid",
+              "value": "={{ $json.is_valid }}",
+              "type": "boolean"
+            },
+            {
+              "id": "31afdd9d-0dbb-4752-9ec2-43ac9d492582",
+              "name": "created_date",
+              "value": "={{ $json.created_date }}",
+              "type": "string"
+            },
+            {
+              "id": "00c66d5f-9bdd-4159-b4cc-36ab91f4f19e",
+              "name": "created_by",
+              "value": "={{ $json.created_by }}",
+              "type": "string"
+            },
+            {
+              "id": "62f65bf9-2d58-4317-87aa-24be14a7701f",
+              "name": "modified_date",
+              "value": "={{ $json.modified_date }}",
+              "type": "string"
+            },
+            {
+              "id": "68b8a11d-3fb8-4ee7-99ca-ff51bab1d9f4",
+              "name": "modified_by",
+              "value": "={{ $json.modified_by }}",
+              "type": "string"
+            },
+            {
+              "id": "53ae77db-70a9-46b3-a148-a3cb84a453a2",
+              "name": "auto_refno",
+              "value": "={{ $json.auto_refno }}",
+              "type": "boolean"
+            },
+            {
+              "id": "b53b9264-3ef6-44ed-9f86-d406fe05a78a",
+              "name": "force_update",
+              "value": "={{ $json.force_update }}",
+              "type": "boolean"
+            },
+            {
+              "id": "607a234f-327f-4587-a08b-bd813030685c",
+              "name": "state",
+              "value": "={{ $json.state }}",
+              "type": "number"
+            },
+            {
+              "id": "bf62d99c-7f51-4dd0-941e-32b719376f84",
+              "name": "is_created_from_old_db",
+              "value": "={{ $json.is_created_from_old_db }}",
+              "type": "boolean"
+            },
+            {
+              "id": "4c31cb50-e5c3-4c79-8d68-345a6446afaa",
+              "name": "tenant_access_token",
+              "value": "={{ $('Create token1').item.json.tenant_access_token }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0abfac83-966e-4998-8c91-b790c0babd4e",
+      "name": "Normalize data1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4016,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse JSON string\nconst raw = $json[\"Data\"];\nconst parsed = JSON.parse(raw);\n\n// Trả về mỗi object là một item mới\nreturn parsed.map(item => {\n  return {\n    json: item\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3728,
+        640
+      ],
+      "id": "1b2ca7eb-5126-4d3b-ae33-8881b588d59d",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://actapp.misa.vn/apir/sync/actopen/get_dictionary",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-MISA-AccessToken",
+              "value": "={{ $json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "  {\n                        \"data_type\": 2 ,\n                        \"branch_id\": \"db8550da-2fe4-4970-8758-d92e78e2ddd0\",\n                        \"skip\": 0,\n                        \"take\": 1000,\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"last_sync_time\": \"2000-01-25 14:15:02\"\n                        }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3248,
+        640
+      ],
+      "id": "7cba22f8-cad3-49b5-9081-c1f8e9d124cd",
+      "name": "HTTP Request5"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://actapp.misa.vn/api/oauth/actopen/connect",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=                        {\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"access_code\": \"{{ $('Acess_token1').item.json.token }}\",\n                        \"org_company_code\": \"congtydemoketnoiact\"\n                        } ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2832,
+        640
+      ],
+      "id": "3a57d749-5302-4117-9df8-c1bb4a08a3ce",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1984,
+        944
+      ],
+      "id": "6aa425b3-f79e-414c-8492-b7f84e5b0ffe",
+      "name": "When clicking ‘Execute workflow’"
+    }
+  ],
+  "pinData": {
+    "Schedule Trigger1": [
+      {
+        "json": {
+          "timestamp": "2025-10-30T10:50:30.988+07:00",
+          "Readable date": "October 30th 2025, 10:50:30 am",
+          "Readable time": "10:50:30 am",
+          "Day of week": "Thursday",
+          "Year": "2025",
+          "Month": "October",
+          "Day of month": "30",
+          "Hour": "10",
+          "Minute": "50",
+          "Second": "30",
+          "Timezone": "Asia/Ho_Chi_Minh (UTC+07:00)"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-30T03:39:25.989Z",
+      "updatedAt": "2025-10-30T03:39:25.989Z",
+      "role": "workflow:owner",
+      "workflowId": "STgJijTaC9Trvuep",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-01T03:34:28.000Z",
+  "versionId": "7fd2b197-82fb-42e5-b933-aafa6fe949be"
+}
