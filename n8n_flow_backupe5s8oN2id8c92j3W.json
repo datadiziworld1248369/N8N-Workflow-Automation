@@ -1,0 +1,486 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Pass": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        [
+          {
+            "node": "Lấy thông tin quảng cáo Messenger",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy thông tin người nhắn tin": {
+      "main": [
+        []
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Pass",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy thông tin quảng cáo Messenger": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-26T17:29:03.993Z",
+  "id": "e5s8oN2id8c92j3W",
+  "isArchived": false,
+  "meta": null,
+  "name": "getuser hebe",
+  "nodes": [
+    {
+      "parameters": {
+        "multipleMethods": true,
+        "httpMethod": [
+          "POST"
+        ],
+        "path": "get_id_user",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1072,
+        -272
+      ],
+      "id": "2064586f-ba6d-4fb5-9764-153c098a9d45",
+      "name": "Webhook",
+      "webhookId": "befcd760-4285-4f8a-8104-ef5163cc2cc3"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        304,
+        -352
+      ],
+      "id": "ca4e0228-4c20-49cf-b0f3-5e80597ba874",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7734e764-878f-4b38-89bb-4abbf4120ac5",
+              "name": "query['hub.challenge']",
+              "value": "={{ $json.query['hub.challenge'] }}",
+              "type": "string"
+            },
+            {
+              "id": "cc9cdc7a-cebd-41b2-950a-ba00a91300fb",
+              "name": "ad_id",
+              "value": "={{ $json.ad_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -32,
+        -352
+      ],
+      "id": "588be080-a7db-4e30-995c-420b12ae42eb",
+      "name": "Pass"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v21.0/{{ $('Webhook').item.json.body.entry[0].messaging[0].sender.id }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "first_name,last_name,profile_pic"
+            },
+            {
+              "name": "access_token",
+              "value": "EAAIiGZBltc0wBP3OqOMTs3PaPOlyYZCpKnmstgDenkd9gmqvL4XQhoTmakmjNwkqTKCFOdyCNYy3AV2BZCfXHZA5nJnbdn7lZAu6TCWycqFcu3qkmko5JZBba7FKg2Xu35eeaTabSFjlzmVQAV5ClQiI9vH7CfX47KxcZCJOU3Kt9A1ldKwWGIidLKSEgvuIVywye8plBtFw3omBxZB0eVruFBUZD"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        256,
+        -624
+      ],
+      "id": "c91d5065-7b59-4f44-b297-6b0b8c573e8a",
+      "name": "Lấy thông tin người nhắn tin"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v21.0/{{ $('Code in JavaScript').item.json.ad_id }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "id,name,adset_id,adset{name,campaign_id},campaign{name},creative{object_story_spec}"
+            },
+            {
+              "name": "access_token",
+              "value": "EAAIiGZBltc0wBP3OqOMTs3PaPOlyYZCpKnmstgDenkd9gmqvL4XQhoTmakmjNwkqTKCFOdyCNYy3AV2BZCfXHZA5nJnbdn7lZAu6TCWycqFcu3qkmko5JZBba7FKg2Xu35eeaTabSFjlzmVQAV5ClQiI9vH7CfX47KxcZCJOU3Kt9A1ldKwWGIidLKSEgvuIVywye8plBtFw3omBxZB0eVruFBUZD"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        608,
+        -352
+      ],
+      "id": "0fbd4ffd-67ed-4fa4-a3a4-8732ffaec592",
+      "name": "Lấy thông tin quảng cáo Messenger"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst output = [];\n\nfor (const item of items) {\n  try {\n    const entries = item.json.body?.entry || [];\n    for (const entry of entries) {\n      const changes = entry.changes || [];\n      for (const change of changes) {\n        const adLabel = change.value?.label?.page_label_name;\n\n        if (adLabel && adLabel.startsWith(\"ad_id.\")) {\n          const adId = adLabel.split(\"ad_id.\")[1]; // lấy phần số phía sau ad_id.\n          output.push({\n            json: {\n              fullLabel: adLabel,  // \"ad_id.102101049187106692\"\n              ad_id: adId,         // \"102101049187106692\"\n              raw: change          // lưu full data nếu cần debug\n            }\n          });\n        }\n      }\n    }\n  } catch (err) {\n    console.error(\"Error parsing item:\", err);\n  }\n}\n\nreturn output.length ? output : [{ json: { message: \"No ad_id found\" } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -256,
+        -352
+      ],
+      "id": "3656b60d-1316-489a-b495-1753cfd1bbac",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst output = [];\n\nfunction clean(v) {\n  return v ?? \"\";\n}\n\nfor (const item of items) {\n  const ad = item.json;\n\n  const linkData = ad.creative?.object_story_spec?.link_data || {};\n  const cta = linkData.call_to_action?.value?.app_destination || \"\";\n  const pageId = ad.creative?.object_story_spec?.page_id || \"\";\n  const instaId = ad.creative?.object_story_spec?.instagram_user_id || \"\";\n\n  // Parse welcome message JSON (nếu có)\n  let welcomeMessage = \"\";\n  try {\n    if (linkData.page_welcome_message) {\n      const msgData = JSON.parse(linkData.page_welcome_message);\n      welcomeMessage = msgData?.text_format?.message?.text ?? \"\";\n    }\n  } catch (e) {\n    welcomeMessage = \"\";\n  }\n\n  output.push({\n    json: {\n      ad_id: clean(ad.id),\n      ad_name: clean(ad.name),\n      adset_id: clean(ad.adset_id),\n      adset_name: clean(ad.adset?.name),\n      campaign_id: clean(ad.campaign?.id),\n      campaign_name: clean(ad.campaign?.name),\n      page_id: clean(pageId),\n      instagram_user_id: clean(instaId),\n      link: clean(linkData.link),\n      title: clean(linkData.name),\n      message: clean(linkData.message),\n      image_hash: clean(linkData.image_hash),\n      call_to_action: clean(cta),\n      welcome_message: clean(welcomeMessage)\n    }\n  });\n}\n\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        912,
+        -352
+      ],
+      "id": "6115ed9c-0f35-47db-949d-322f66e39b2a",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2e6ed202-4ed5-4e9e-a1d0-5d65c6aab1a7",
+              "name": "user.id",
+              "value": "={{ $json.body.entry[0].changes[0].value.user.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -256,
+        -192
+      ],
+      "id": "63995667-53ca-411c-8ce7-289af4a7fe6f",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1168,
+        -256
+      ],
+      "id": "5ec06267-9702-4e36-b756-0fb1a122f034",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "061b119e-6357-40a1-b3c3-504e43dcb990",
+              "name": "user",
+              "value": "={{ String(Object.values($json.user)[0]).replace(/[\"'\\\\r\\\\n\\\\t]/g, '').trim() }}\n",
+              "type": "string"
+            },
+            {
+              "id": "e9bbf395-f792-431c-ac2e-91c8c44017d1",
+              "name": "ad_id",
+              "value": "={{ $json.ad_id }}",
+              "type": "string"
+            },
+            {
+              "id": "96e48fde-91ec-4ccf-ab47-5d1201020f9d",
+              "name": "ad_name",
+              "value": "={{ $json.ad_name }}",
+              "type": "string"
+            },
+            {
+              "id": "0d1d25ef-4499-4c1b-8eb1-9967e8f3835b",
+              "name": "adset_name",
+              "value": "={{ $json.adset_name }}",
+              "type": "string"
+            },
+            {
+              "id": "44c7b7a2-1dc0-4134-a09d-5c255aa7231a",
+              "name": "instagram_user_id",
+              "value": "={{ $json.instagram_user_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1376,
+        -256
+      ],
+      "id": "f022da6c-8ef7-474d-9c25-c18279a139f6",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4803c749-3b97-44e8-8e28-a1df83748b8a",
+              "leftValue": "={{ $json.body.entry[0].changes[0].value.label.page_label_name }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -784,
+        -272
+      ],
+      "id": "153cdf8f-2674-4808-826b-f102da24c09d",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst cleaned = [];\n\nfor (const item of items) {\n  const data = item.json;\n\n  // Lấy user.id - xử lý mọi kiểu dữ liệu, kể cả chuỗi JSON ngáo đá\n  let userId = \"\";\n  try {\n    if (typeof data.user === \"object\" && data.user !== null) {\n      // user là object: { id: \"2468...\" }\n      userId = Object.values(data.user)[0];\n    } else if (typeof data.user === \"string\") {\n      // user là chuỗi: \"{\\\"id\\\":\\\"2468...\\\"}\" hoặc có \\n\n      const parsed = JSON.parse(data.user);\n      userId = Object.values(parsed)[0];\n    }\n  } catch {\n    // Nếu parse fail thì làm sạch thủ công\n    userId = String(data.user)\n      .replace(/[\"'\\\\r\\\\n\\\\t\\\\s]/g, \"\")\n      .trim();\n  }\n\n  // Làm sạch toàn bộ chuỗi trong object (nếu cần)\n  const sanitize = (value) =>\n    typeof value === \"string\"\n      ? value.replace(/[\"'\\\\r\\\\n\\\\t]/g, \"\").trim()\n      : value;\n\n  cleaned.push({\n    json: {\n      user: sanitize(userId),\n      ad_id: sanitize(data.ad_id),\n      ad_name: sanitize(data.ad_name),\n      adset_name: sanitize(data.adset_name),\n      instagram_user_id: sanitize(data.instagram_user_id),\n    },\n  });\n}\n\nreturn cleaned;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1584,
+        -256
+      ],
+      "id": "e4778e16-5754-4a6c-bff2-f504bdda1250",
+      "name": "Code in JavaScript2"
+    }
+  ],
+  "pinData": {
+    "Pass": [
+      {
+        "json": {
+          "query": {
+            "hub.challenge": null
+          }
+        }
+      }
+    ],
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "x-forwarded-host": "n8n.hebekery.vn",
+            "x-forwarded-server": "n8n.hebekery.vn",
+            "x-real-ip": "69.171.230.6",
+            "x-forwarded-for": "69.171.230.6",
+            "x-forwarded-proto": "https",
+            "host": "n8n.hebekery.vn",
+            "connection": "Upgrade",
+            "content-length": "265",
+            "x-hub-signature": "sha1=8cc98e8cc94f8ec2738a31231159ad4de93893ec",
+            "x-hub-signature-256": "sha256=ce5bdfe05fe2f8c36bdd3aca8d31a603247f3a7825664afd72040b1774596679",
+            "content-type": "application/json",
+            "user-agent": "Webhooks/1.0 (https://fb.me/webhooks)",
+            "accept": "*/*"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "entry": [
+              {
+                "id": "105716750779653",
+                "time": 1761743195,
+                "changes": [
+                  {
+                    "value": {
+                      "user": {
+                        "id": "24685144251177077"
+                      },
+                      "action": "add",
+                      "label": {
+                        "id": "3828748147395232",
+                        "page_label_name": "ad_id.120210491871060692"
+                      }
+                    },
+                    "field": "inbox_labels"
+                  }
+                ]
+              }
+            ],
+            "object": "page"
+          },
+          "webhookUrl": "https://n8n.hebekery.vn/webhook/get_id_user",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-26T17:29:04.075Z",
+      "updatedAt": "2025-10-26T17:29:04.075Z",
+      "role": "workflow:owner",
+      "workflowId": "e5s8oN2id8c92j3W",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-30T13:17:14.000Z",
+  "versionId": "c5b60be4-ad16-4775-b3d7-3ede31d9c0bf"
+}
