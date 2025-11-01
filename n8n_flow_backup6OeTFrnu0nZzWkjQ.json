@@ -34,28 +34,6 @@
         ]
       ]
     },
-    "Edit Fields": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Create token": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Creates records lark": {
       "main": [
         []
@@ -65,7 +43,7 @@
       "main": [
         [
           {
-            "node": "Edit Fields",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
@@ -120,7 +98,7 @@
         [],
         [
           {
-            "node": "Creates records lark1",
+            "node": "search a record",
             "type": "main",
             "index": 0
           }
@@ -190,6 +168,68 @@
           }
         ]
       ]
+    },
+    "Create token": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "search a record": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Acess_token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-04-25T10:51:46.046Z",
@@ -203,8 +243,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -608,
-        -992
+        -592,
+        -1008
       ],
       "id": "4804b33e-abb6-4f98-a5e8-695367d67e1a",
       "name": "When clicking ‘Test workflow’"
@@ -221,7 +261,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        128,
+        336,
         -1008
       ],
       "id": "b0c7ace6-e409-4067-bac0-8984aab9818b",
@@ -248,8 +288,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -416,
-        -144
+        -352,
+        416
       ],
       "id": "4ac49c40-24fd-42b4-b18d-6ef6889da226",
       "name": "HTTP Request1"
@@ -275,8 +315,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -720,
-        -544
+        -656,
+        16
       ],
       "id": "5d0f3692-9bfd-447f-883d-9925547d9211",
       "name": "HTTP Request3"
@@ -302,7 +342,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        544,
+        752,
         -1008
       ],
       "id": "a7b90ac1-b751-40f7-a244-1843a74da9c4",
@@ -329,8 +369,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        336,
-        -160
+        400,
+        400
       ],
       "id": "5c7e65e1-cd33-471f-9c81-aab8211d5612",
       "name": "HTTP Request5"
@@ -356,8 +396,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -464,
-        -384
+        -400,
+        176
       ],
       "id": "38f5267b-cac2-44ac-bbf8-c745343547b1",
       "name": "HTTP Request9"
@@ -383,8 +423,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -768,
-        -288
+        -704,
+        272
       ],
       "id": "5cd8df1c-9f59-4063-9597-552a2176e02b",
       "name": "HTTP Request10"
@@ -410,8 +450,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -144,
-        -400
+        -80,
+        160
       ],
       "id": "e1c86883-d448-4dbc-80f4-1b31b2171074",
       "name": "HTTP Request6"
@@ -437,8 +477,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -768,
-        0
+        -704,
+        560
       ],
       "id": "fd4e31aa-82dc-42c2-b0d6-2ddc763e0fc6",
       "name": "HTTP Request7"
@@ -464,8 +504,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -48,
-        -96
+        16,
+        464
       ],
       "id": "0ba04766-a3db-4f1f-b817-f841cb953dc4",
       "name": "HTTP Request8"
@@ -477,71 +517,11 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1008,
+        1232,
         -1008
       ],
       "id": "45681f3f-7dff-4ded-84ea-3e0c80879cd9",
       "name": "Code"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "02d8fef1-66c0-4e59-8713-7d4e7ca33e32",
-              "name": "app_id",
-              "value": "cli_a7f1cfbe36b81010",
-              "type": "string"
-            },
-            {
-              "id": "32404746-b39b-4078-8463-5e0f865f35d0",
-              "name": "app_scret",
-              "value": "IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        1456,
-        -1008
-      ],
-      "id": "33376ebf-6bce-4f98-882a-eb0983e94bab",
-      "name": "Edit Fields"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "app_id",
-              "value": "={{ $json.app_id }}"
-            },
-            {
-              "name": "app_secret",
-              "value": "={{ $json.app_scret }}"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "{\n    \"app_id\": \"cli_a7f1cfbe36b81010\",\n    \"app_secret\": \"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        -48,
-        -1008
-      ],
-      "id": "235f5a1c-aaa7-437c-be6a-6398f92ea07a",
-      "name": "Create token"
     },
     {
       "parameters": {
@@ -564,8 +544,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -320,
-        -512
+        -256,
+        48
       ],
       "id": "f4606b7e-ed0e-4fe3-b8e7-6718e792c971",
       "name": "Creates records lark"
@@ -576,31 +556,30 @@
           "assignments": [
             {
               "id": "77775875-fff9-4792-9778-a8f2d4deb7d4",
-              "name": "Amis_data.code",
+              "name": "code",
               "value": "={{ $json.account_object_code }}",
               "type": "string"
             },
             {
               "id": "6a315617-d1c9-4320-b851-e3dcc5207b4b",
-              "name": "Amis_data.name",
+              "name": "name",
               "value": "={{ $json.account_object_name }}",
               "type": "string"
             },
             {
               "id": "2b720bc6-df57-45e9-8b59-4fd90e51280a",
-              "name": "Amis_data.address",
+              "name": "address",
               "value": "={{ $json.address }}",
               "type": "string"
             },
             {
               "id": "5494091e-aca5-40e0-9955-a8f3b75ac57c",
-              "name": "Amis_data.tax_code",
+              "name": "tax_code",
               "value": "={{ $json.company_tax_code }}",
               "type": "string"
             }
           ]
         },
-        "includeOtherFields": true,
         "options": {}
       },
       "id": "98047c30-f8d1-40e2-a624-f3cdc1ec3692",
@@ -608,7 +587,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1264,
+        1648,
         -1008
       ]
     },
@@ -620,7 +599,7 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        800,
+        1056,
         -1008
       ],
       "id": "a3e85d53-ee1a-4555-99ec-622d27d37727",
@@ -658,8 +637,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1632,
-        -368
+        1696,
+        192
       ]
     },
     {
@@ -669,8 +648,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        2224,
-        -992
+        3168,
+        -1008
       ],
       "id": "5da26f99-60ad-446c-99c3-da8fd416d29e",
       "name": "Wait1",
@@ -678,13 +657,12 @@
     },
     {
       "parameters": {
-        "batchSize": 30,
         "options": {}
       },
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        1776,
+        1904,
         -1008
       ],
       "id": "b170b825-738e-4afb-8634-369b3fb96eff",
@@ -696,8 +674,8 @@
       "name": "Replace Me",
       "typeVersion": 1,
       "position": [
-        2064,
-        -368
+        2128,
+        192
       ],
       "id": "9901cdf5-01c9-42b3-9925-3723132c00ae"
     },
@@ -708,7 +686,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        320,
+        528,
         -1008
       ],
       "id": "0579f18f-24e6-4849-a6c9-7e9fd5c64f34",
@@ -721,8 +699,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        176,
-        -400
+        240,
+        160
       ],
       "id": "c538ba22-1ab6-47f1-9139-4fca60033255",
       "name": "Code3"
@@ -748,8 +726,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -48,
-        -416
+        16,
+        144
       ],
       "id": "ce6f44f0-e7cc-4024-8b8e-7688aa642e96",
       "name": "Tồn kho"
@@ -840,8 +818,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        784,
-        -112
+        848,
+        448
       ]
     },
     {
@@ -867,8 +845,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        576,
-        -192
+        640,
+        368
       ],
       "id": "b6f13ac8-41df-477e-9f0a-5c62c6cc2bfc",
       "name": "Edit Fields1"
@@ -894,8 +872,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        272,
-        -432
+        336,
+        128
       ],
       "id": "c212b2a8-c134-4f8e-a4db-19ccc30c9120",
       "name": "Tồn kho1"
@@ -915,43 +893,193 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"fields\": {\n    \"Mã đối tác\": \"{{ $('Normalize data').item.json.Amis_data.code }}\",\n    \"Tên đối tác\": \"{{ $('Normalize data').item.json.Amis_data.name }}\",\n    \"Địa chỉ\": \"{{ $('Normalize data').item.json.Amis_data.address }}\",\n    \"Mã số thuế\": \"{{ $('Normalize data').item.json.Amis_data.tax_code }}\"\n  }\n}\n",
+        "jsonBody": "={\n  \"fields\": {\n    \"Mã đối tác\": \"{{ $('Normalize data').item.json.code }}\",\n    \"Tên đối tác\": \"{{ $('Normalize data').item.json.name }}\",\n    \"Địa chỉ\": \"{{ $('Normalize data').item.json.address }}\",\n    \"Mã số thuế\": \"{{ $('Normalize data').item.json.tax_code }}\"\n  }\n}\n",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2032,
-        -992
+        2880,
+        -1008
       ],
       "id": "cf8b36f6-45e5-400e-b835-fb1e721f4e65",
       "name": "Creates records lark1"
     },
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "444e29ea-7039-4773-bcda-ed035ffee83f",
-              "name": "token",
-              "value": "UoANQNuSmZCnE240PHO28eww/B/NmkAVa08P6GiC+hq8unjbEARwow2UL2xIEDZnD+8oIW/s8IrWPa90vTo6AaQ8BkqXqm/JdJ/VLAHf2XKsmDO6b8gt6VjBEiZsmZN2Rtn5d7jHdLoJwfFXhy+Sa3Jxu+qD4s4GPraRS7VxwiTvhBcrr14Q0/bOMVOGMZArB8ltSB8X19nb210x67ucgOEpGf6mSXhKNBWXfd/TmeX2TvCc1Lvozl5i0y/FsYpytYzhD0t5/RVuhsDNi5WohA==",
-              "type": "string"
-            }
-          ]
-        },
+        "mode": "raw",
+        "jsonOutput": "{\n\"token\": \n\"+LgeX6CiW+epvsCQXZBKd8Zb7p2OOCgpBA5bs36nHJBsyhNO4Pl0E5DcD4VfcYFcJmdq4plmTFnC71zPTHqjcWXQ3S3AtX78VZWZiYFQi0gGyLx6XLFNafWn2Pwi7cem9MlbB72Ol0aOtJZC3ZBj4qCaccpU8nsyrvGvOQtgXgueUa6ZKV/wO1Ayb2TVWjlvOJ1NUoYLRX1xeO/kbA8zI+RA/xvxqLsBYlS9UroxioLe13FoMLy57j2Syf/klLYU8tIpygppDmBqMDJBK3Kajw==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -288,
+        -80,
         -1008
       ],
       "id": "b273a3dd-9c4b-4a0e-8c70-f09a722147ad",
       "name": "Acess_token"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_scret }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"app_id\": \"cli_a7f1cfbe36b81010\",\n    \"app_secret\": \"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        160,
+        -1008
+      ],
+      "id": "235f5a1c-aaa7-437c-be6a-6398f92ea07a",
+      "name": "Create token"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/EFWPbB04eaPBWGse700lEg1Mg6M/tables/tblQbWxWO0FM29zU/records/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "page_size",
+              "value": "500"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Create token').item.json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"filter\": {\n    \"conjunction\": \"and\",\n    \"conditions\": [\n      {\n        \"field_name\": \"Mã đối tác\",\n        \"operator\": \"is\",\n        \"value\": [\n          \"{{ $json.code }}\"\n        ]\n      }\n    ]\n  },\n  \"automatic_fields\": false\n}",
+        "options": {
+          "pagination": {
+            "pagination": {
+              "parameters": {
+                "parameters": [
+                  {
+                    "name": "page_token",
+                    "value": "={{ $response ? $response.body.data.page_token : '' }}"
+                  }
+                ]
+              },
+              "paginationCompleteWhen": "other",
+              "completeExpression": "={{ !$response.body.data.has_more }}"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2192,
+        -992
+      ],
+      "id": "80cbcaf7-00d2-4002-b916-bdf77364ad26",
+      "name": "search a record"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "87e38320-bec7-4bae-9c15-392cba496219",
+              "leftValue": "={{ $json.data.total }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2480,
+        -992
+      ],
+      "id": "cacf2425-03af-4b8c-a7ea-261c8ead6305",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2112,
+        -608
+      ],
+      "id": "88902399-7f50-4a10-825e-9ea6936607ed",
+      "name": "Wait",
+      "webhookId": "b796dc21-ec6a-4e81-8aaf-44f339cd5b2c"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -544,
+        -768
+      ],
+      "id": "e5157e7d-d386-4471-9360-a1e46b680c89",
+      "name": "Schedule Trigger"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "When clicking ‘Test workflow’": [
+      {
+        "json": {}
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -967,6 +1095,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-10-19T08:22:14.000Z",
-  "versionId": "ba5862b8-bd5e-4a90-aec0-05ce882af9db"
+  "updatedAt": "2025-10-29T08:53:23.000Z",
+  "versionId": "221de22d-5439-4d3e-a0b6-4266adfa5e06"
 }
