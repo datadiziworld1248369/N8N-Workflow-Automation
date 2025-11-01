@@ -1,0 +1,244 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Pass",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pass": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        [
+          {
+            "node": "Lấy thông tin người nhắn tin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy thông tin người nhắn tin": {
+      "main": [
+        [
+          {
+            "node": "Lấy thông tin quảng cáo Messenger",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-26T18:12:05.596Z",
+  "id": "LvS6HuzKDaADZb9c",
+  "isArchived": false,
+  "meta": null,
+  "name": "Get users_TP",
+  "nodes": [
+    {
+      "parameters": {
+        "multipleMethods": true,
+        "httpMethod": [
+          "POST"
+        ],
+        "path": "get_id_user_tp1",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -256,
+        -112
+      ],
+      "id": "d9d8f802-f57f-4d1c-9817-84447098eaac",
+      "name": "Webhook",
+      "webhookId": "befcd760-4285-4f8a-8104-ef5163cc2cc3"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        256,
+        -112
+      ],
+      "id": "04ee325a-7765-4c3c-8094-a947224141ef",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7734e764-878f-4b38-89bb-4abbf4120ac5",
+              "name": "query['hub.challenge']",
+              "value": "={{ $json.query['hub.challenge'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        32,
+        -112
+      ],
+      "id": "7b993fa3-1cdc-4531-99ec-7a1882601308",
+      "name": "Pass"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v18.0/{{ $('Webhook').item.json.body.entry[0].messaging[0].sender.id }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "first_name,last_name,profile_pic"
+            },
+            {
+              "name": "access_token",
+              "value": "EAAHXeZCWU2vIBPZBZAGIl6KFWBRoBPoLZCTpD3EZBikZCNufebpedi22SECX6xwQoxet9UXWdxNoCmU5vljkiFR0XG0zIGfXHcllHVGXpmynJ8jCYKwdgEvOHUVGPVsy3sK2lZCUwrOgVPvmz7F9R0gUZB4ABumt2ZAkAbk5C5cyYW0rHmDZBl4HZCiFQCeetIhILixafC00l0MNtwW02G9ZC6fbndMZD"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        496,
+        -112
+      ],
+      "id": "7b91a36d-ac94-46ea-9f71-ac993859f142",
+      "name": "Lấy thông tin người nhắn tin"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v21.0/{{ $('Webhook').item.json.body.entry[0].messaging[0].referral.ad_id }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "id,name,adset_id,adset{name,campaign_id},campaign{name},creative{object_story_spec}"
+            },
+            {
+              "name": "access_token",
+              "value": "EAAHXeZCWU2vIBPZCNc7e92u0naWAh1lEWAvUZAR5GcFKnOA53RzGXUMOvnQacP0JvHf553XXlSDNogHhI4WoYf1fvUkAZAgwXxfYPdX3JOZCyOOOpi4ZCPT4dz0nDyMQWv20rLGiGY1GMURlE8y4wfRXkGwlGtJ5eMgZCnmwxkzSsFEVVBsakKKnSARGD53qB24zu7VyKLtGQlWWvFaJMCAZAwkR"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        736,
+        -112
+      ],
+      "id": "d732ef94-862c-4060-a462-fc6b2f7ced05",
+      "name": "Lấy thông tin quảng cáo Messenger"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "x-forwarded-host": "n8n.hebekery.vn",
+            "x-forwarded-server": "n8n.hebekery.vn",
+            "x-real-ip": "69.171.230.3",
+            "x-forwarded-for": "69.171.230.3",
+            "x-forwarded-proto": "https",
+            "host": "n8n.hebekery.vn",
+            "connection": "Upgrade",
+            "content-length": "821",
+            "accept": "*/*",
+            "accept-encoding": "deflate, gzip",
+            "user-agent": "facebookexternalua",
+            "content-type": "application/json",
+            "x-hub-signature": "sha1=46ec51c37e43c720aae278f84d6c620fc3638201",
+            "x-hub-signature-256": "sha256=a404df5f74fcf173c92383f23bfbfe4336701fa1a261d581ccabfa0b40331132",
+            "facebook-api-version": "v21.0"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "object": "page",
+            "entry": [
+              {
+                "time": 1761553417013,
+                "id": "108685817326606",
+                "messaging": [
+                  {
+                    "sender": {
+                      "id": "9199778796741601"
+                    },
+                    "recipient": {
+                      "id": "108685817326606"
+                    },
+                    "timestamp": 1761553416,
+                    "referral": {
+                      "source": "ADS",
+                      "type": "OPEN_THREAD",
+                      "ad_id": "120230346071010695",
+                      "ads_context_data": {
+                        "ad_title": "Camp7_Mess_Moon_08182025",
+                        "post_id": "1077495741070035",
+                        "photo_url": "https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/497650141_1077495407736735_6113138075703763104_n.jpg?stp=dst-jpg_e15_fr_q75_tt6&cstp=mx1284x1848&ctp=s1284x1848&_nc_cat=108&ccb=1-7&_nc_sid=89be11&_nc_ohc=Iq4E9-m54TsQ7kNvwEBJxnV&_nc_oc=AdlrADJ_xJC42i65frgrsqAxXyrEc76GeSbpwK9KpdVesuWu4cua7ip4zKcJIL82KV9RJQTcuqAm804Tlil-bCRU&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfdrFsHXBfKhdI8SQNifjppWFxdCAkY1ANsU6yCQZG9MBA&oe=6904F465"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "webhookUrl": "https://n8n.hebekery.vn/webhook/get_id_user_tp1",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-26T18:12:05.599Z",
+      "updatedAt": "2025-10-26T18:12:05.599Z",
+      "role": "workflow:owner",
+      "workflowId": "LvS6HuzKDaADZb9c",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-30T13:17:15.000Z",
+  "versionId": "87e84412-a1fa-461a-b5d5-e6a95793db92"
+}
