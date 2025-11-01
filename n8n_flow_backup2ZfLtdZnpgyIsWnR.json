@@ -1,0 +1,84 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-29T04:44:15.062Z",
+  "id": "2ZfLtdZnpgyIsWnR",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 39",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f91fec35-16e7-44a9-bf77-509beff0bd8d",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://actopenapi.misa.vn/api/oauth/actopen/connect",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "0e0a14cf-9e4b-4af9-875b-c490f34a581b"
+            },
+            {
+              "name": "access_code",
+              "value": "sApCABzrkQy5dzCja/Hsf9kJe72LCycAQiQP0MJviVYoKSRGJ8ENtyu87HAOXgsQYSyniw7uuCxyR0JVvHl0uF8I0n1Zr82aX7qTwl8o0Rbg6EOEoRt7E182oaMPYM5kAgozjBjbBqVEUrjV1NmbwupZfZTLm45Ho1Njq5nuo6dxwXAI/APHC/2mdN1KFRoNU8neW0KBSp4Pyzg/MI+ah0eKlWa5aHdANbrProl0tIIEXJsbJUMwz8VUyo3szylp"
+            },
+            {
+              "name": "org_company_code",
+              "value": "congtydemoketnoiact"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "f7600623-b6a5-4e74-8a9e-3a12bf6ee479",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-29T04:44:15.069Z",
+      "updatedAt": "2025-10-29T04:44:15.069Z",
+      "role": "workflow:owner",
+      "workflowId": "2ZfLtdZnpgyIsWnR",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-29T04:44:15.062Z",
+  "versionId": "5a92d442-83c3-4404-9cf1-8aac3be0521c"
+}
