@@ -122,7 +122,7 @@
         ],
         [
           {
-            "node": "Wait3",
+            "node": "update vị trí nhân sự mới",
             "type": "main",
             "index": 0
           }
@@ -173,6 +173,17 @@
         [
           {
             "node": "Create token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update vị trí nhân sự mới": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
             "type": "main",
             "index": 0
           }
@@ -323,8 +334,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2768,
-        -128
+        2784,
+        -272
       ],
       "id": "d4b2d9cd-a1e5-4540-920d-aaa554d66a81",
       "name": "Creates records lark1"
@@ -558,8 +569,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        3232,
-        -128
+        3408,
+        -592
       ],
       "id": "869f77fb-338f-422e-9cef-ff0d36b1ab17",
       "name": "Wait2",
@@ -607,6 +618,33 @@
       "id": "8eab6dbf-e463-4009-98ec-74cfa70850cc",
       "name": "Webhook",
       "webhookId": "a340f471-1ad1-4d9f-9d04-73f701163088"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/COTcbZmCeantgSsAXxXlpAiUgwc/tables/tblSJkVpOyavUStE/records/{{ $json.data.items[0].record_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $('Normalize data').item.json.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"JobPositionName\": \"{{ $('Normalize data').item.json.JobPositionName }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2864,
+        -96
+      ],
+      "id": "7919a8ae-e361-45ec-b13b-7f0208a09bf4",
+      "name": "update vị trí nhân sự mới"
     }
   ],
   "pinData": {
@@ -660,6 +698,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-01T12:32:27.000Z",
-  "versionId": "aba24aa3-fa1e-4222-83f6-2e7f6bc2213a"
+  "updatedAt": "2025-11-02T15:00:10.000Z",
+  "versionId": "1edd4ab0-81c5-4a0c-888c-0ec918669032"
 }
