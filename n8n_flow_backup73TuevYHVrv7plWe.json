@@ -1,0 +1,559 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook4": {
+      "main": [
+        [
+          {
+            "node": "If field is feed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Auto Love Reply1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto Reply Comment1": {
+      "main": [
+        [
+          {
+            "node": "Tin nhắn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto Love Reply1": {
+      "main": [
+        [
+          {
+            "node": "Auto Reply Comment1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If field is feed": {
+      "main": [
+        [
+          {
+            "node": "If Comment is user",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Comment is user": {
+      "main": [
+        [
+          {
+            "node": "Structure Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structure Data": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 2s": {
+      "main": [
+        [
+          {
+            "node": "Send Inbox Message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tin nhắn": {
+      "main": [
+        [
+          {
+            "node": "Wait 2s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-08T16:21:58.838Z",
+  "id": "73TuevYHVrv7plWe",
+  "isArchived": false,
+  "meta": null,
+  "name": "Reply comment và inbox facebook template",
+  "nodes": [
+    {
+      "parameters": {
+        "multipleMethods": true,
+        "path": "2ce777cf-b506-4f5c-a559-a157c122d1aa",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        64,
+        352
+      ],
+      "id": "4f213264-5a36-42d4-9842-dac7bf999201",
+      "name": "Webhook",
+      "webhookId": "2ce777cf-b506-4f5c-a559-a157c122d1aa"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query[\"hub.challenge\"] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        256,
+        256
+      ],
+      "id": "4346e6bd-961d-4a9f-ab07-7e6e6bd55870",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        256,
+        448
+      ],
+      "id": "202cc572-15d4-4f57-ace9-76b37ed6c6d6",
+      "name": "Respond to Webhook4"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Tên: {{ $('Respond to Webhook4').item.json.body.entry[0].changes[0].value.from.name }}\nTin nhắn: {{ $json.message }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "Gửi 1 tin \"Cảm ơn [tên] đã comment, tôi sẽ gửi bạn tài liệu trong ít phút nữa\".\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        368
+      ],
+      "id": "c78e5e30-7f91-4e88-b17a-7a5ef72de9e4",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1248,
+        560
+      ],
+      "id": "f8d6abe9-011b-4967-b835-441ee0193cd4",
+      "name": "Google Gemini Chat Model"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v22.0/{{ $('Structure Data').item.json.page_id }}/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Structure Data').item.json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient\": {\n    \"comment_id\": \"{{ $('Structure Data').item.json.comment_id }}\"\n  },\n  \"message\": {\n    \"text\": {{ JSON.stringify($json.tin_nhan) }}\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2288,
+        368
+      ],
+      "id": "a58fb4af-5b82-4c57-b3d7-234783909b67",
+      "name": "Send Inbox Message1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v24.0/{{ $('Structure Data').item.json.comment_id }}/comments",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $('AI Agent').item.json.output }}"
+            },
+            {
+              "name": "access_token",
+              "value": "={{ $('Structure Data').item.json.access_token }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1696,
+        368
+      ],
+      "id": "e5147503-1965-49ed-adf8-9860fbc7d11a",
+      "name": "Auto Reply Comment1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v24.0/{{ $('Structure Data').item.json.comment_id }}/likes",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "={{ $('Structure Data').item.json.access_token }}"
+            },
+            {
+              "name": "type",
+              "value": "LOVE"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1520,
+        368
+      ],
+      "id": "d4bbbe7f-d4e1-4a1f-b61b-ff9fc89d1a60",
+      "name": "Auto Love Reply1"
+    },
+    {
+      "parameters": {
+        "content": "## Chỉnh access token ở đây",
+        "height": 272,
+        "width": 288,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        816,
+        208
+      ],
+      "typeVersion": 1,
+      "id": "ffeb2b6b-183f-41b8-9287-46f4f7f71888",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# Các quyền cần để react, reply và gửi tin nhắn\n\n\nQuyền - Tác dụng\npages_manage_posts - Trả lời comment trên bài viết Page\npages_read_engagement -\tĐọc comment, reactions\npages_manage_engagement\t- Like comment, reply comment\npages_show_list - Hiện danh sách pages\npages_manage_metadata -\tDùng để subscribe webhook\npages_read_user_content - nếu cần đọc nội dung người dùng gửi đến\npages_messaging - để gửi tin nhắn.",
+        "height": 704,
+        "width": 1088
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        32,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "151a41eb-533e-48bc-a11c-84ff01956740",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "fe93152a-50bb-47d5-89a3-116a7882ec97",
+              "leftValue": "={{ $json.body.entry[0].changes[0].field }}",
+              "rightValue": "feed",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        496,
+        352
+      ],
+      "id": "f74c352a-3cca-4301-8b18-2e8935437f40",
+      "name": "If field is feed"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "fe93152a-50bb-47d5-89a3-116a7882ec97",
+              "leftValue": "={{ $('Respond to Webhook4').item.json.body.entry[0].id }}",
+              "rightValue": "={{ $('Respond to Webhook4').item.json.body.entry[0].changes[0].value.from.id }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "1c7d87c3-6396-4362-8f46-495619abbf4c",
+              "leftValue": "={{ $json.body.entry[0].changes[0].value.verb }}",
+              "rightValue": "add",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "15e8c78b-3a91-4cf3-9316-28d49848661d",
+              "leftValue": "={{ $json.body.entry[0].changes[0].value.item }}",
+              "rightValue": "comment",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        688,
+        336
+      ],
+      "id": "8e6685ea-61c9-4f35-b329-b89fbdd111aa",
+      "name": "If Comment is user"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0db8a236-d892-4d30-8d32-22a94b8b200e",
+              "name": "comment_id",
+              "value": "={{ $json.body.entry[0].changes[0].value.comment_id }}",
+              "type": "string"
+            },
+            {
+              "id": "c83529b2-cf81-465a-b6ba-a57b911dffb3",
+              "name": "message",
+              "value": "={{ $json.body.entry[0].changes[0].value.message }}",
+              "type": "string"
+            },
+            {
+              "id": "0eeb5dcb-b446-4e00-936d-6e9c0cd1b64a",
+              "name": "page_id",
+              "value": "=<page_id>",
+              "type": "string"
+            },
+            {
+              "id": "31b15594-c843-4a67-8d52-0237d0dbee68",
+              "name": "access_token",
+              "value": "<access_token>",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        912,
+        320
+      ],
+      "id": "985c2363-f7aa-4740-8299-7a127ac35334",
+      "name": "Structure Data",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2112,
+        368
+      ],
+      "id": "52d53531-6723-478a-9d77-7ce7a68cb75a",
+      "name": "Wait 2s",
+      "webhookId": "2c3b35a8-c9cd-4651-9ceb-b2441a2517a1"
+    },
+    {
+      "parameters": {
+        "content": "# React và reply comment",
+        "height": 496,
+        "width": 688,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1168,
+        208
+      ],
+      "typeVersion": 1,
+      "id": "0fa8ef57-6cf8-437a-8da9-2c8ec43cb82d",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "# Gửi tin nhắn",
+        "height": 384,
+        "width": 560,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1904,
+        208
+      ],
+      "typeVersion": 1,
+      "id": "e52f2e00-ea24-46ca-a26e-acc9d3160d9a",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c38a290f-2573-4f8c-863d-99eb50975fe1",
+              "name": "tin_nhan",
+              "value": "Mình xin gửi bạn link: ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1952,
+        368
+      ],
+      "id": "00252016-f8f5-43dc-84ec-c22ac7dd466c",
+      "name": "Tin nhắn"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-11-08T16:21:58.874Z",
+      "updatedAt": "2025-11-08T16:21:58.874Z",
+      "role": "workflow:owner",
+      "workflowId": "73TuevYHVrv7plWe",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-03-06T07:14:55.176Z",
+      "updatedAt": "2025-03-06T07:14:55.176Z",
+      "id": "Memcnx2uP48EPOUj",
+      "name": "template"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-08T16:21:58.838Z",
+  "versionId": "540f85c9-be90-4aca-9be3-54db779a0788"
+}
