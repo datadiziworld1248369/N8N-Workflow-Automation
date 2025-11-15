@@ -1,0 +1,45 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-11-09T04:01:08.486Z",
+  "id": "bEGc6OqHBYicNswy",
+  "isArchived": false,
+  "meta": null,
+  "name": "Nhận thông tin video_test",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "nhan_video_123",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f96b8436-f8d7-4697-bec9-e956330dd3a5",
+      "name": "Webhook",
+      "webhookId": "9aaa32e9-a0ee-46dc-b7c7-9f7f8f82880a"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-11-09T04:01:08.491Z",
+      "updatedAt": "2025-11-09T04:01:08.491Z",
+      "role": "workflow:owner",
+      "workflowId": "bEGc6OqHBYicNswy",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-09T04:15:10.000Z",
+  "versionId": "1391eb6c-de3a-4bfe-97e8-a61e058e1e73"
+}
