@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Code in JavaScript": {
       "main": [
@@ -843,8 +843,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        5712,
-        752
+        5728,
+        624
       ],
       "id": "637f1cf9-91bf-44f7-92a2-2d590c660cc2",
       "name": "If1"
@@ -898,8 +898,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5376,
-        704
+        5360,
+        624
       ],
       "id": "b330f110-f973-4d3a-bd12-20d55a094a6b",
       "name": "search a record1"
@@ -925,8 +925,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        6128,
-        736
+        6144,
+        608
       ],
       "id": "130965ce-02c3-48ed-90b3-f62eaa37928e",
       "name": "Creates records lark"
@@ -953,7 +953,7 @@
       "typeVersion": 1.1,
       "position": [
         6544,
-        736
+        608
       ],
       "id": "5e85691f-1a98-4381-860f-3752929b37ed",
       "name": "Wait2",
@@ -964,7 +964,8 @@
         "rule": {
           "interval": [
             {
-              "triggerAtHour": 1
+              "field": "hours",
+              "hoursInterval": 12
             }
           ]
         }
@@ -1012,7 +1013,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "{\n\"token\": \n\"S+HM8tRVhUohuitqevZW87wmPkWYoU8qSwozPbFhi10VVv2gDcFI+8nBuyk8SJagFzPO1DNMiWevRxo90xCTbneoa34LvOxA/eZRsu2zVHM99xrMXVyenRNtJBqOROdrfqFet9wXN632DmyCOeaEyhQC8S7Z1QP+qF+UtipQ9FlBCP+obdzdEQlcNzOgoDjXwwOrMhF27g43iG3q3L3xVTxZKgf9a/MG5BBNdM4T8G0y/PerfNP6IUc6rKECz1UgXV90GEL+zvuThnU122VCWg==\",\n\"app_id\": \n\"cli_a72ffec19c78d02f\",\n\"app_scret\": \n\"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "jsonOutput": "{\n\"token\": \n\"SDIhakhcBmZROQuGCq2Vs0hZGS5zDeaYbXPg/YDWQ5RSS/h5xKo03XysI/cqW7+NfffaFAsWBtqOXrrlM4YhhZx7tng4XoNsBDsS6L4EWz1GUyMw083tUC9SZnI4barDU8ETtQPdVCo2ZnEfHnE4Xve8vP9TOtdOkUoc4RVfLM8R325pXreTPe5M/R20yBQYqBoLxjBilzz2WKyCtyrzBllFn9JhPqva8LfolxKZngQIhDH3nGfnASRE5Y9UIKwqtAbYoejYh4Z0nCOBF7Y+kQ==\",\n\"app_id\": \n\"cli_a72ffec19c78d02f\",\n\"app_scret\": \n\"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.set",
@@ -1627,7 +1628,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3728,
+        3760,
         640
       ],
       "id": "1b2ca7eb-5126-4d3b-ae33-8881b588d59d",
@@ -1648,7 +1649,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "  {\n                        \"data_type\": 2 ,\n                        \"branch_id\": \"db8550da-2fe4-4970-8758-d92e78e2ddd0\",\n                        \"skip\": 0,\n                        \"take\": 1000,\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"last_sync_time\": \"2000-01-25 14:15:02\"\n                        }",
+        "jsonBody": "  {\n                        \"data_type\": 2 ,\n                        \"branch_id\": null ,\n                        \"skip\": 0,\n                        \"take\": 1000,\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"last_sync_time\": \"2000-01-25 14:15:02\"\n                        }",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1721,9 +1722,15 @@
       "projectId": "HmG9Xuclf9YeLvw5"
     }
   ],
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger1": {
+      "recurrenceRules": [
+        12
+      ]
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-11-01T03:34:28.000Z",
-  "versionId": "7fd2b197-82fb-42e5-b933-aafa6fe949be"
+  "triggerCount": 1,
+  "updatedAt": "2025-11-13T14:41:13.000Z",
+  "versionId": "100bb5f9-cb5c-4e98-826a-d461944aa47d"
 }
