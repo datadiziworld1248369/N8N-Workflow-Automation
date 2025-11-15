@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
@@ -909,7 +909,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "{\n\"token\": \n\"xhqeWi+fnOJk9/JMlOAmBZaQnOG7ezShGauEWiSUj7vAiikcsHISNK35fAveIxOlI6cPyHo5wru1sB8FGV53IHAGmnJRDJliBScMxkg/7o+Xc+yFaR6zLKyvjNGFQaTM1Bfg+HK6bXAAYqgw06D+qRpJ+XBX09HV+xtvTVL97SOha6FSdsgRhUe7aePKBFadtvf90idhwqi9GN/9bP6dd8IbBSTQ6UgXiYx2V7KtozyUMoXej08VzywYRCH3SpkD9PuMjiVruoLfEVD8JBMA1g==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+        "jsonOutput": "{\n\"token\": \n\"SDIhakhcBmZROQuGCq2Vs0hZGS5zDeaYbXPg/YDWQ5RSS/h5xKo03XysI/cqW7+NfffaFAsWBtqOXrrlM4YhhZx7tng4XoNsBDsS6L4EWz1GUyMw083tUC9SZnI4barDU8ETtQPdVCo2ZnEfHnE4Xve8vP9TOtdOkUoc4RVfLM8R325pXreTPe5M/R20yBQYqBoLxjBilzz2WKyCtyrzBllFn9JhPqva8LfolxKZngQIhDH3nGfnASRE5Y9UIKwqtAbYoejYh4Z0nCOBF7Y+kQ==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.set",
@@ -1059,7 +1059,8 @@
         "rule": {
           "interval": [
             {
-              "triggerAtHour": 1
+              "field": "hours",
+              "hoursInterval": 6
             }
           ]
         }
@@ -1093,9 +1094,15 @@
       "projectId": "HmG9Xuclf9YeLvw5"
     }
   ],
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": [
+        0
+      ]
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-11-06T11:09:36.000Z",
-  "versionId": "075f8d3a-25a7-4f42-87d1-863e9b682f71"
+  "triggerCount": 1,
+  "updatedAt": "2025-11-11T13:53:44.000Z",
+  "versionId": "1a171093-42c8-4396-a0d1-a6fd3779ab88"
 }
