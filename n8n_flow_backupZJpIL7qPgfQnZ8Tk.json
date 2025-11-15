@@ -1,0 +1,318 @@
+{
+  "active": true,
+  "connections": {
+    "Create token": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Create token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-12T15:01:36.669Z",
+  "id": "ZJpIL7qPgfQnZ8Tk",
+  "isArchived": false,
+  "meta": null,
+  "name": "Duy_test_storyboard",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "story_board",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -256,
+        0
+      ],
+      "id": "a7e4995a-734f-414b-a44d-8d1ffa9c6e92",
+      "name": "Webhook",
+      "webhookId": "dce2776b-fcf5-4139-a58f-0afdc0b9203d"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/LCwabUTe7aEBoZsJltslE89IgYc/tables/tblBqiruUYR6kMOc/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Scene\": \"{{$('Set').item.json.Scene}}\",\n    \"Description\": \"{{$('Set').item.json.Description}}\",\n    \"Context\": \"{{$('Set').item.json.Context}}\",\n    \"Subject\": \"{{$('Set').item.json.Subject}}\",\n    \"Motion\": \"{{$('Set').item.json.Motion}}\",\n    \"Camera\": \"{{$('Set').item.json.Camera}}\",\n    \"Visual Effect\": \"{{$('Set').item.json['Visual Effect']}}\",\n    \"Sound Effect\": \"{{$('Set').item.json['Sound Effect']}}\",\n    \"Feasibility Level\": \"{{$('Set').item.json['Feasibility Level']}}\",\n    \"Feasibility Note\": \"{{$('Set').item.json['Feasibility Note']}}\",\n    \"Alternative Proposal\": \"{{$('Set').item.json['Alternative Proposal']}}\",\n    \"New Feasibility Level\": \"{{$('Set').item.json['New Feasibility Level']}}\",\n    \"Image Prompt\": \"{{$('Set').item.json['Image Prompt']}}\",\n    \"Video Prompt\": \"{{$('Set').item.json['Video Prompt']}}\",\n    \"Voice Off\": \"{{$('Set').item.json['Voice Off']}}\",\n    \"Song Theme\": \"{{$('Set').item.json['Song Theme']}}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        784,
+        0
+      ],
+      "id": "22c07d24-58e7-49d3-ac77-c3ce50d71c6a",
+      "name": "Creates records lark"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        528,
+        0
+      ],
+      "id": "227782eb-bcb8-46c3-9a83-e7a205237691",
+      "name": "Create token",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy đúng field chứa chuỗi JSON trong webhook\nlet raw = items[0].json.body.storyboard;\n\n// Nếu vẫn undefined (tùy webhook khác nhau), thử backup đường dẫn khác\nif (!raw) {\n  raw = items[0].json.storyboard || items[0].json.body;\n}\n\n// Nếu dữ liệu là object chứ chưa phải string thì stringify\nif (typeof raw !== 'string') {\n  raw = JSON.stringify(raw);\n}\n\n// Dọn chuỗi, parse lần đầu\nraw = raw.trim();\nlet parsedString = JSON.parse(raw);\n\n// Nếu parse xong vẫn là string (double JSON.stringify), parse thêm lần nữa\nif (typeof parsedString === 'string') {\n  parsedString = JSON.parse(parsedString);\n}\n\n// Tách từng scene thành item riêng\nreturn parsedString.map(scene => ({ json: scene }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        32,
+        0
+      ],
+      "id": "b8c937bf-27c8-41fe-8564-1203e113b241",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3ec5928f-51a9-441a-8f72-d2744e1314e4",
+              "name": "Scene",
+              "value": "={{ $json.Scene }}",
+              "type": "number"
+            },
+            {
+              "id": "dfcd2709-2636-4b4b-aa27-4ef5ef50e2fd",
+              "name": "Description",
+              "value": "={{ $json.Description }}",
+              "type": "string"
+            },
+            {
+              "id": "dad40d0d-c492-4371-9987-6455cf8fc4d9",
+              "name": "Context",
+              "value": "={{ $json.Context }}",
+              "type": "string"
+            },
+            {
+              "id": "08f1c01c-0b0c-4b17-8b8f-0ca08a451042",
+              "name": "Subject",
+              "value": "={{ $json.Subject }}",
+              "type": "string"
+            },
+            {
+              "id": "1be2f6c8-ef60-4787-9afd-e9b2a42bcf98",
+              "name": "Motion",
+              "value": "={{ $json.Motion }}",
+              "type": "string"
+            },
+            {
+              "id": "a316aef0-667d-4eda-af2a-14f87f565487",
+              "name": "Camera",
+              "value": "={{ $json.Camera }}",
+              "type": "string"
+            },
+            {
+              "id": "d2d743db-2a48-4833-bb58-4b87da890e70",
+              "name": "Visual Effect",
+              "value": "={{ $json[\"Visual Effect\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "586d419c-5380-4166-b68a-5c34baddcb95",
+              "name": "Sound Effect",
+              "value": "={{ $json[\"Sound Effect\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "9c062afb-83d2-4e59-92a5-03b4023b6fbf",
+              "name": "Feasibility Level",
+              "value": "={{ $json[\"Feasibility Level\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "25a95aca-77a7-40b9-a6c7-0783202c9a91",
+              "name": "Feasibility Note",
+              "value": "={{ $json[\"Feasibility Note\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "03a1471d-d34f-4410-a63d-4ce1687354bf",
+              "name": "Alternative Proposal",
+              "value": "={{ $json[\"Alternative Proposal\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "ae43dfc5-bc25-4ae4-ad82-9e3f847a4920",
+              "name": "New Feasibility Level",
+              "value": "={{ $json[\"New Feasibility Level\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "6151cdc4-0a25-4265-9386-3ab1f50b9bcd",
+              "name": "Image Prompt",
+              "value": "={{ $json[\"Image Prompt\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "266fca03-c315-4117-a5d5-387ca1effe62",
+              "name": "Video Prompt",
+              "value": "={{ $json[\"Video Prompt\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "33ec1fff-95b2-40cb-a423-3821f5244a81",
+              "name": "Voice Off",
+              "value": "={{ $json[\"Voice Off\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "30e0468c-a924-4d73-8d1b-a87ae19ac2dd",
+              "name": "Song Theme",
+              "value": "={{ $json[\"Song Theme\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "ea342a1e-1a78-4634-8197-cefb75b618f5",
+              "name": "Mã vạch",
+              "value": "={{ $json[\"Mã vạch\"] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        272,
+        0
+      ],
+      "id": "c5313d69-1d0d-4bcf-9344-1e683fd2542b",
+      "name": "Set"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "x-forwarded-host": "n8n.hebekery.vn",
+            "x-forwarded-server": "n8n.hebekery.vn",
+            "x-real-ip": "42.119.231.182",
+            "x-forwarded-for": "42.119.231.182",
+            "x-forwarded-proto": "https",
+            "host": "n8n.hebekery.vn",
+            "connection": "Upgrade",
+            "content-length": "19699",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+            "sec-ch-ua": "\"Google Chrome\";v=\"141\", \"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"141\"",
+            "content-type": "application/json",
+            "sec-ch-ua-mobile": "?0",
+            "accept": "*/*",
+            "origin": "https://48zfg0wswlikjqp3oyokrljdkpf6pi6zco0esybf4vcw5qyfgh-h828801762.scf.usercontent.goog",
+            "sec-fetch-site": "cross-site",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "en-US,en;q=0.9,vi;q=0.8",
+            "priority": "u=1, i"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "storyboard": "[\n  {\n    \"Scene\": 1,\n    \"Description\": \"Một bàn tay của người phụ nữ nhẹ nhàng mở hộp bánh cookies Hebekery đặt trên bàn làm việc. Ánh sáng dịu nhẹ chiếu vào, làm nổi bật chiếc bánh đầu tiên bên trong.\",\n    \"Context\": \"Văn phòng làm việc tối giản, hiện đại vào buổi sáng. Ánh nắng ban mai ấm áp chiếu qua cửa sổ.\",\n    \"Subject\": \"Bàn tay người phụ nữ, hộp bánh cookies cà phê Hebekery.\",\n    \"Motion\": \"Hành động mở hộp diễn ra chậm rãi, từ tốn. Camera zoom siêu chậm vào chiếc bánh.\",\n    \"Camera\": \"Cận cảnh (Close-up) bàn tay và hộp bánh. Góc máy từ trên cao nhìn xuống (Top-down shot).\",\n    \"Visual Effect\": \"Hiệu ứng ánh sáng loé lên nhẹ nhàng (lens flare) khi hộp bánh được mở ra.\",\n    \"Sound Effect\": \"Tiếng mở hộp giấy sột soạt nhẹ, tiếng thở đều, sâu.\",\n    \"Feasibility Level\": \"High\",\n    \"Feasibility Note\": \"Cảnh quay đơn giản, dễ dàng thực hiện trong một studio hoặc văn phòng thực tế. Không yêu cầu kỹ xảo phức tạp.\",\n    \"Alternative Proposal\": \"Không cần thiết.\",\n    \"New Feasibility Level\": \"N/A\",\n    \"Image Prompt\": \"cinematic still, top-down view of a woman's delicate hands opening a beautifully designed Hebekery coffee cookie box on a minimalist wooden office desk, soft morning light from a window creating a gentle flare, serene and calm mood, hyper-realistic, 8k.\",\n    \"Video Prompt\": \"A close-up, top-down shot of a woman's hands slowly opening a Hebekery cookie box on a modern desk. As the lid lifts, soft morning light streams in, highlighting the cookies inside. The motion is graceful and relaxing.\",\n    \"Voice Off\": \"(Nhạc nền lo-fi nhẹ nhàng bắt đầu) Có những buổi sáng, ta cần một chút dịu êm để bắt đầu...\",\n    \"Song Theme\": \"Nhạc Lo-fi chill, không lời, giai điệu piano nhẹ nhàng.\",\n    \"Mã vạch\": \"SC01-2024-HEBEKERY-DIY\"\n  },\n  {\n    \"Scene\": 2,\n    \"Description\": \"Người phụ nữ đưa chiếc bánh lên miệng, cắn một miếng nhỏ. Khi cô nhắm mắt lại để cảm nhận hương vị, khung cảnh văn phòng mờ dần và chuyển đổi sang một không gian siêu thực.\",\n    \"Context\": \"Chuyển cảnh từ văn phòng sang một không gian mộng mơ, trừu tượng.\",\n    \"Subject\": \"Gương mặt người phụ nữ (tập trung vào đôi môi và mắt), chiếc bánh cookie.\",\n    \"Motion\": \"Hành động cắn bánh và nhắm mắt diễn ra ở chế độ quay chậm (slow motion). Camera xoay nhẹ quanh gương mặt cô.\",\n    \"Camera\": \"Cực cận (Extreme Close-up) vào đôi môi khi cắn bánh, sau đó chuyển sang trung cảnh (Medium shot) gương mặt biểu cảm thư thái.\",\n    \"Visual Effect\": \"Hiệu ứng tan biến (dissolve) hoặc gợn sóng (ripple effect) để chuyển cảnh từ thực tế sang không gian siêu thực.\",\n    \"Sound Effect\": \"Tiếng bánh vỡ giòn tan, tinh tế. Tiếng chuông gió ngân vang nhẹ khi chuyển cảnh.\",\n    \"Feasibility Level\": \"Medium\",\n    \"Feasibility Note\": \"Hiệu ứng chuyển cảnh siêu thực cần kỹ năng hậu kỳ tốt để đảm bảo sự mượt mà và nghệ thuật.\",\n    \"Alternative Proposal\": \"Sử dụng hiệu ứng mờ dần (fade out/fade in) đơn giản kết hợp với thay đổi màu sắc để tạo cảm giác chuyển đổi không gian.\",\n    \"New Feasibility Level\": \"High\",\n    \"Image Prompt\": \"cinematic shot, a woman with serene expression closes her eyes after taking a bite of a coffee cookie, the office background blurs and dissolves into a surreal, dreamy landscape with soft, warm colors, ethereal mood.\",\n    \"Video Prompt\": \"Extreme close-up on a woman's lips biting a cookie. As she pulls back and closes her eyes in bliss, the camera slowly pulls out. The background of her office blurs and transforms with a gentle ripple effect into a surreal, dreamlike space.\",\n    \"Voice Off\": \"...đánh thức những giác quan bằng một hương vị vừa thân quen, vừa mới lạ.\",\n    \"Song Theme\": \"Nhạc nền thêm vào một chút âm hưởng kỳ ảo, bay bổng.\",\n    \"Mã vạch\": \"SC02-2024-HEBEKERY-DIY\"\n  },\n  {\n    \"Scene\": 3,\n    \"Description\": \"Trong không gian siêu thực, những hạt cà phê Robusta rang đậm màu từ từ bay lơ lửng trong không trung, xoáy nhẹ thành một dòng chảy mềm mại.\",\n    \"Context\": \"Không gian mộng ảo, gợi cảm giác về một đồn điền cà phê ở Tây Nguyên trong sương sớm.\",\n    \"Subject\": \"Những hạt cà phê Robusta Việt Nam.\",\n    \"Motion\": \"Các hạt cà phê chuyển động chậm, duyên dáng, lơ lửng không trọng lực. Camera trôi (dolly) theo dòng chảy của chúng.\",\n    \"Camera\": \"Quay macro những hạt cà phê để thấy rõ chi tiết, sau đó chuyển sang góc rộng (Wide shot) để thấy toàn cảnh chúng đang bay.\",\n    \"Visual Effect\": \"Slow motion, các hạt cà phê phát ra ánh sáng vàng ấm nhẹ. Có các hạt bụi vàng lấp lánh bay xung quanh.\",\n    \"Sound Effect\": \"Tiếng cà phê rang được xay chậm và vang vọng, tiếng gió thổi nhẹ.\",\n    \"Feasibility Level\": \"Medium\",\n    \"Feasibility Note\": \"Cần sử dụng CGI hoặc kỹ xảo quay phim phức tạp (dây treo, phông xanh) để tạo hiệu ứng các hạt cà phê bay lơ lửng một cách tự nhiên.\",\n    \"Alternative Proposal\": \"Sử dụng cảnh quay thực tế các hạt cà phê được đổ xuống trên nền đen ở chế độ slow motion, sau đó đảo ngược video để tạo cảm giác chúng đang bay lên.\",\n    \"New Feasibility Level\": \"High\",\n    \"Image Prompt\": \"surreal dreamscape, dark roasted Robusta coffee beans float gracefully in mid-air against a soft-focus background of a Vietnamese highland coffee plantation at dawn, glowing particles surround them, cinematic, magical realism.\",\n    \"Video Prompt\": \"Macro shot of high-quality Robusta coffee beans floating and swirling elegantly in slow motion. The background is a dreamy, out-of-focus Vietnamese coffee farm. Soft, golden light illuminates the scene.\",\n    \"Voice Off\": \"Từ những hạt Robusta trứ danh của vùng đất cao nguyên Việt Nam...\",\n    \"Song Theme\": \"Giai điệu mang âm hưởng dân tộc nhẹ nhàng, sử dụng tiếng sáo hoặc đàn T'rưng.\",\n    \"Mã vạch\": \"SC03-2024-HEBEKERY-DIY\"\n  },\n  {\n    \"Scene\": 4,\n    \"Description\": \"Những hạt điều Bình Phước căng mẩy xuất hiện, hòa quyện vào dòng chảy của những hạt cà phê. Chúng cùng nhau nhảy múa một điệu vũ chậm rãi, hài hòa.\",\n    \"Context\": \"Không gian mộng ảo tiếp diễn, có thêm hình ảnh ẩn dụ của những vườn điều Bình Phước nắng vàng.\",\n    \"Subject\": \"Hạt điều Bình Phước và hạt cà phê Robusta.\",\n    \"Motion\": \"Hạt điều và hạt cà phê xoay tròn, quấn quýt lấy nhau một cách nghệ thuật. Camera di chuyển xoay tròn theo chúng.\",\n    \"Camera\": \"Góc quay cận cảnh (Close-up) vào sự tương tác giữa hai loại hạt.\",\n    \"Visual Effect\": \"Hiệu ứng ánh sáng tiếp tục, hạt điều có vầng sáng màu kem nhẹ nhàng. Chuyển động tiếp tục ở chế độ slow motion.\",\n    \"Sound Effect\": \"Tiếng lách tách nhẹ của hạt điều khi được tách vỏ, hòa quyện với tiếng cà phê.\",\n    \"Feasibility Level\": \"Medium\",\n    \"Feasibility Note\": \"Tương tự cảnh 3, việc kết hợp hai loại nguyên liệu bay lượn đòi hỏi kỹ xảo hậu kỳ cẩn thận.\",\n    \"Alternative Proposal\": \"Sử dụng một mặt phẳng kính, rắc hạt cà phê và hạt điều lên trên, quay từ dưới lên và xoay tròn mặt kính để tạo hiệu ứng chuyển động tương đối.\",\n    \"New Feasibility Level\": \"High\",\n    \"Image Prompt\": \"magical realism art, whole Binh Phuoc cashews join the floating Robusta coffee beans, dancing together in a slow, harmonious spiral, warm golden lighting, dreamlike atmosphere, high detail.\",\n    \"Video Prompt\": \"Golden Binh Phuoc cashews gracefully float into the frame, joining the swirling dance of the Robusta coffee beans. They move together in a beautiful, slow-motion ballet against a dreamy, abstract background.\",\n    \"Voice Off\": \"...hòa quyện cùng vị bùi ngọt của hạt điều Bình Phước đậm tình quê hương.\",\n    \"Song Theme\": \"Âm nhạc giữ nguyên giai điệu dân tộc nhưng thêm phần bass nhẹ nhàng, tạo sự hòa quyện.\",\n    \"Mã vạch\": \"SC04-2024-HEBEKERY-DIY\"\n  },\n  {\n    \"Scene\": 5,\n    \"Description\": \"Các nguyên liệu bay lượn hội tụ vào một điểm sáng trung tâm và biến hóa một cách kỳ diệu, tạo thành hình dạng của một chiếc bánh cookies cà phê hoàn chỉnh.\",\n    \"Context\": \"Không gian trừu tượng, nền tối với một nguồn sáng ấm áp ở trung tâm.\",\n    \"Subject\": \"Quá trình hình thành chiếc bánh cookie.\",\n    \"Motion\": \"Các hạt xoáy nhanh dần và hút vào trung tâm, sau đó bùng nổ nhẹ nhàng thành chiếc bánh. Chiếc bánh xoay tròn chậm rãi.\",\n    \"Camera\": \"Camera zoom vào điểm hội tụ và sau đó lùi ra để hiển thị trọn vẹn chiếc bánh thành phẩm.\",\n    \"Visual Effect\": \"Hiệu ứng time-lapse/morphing, các hạt biến thành bột rồi kết dính lại. Ánh sáng bùng lên rồi dịu lại khi bánh hình thành.\",\n    \"Sound Effect\": \"Âm thanh vút lên cao trào rồi trở lại nhẹ nhàng (swoosh, sparkle), tiếng 'pop' nhẹ khi bánh hiện ra.\",\n    \"Feasibility Level\": \"Medium\",\n    \"Feasibility Note\": \"Đây là cảnh quay đòi hỏi CGI phức tạp nhất trong video để hiệu ứng biến hóa được mượt mà và thuyết phục.\",\n    \"Alternative Proposal\": \"Sử dụng stop-motion: các nguyên liệu được sắp xếp thủ công từng chút một để tạo thành hình chiếc bánh qua nhiều khung hình.\",\n    \"New Feasibility Level\": \"Medium\",\n    \"Image Prompt\": \"abstract cinematic shot, a swirling vortex of coffee beans and cashews magically converges into a single, perfectly formed coffee cookie, suspended in a dark space with a warm, divine light from behind, epic and beautiful.\",\n    \"Video Prompt\": \"A dynamic shot where floating coffee beans and cashews spiral inwards towards a bright point of light. In a magical flash, they morph and coalesce into a perfect Hebekery coffee cookie, which then rotates slowly in the center of the frame.\",\n    \"Voice Off\": \"Tất cả tinh túy được gói trọn trong một chiếc bánh nhỏ xinh.\",\n    \"Song Theme\": \"Âm nhạc đạt đến điểm cao trào ngắn, sau đó trở về giai điệu thư giãn ban đầu.\",\n    \"Mã vạch\": \"SC05-2024-HEBEKERY-DIY\"\n  },\n  {\n    \"Scene\": 6,\n    \"Description\": \"Cảnh quay chuyển về lại văn phòng. Người phụ nữ mỉm cười hài lòng. Cô đặt chiếc bánh đang ăn dở xuống cạnh laptop và một ly sữa trắng.\",\n    \"Context\": \"Quay trở lại văn phòng làm việc hiện đại, ngăn nắp.\",\n    \"Subject\": \"Người phụ nữ, chiếc bánh, laptop, ly sữa.\",\n    \"Motion\": \"Hành động đặt bánh xuống nhẹ nhàng. Camera lia ngang (pan) từ gương mặt cô sang bố cục trên bàn làm việc.\",\n    \"Camera\": \"Trung cảnh (Medium shot) người phụ nữ, sau đó chuyển sang cận cảnh (Close-up) bố cục sắp đặt trên bàn.\",\n    \"Visual Effect\": \"Hiệu ứng chuyển cảnh mờ ảo (soft fade) từ cảnh siêu thực về thực tại.\",\n    \"Sound Effect\": \"Tiếng gõ bàn phím leis leis, tiếng ly đặt xuống bàn, tiếng hít thở sâu thư thái.\",\n    \"Feasibility Level\": \"High\",\n    \"Feasibility Note\": \"Cảnh quay đơn giản, tập trung vào diễn xuất và sắp đặt sản phẩm.\",\n    \"Alternative Proposal\": \"Không cần thiết.\",\n    \"New Feasibility Level\": \"N/A\",\n    \"Image Prompt\": \"lifestyle photography, a content modern woman in a bright office places a half-eaten coffee cookie next to her laptop and a glass of milk, creating a perfect flatlay, soft natural light, warm and productive mood.\",\n    \"Video Prompt\": \"The scene transitions smoothly back to the modern office. The woman is smiling, looking refreshed. She gently places the cookie on her desk next to her laptop and a glass of milk. The camera pans across the neat, productive workspace.\",\n    \"Voice Off\": \"Hebekery - Nguồn năng lượng lành mạnh cho ngày làm việc hiệu quả.\",\n    \"Song Theme\": \"Nhạc Lo-fi thư giãn, tiết tấu đều đặn, tạo cảm giác tập trung.\",\n    \"Mã vạch\": \"SC06-2024-HEBEKERY-DIY\"\n  },\n  {\n    \"Scene\": 7,\n    \"Description\": \"Một đoạn montage ngắn: Cảnh người phụ nữ vươn vai thư giãn tại bàn làm việc, cảnh cô gõ phím đầy tập trung và năng lượng, cảnh cô mỉm cười nhìn ra cửa sổ.\",\n    \"Context\": \"Vẫn tại văn phòng làm việc.\",\n    \"Subject\": \"Người phụ nữ với các hoạt động thể hiện lối sống lành mạnh, năng động.\",\n    \"Motion\": \"Các đoạn cắt cảnh nhanh, dứt khoát nhưng vẫn giữ được sự mềm mại.\",\n    \"Camera\": \"Sử dụng nhiều góc máy khác nhau: trung cảnh, cận cảnh bàn tay gõ phím, góc máy từ sau lưng nhìn qua vai.\",\n    \"Visual Effect\": \"Chỉnh màu tươi sáng, trong trẻo. Các chuyển cảnh mượt mà.\",\n    \"Sound Effect\": \"Tiếng gõ phím nhanh, tiếng hít thở sâu, tiếng chim hót líu lo từ bên ngoài cửa sổ.\",\n    \"Feasibility Level\": \"High\",\n    \"Feasibility Note\": \"Dễ dàng thực hiện, chỉ cần diễn viên diễn xuất tốt các hành động nhỏ.\",\n    \"Alternative Proposal\": \"Không cần thiết.\",\n    \"New Feasibility Level\": \"N/A\",\n    \"Image Prompt\": \"photo series, a split screen showing a healthy office worker: one panel she's doing a gentle desk stretch, second panel her hands are typing energetically, third panel she's smiling peacefully, bright and airy office aesthetic.\",\n    \"Video Prompt\": \"A quick, uplifting montage: a woman stretches her arms at her desk, then types on her keyboard with focus and a gentle smile, then takes a calm, mindful moment to look out the window. The edits are smooth and rhythmic.\",\n    \"Voice Off\": \"Phù hợp với những người phụ nữ hiện đại, luôn chăm sóc cho sức khỏe của chính mình.\",\n    \"Song Theme\": \"Nhạc nền trở nên vui tươi hơn một chút, có thêm nhịp điệu (beat) nhẹ.\",\n    \"Mã vạch\": \"SC07-2024-HEBEKERY-DIY\"\n  },\n  {\n    \"Scene\": 8,\n    \"Description\": \"Tan làm, người phụ nữ bỏ một vài chiếc bánh được gói riêng vào chiếc túi xách thanh lịch của mình. Thao tác nhanh gọn, cho thấy sự tiện lợi.\",\n    \"Context\": \"Văn phòng vào cuối ngày, ánh sáng hoàng hôn dịu nhẹ.\",\n    \"Subject\": \"Bàn tay, những chiếc bánh gói riêng, túi xách.\",\n    \"Motion\": \"Hành động nhanh, dứt khoát nhưng không vội vã. Camera đi theo chuyển động của tay.\",\n    \"Camera\": \"Cận cảnh (Close-up) hành động bỏ bánh vào túi, sau đó máy quay ngước lên (tilt up) khi cô đeo túi lên vai và rời đi.\",\n    \"Visual Effect\": \"Không có hiệu ứng đặc biệt, tập trung vào sự chân thực.\",\n    \"Sound Effect\": \"Tiếng kéo khóa túi, tiếng sột soạt của bao bì bánh, tiếng bước chân nhẹ nhàng.\",\n    \"Feasibility Level\": \"High\",\n    \"Feasibility Note\": \"Cảnh quay đơn giản, tập trung vào việc thể hiện tính năng tiện lợi của sản phẩm.\",\n    \"Alternative Proposal\": \"Không cần thiết.\",\n    \"New Feasibility Level\": \"N/A\",\n    \"Image Prompt\": \"close-up shot, a woman's hand neatly placing a small, individually wrapped Hebekery cookie into her stylish handbag, showing the product's convenience and portability, end-of-day office setting, warm tones.\",\n    \"Video Prompt\": \"A close-up shot focusing on a woman’s hands quickly and easily slipping a few compact, individually wrapped cookies into her purse. The action is swift and effortless, highlighting convenience for a busy lifestyle. She then zips the purse and walks away.\",\n    \"Voice Off\": \"Nhỏ gọn, tiện lợi, luôn bên bạn mọi lúc mọi nơi.\",\n    \"Song Theme\": \"Nhạc nền trở lại giai điệu lo-fi ban đầu, tạo cảm giác kết thúc một ngày làm việc.\",\n    \"Mã vạch\": \"SC08-2024-HEBEKERY-DIY\"\n  },\n  {\n    \"Scene\": 9,\n    \"Description\": \"Cảnh cuối cùng là một cú máy tĩnh, đẹp mắt (beauty shot) của hộp bánh Hebekery và một chiếc bánh đặt cạnh. Logo và tagline của thương hiệu từ từ hiện lên.\",\n    \"Context\": \"Nền trơn, sạch sẽ, ánh sáng studio chuyên nghiệp.\",\n    \"Subject\": \"Sản phẩm: hộp bánh và một chiếc bánh cookie.\",\n    \"Motion\": \"Tĩnh. Có thể có một luồng khói cà phê mỏng bay lên từ chiếc bánh một cách nghệ thuật.\",\n    \"Camera\": \"Góc máy ngang tầm mắt, tĩnh (static shot).\",\n    \"Visual Effect\": \"Logo và tagline hiện lên một cách mượt mà (soft fade-in). Luồng khói mỏng được tạo bằng kỹ xảo hoặc máy tạo khói.\",\n    \"Sound Effect\": \"Âm nhạc nhỏ dần và kết thúc, chỉ còn lại một âm thanh tinh tế cuối cùng (a final musical sting).\",\n    \"Feasibility Level\": \"High\",\n    \"Feasibility Note\": \"Đây là một cảnh quay sản phẩm tiêu chuẩn, dễ dàng thực hiện trong studio.\",\n    \"Alternative Proposal\": \"Nếu không thể tạo hiệu ứng khói, có thể đặt vài hạt cà phê rang bên cạnh để tăng tính thẩm mỹ.\",\n    \"New Feasibility Level\": \"High\",\n    \"Image Prompt\": \"commercial product shot, a pristine Hebekery coffee cookie box standing next to a single perfect cookie on a clean, minimalist surface, professional studio lighting, the brand's logo and tagline 'Vị ngon từ đất Việt' is elegantly displayed, 8k, hyper-detailed.\",\n    \"Video Prompt\": \"A clean, elegant product shot. The Hebekery cookie box and a single cookie are perfectly arranged on a neutral background. A very thin wisp of steam or coffee aroma gently rises from the cookie. The brand logo and tagline fade in softly on screen. The shot is static and beautiful.\",\n    \"Voice Off\": \"Hebekery. Vị ngon từ đất Việt.\",\n    \"Song Theme\": \"Nhạc nền tắt hẳn, để lại sự tĩnh lặng.\",\n    \"Mã vạch\": \"SC09-2024-HEBEKERY-DIY\"\n  }\n]"
+          },
+          "webhookUrl": "https://n8n.hebekery.vn/webhook/story_board",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-11-12T15:01:36.673Z",
+      "updatedAt": "2025-11-12T15:01:36.673Z",
+      "role": "workflow:owner",
+      "workflowId": "ZJpIL7qPgfQnZ8Tk",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-12T15:26:40.000Z",
+  "versionId": "673e154e-1c22-40a3-aae0-d96caa021604"
+}
