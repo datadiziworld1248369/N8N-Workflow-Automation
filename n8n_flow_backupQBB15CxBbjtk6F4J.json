@@ -1,0 +1,580 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s)": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Update row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-09T09:35:46.748Z",
+  "id": "QBB15CxBbjtk6F4J",
+  "isArchived": false,
+  "meta": null,
+  "name": "DUY_SORA 2 motion frame supply api workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        272
+      ],
+      "id": "7bbf3a26-cc69-46cb-aefe-7b30325eb11d",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "oWa8o2kxlSRIUjMl",
+          "mode": "list",
+          "cachedResultName": "SORA video tracking",
+          "cachedResultUrl": "/projects/EdXxq6fUimMMCZEd/datatables/oWa8o2kxlSRIUjMl"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "Status",
+              "condition": "isEmpty"
+            }
+          ]
+        },
+        "limit": 2
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        272
+      ],
+      "id": "4ec2c6a3-e7a9-4e97-b2be-aeb9d8a55796",
+      "name": "Get row(s)"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Link_image }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "e1f97188-b5ac-4499-8fff-391c4d1b31fd"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Image2video"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "096beb48-ea14-465d-abf2-4e6a37119512",
+                    "leftValue": "={{ $json.Link_image }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Text2video"
+            }
+          ]
+        },
+        "options": {
+          "allMatchingOutputs": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -192,
+        272
+      ],
+      "id": "66076b8a-4f32-4c39-a87e-ba177077c143",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "promptType": "=Prompt base {{ $json.Prompt }}",
+        "text": "",
+        "options": {
+          "systemMessage": "Bạn là 1 chuyên gia AI chuyên tạo prompt để tạo video AI chuyên nghiệp, bạn sẽ có nhiệm vụ xem qua prompt base ban đầu để từ đó phát triển prompt và nâng cấp prompt chi tiết để tôi tạo video SORA 2. Từ đó tạo ra prompt chi tiết hấp dẫn, sống động, chân thực để đưa vào prompt trên SORA 2 tạo ra video"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        192,
+        -48
+      ],
+      "id": "674b11cb-f38a-4530-a100-660d2516cf08",
+      "name": "AI Agent",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.kie.ai/api/v1/jobs/createTask",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\n  JSON.stringify({\n    model: 'sora-2-text-to-video',\n    // nếu spec dùng callbackUrl (camelCase) thì đổi cho khớp:\n    input: {\n      prompt: (typeof $json.output === 'string') ? $json.output : JSON.stringify($json.output),\n      aspect_ratio: 'landscape',\n      n_frames: String($json.n_frames ?? 10), // <-- ép thành chuỗi, ra \"10\"\n      remove_watermark: true\n    }\n  })\n}}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        592,
+        384
+      ],
+      "id": "58bffe56-6dee-4db0-a1b4-b3da2ec21d0e",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=prompt base: {{ $json.Prompt }}",
+        "options": {
+          "systemMessage": "Bạn là 1 chuyên gia AI chuyên tạo prompt để tạo video AI chuyên nghiệp, bạn sẽ có nhiệm vụ xem qua prompt base ban đầu để từ đó phát triển prompt và nâng cấp prompt chi tiết để tôi tạo video SORA 2. Từ đó tạo ra prompt chi tiết hấp dẫn, sống động, chân thực.\nChỉ đưa ra prompt output chi tiết , không thêm thắt bất cứ câu trả lời nào khác ngoài prompt.\nlưu ý nội dung output là tiếng Việt và mô tả âm thanh lời nói thì phải dùng dấu '' chứ không dùng dấu \"\" không là gửi đi bị lỗi"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        144,
+        336
+      ],
+      "id": "ba05fc09-462c-4e6e-9e38-edb0bebe190b",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro",
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        96,
+        576
+      ],
+      "id": "6d3ee656-faaa-4534-b294-860d33cf606e",
+      "name": "Google Gemini Chat Model"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1152,
+        -96
+      ],
+      "id": "a1f69584-de27-4283-bee3-6502dc1b49cf",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "amount": 60
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        800,
+        384
+      ],
+      "id": "633e0627-a76d-47d8-b185-d8e411b8c39c",
+      "name": "Wait",
+      "webhookId": "7f3c20ec-ac4e-4be0-a8f9-a94d1d9cf316"
+    },
+    {
+      "parameters": {
+        "url": "https://api.kie.ai/api/v1/jobs/recordInfo",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "value": "={{ $json.data.recordId }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_API_KEY"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1008,
+        384
+      ],
+      "id": "693fd4e9-7996-46aa-b6e4-1625f62c8d28",
+      "name": "HTTP Request1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "y9EMi70c6UfrpGrj",
+          "name": "perplexity"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "334cecd6-63eb-4881-8c7d-2af88f5c4c49",
+              "leftValue": "={{ $json.data.state }}",
+              "rightValue": "success",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1216,
+        384
+      ],
+      "id": "0951326e-0cdc-4104-b259-a290fe13febc",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "oWa8o2kxlSRIUjMl",
+          "mode": "list",
+          "cachedResultName": "SORA video tracking",
+          "cachedResultUrl": "/projects/EdXxq6fUimMMCZEd/datatables/oWa8o2kxlSRIUjMl"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "={{ $('Switch').last().json.id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Status": true,
+            "Prompt": "={{ $('AI Agent1').last().json.output }}",
+            "Ratio": "={{ $('Switch').last().json.Ratio }}",
+            "Link_image": "={{ $('Switch').last().json.Link_image }}",
+            "FinalURL": "={{ JSON.parse($json.data.resultJson).resultUrls[0] }}\n"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Ratio",
+              "displayName": "Ratio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Link_image",
+              "displayName": "Link_image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "FinalURL",
+              "displayName": "FinalURL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1392,
+        368
+      ],
+      "id": "bf0f94cf-d0b7-4bed-a670-dfec0e402603",
+      "name": "Update row(s)"
+    }
+  ],
+  "pinData": {
+    "When clicking ‘Execute workflow’": [
+      {
+        "json": {}
+      }
+    ],
+    "HTTP Request1": [
+      {
+        "json": {
+          "code": 200,
+          "msg": "success",
+          "data": {
+            "taskId": "25187a19642685327d13e8fd89fe02a9",
+            "model": "sora-2-text-to-video",
+            "state": "success",
+            "param": "{\"input\":{\"remove_watermark\":true,\"aspect_ratio\":\"landscape\",\"n_frames\":\"10\",\"prompt\":\"Một video 8K hyperrealistic, chất lượng điện ảnh, quay bằng ống kính 35mm.\\n\\n**Cảnh 1:**\\nMột cô gái Việt Nam 22 tuổi, vóc dáng thể thao cực kỳ quyến rũ và săn chắc, đang thực hiện động tác squat cuối cùng trong set tập của mình. Cô đang ở trong một phòng khách căn hộ hiện đại, tràn ngập ánh nắng vàng của buổi hoàng hôn xuyên qua khung cửa sổ lớn. Ánh nắng tạo ra hiệu ứng lóa ống kính (lens flare) nghệ thuật. Mồ hôi lấm tấm trên làn da rám nắng khỏe khoắn của cô, phản chiếu ánh sáng. Cô mặc một bộ đồ thể thao mùa hè màu hồng phấn thời trang: chiếc áo croptop ôm sát với đường cắt xẻ tinh tế bên eo, và chiếc quần short thể thao ngắn tôn lên đôi chân thon dài. Mái tóc dài đen óng của cô được búi cao gọn gàng. Từng chuyển động của cô đều dứt khoát và chuẩn xác, thể hiện sự tập trung cao độ. Âm thanh nền là tiếng thở đều đặn của cô và một bản nhạc lofi chill-pop đang phát rất nhỏ.\\n\\n**Chuyển cảnh:**\\nCô hoàn thành động tác, đứng thẳng dậy một cách duyên dáng. Cô quay người lại, hơi thở vẫn còn gấp nhẹ. Khi quay lại, cô bất ngờ nhìn thấy camera và ánh mắt cô hướng thẳng lên trên. Biểu cảm của cô chuyển từ ngạc nhiên sang một nụ cười tinh nghịch và đầy thu hút.\\n\\n**Cảnh 2:**\\nCảnh quay chuyển đột ngột sang góc nhìn thứ nhất (POV) từ một người con trai cao hơn đang đứng nhìn cô. Khán giả có thể thấy một phần cánh tay và chiếc điện thoại đang cầm trên tay của người này ở phía dưới khung hình, ngụ ý rằng anh ta đang quay phim cô. Từ góc nhìn này, cô gái đang ngước lên nhìn thẳng vào ống kính, đôi mắt long lanh và nụ cười vẫn giữ trên môi. Hậu cảnh phía sau cô được làm mờ nhẹ (độ sâu trường ảnh nông), tập trung hoàn toàn vào biểu cảm sống động trên khuôn mặt cô.\\n\\nCô nghiêng nhẹ đầu, đôi môi khẽ mở và nói với giọng điệu vừa ngọt ngào vừa có chút trêu chọc, âm thanh rõ ràng và gần gũi: 'Xin lỗi nhưng em đã có người yêu rồi là anh Bằng í ahihi'. Cô kết thúc bằng một tiếng cười khúc khích 'ahihi' trong trẻo và đáng yêu, đôi mắt lấp lánh sự vui vẻ.\"},\"model\":\"sora-2-text-to-video\"}",
+            "resultJson": "{\"resultWaterMarkUrls\":[\"https://tempfile.aiquickdraw.com/f/25187a19642685327d13e8fd89fe02a9/ce8ac509-fbe3-4214-aa15-40d00635f022.mp4\"],\"resultUrls\":[\"https://tempfile.aiquickdraw.com/f/25187a19642685327d13e8fd89fe02a9/7900777c-44c2-483c-96a5-acbd8fed4396.mp4\"]}",
+            "failCode": null,
+            "failMsg": null,
+            "costTime": 157,
+            "completeTime": 1762679336025,
+            "createTime": 1762679178768
+          }
+        }
+      }
+    ],
+    "Wait": [
+      {
+        "json": {
+          "code": 200,
+          "msg": "success",
+          "data": {
+            "taskId": "25187a19642685327d13e8fd89fe02a9",
+            "recordId": "25187a19642685327d13e8fd89fe02a9"
+          }
+        }
+      }
+    ],
+    "HTTP Request": [
+      {
+        "json": {
+          "code": 200,
+          "msg": "success",
+          "data": {
+            "taskId": "25187a19642685327d13e8fd89fe02a9",
+            "recordId": "25187a19642685327d13e8fd89fe02a9"
+          }
+        }
+      }
+    ],
+    "AI Agent1": [
+      {
+        "json": {
+          "output": "Một video 8K hyperrealistic, chất lượng điện ảnh, quay bằng ống kính 35mm.\n\n**Cảnh 1:**\nMột cô gái Việt Nam 22 tuổi, vóc dáng thể thao cực kỳ quyến rũ và săn chắc, đang thực hiện động tác squat cuối cùng trong set tập của mình. Cô đang ở trong một phòng khách căn hộ hiện đại, tràn ngập ánh nắng vàng của buổi hoàng hôn xuyên qua khung cửa sổ lớn. Ánh nắng tạo ra hiệu ứng lóa ống kính (lens flare) nghệ thuật. Mồ hôi lấm tấm trên làn da rám nắng khỏe khoắn của cô, phản chiếu ánh sáng. Cô mặc một bộ đồ thể thao mùa hè màu hồng phấn thời trang: chiếc áo croptop ôm sát với đường cắt xẻ tinh tế bên eo, và chiếc quần short thể thao ngắn tôn lên đôi chân thon dài. Mái tóc dài đen óng của cô được búi cao gọn gàng. Từng chuyển động của cô đều dứt khoát và chuẩn xác, thể hiện sự tập trung cao độ. Âm thanh nền là tiếng thở đều đặn của cô và một bản nhạc lofi chill-pop đang phát rất nhỏ.\n\n**Chuyển cảnh:**\nCô hoàn thành động tác, đứng thẳng dậy một cách duyên dáng. Cô quay người lại, hơi thở vẫn còn gấp nhẹ. Khi quay lại, cô bất ngờ nhìn thấy camera và ánh mắt cô hướng thẳng lên trên. Biểu cảm của cô chuyển từ ngạc nhiên sang một nụ cười tinh nghịch và đầy thu hút.\n\n**Cảnh 2:**\nCảnh quay chuyển đột ngột sang góc nhìn thứ nhất (POV) từ một người con trai cao hơn đang đứng nhìn cô. Khán giả có thể thấy một phần cánh tay và chiếc điện thoại đang cầm trên tay của người này ở phía dưới khung hình, ngụ ý rằng anh ta đang quay phim cô. Từ góc nhìn này, cô gái đang ngước lên nhìn thẳng vào ống kính, đôi mắt long lanh và nụ cười vẫn giữ trên môi. Hậu cảnh phía sau cô được làm mờ nhẹ (độ sâu trường ảnh nông), tập trung hoàn toàn vào biểu cảm sống động trên khuôn mặt cô.\n\nCô nghiêng nhẹ đầu, đôi môi khẽ mở và nói với giọng điệu vừa ngọt ngào vừa có chút trêu chọc, âm thanh rõ ràng và gần gũi: 'Xin lỗi nhưng em đã có người yêu rồi là anh Bằng í ahihi'. Cô kết thúc bằng một tiếng cười khúc khích 'ahihi' trong trẻo và đáng yêu, đôi mắt lấp lánh sự vui vẻ."
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-11-09T09:35:46.752Z",
+      "updatedAt": "2025-11-09T09:35:46.752Z",
+      "role": "workflow:owner",
+      "workflowId": "QBB15CxBbjtk6F4J",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-09T09:35:51.000Z",
+  "versionId": "922d2165-15aa-40aa-8c98-cf2fbf1b6c22"
+}
