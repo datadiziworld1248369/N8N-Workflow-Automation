@@ -1,0 +1,74 @@
+{
+  "active": false,
+  "connections": {
+    "Acess_token": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-13T08:14:00.380Z",
+  "id": "O8T5oMKvqdlYWzP3",
+  "isArchived": false,
+  "meta": null,
+  "name": "AMIS_TOKEN",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://actapp.misa.vn/api/oauth/actopen/connect",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=                        {\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"access_code\": \"{{ $('Acess_token').item.json.token }}\",\n                        \"org_company_code\": \"congtydemoketnoiact\"\n                        } ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        432,
+        -128
+      ],
+      "id": "74112027-fa61-453d-b04b-bbd68b537f14",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n\"token\": \n\"SDIhakhcBmZROQuGCq2Vs0hZGS5zDeaYbXPg/YDWQ5RSS/h5xKo03XysI/cqW7+NfffaFAsWBtqOXrrlM4YhhZx7tng4XoNsBDsS6L4EWz1GUyMw083tUC9SZnI4barDU8ETtQPdVCo2ZnEfHnE4Xve8vP9TOtdOkUoc4RVfLM8R325pXreTPe5M/R20yBQYqBoLxjBilzz2WKyCtyrzBllFn9JhPqva8LfolxKZngQIhDH3nGfnASRE5Y9UIKwqtAbYoejYh4Z0nCOBF7Y+kQ==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        144,
+        -128
+      ],
+      "id": "10ca2814-4b6f-494e-91ae-e3b35fc5bc0f",
+      "name": "Acess_token"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-11-13T08:14:00.384Z",
+      "updatedAt": "2025-11-13T08:14:00.384Z",
+      "role": "workflow:owner",
+      "workflowId": "O8T5oMKvqdlYWzP3",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-13T08:14:00.380Z",
+  "versionId": "867c55ea-5ee5-45f3-95f4-2312e77e1bb9"
+}
