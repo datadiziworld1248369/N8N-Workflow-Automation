@@ -733,8 +733,8 @@
   "settings": {},
   "shared": [
     {
-      "createdAt": "2025-10-10T10:40:42.380Z",
       "updatedAt": "2025-10-10T10:40:42.380Z",
+      "createdAt": "2025-10-10T10:40:42.380Z",
       "role": "workflow:owner",
       "workflowId": "eZ6liLWFn1OgW4XL",
       "projectId": "HmG9Xuclf9YeLvw5"
