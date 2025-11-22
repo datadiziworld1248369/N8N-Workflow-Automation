@@ -1715,8 +1715,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-10-30T03:39:25.989Z",
       "updatedAt": "2025-10-30T03:39:25.989Z",
+      "createdAt": "2025-10-30T03:39:25.989Z",
       "role": "workflow:owner",
       "workflowId": "STgJijTaC9Trvuep",
       "projectId": "HmG9Xuclf9YeLvw5"
@@ -1725,7 +1725,7 @@
   "staticData": {
     "node:Schedule Trigger1": {
       "recurrenceRules": [
-        12
+        0
       ]
     }
   },
