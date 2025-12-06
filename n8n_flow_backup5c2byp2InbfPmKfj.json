@@ -1,0 +1,74 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-06T02:15:12.278Z",
+    "createdAt": "2025-12-06T02:15:12.278Z",
+    "versionId": "60f5d64f-b8f2-460e-aee3-048c302b78ba",
+    "workflowId": "5c2byp2InbfPmKfj",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "nhan_sư_hebe",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "6fa84372-8eb2-4f98-b4b4-872ff3d025a0",
+        "name": "Webhook",
+        "webhookId": "51394971-9f7a-4902-b494-74c597150d0a"
+      }
+    ],
+    "connections": {},
+    "authors": "Trịnh Đình Duy",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "60f5d64f-b8f2-460e-aee3-048c302b78ba",
+  "connections": {},
+  "createdAt": "2025-12-06T02:15:12.221Z",
+  "id": "5c2byp2InbfPmKfj",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 41",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "nhan_sư_hebe",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6fa84372-8eb2-4f98-b4b4-872ff3d025a0",
+      "name": "Webhook",
+      "webhookId": "51394971-9f7a-4902-b494-74c597150d0a"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-06T02:15:12.276Z",
+      "createdAt": "2025-12-06T02:15:12.276Z",
+      "role": "workflow:owner",
+      "workflowId": "5c2byp2InbfPmKfj",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-12-06T02:15:12.000Z",
+  "versionId": "60f5d64f-b8f2-460e-aee3-048c302b78ba"
+}
