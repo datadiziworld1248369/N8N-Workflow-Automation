@@ -1,0 +1,291 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Crypto": {
+      "main": [
+        [
+          {
+            "node": "hashed_array",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obj_to_array": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "hashed_array": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "array_obj": {
+      "main": [
+        [
+          {
+            "node": "set_field_ko_hash",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "Crypto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "array_obj",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "obj_to_array",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-04T07:50:15.901Z",
+  "id": "cFCvk3Aiq2BWBvvK",
+  "isArchived": true,
+  "meta": null,
+  "name": "get dataset content",
+  "nodes": [
+    {
+      "parameters": {
+        "type": "SHA256",
+        "value": "={{ $json.value }}",
+        "dataPropertyName": "={{ $json.key }}"
+      },
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        832,
+        0
+      ],
+      "id": "ab99fc3e-f991-45bc-9d51-9918389441c8",
+      "name": "Crypto"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "709760c0-bdbe-49b7-b0fa-0ce1a7a640f2",
+              "name": "mang_fields",
+              "value": "={{ Object.entries($json).map(([key, value]) => ({\n  key: key,\n  value: value || \"\"\n})) }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        432,
+        0
+      ],
+      "id": "3293af52-93d7-4889-94c0-100fb8bf78e2",
+      "name": "obj_to_array"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "830cb78a-1405-4274-8130-825919c8598c",
+              "name": "={{ $json.key }}",
+              "value": "=[\"{{ $json[$json.key] }}\"]",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1008,
+        0
+      ],
+      "id": "ccd103dd-d6c3-4cec-825b-be09cfdd60c8",
+      "name": "hashed_array"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8dc1bb7f-bb2e-44e6-9786-ef1273ef6526",
+              "name": "data_hashed",
+              "value": "={{ $json.data_hashed.reduce((acc, curr) => {\n  const key = Object.keys(curr)[0];\n  acc[key] = curr[key][0];  // Lấy phần tử đầu tiên của mảng\n  return acc;\n}, {}) }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1440,
+        0
+      ],
+      "id": "e27c7d5c-a4a2-457a-89a2-36ebf193b5c1",
+      "name": "array_obj"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d6a532e7-6e27-47ac-8c35-85424fb22e22",
+              "name": "data_hashed.client_ip_address",
+              "value": "={{ $('Start').item.json.client_ip_address }}",
+              "type": "string"
+            },
+            {
+              "id": "91158741-0e2d-418c-a8df-0ac490810fa3",
+              "name": "data_hashed.client_user_agent",
+              "value": "={{ $('Start').item.json.client_user_agent }}",
+              "type": "string"
+            },
+            {
+              "id": "0b079f98-31cf-4000-b477-ea6c4e7dbeda",
+              "name": "data_hashed.fbp",
+              "value": "={{ $('Start').item.json.fbp }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1664,
+        0
+      ],
+      "id": "f6b2f241-f4a8-4d23-8217-08bf9abc51fa",
+      "name": "set_field_ko_hash"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "mang_fields",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        656,
+        0
+      ],
+      "id": "55e2b810-5fb5-41ef-a437-33c11d38cfa5",
+      "name": "Split Out1"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "data_hashed",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1216,
+        0
+      ],
+      "id": "857bde98-f900-40b4-b6e3-2af5960a78a7",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "inputSource": "jsonExample",
+        "jsonExample": "\n  {\n    \"country\": \"vn\",\n    \"ct\": \"vinh\",\n    \"st\": \"vinh\",\n    \"zp\": \"43199\",\n    \"external_id\": \"0984540969\",\n    \"ph\": \"0984540969\",\n    \"em\": \"\",\n    \"ln\": \"Đinh Hữu Ngô\",\n    \"fn\": \"Đinh Hữu Ngô\",\n    \"client_ip_address\": \"2402:800:61e2:867a:d53d:1f90:5158:8b8b\",\n    \"client_user_agent\": \"Mozilla/5.0 (Linux; Android 12; V2134 Build/SP1A.210812.003; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/142.0.7444.179 Mobile Safari/537.36 [FB IAB/FB4A;FBAV/540.0.0.49.148;IABMV/1;]\",\n    \n    \"fbp\": \"fb.1.1764696587413.9385932550828169\"\n  }\n"
+      },
+      "id": "3ceed319-85ec-4014-a314-eebfcb4a7858",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        0,
+        0
+      ]
+    }
+  ],
+  "pinData": {
+    "Start": [
+      {
+        "json": {
+          "country": "vn",
+          "ct": "vinh",
+          "st": "vinh",
+          "zp": "43199",
+          "external_id": "0984540969",
+          "ph": "0984540969",
+          "em": "",
+          "ln": "Đinh Hữu Ngô",
+          "fn": "Đinh Hữu Ngô",
+          "client_ip_address": "2402:800:61e2:867a:d53d:1f90:5158:8b8b",
+          "client_user_agent": "Mozilla/5.0 (Linux; Android 12; V2134 Build/SP1A.210812.003; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/142.0.7444.179 Mobile Safari/537.36 [FB IAB/FB4A;FBAV/540.0.0.49.148;IABMV/1;]",
+          "fbp": "fb.1.1764696587413.9385932550828169"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-04T07:50:15.903Z",
+      "createdAt": "2025-12-04T07:50:15.903Z",
+      "role": "workflow:owner",
+      "workflowId": "cFCvk3Aiq2BWBvvK",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-04T07:50:29.000Z",
+  "versionId": "37e40805-f504-4ccd-a447-f0521a87b732"
+}
