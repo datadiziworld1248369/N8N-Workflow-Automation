@@ -26,7 +26,8 @@
     "connections": {},
     "authors": "system migration",
     "name": null,
-    "description": null
+    "description": null,
+    "autosaved": false
   },
   "activeVersionId": "2350afc3-b6db-4ad2-997c-55e0e664308e",
   "connections": {},
