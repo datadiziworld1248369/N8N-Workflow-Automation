@@ -1077,7 +1077,8 @@
     },
     "authors": "system migration",
     "name": null,
-    "description": null
+    "description": null,
+    "autosaved": false
   },
   "activeVersionId": "1a171093-42c8-4396-a0d1-a6fd3779ab88",
   "connections": {
@@ -2177,7 +2178,7 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        18
+        0
       ]
     }
   },
