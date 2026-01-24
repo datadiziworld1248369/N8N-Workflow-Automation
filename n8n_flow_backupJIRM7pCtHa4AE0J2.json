@@ -1,7 +1,191 @@
 {
-  "active": false,
-  "activeVersion": null,
-  "activeVersionId": null,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-20T17:58:04.000Z",
+    "createdAt": "2026-01-20T17:57:56.216Z",
+    "versionId": "5cccf34e-8cff-4a4a-a31f-ac4873391d10",
+    "workflowId": "JIRM7pCtHa4AE0J2",
+    "nodes": [
+      {
+        "parameters": {
+          "page": {
+            "__rl": true,
+            "value": "105716750779653",
+            "mode": "list",
+            "cachedResultName": "Hebekery - Health & Beauty Foods",
+            "cachedResultUrl": "https://facebook.com/105716750779653"
+          },
+          "form": {
+            "__rl": true,
+            "value": "1968566227036050",
+            "mode": "list",
+            "cachedResultName": "Leads form quà Tết 2026"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.facebookLeadAdsTrigger",
+        "typeVersion": 1,
+        "position": [
+          -1360,
+          -48
+        ],
+        "id": "be2ad67f-2c2c-4279-b912-334c1659110b",
+        "name": "Facebook Lead Ads Trigger",
+        "webhookId": "b996a26b-1fc5-47af-b317-b75a153c41e4",
+        "credentials": {
+          "facebookLeadAdsOAuth2Api": {
+            "id": "T44Ghan3QKQkmmTB",
+            "name": "Hebe_Lead_Form_2026"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "bf90a38d-7a4a-46fc-8730-9e25a38f2a89",
+                "name": "Số_lượng_quà",
+                "value": "={{ $json.data['số_lượng_quà_tết_bạn_sẽ_đặt'] }}",
+                "type": "string"
+              },
+              {
+                "id": "b9eafe6b-9e41-4b7d-8dae-75c810f45566",
+                "name": "Số_Điện_thoại",
+                "value": "={{ $json.data['số_điện_thoại'] }}",
+                "type": "string"
+              },
+              {
+                "id": "e8a857c5-1e79-42e9-aeed-f4c4bc854d90",
+                "name": "Email",
+                "value": "={{ $json.data.email }}",
+                "type": "string"
+              },
+              {
+                "id": "bcde7bc8-9f7b-4353-bbe3-0767e86cd07c",
+                "name": "Khách_note",
+                "value": "={{ $json.data['để_lại_lời_nhắn'] }}",
+                "type": "string"
+              },
+              {
+                "id": "7569fd2c-c228-4bdf-90a9-13a6aac15112",
+                "name": "Tên_khách",
+                "value": "={{ $json.data['full name'] }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -1088,
+          -48
+        ],
+        "id": "b8413b9d-ef05-401c-b7d0-24fc2db3d4ae",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "app_id",
+                "value": "={{ $json.app_id }}"
+              },
+              {
+                "name": "app_secret",
+                "value": "={{ $json.app_scret }}"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "{\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -848,
+          -48
+        ],
+        "id": "161b4a72-ebf5-4bb3-ae8b-54e1a7c9330e",
+        "name": "Create token1"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/FEE8bqq5UakNymsT1Vclhv5mggf/tables/tblhAHRXLJHoI9J2/records",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "=Authorization",
+                "value": "=Bearer {{ $json.tenant_access_token }}"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"fields\": {\n    \"Số_lượng_quà\": \"{{ $('Edit Fields').item.json['Số_lượng_quà'].toString() }}\",\n    \"Số_Điện_thoại\": \"{{ $('Edit Fields').item.json['Số_Điện_thoại'].toString() }}\",\n    \"Email\": \"{{ $('Edit Fields').item.json.Email.toString() }}\",\n    \"Tên_khách\": \"{{ $('Edit Fields').item.json.Tên_khách.toString() }}\",\n    \"Khách_note\": \"{{ $('Edit Fields').item.json['Khách_note'].toString() }}\"\n  }\n}\n",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -560,
+          -48
+        ],
+        "id": "d0567bce-b75a-45d4-b022-3fb4362025a0",
+        "name": "Creates records lark"
+      }
+    ],
+    "connections": {
+      "Facebook Lead Ads Trigger": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Create token1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create token1": {
+        "main": [
+          [
+            {
+              "node": "Creates records lark",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Trịnh Đình Duy",
+    "name": "Version 5cccf34e",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "5cccf34e-8cff-4a4a-a31f-ac4873391d10",
   "connections": {
     "Facebook Lead Ads Trigger": {
       "main": [
@@ -56,9 +240,9 @@
         },
         "form": {
           "__rl": true,
-          "value": "1310490850128128",
+          "value": "1968566227036050",
           "mode": "list",
-          "cachedResultName": "Leads form quà Tết 2025"
+          "cachedResultName": "Leads form quà Tết 2026"
         },
         "options": {}
       },
@@ -91,7 +275,7 @@
             {
               "id": "b9eafe6b-9e41-4b7d-8dae-75c810f45566",
               "name": "Số_Điện_thoại",
-              "value": "={{ $json.data['số_điện_thoại'] }}",
+              "value": "={{ $json.data.phone_number }}",
               "type": "string"
             },
             {
@@ -105,6 +289,30 @@
               "name": "Khách_note",
               "value": "={{ $json.data['để_lại_lời_nhắn'] }}",
               "type": "string"
+            },
+            {
+              "id": "7569fd2c-c228-4bdf-90a9-13a6aac15112",
+              "name": "Tên_khách",
+              "value": "={{ $json.data['full name'] }}",
+              "type": "string"
+            },
+            {
+              "id": "3ebeaafa-e0d9-4053-9aae-f8394538a020",
+              "name": "ad_id",
+              "value": "={{ $json.ad.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a8d10839-4d1f-4f11-bfcf-d8545cef9b40",
+              "name": "ad_name",
+              "value": "={{ $json.ad.name }}",
+              "type": "string"
+            },
+            {
+              "id": "2cddf52c-4e36-48ed-b1d5-b1fa64715787",
+              "name": "ad.name",
+              "value": "={{ $json.ad.name }}",
+              "type": "string"
             }
           ]
         },
@@ -113,7 +321,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1152,
+        -1088,
         -48
       ],
       "id": "b8413b9d-ef05-401c-b7d0-24fc2db3d4ae",
@@ -153,19 +361,19 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/LCwabUTe7aEBoZsJltslE89IgYc/tables/tblmYz7dY1el9qvH/records",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/FEE8bqq5UakNymsT1Vclhv5mggf/tables/tblhAHRXLJHoI9J2/records",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
             {
               "name": "=Authorization",
-              "value": "=Bearer {{ $('Edit Fields').item.json.tenant_access_token }}"
+              "value": "=Bearer {{ $json.tenant_access_token }}"
             }
           ]
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"fields\": {\n    \"Dictionary_Type\": \"{{ $('Edit Fields').item.json.dictionary_type }}\",\n    \"Inventory_Item_ID\": \"{{ $('Edit Fields').item.json.inventory_item_id }}\",\n    \"Inventory_Item_Name\": \"{{ $('Edit Fields').item.json.inventory_item_name }}\",\n    \"Inventory_Item_Code\": \"{{ $('Edit Fields').item.json.inventory_item_code }}\",\n    \"Inventory_Item_Type\": \"{{ $('Edit Fields').item.json.inventory_item_type }}\",\n    \"Unit_ID\": \"{{ $('Edit Fields').item.json.unit_id }}\",\n    \"Minimum_Stock\": \"{{ $('Edit Fields').item.json.minimum_stock }}\",\n    \"Branch_ID\": \"{{ $('Edit Fields').item.json.branch_id }}\",\n    \"Discount_Type\": \"{{ $('Edit Fields').item.json.discount_type }}\",\n    \"Inventory_Item_Cost_Method\": \"{{ $('Edit Fields').item.json.inventory_item_cost_method }}\",\n    \"Is_Unit_Price_After_Tax\": \"{{ $('Edit Fields').item.json.is_unit_price_after_tax }}\",\n    \"Is_System\": \"{{ $('Edit Fields').item.json.is_system }}\",\n    \"Inactive\": \"{{ $('Edit Fields').item.json.inactive }}\",\n    \"Is_Follow_Serial_Number\": \"{{ $('Edit Fields').item.json.is_follow_serial_number }}\",\n    \"Is_Allow_Duplicate_Serial_Number\": \"{{ $('Edit Fields').item.json.is_allow_duplicate_serial_number }}\",\n    \"Purchase_Discount_Rate\": \"{{ $('Edit Fields').item.json.purchase_discount_rate }}\",\n    \"Unit_Price\": \"{{ $('Edit Fields').item.json.unit_price }}\",\n    \"Sale_Price1\": \"{{ $('Edit Fields').item.json.sale_price1 }}\",\n    \"Sale_Price2\": \"{{ $('Edit Fields').item.json.sale_price2 }}\",\n    \"Sale_Price3\": \"{{ $('Edit Fields').item.json.sale_price3 }}\",\n    \"Fixed_Sale_Price\": \"{{ $('Edit Fields').item.json.fixed_sale_price }}\",\n    \"Import_Tax_Rate\": \"{{ $('Edit Fields').item.json.import_tax_rate }}\",\n    \"Export_Tax_Rate\": \"{{ $('Edit Fields').item.json.export_tax_rate }}\",\n    \"Fixed_Unit_Price\": \"{{ $('Edit Fields').item.json.fixed_unit_price }}\",\n    \"Discount_Account\": \"{{ $('Edit Fields').item.json.discount_account }}\",\n    \"Sale_Off_Account\": \"{{ $('Edit Fields').item.json.sale_off_account }}\",\n    \"Return_Account\": \"{{ $('Edit Fields').item.json.return_account }}\",\n    \"Purchase_Description\": \"{{ $('Edit Fields').item.json.purchase_description }}\",\n    \"Sale_Description\": \"{{ $('Edit Fields').item.json.sale_description }}\",\n    \"COGS_Account\": \"{{ $('Edit Fields').item.json.cogs_account }}\",\n    \"Sale_Account\": \"{{ $('Edit Fields').item.json.sale_account }}\",\n    \"Unit_List\": \"{{ $('Edit Fields').item.json.unit_list }}\",\n    \"Unit_Name\": \"{{ $('Edit Fields').item.json.unit_name }}\",\n    \"RefType\": \"{{ $('Edit Fields').item.json.reftype }}\",\n    \"Purchase_Last_Unit_Price_List\": \"{{ $('Edit Fields').item.json.purchase_last_unit_price_list }}\",\n    \"Quantity_BarCode\": \"{{ $('Edit Fields').item.json.quantityBarCode }}\",\n    \"Allocation_Type\": \"{{ $('Edit Fields').item.json.allocation_type }}\",\n    \"Allocation_Account\": \"{{ $('Edit Fields').item.json.allocation_account }}\",\n    \"Tax_Reduction_Type\": \"{{ $('Edit Fields').item.json.tax_reduction_type }}\",\n    \"Purchase_Last_Unit_Price\": \"{{ $('Edit Fields').item.json.purchase_last_unit_price }}\",\n    \"Is_Specific_Inventory_Item\": \"{{ $('Edit Fields').item.json.is_specific_inventory_item }}\",\n    \"Has_Delete_Fixed_Unit_Price\": \"{{ $('Edit Fields').item.json.has_delete_fixed_unit_price }}\",\n    \"Has_Delete_Unit_Price\": \"{{ $('Edit Fields').item.json.has_delete_unit_price }}\",\n    \"Has_Delete_Discount\": \"{{ $('Edit Fields').item.json.has_delete_discount }}\",\n    \"Has_Delete_Unit_Convert\": \"{{ $('Edit Fields').item.json.has_delete_unit_convert }}\",\n    \"Has_Delete_Norm\": \"{{ $('Edit Fields').item.json.has_delete_norm }}\",\n    \"Has_Delete_Serial_Type\": \"{{ $('Edit Fields').item.json.has_delete_serial_type }}\",\n    \"Is_Edit_Multiple\": \"{{ $('Edit Fields').item.json.is_edit_multiple }}\",\n    \"CRM_ID\": \"{{ $('Edit Fields').item.json.crm_id }}\",\n    \"Is_Not_Sync_CRM\": \"{{ $('Edit Fields').item.json.is_not_sync_crm }}\",\n    \"Is_Update_Rebundant\": \"{{ $('Edit Fields').item.json.isUpdateRebundant }}\",\n    \"Is_Special_Inv\": \"{{ $('Edit Fields').item.json.is_special_inv }}\",\n    \"Is_From_Process_Balance\": \"{{ $('Edit Fields').item.json.isFromProcessBalance }}\",\n    \"Specific_Product_Type\": \"{{ $('Edit Fields').item.json.specific_product_type }}\",\n    \"Specific_Product_Type_Name\": \"{{ $('Edit Fields').item.json.specific_product_type_name }}\",\n    \"Is_Drug\": \"{{ $('Edit Fields').item.json.is_drug }}\",\n    \"Status_Sync_Medicine_National\": \"{{ $('Edit Fields').item.json.status_sync_medicine_national }}\",\n    \"Is_Sync_Corp\": \"{{ $('Edit Fields').item.json.is_sync_corp }}\",\n    \"Convert_Rate\": \"{{ $('Edit Fields').item.json.convert_rate }}\",\n    \"Is_Update_Main_Unit\": \"{{ $('Edit Fields').item.json.is_update_main_unit }}\",\n    \"Is_Image_Duplicate\": \"{{ $('Edit Fields').item.json.is_image_duplicate }}\",\n    \"Is_Temp_Master_Sync_ID\": \"{{ $('Edit Fields').item.json.is_temp_master_sync_id }}\",\n    \"Is_Save_From_Master_Data\": \"{{ $('Edit Fields').item.json.IsSaveFromMasterData }}\",\n    \"Is_Delete_Master_Data\": \"{{ $('Edit Fields').item.json.isDeleteMasterData }}\",\n    \"Is_Add_Master_Data\": \"{{ $('Edit Fields').item.json.isAddMasterData }}\",\n    \"Discount_Value\": \"{{ $('Edit Fields').item.json.discount_value }}\",\n    \"Is_Set_Discount\": \"{{ $('Edit Fields').item.json.is_set_discount }}\",\n    \"Index_Unit_Convert\": \"{{ $('Edit Fields').item.json.index_unit_convert }}\",\n    \"Excel_Row_Index\": \"{{ $('Edit Fields').item.json.excel_row_index }}\",\n    \"Is_Valid\": \"{{ $('Edit Fields').item.json.is_valid }}\",\n    \"Created_Date\": \"{{ $('Edit Fields').item.json.created_date }}\",\n    \"Created_By\": \"{{ $('Edit Fields').item.json.created_by }}\",\n    \"Modified_Date\": \"{{ $('Edit Fields').item.json.modified_date }}\",\n    \"Modified_By\": \"{{ $('Edit Fields').item.json.modified_by }}\",\n    \"Auto_RefNo\": \"{{ $('Edit Fields').item.json.auto_refno }}\",\n    \"Force_Update\": \"{{ $('Edit Fields').item.json.force_update }}\",\n    \"Is_Created_From_Old_DB\": \"{{ $('Edit Fields').item.json.is_created_from_old_db }}\"\n  }\n}\n",
+        "jsonBody": "={\n  \"fields\": {\n    \"Số_lượng_quà\": \"{{ $('Edit Fields').item.json['Số_lượng_quà'].toString() }}\",\n    \"Số_Điện_thoại\": \"{{ $('Edit Fields').item.json['Số_Điện_thoại'].toString() }}\",\n    \"Email\": \"{{ $('Edit Fields').item.json.Email.toString() }}\",\n    \"Tên_khách\": \"{{ $('Edit Fields').item.json.Tên_khách.toString() }}\",\n    \"Khách_note\": \"{{ $('Edit Fields').item.json['Khách_note'].toString() }}\",\n    \"Ads_ID\": \"{{ $('Edit Fields').item.json['ad_id'].toString() }}\",\n    \"Ads_name\": \"{{ $('Edit Fields').item.json.ad_name.toString() }}\"\n  }\n}\n",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -178,38 +386,7 @@
       "name": "Creates records lark"
     }
   ],
-  "pinData": {
-    "Facebook Lead Ads Trigger": [
-      {
-        "json": {
-          "id": "1637794790525688",
-          "data": {
-            "số_lượng_quà_tết_bạn_sẽ_đặt": "<test lead: dummy data for số_lượng_quà_tết_bạn_sẽ_đặt>",
-            "để_lại_lời_nhắn": "<test lead: dummy data for để_lại_lời_nhắn>",
-            "full name": "<test lead: dummy data for full name>",
-            "email": "test@fb.com",
-            "số_điện_thoại": "<test lead: dummy data for số_điện_thoại>"
-          },
-          "form": {
-            "id": "1310490850128128",
-            "name": "Leads form quà Tết 2025",
-            "locale": "vi_VN",
-            "status": "ACTIVE"
-          },
-          "ad": {},
-          "adset": {},
-          "page": {
-            "name": "Hebekery - Health & Beauty Foods",
-            "id": "105716750779653"
-          },
-          "created_time": "2025-12-24T07:09:26+0000"
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1",
     "availableInMCP": false
@@ -225,7 +402,7 @@
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-12-24T17:45:42.492Z",
-  "versionId": "86eac4e8-fbe6-4677-b221-3faf734f1387"
+  "triggerCount": 1,
+  "updatedAt": "2026-01-21T08:30:05.372Z",
+  "versionId": "26c021d9-d4ef-49b2-81e3-343f761d36cd"
 }
