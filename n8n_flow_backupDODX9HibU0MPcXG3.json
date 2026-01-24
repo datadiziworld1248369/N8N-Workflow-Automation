@@ -1,0 +1,1094 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-24T05:21:36.000Z",
+    "createdAt": "2026-01-24T05:19:27.921Z",
+    "versionId": "df7f6439-3e03-4382-a4bd-fd71d491c6e3",
+    "workflowId": "DODX9HibU0MPcXG3",
+    "nodes": [
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "02d8fef1-66c0-4e59-8713-7d4e7ca33e32",
+                "name": "app_id",
+                "value": "cli_a7f1cfbe36b81010",
+                "type": "string"
+              },
+              {
+                "id": "32404746-b39b-4078-8463-5e0f865f35d0",
+                "name": "app_scret",
+                "value": "IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -752,
+          0
+        ],
+        "id": "207ed98e-d015-42dd-bc7e-c95117b54bbf",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "=v22.0",
+          "node": "3237193556591564",
+          "edge": "=events",
+          "options": {
+            "queryParametersJson": "={\n  \"data\": [\n    {\n      \"event_name\": \"Purchase\",\n      \"event_time\": {{ Math.floor(($json.user_data.date - 25569) * 86400) - 25200 }},\n      \"action_source\": \"website\",\n      \"user_data\": {\n        \"ph\": [\n           \"{{ $json.user_data.phone }}\" \n        ],\n        \"fn\": [\n           \"{{ $json.user_data.first_name.toLowerCase().trim() }}\"\n        ],\n        \"ln\": [\n           \"{{ $json.user_data.last_name.toLowerCase().trim() }}\"\n        ],\n        \"country\": [\n           \"{{ $json.user_data.country.toLowerCase().trim() }}\"\n        ]\n      },\n      \"custom_data\": {\n        \"value\": {{ Number($json.user_data.price) }},\n        \"currency\": \"VND\"\n      }\n    }\n  ]\n}\n"
+          }
+        },
+        "id": "a9fe93bb-54fb-46cb-955c-b86e894c3ba9",
+        "name": "Send event to Meta",
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          656,
+          -144
+        ],
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "F2zTGHn1xCKVDISt",
+            "name": "TP"
+          }
+        },
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "65d1994d-f4b8-478a-8cf1-490990e6639d",
+                "name": "Meta_data.phone",
+                "value": "={{ $json.fields.phone }}",
+                "type": "string"
+              },
+              {
+                "id": "e914397d-1f40-42a2-84c8-6a6d877e8db4",
+                "name": "Lark.record_id",
+                "value": "={{ $json.record_id }}",
+                "type": "string"
+              },
+              {
+                "id": "32141209-2369-4284-8db1-50a8c358348a",
+                "name": "Meta_data.price",
+                "value": "={{ $json.fields.price }}",
+                "type": "number"
+              },
+              {
+                "id": "388acf94-5de1-4e81-bf7b-944011f327ce",
+                "name": "Meta_data.date",
+                "value": "={{ $json.fields.Date }}",
+                "type": "string"
+              },
+              {
+                "id": "02fa89d9-533f-4e96-b137-8a56cde0a9d4",
+                "name": "Meta_data.country",
+                "value": "={{ $json.fields.country_code }}",
+                "type": "string"
+              },
+              {
+                "id": "7752c2f3-affa-4557-87eb-61898e2d72d8",
+                "name": "Meta_data.firsst_name",
+                "value": "={{ $json.fields.first_name }}",
+                "type": "string"
+              },
+              {
+                "id": "caf11521-30ba-4010-bf1c-0b120c018d67",
+                "name": "Meta_data.last_name",
+                "value": "={{ $json.fields.last_name }}",
+                "type": "string"
+              },
+              {
+                "id": "bc6a0315-2093-4295-82ac-4e13d6973ab1",
+                "name": "Meta_data.province",
+                "value": "={{ $json.fields.province }}",
+                "type": "string"
+              }
+            ]
+          },
+          "includeOtherFields": true,
+          "include": "except",
+          "excludeFields": "user_data.name",
+          "options": {}
+        },
+        "id": "79dbe1d2-2198-4189-9262-e483b85a491e",
+        "name": "Normalize data",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -32,
+          208
+        ]
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "1e87a997-5b78-48d8-9616-edfb1b910743",
+                "name": "user_data.phone",
+                "value": "={{ $json.Meta_data.phone?.hash('sha256') }}",
+                "type": "string"
+              },
+              {
+                "id": "5feb38f2-7e37-48ed-a725-55b43d1755c3",
+                "name": "user_data.price",
+                "value": "={{ $json.Meta_data.price }}",
+                "type": "number"
+              },
+              {
+                "id": "ed841263-e4f3-4f39-9b72-9cba3dca271f",
+                "name": "user_data.date",
+                "value": "={{ $json.Meta_data.date }}",
+                "type": "string"
+              },
+              {
+                "id": "287b2d32-45a7-4154-9a04-4f1968d4509b",
+                "name": "user_data.last_name",
+                "value": "={{ $json.Meta_data.last_name?.hash('sha256') }}",
+                "type": "string"
+              },
+              {
+                "id": "89c13fe5-c950-4bfc-8ee7-81600bf67c47",
+                "name": "user_data.first_name",
+                "value": "={{ $json.Meta_data.firsst_name?.hash('sha256') }}",
+                "type": "string"
+              },
+              {
+                "id": "3d89f80f-0019-4558-8726-3afc00da5705",
+                "name": "user_data.country",
+                "value": "={{ $json.Meta_data.country?.hash('sha256') }}",
+                "type": "string"
+              },
+              {
+                "id": "d5c92f29-3b8b-49ee-bc35-976268d0c376",
+                "name": "user_data.province",
+                "value": "={{ $json.Meta_data.province?.hash('sha256') }}",
+                "type": "string"
+              }
+            ]
+          },
+          "includeOtherFields": true,
+          "options": {}
+        },
+        "id": "9e38dc49-83aa-49e3-a643-3ead410e2fa4",
+        "name": "Encrypt data",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          80,
+          -128
+        ]
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "app_id",
+                "value": "={{ $json.app_id }}"
+              },
+              {
+                "name": "app_secret",
+                "value": "={{ $json.app_scret }}"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "{\n    \"app_id\": \"cli_a7f1cfbe36b81010\",\n    \"app_secret\": \"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -464,
+          0
+        ],
+        "id": "2030a1da-1963-48f8-af7a-b33dcafb30c9",
+        "name": "Get Token Lark",
+        "notesInFlow": false,
+        "alwaysOutputData": false
+      },
+      {
+        "parameters": {
+          "amount": 30,
+          "unit": "minutes"
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          1872,
+          -144
+        ],
+        "id": "e8df2fbd-1c24-4996-bda6-fad791f994ad",
+        "name": "Wait",
+        "webhookId": "a3d8c500-404e-4828-8df9-25177faf566b"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          320,
+          -160
+        ],
+        "id": "368af9fb-4437-4e92-9549-9f4e9757c0b4",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {}
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          -1040,
+          112
+        ],
+        "id": "fffddc0f-1cb8-4282-a71a-71daf62f40d9",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://open.larksuite.com/open-apis/bitable/v1/apps/LCwabUTe7aEBoZsJltslE89IgYc/tables/tblOPZFUSkO5tlIz/records/batch_update",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "ignore_consistency_check",
+                "value": "true"
+              },
+              {
+                "name": "user_id_type",
+                "value": "open_id"
+              }
+            ]
+          },
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $node[\"Get Token Lark1\"].json.tenant_access_token }}"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"records\": [\n    {\n      \"fields\": {\n        \"Xác_nhận\": \"Đã gửi Event thành công\"\n      },\n      \"record_id\": \"{{ $('Loop Over Items').item.json.record_id }}\"\n    }\n  ]\n}\n",
+          "options": {
+            "response": {
+              "response": {
+                "fullResponse": true
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1424,
+          -144
+        ],
+        "id": "415dcbea-46e7-4a15-8d42-2ef05d6a0e11",
+        "name": "update_succes"
+      },
+      {
+        "parameters": {
+          "jsCode": "const input = $input.all();\nif (!input.length) return [];\n\n// ===== 1. LẤY TOKEN =====\nconst token =\n  input[0].json.app_access_token ||\n  input[0].json.tenant_access_token ||\n  input[0].json?.data?.app_access_token ||\n  input[0].json?.data?.tenant_access_token;\n\nif (!token) {\n  throw new Error(\"Missing app_access_token\");\n}\n\n// ===== 2. CONFIG API =====\nconst baseUrl =\n  \"https://open.larksuite.com/open-apis/bitable/v1/apps/LCwabUTe7aEBoZsJltslE89IgYc/tables/tblOPZFUSkO5tlIz/records\";\n\nconst field_names = '[\"CustomerID\",\"Date\",\"last_name\",\"first_name\",\"country_code\",\"province\",\"phone\",\"price\"]';\n\n// ===== 3. PAGINATION =====\nconst all = [];\nlet page_token = \"\";\nlet has_more = true;\n\nwhile (has_more) {\n  const res = await this.helpers.httpRequest({\n    method: \"GET\",\n    url: baseUrl,\n    headers: {\n      Authorization: `Bearer ${token}`,\n    },\n    qs: {\n      page_size: 500,\n      field_names,\n      ...(page_token ? { page_token } : {}),\n    },\n    json: true,\n  });\n\n  if (res?.code !== 0) {\n    throw new Error(`Lark API error: ${res?.msg || res?.code}`);\n  }\n\n  // ===== 4. FILTER: CHỈ LOẠI RECORD ĐÃ GỬI =====\n  const items = (res?.data?.items || []).filter(r => {\n    const fields = r.fields || {};\n    return fields[\"Xác_nhận\"] !== \"Đã gửi Event thành công\";\n  });\n\n  all.push(...items);\n\n  has_more = Boolean(res?.data?.has_more);\n  page_token = res?.data?.page_token || \"\";\n\n  if (has_more) {\n    await new Promise(r => setTimeout(r, 200));\n  }\n}\n\n// ===== 5. OUTPUT CHO n8n =====\nreturn all.map(r => ({\n  json: {\n    ...r,\n    // KHÔNG ép Date nữa – để xử lý sau (Meta / fallback)\n    event_time: r.fields?.Date,\n  },\n}));\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -224,
+          -112
+        ],
+        "id": "15cea74b-d161-4ed0-9f7e-f4f579574e35",
+        "name": "Fetch all records (paginate)"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "02d8fef1-66c0-4e59-8713-7d4e7ca33e32",
+                "name": "app_id",
+                "value": "cli_a7f1cfbe36b81010",
+                "type": "string"
+              },
+              {
+                "id": "32404746-b39b-4078-8463-5e0f865f35d0",
+                "name": "app_scret",
+                "value": "IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          912,
+          -144
+        ],
+        "id": "7331edc8-a680-4ae6-b98b-8c1ee16d0911",
+        "name": "Edit Fields1"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "app_id",
+                "value": "={{ $json.app_id }}"
+              },
+              {
+                "name": "app_secret",
+                "value": "={{ $json.app_scret }}"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "{\n    \"app_id\": \"cli_a7f1cfbe36b81010\",\n    \"app_secret\": \"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1152,
+          -144
+        ],
+        "id": "45b3f707-16bf-4c9e-aa5b-53a8e68714f0",
+        "name": "Get Token Lark1",
+        "notesInFlow": false,
+        "alwaysOutputData": false
+      }
+    ],
+    "connections": {
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Get Token Lark",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send event to Meta": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Normalize data": {
+        "main": [
+          [
+            {
+              "node": "Encrypt data",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Encrypt data": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get Token Lark": {
+        "main": [
+          [
+            {
+              "node": "Fetch all records (paginate)",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Send event to Meta",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "update_succes": {
+        "main": [
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Fetch all records (paginate)": {
+        "main": [
+          [
+            {
+              "node": "Normalize data",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields1": {
+        "main": [
+          [
+            {
+              "node": "Get Token Lark1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get Token Lark1": {
+        "main": [
+          [
+            {
+              "node": "update_succes",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Trịnh Đình Duy",
+    "name": "24-01-2026",
+    "description": "Truy cập vào đây để xem dataset\n- https://hebekery.sg.larksuite.com/wiki/GAuiwbt8wif5ozk6u2mloEkzgSh?field=flde9mP8KK&table=tblOPZFUSkO5tlIz&view=vewd1xqZM1\n",
+    "autosaved": false
+  },
+  "activeVersionId": "df7f6439-3e03-4382-a4bd-fd71d491c6e3",
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Get Token Lark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send event to Meta": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize data": {
+      "main": [
+        [
+          {
+            "node": "Encrypt data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Encrypt data": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Token Lark": {
+      "main": [
+        [
+          {
+            "node": "Fetch all records (paginate)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Send event to Meta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update_succes": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch all records (paginate)": {
+      "main": [
+        [
+          {
+            "node": "Normalize data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Get Token Lark1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Token Lark1": {
+      "main": [
+        [
+          {
+            "node": "update_succes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-24T05:00:24.475Z",
+  "id": "DODX9HibU0MPcXG3",
+  "isArchived": false,
+  "meta": null,
+  "name": "Event meta Truther Piece",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "02d8fef1-66c0-4e59-8713-7d4e7ca33e32",
+              "name": "app_id",
+              "value": "cli_a7f1cfbe36b81010",
+              "type": "string"
+            },
+            {
+              "id": "32404746-b39b-4078-8463-5e0f865f35d0",
+              "name": "app_scret",
+              "value": "IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -752,
+        0
+      ],
+      "id": "207ed98e-d015-42dd-bc7e-c95117b54bbf",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "=v22.0",
+        "node": "3237193556591564",
+        "edge": "=events",
+        "options": {
+          "queryParametersJson": "={\n  \"data\": [\n    {\n      \"event_name\": \"Purchase\",\n      \"event_time\": {{ Math.floor(($json.user_data.date - 25569) * 86400) - 25200 }},\n      \"action_source\": \"website\",\n      \"user_data\": {\n        \"ph\": [\n           \"{{ $json.user_data.phone }}\" \n        ],\n        \"fn\": [\n           \"{{ $json.user_data.first_name.toLowerCase().trim() }}\"\n        ],\n        \"ln\": [\n           \"{{ $json.user_data.last_name.toLowerCase().trim() }}\"\n        ],\n        \"country\": [\n           \"{{ $json.user_data.country.toLowerCase().trim() }}\"\n        ],\n        \"st\": [\n           \"{{ $json.user_data.province.toLowerCase().trim() }}\" \n        ],\n        \"ct\": [\n           \"{{ $json.user_data.province.toLowerCase().trim() }}\" \n        ]\n      },\n      \"custom_data\": {\n        \"value\": {{ Number($json.user_data.price) }},\n        \"currency\": \"VND\"\n      }\n    }\n  ]\n}\n"
+        }
+      },
+      "id": "a9fe93bb-54fb-46cb-955c-b86e894c3ba9",
+      "name": "Send event to Meta",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        656,
+        -144
+      ],
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "F2zTGHn1xCKVDISt",
+          "name": "TP"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "65d1994d-f4b8-478a-8cf1-490990e6639d",
+              "name": "Meta_data.phone",
+              "value": "={{ $json.fields.phone }}",
+              "type": "string"
+            },
+            {
+              "id": "e914397d-1f40-42a2-84c8-6a6d877e8db4",
+              "name": "Lark.record_id",
+              "value": "={{ $json.record_id }}",
+              "type": "string"
+            },
+            {
+              "id": "32141209-2369-4284-8db1-50a8c358348a",
+              "name": "Meta_data.price",
+              "value": "={{ $json.fields.price }}",
+              "type": "number"
+            },
+            {
+              "id": "388acf94-5de1-4e81-bf7b-944011f327ce",
+              "name": "Meta_data.date",
+              "value": "={{ $json.fields.Date }}",
+              "type": "string"
+            },
+            {
+              "id": "02fa89d9-533f-4e96-b137-8a56cde0a9d4",
+              "name": "Meta_data.country",
+              "value": "={{ $json.fields.country_code }}",
+              "type": "string"
+            },
+            {
+              "id": "7752c2f3-affa-4557-87eb-61898e2d72d8",
+              "name": "Meta_data.firsst_name",
+              "value": "={{ $json.fields.first_name }}",
+              "type": "string"
+            },
+            {
+              "id": "caf11521-30ba-4010-bf1c-0b120c018d67",
+              "name": "Meta_data.last_name",
+              "value": "={{ $json.fields.last_name }}",
+              "type": "string"
+            },
+            {
+              "id": "bc6a0315-2093-4295-82ac-4e13d6973ab1",
+              "name": "Meta_data.province",
+              "value": "={{ $json.fields.province }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "include": "except",
+        "excludeFields": "user_data.name",
+        "options": {}
+      },
+      "id": "79dbe1d2-2198-4189-9262-e483b85a491e",
+      "name": "Normalize data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -32,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1e87a997-5b78-48d8-9616-edfb1b910743",
+              "name": "user_data.phone",
+              "value": "={{ $json.Meta_data.phone?.hash('sha256') }}",
+              "type": "string"
+            },
+            {
+              "id": "5feb38f2-7e37-48ed-a725-55b43d1755c3",
+              "name": "user_data.price",
+              "value": "={{ $json.Meta_data.price }}",
+              "type": "number"
+            },
+            {
+              "id": "ed841263-e4f3-4f39-9b72-9cba3dca271f",
+              "name": "user_data.date",
+              "value": "={{ $json.Meta_data.date }}",
+              "type": "string"
+            },
+            {
+              "id": "287b2d32-45a7-4154-9a04-4f1968d4509b",
+              "name": "user_data.last_name",
+              "value": "={{ $json.Meta_data.last_name?.hash('sha256') }}",
+              "type": "string"
+            },
+            {
+              "id": "89c13fe5-c950-4bfc-8ee7-81600bf67c47",
+              "name": "user_data.first_name",
+              "value": "={{ $json.Meta_data.firsst_name?.hash('sha256') }}",
+              "type": "string"
+            },
+            {
+              "id": "3d89f80f-0019-4558-8726-3afc00da5705",
+              "name": "user_data.country",
+              "value": "={{ $json.Meta_data.country?.hash('sha256') }}",
+              "type": "string"
+            },
+            {
+              "id": "d5c92f29-3b8b-49ee-bc35-976268d0c376",
+              "name": "user_data.province",
+              "value": "={{ $json.Meta_data.province?.hash('sha256') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "9e38dc49-83aa-49e3-a643-3ead410e2fa4",
+      "name": "Encrypt data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        80,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_scret }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"app_id\": \"cli_a7f1cfbe36b81010\",\n    \"app_secret\": \"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -464,
+        0
+      ],
+      "id": "2030a1da-1963-48f8-af7a-b33dcafb30c9",
+      "name": "Get Token Lark",
+      "notesInFlow": false,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "amount": 30,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1872,
+        -144
+      ],
+      "id": "e8df2fbd-1c24-4996-bda6-fad791f994ad",
+      "name": "Wait",
+      "webhookId": "a3d8c500-404e-4828-8df9-25177faf566b"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        320,
+        -160
+      ],
+      "id": "368af9fb-4437-4e92-9549-9f4e9757c0b4",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -1040,
+        112
+      ],
+      "id": "fffddc0f-1cb8-4282-a71a-71daf62f40d9",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/bitable/v1/apps/LCwabUTe7aEBoZsJltslE89IgYc/tables/tblOPZFUSkO5tlIz/records/batch_update",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "ignore_consistency_check",
+              "value": "true"
+            },
+            {
+              "name": "user_id_type",
+              "value": "open_id"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $node[\"Get Token Lark1\"].json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"records\": [\n    {\n      \"fields\": {\n        \"Xác_nhận\": \"Đã gửi Event thành công\"\n      },\n      \"record_id\": \"{{ $('Loop Over Items').item.json.record_id }}\"\n    }\n  ]\n}\n",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1424,
+        -144
+      ],
+      "id": "415dcbea-46e7-4a15-8d42-2ef05d6a0e11",
+      "name": "update_succes"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.all();\nif (!input.length) return [];\n\n// ===== 1. LẤY TOKEN =====\nconst token =\n  input[0].json.app_access_token ||\n  input[0].json.tenant_access_token ||\n  input[0].json?.data?.app_access_token ||\n  input[0].json?.data?.tenant_access_token;\n\nif (!token) {\n  throw new Error(\"Missing app_access_token\");\n}\n\n// ===== 2. CONFIG API =====\nconst baseUrl =\n  \"https://open.larksuite.com/open-apis/bitable/v1/apps/LCwabUTe7aEBoZsJltslE89IgYc/tables/tblOPZFUSkO5tlIz/records\";\n\nconst field_names = '[\"CustomerID\",\"Date\",\"last_name\",\"first_name\",\"country_code\",\"province\",\"phone\",\"price\",\"Xác_nhận\"]';\n\n// ===== 3. PAGINATION =====\nconst all = [];\nlet page_token = \"\";\nlet has_more = true;\n\nwhile (has_more) {\n  const res = await this.helpers.httpRequest({\n    method: \"GET\",\n    url: baseUrl,\n    headers: {\n      Authorization: `Bearer ${token}`,\n    },\n    qs: {\n      page_size: 500,\n      field_names,\n      ...(page_token ? { page_token } : {}),\n    },\n    json: true,\n  });\n\n  if (res?.code !== 0) {\n    throw new Error(`Lark API error: ${res?.msg || res?.code}`);\n  }\n\n  // ===== 4. FILTER: CHỈ LOẠI RECORD ĐÃ GỬI =====\n  const items = (res?.data?.items || []).filter(r => {\n    const fields = r.fields || {};\n    return fields[\"Xác_nhận\"] !== \"Đã gửi Event thành công\";\n  });\n\n  all.push(...items);\n\n  has_more = Boolean(res?.data?.has_more);\n  page_token = res?.data?.page_token || \"\";\n\n  if (has_more) {\n    await new Promise(r => setTimeout(r, 200));\n  }\n}\n\n// ===== 5. OUTPUT CHO n8n =====\nreturn all.map(r => ({\n  json: {\n    ...r,\n    // KHÔNG ép Date nữa – để xử lý sau (Meta / fallback)\n    event_time: r.fields?.Date,\n  },\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -224,
+        -112
+      ],
+      "id": "15cea74b-d161-4ed0-9f7e-f4f579574e35",
+      "name": "Fetch all records (paginate)"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "02d8fef1-66c0-4e59-8713-7d4e7ca33e32",
+              "name": "app_id",
+              "value": "cli_a7f1cfbe36b81010",
+              "type": "string"
+            },
+            {
+              "id": "32404746-b39b-4078-8463-5e0f865f35d0",
+              "name": "app_scret",
+              "value": "IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        912,
+        -144
+      ],
+      "id": "7331edc8-a680-4ae6-b98b-8c1ee16d0911",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_scret }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"app_id\": \"cli_a7f1cfbe36b81010\",\n    \"app_secret\": \"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1152,
+        -144
+      ],
+      "id": "45b3f707-16bf-4c9e-aa5b-53a8e68714f0",
+      "name": "Get Token Lark1",
+      "notesInFlow": false,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "content": "Truy cập vào đây để xem dataset\n\n- https://hebekery.sg.larksuite.com/wiki/GAuiwbt8wif5ozk6u2mloEkzgSh?field=flde9mP8KK&table=tblOPZFUSkO5tlIz&view=vewd1xqZM1",
+        "width": 688
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -672,
+        -464
+      ],
+      "id": "6ae25246-a698-421f-bd60-2c66ac283bf9",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-24T05:00:24.480Z",
+      "createdAt": "2026-01-24T05:00:24.480Z",
+      "role": "workflow:owner",
+      "workflowId": "DODX9HibU0MPcXG3",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-24T05:28:28.272Z",
+  "versionId": "c4b48442-c389-4b30-9d15-5ea94e318ea5"
+}
