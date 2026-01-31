@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-24T05:21:36.000Z",
-    "createdAt": "2026-01-24T05:19:27.921Z",
-    "versionId": "df7f6439-3e03-4382-a4bd-fd71d491c6e3",
+    "updatedAt": "2026-01-28T03:29:38.000Z",
+    "createdAt": "2026-01-24T05:28:28.275Z",
+    "versionId": "c4b48442-c389-4b30-9d15-5ea94e318ea5",
     "workflowId": "DODX9HibU0MPcXG3",
     "nodes": [
       {
@@ -42,7 +42,7 @@
           "node": "3237193556591564",
           "edge": "=events",
           "options": {
-            "queryParametersJson": "={\n  \"data\": [\n    {\n      \"event_name\": \"Purchase\",\n      \"event_time\": {{ Math.floor(($json.user_data.date - 25569) * 86400) - 25200 }},\n      \"action_source\": \"website\",\n      \"user_data\": {\n        \"ph\": [\n           \"{{ $json.user_data.phone }}\" \n        ],\n        \"fn\": [\n           \"{{ $json.user_data.first_name.toLowerCase().trim() }}\"\n        ],\n        \"ln\": [\n           \"{{ $json.user_data.last_name.toLowerCase().trim() }}\"\n        ],\n        \"country\": [\n           \"{{ $json.user_data.country.toLowerCase().trim() }}\"\n        ]\n      },\n      \"custom_data\": {\n        \"value\": {{ Number($json.user_data.price) }},\n        \"currency\": \"VND\"\n      }\n    }\n  ]\n}\n"
+            "queryParametersJson": "={\n  \"data\": [\n    {\n      \"event_name\": \"Purchase\",\n      \"event_time\": {{ Math.floor(($json.user_data.date - 25569) * 86400) - 25200 }},\n      \"action_source\": \"website\",\n      \"user_data\": {\n        \"ph\": [\n           \"{{ $json.user_data.phone }}\" \n        ],\n        \"fn\": [\n           \"{{ $json.user_data.first_name.toLowerCase().trim() }}\"\n        ],\n        \"ln\": [\n           \"{{ $json.user_data.last_name.toLowerCase().trim() }}\"\n        ],\n        \"country\": [\n           \"{{ $json.user_data.country.toLowerCase().trim() }}\"\n        ],\n        \"st\": [\n           \"{{ $json.user_data.province.toLowerCase().trim() }}\" \n        ],\n        \"ct\": [\n           \"{{ $json.user_data.province.toLowerCase().trim() }}\" \n        ]\n      },\n      \"custom_data\": {\n        \"value\": {{ Number($json.user_data.price) }},\n        \"currency\": \"VND\"\n      }\n    }\n  ]\n}\n"
           }
         },
         "id": "a9fe93bb-54fb-46cb-955c-b86e894c3ba9",
@@ -315,7 +315,7 @@
       },
       {
         "parameters": {
-          "jsCode": "const input = $input.all();\nif (!input.length) return [];\n\n// ===== 1. LẤY TOKEN =====\nconst token =\n  input[0].json.app_access_token ||\n  input[0].json.tenant_access_token ||\n  input[0].json?.data?.app_access_token ||\n  input[0].json?.data?.tenant_access_token;\n\nif (!token) {\n  throw new Error(\"Missing app_access_token\");\n}\n\n// ===== 2. CONFIG API =====\nconst baseUrl =\n  \"https://open.larksuite.com/open-apis/bitable/v1/apps/LCwabUTe7aEBoZsJltslE89IgYc/tables/tblOPZFUSkO5tlIz/records\";\n\nconst field_names = '[\"CustomerID\",\"Date\",\"last_name\",\"first_name\",\"country_code\",\"province\",\"phone\",\"price\"]';\n\n// ===== 3. PAGINATION =====\nconst all = [];\nlet page_token = \"\";\nlet has_more = true;\n\nwhile (has_more) {\n  const res = await this.helpers.httpRequest({\n    method: \"GET\",\n    url: baseUrl,\n    headers: {\n      Authorization: `Bearer ${token}`,\n    },\n    qs: {\n      page_size: 500,\n      field_names,\n      ...(page_token ? { page_token } : {}),\n    },\n    json: true,\n  });\n\n  if (res?.code !== 0) {\n    throw new Error(`Lark API error: ${res?.msg || res?.code}`);\n  }\n\n  // ===== 4. FILTER: CHỈ LOẠI RECORD ĐÃ GỬI =====\n  const items = (res?.data?.items || []).filter(r => {\n    const fields = r.fields || {};\n    return fields[\"Xác_nhận\"] !== \"Đã gửi Event thành công\";\n  });\n\n  all.push(...items);\n\n  has_more = Boolean(res?.data?.has_more);\n  page_token = res?.data?.page_token || \"\";\n\n  if (has_more) {\n    await new Promise(r => setTimeout(r, 200));\n  }\n}\n\n// ===== 5. OUTPUT CHO n8n =====\nreturn all.map(r => ({\n  json: {\n    ...r,\n    // KHÔNG ép Date nữa – để xử lý sau (Meta / fallback)\n    event_time: r.fields?.Date,\n  },\n}));\n"
+          "jsCode": "const input = $input.all();\nif (!input.length) return [];\n\n// ===== 1. LẤY TOKEN =====\nconst token =\n  input[0].json.app_access_token ||\n  input[0].json.tenant_access_token ||\n  input[0].json?.data?.app_access_token ||\n  input[0].json?.data?.tenant_access_token;\n\nif (!token) {\n  throw new Error(\"Missing app_access_token\");\n}\n\n// ===== 2. CONFIG API =====\nconst baseUrl =\n  \"https://open.larksuite.com/open-apis/bitable/v1/apps/LCwabUTe7aEBoZsJltslE89IgYc/tables/tblOPZFUSkO5tlIz/records\";\n\nconst field_names = '[\"CustomerID\",\"Date\",\"last_name\",\"first_name\",\"country_code\",\"province\",\"phone\",\"price\",\"Xác_nhận\"]';\n\n// ===== 3. PAGINATION =====\nconst all = [];\nlet page_token = \"\";\nlet has_more = true;\n\nwhile (has_more) {\n  const res = await this.helpers.httpRequest({\n    method: \"GET\",\n    url: baseUrl,\n    headers: {\n      Authorization: `Bearer ${token}`,\n    },\n    qs: {\n      page_size: 500,\n      field_names,\n      ...(page_token ? { page_token } : {}),\n    },\n    json: true,\n  });\n\n  if (res?.code !== 0) {\n    throw new Error(`Lark API error: ${res?.msg || res?.code}`);\n  }\n\n  // ===== 4. FILTER: CHỈ LOẠI RECORD ĐÃ GỬI =====\n  const items = (res?.data?.items || []).filter(r => {\n    const fields = r.fields || {};\n    return fields[\"Xác_nhận\"] !== \"Đã gửi Event thành công\";\n  });\n\n  all.push(...items);\n\n  has_more = Boolean(res?.data?.has_more);\n  page_token = res?.data?.page_token || \"\";\n\n  if (has_more) {\n    await new Promise(r => setTimeout(r, 200));\n  }\n}\n\n// ===== 5. OUTPUT CHO n8n =====\nreturn all.map(r => ({\n  json: {\n    ...r,\n    // KHÔNG ép Date nữa – để xử lý sau (Meta / fallback)\n    event_time: r.fields?.Date,\n  },\n}));\n"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -387,6 +387,20 @@
         "name": "Get Token Lark1",
         "notesInFlow": false,
         "alwaysOutputData": false
+      },
+      {
+        "parameters": {
+          "content": "Truy cập vào đây để xem dataset\n\n- https://hebekery.sg.larksuite.com/wiki/GAuiwbt8wif5ozk6u2mloEkzgSh?field=flde9mP8KK&table=tblOPZFUSkO5tlIz&view=vewd1xqZM1",
+          "width": 688
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -672,
+          -464
+        ],
+        "id": "6ae25246-a698-421f-bd60-2c66ac283bf9",
+        "name": "Sticky Note"
       }
     ],
     "connections": {
@@ -525,11 +539,11 @@
       }
     },
     "authors": "Trịnh Đình Duy",
-    "name": "24-01-2026",
-    "description": "Truy cập vào đây để xem dataset\n- https://hebekery.sg.larksuite.com/wiki/GAuiwbt8wif5ozk6u2mloEkzgSh?field=flde9mP8KK&table=tblOPZFUSkO5tlIz&view=vewd1xqZM1\n",
+    "name": "Version c4b48442",
+    "description": "",
     "autosaved": false
   },
-  "activeVersionId": "df7f6439-3e03-4382-a4bd-fd71d491c6e3",
+  "activeVersionId": "c4b48442-c389-4b30-9d15-5ea94e318ea5",
   "connections": {
     "Edit Fields": {
       "main": [
