@@ -1,0 +1,169 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Create token": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Create token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-26T16:11:19.725Z",
+  "id": "3Eg6nshrZxUgBlUNZXeJv",
+  "isArchived": true,
+  "meta": null,
+  "name": "Log lỗi hệ thong phân tích tuyển dụng",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "log_notification",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "7bf65487-47b3-4126-92aa-f97b84f0fb24",
+      "name": "Webhook",
+      "webhookId": "df663336-3348-4b00-9454-1c2028be89a8"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_scret }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"{{ $json.app_id }}\",\n    \"app_secret\": \"{{ $json.app_scret }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        496,
+        -16
+      ],
+      "id": "7b23a111-aa7d-4f4f-823d-06ad7e36c5ec",
+      "name": "Create token"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/OpeLbegRjakQ23sc4gmlL6zLgZf\n/tables/tblBQ8R3R7jeuKt4/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"campaign_name\": \"{{ $('Normalize data').item.json.campaign_name }}\",\n    \"adset_name\": \"{{ $('Normalize data').item.json.adset_name }}\",\n    \"ad_name\": \"{{ $('Normalize data').item.json.ad_name }}\",\n    \n    \"impressions\": {{ Number($('Normalize data').item.json.Meta_ads_data.impressions || 0) }},\n    \"spend\": {{ Number($('Normalize data').item.json.Meta_ads_data.spend || 0) }},\n    \"frequency\": {{ Number($('Normalize data').item.json.Meta_ads_data.frequency || 0) }},\n    \"cpc\": {{ Number($('Normalize data').item.json.Meta_ads_data.cpc || 0) }},\n    \"cpm\": {{ Number($('Normalize data').item.json.Meta_ads_data.cpm || 0) }},\n    \"reach\": {{ Number($('Normalize data').item.json.Meta_ads_data.reach || 0) }},\n\n    \"total_messaging_connection\": {{ Number($('Normalize data').item.json.Meta_ads_data.total_messaging_connection || 0) }},\n    \"page_engagement\": {{ Number($('Normalize data').item.json.Meta_ads_data.page_engagement || 0) }},\n    \"post_engagement\": {{ Number($('Normalize data').item.json.Meta_ads_data.post_engagement || 0) }},\n    \"comment\": {{ Number($('Normalize data').item.json.Meta_ads_data.comment || 0) }},\n    \"messaging_first_reply\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_first_reply || 0) }},\n    \"messaging_user_depth_3_message_send\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_user_depth_3_message_send || 0) }},\n    \"messaging_welcome_message_view\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_welcome_message_view || 0) }},\n    \"like\": {{ Number($('Normalize data').item.json.Meta_ads_data.like || 0) }},\n    \"messaging_conversation_replied_7d\": {{ Number($('Normalize data').item.json.Meta_ads_data.messaging_conversation_replied_7d || 0) }},\n    \n    \"Date_start\": {{ new Date($('Normalize data').item.json.Date_start).getTime() }},\n    \"Date_stop\": {{ new Date($('Normalize data').item.json.Date_stop).getTime() }}\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        784,
+        -16
+      ],
+      "id": "acc54ce3-7ebf-4bb7-bc56-88e36a9d2d21",
+      "name": "Creates records lark"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "02d8fef1-66c0-4e59-8713-7d4e7ca33e32",
+              "name": "app_id",
+              "value": "cli_a7f1cfbe36b81010",
+              "type": "string"
+            },
+            {
+              "id": "32404746-b39b-4078-8463-5e0f865f35d0",
+              "name": "app_scret",
+              "value": "IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        256,
+        -32
+      ],
+      "id": "426861df-5b81-4c6a-9e1d-86986d43e145",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-26T16:11:19.728Z",
+      "createdAt": "2026-02-26T16:11:19.728Z",
+      "role": "workflow:owner",
+      "workflowId": "3Eg6nshrZxUgBlUNZXeJv",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-26T16:14:18.000Z",
+  "versionId": "755a0a48-03e5-4640-b091-ae9ee8811383"
+}
