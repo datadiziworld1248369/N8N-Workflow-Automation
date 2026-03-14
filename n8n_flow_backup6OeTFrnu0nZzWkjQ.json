@@ -2161,6 +2161,26 @@
       {
         "json": {}
       }
+    ],
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2026-03-09T12:00:05.275+07:00",
+          "Readable date": "March 9th 2026, 12:00:05 pm",
+          "Readable time": "12:00:05 pm",
+          "Day of week": "Monday",
+          "Year": "2026",
+          "Month": "March",
+          "Day of month": "09",
+          "Hour": "12",
+          "Minute": "00",
+          "Second": "05",
+          "Timezone": "Asia/Ho_Chi_Minh (UTC+07:00)"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
     ]
   },
   "settings": {
@@ -2184,6 +2204,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-11T13:53:44.000Z",
+  "updatedAt": "2026-03-11T07:40:52.809Z",
   "versionId": "1a171093-42c8-4396-a0d1-a6fd3779ab88"
 }
