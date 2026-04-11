@@ -1,0 +1,154 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Create token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create token": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2026-04-08T10:13:45.030Z",
+  "id": "PeLHF9Ixm2q4LqrY",
+  "isArchived": false,
+  "meta": null,
+  "name": "HRM_HCM_VP_Ko_Đồng_ý_PV",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "kdongy",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        240,
+        -160
+      ],
+      "id": "b8a21945-6343-421e-afae-ca1b1a5bf9cd",
+      "name": "Webhook",
+      "webhookId": "ff111be1-65c7-4605-a587-899fc59d626f"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        544,
+        -160
+      ],
+      "id": "ceea1ac4-6b1a-4f09-bc2c-7b044feaeb34",
+      "name": "Create token"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/JKqubKyppawQ8LsmQFtlN3M4g5b/tables/tblHcrG2irXvQL2A/records/{{ $('Webhook').item.json.query.r }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Confirm_status_n8n_sync\": \"2\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        832,
+        -160
+      ],
+      "id": "26b9d99b-223a-4aee-866b-2385e8e07326",
+      "name": "Creates records lark"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Rất tiếc bạn không thể tham gia phỏng vấn lần này.\nHy vọng sẽ có cơ hội hợp tác cùng bạn trong tương lai.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        464,
+        32
+      ],
+      "id": "85aabd03-89ef-4e93-bb4c-f41efbe2c2b9",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-04-08T10:13:45.035Z",
+      "createdAt": "2026-04-08T10:13:45.035Z",
+      "role": "workflow:owner",
+      "workflowId": "PeLHF9Ixm2q4LqrY",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-04-08T11:14:49.177Z",
+  "versionId": "ce7a52f2-9b2e-474f-920d-64fd66c99a07"
+}
