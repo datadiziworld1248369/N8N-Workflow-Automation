@@ -1,0 +1,156 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Create token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create token": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2026-04-08T10:15:49.842Z",
+  "id": "1ZVABsFcw0NexuKU",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "HRM_HCM_VP_Đổi_lịch",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "doilich",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        512,
+        16
+      ],
+      "id": "f52b079a-daf6-46ba-9b12-100c625fdf30",
+      "name": "Webhook",
+      "webhookId": "ff111be1-65c7-4605-a587-899fc59d626f"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        16
+      ],
+      "id": "2282558c-1f42-4c40-a2df-48109a26dc6e",
+      "name": "Create token"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/JKqubKyppawQ8LsmQFtlN3M4g5b/tables/tblHcrG2irXvQL2A/records/{{ $('Webhook').item.json.query.r }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Confirm_status_n8n_sync\": \"3\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1232,
+        16
+      ],
+      "id": "dad48e56-045c-4c61-a72d-b119fed0d3d9",
+      "name": "Creates records lark"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Yêu cầu đổi lịch của bạn đã được ghi nhận.\nChúng tôi sẽ sớm liên hệ lại với bạn.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        720,
+        160
+      ],
+      "id": "b5d4c57c-ea28-444a-8a26-c792a4dcc13c",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-04-08T10:15:49.845Z",
+      "createdAt": "2026-04-08T10:15:49.845Z",
+      "role": "workflow:owner",
+      "workflowId": "1ZVABsFcw0NexuKU",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-04-08T11:14:30.649Z",
+  "versionId": "103daf12-73dc-4e3e-a6f0-98d290c8daaf"
+}
