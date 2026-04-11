@@ -1,0 +1,895 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-04-11T04:12:01.000Z",
+    "createdAt": "2026-04-11T04:11:58.328Z",
+    "versionId": "16e37d8a-bc23-4972-8ae7-bf16805fdfe3",
+    "workflowId": "W3kBGkjc59G2Ajnb",
+    "nodes": [
+      {
+        "parameters": {
+          "path": "confirm",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -480,
+          32
+        ],
+        "id": "3d644d74-1363-463d-beae-c81670bba3b4",
+        "name": "Webhook",
+        "webhookId": "ff111be1-65c7-4605-a587-899fc59d626f"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "app_id",
+                "value": "=cli_a72ffec19c78d02f"
+              },
+              {
+                "name": "app_secret",
+                "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          128,
+          -352
+        ],
+        "id": "f3470db0-8c16-4ac3-882a-ee279c083661",
+        "name": "Create token"
+      },
+      {
+        "parameters": {
+          "respondWith": "text",
+          "responseBody": "Cảm ơn bạn đã xác nhận tham gia phỏng vấn. \nChúng tôi đã ghi nhận thông tin và sẽ gặp bạn theo lịch đã hẹn. \nChúc bạn chuẩn bị thật tốt và hẹn gặp bạn!",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.5,
+        "position": [
+          128,
+          -144
+        ],
+        "id": "edc641aa-7370-4937-8a8d-a4345f81a8f4",
+        "name": "Respond to Webhook"
+      },
+      {
+        "parameters": {
+          "method": "PUT",
+          "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/JKqubKyppawQ8LsmQFtlN3M4g5b/tables/tblHcrG2irXvQL2A/records/{{ $('Webhook').item.json.query.r }}",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "=Authorization",
+                "value": "=Bearer {{ $json.tenant_access_token }}"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"fields\": {\n    \"Confirm_status_n8n_sync\": \"1\"\n  }\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          464,
+          -320
+        ],
+        "id": "19cb6b6b-932f-48ac-a0dc-fe2f52d32f5f",
+        "name": "update records lark"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{$json.query.a}}",
+                      "rightValue": "1",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "9b87e5bf-b35b-4d0a-a638-ed3829ab8f2c"
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "id": "24747a0b-e522-4404-b9fc-a504d61a9221",
+                      "leftValue": "={{$json.query.a}}",
+                      "rightValue": "2",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "id": "3a49238b-6c44-4e84-a065-81d9bcc38753",
+                      "leftValue": "={{$json.query.a}}",
+                      "rightValue": "3",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.4,
+        "position": [
+          -224,
+          -16
+        ],
+        "id": "00127c86-0edd-486b-99ab-0ce9cc274ebf",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "app_id",
+                "value": "=cli_a72ffec19c78d02f"
+              },
+              {
+                "name": "app_secret",
+                "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          144,
+          16
+        ],
+        "id": "0b2e2212-7ad8-4c4d-b7d1-95e871e44120",
+        "name": "Create token1"
+      },
+      {
+        "parameters": {
+          "method": "PUT",
+          "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/JKqubKyppawQ8LsmQFtlN3M4g5b/tables/tblHcrG2irXvQL2A/records/{{ $('Webhook').item.json.query.r }}",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "=Authorization",
+                "value": "=Bearer {{ $json.tenant_access_token }}"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"fields\": {\n    \"Confirm_status_n8n_sync\": \"2\"\n  }\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          528,
+          16
+        ],
+        "id": "a22e76b4-785f-42ad-99ac-8cfaca8ee54d",
+        "name": "update records lark1"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "app_id",
+                "value": "=cli_a72ffec19c78d02f"
+              },
+              {
+                "name": "app_secret",
+                "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          160,
+          368
+        ],
+        "id": "07842b8a-a4f3-402b-a96e-30bece84b84a",
+        "name": "Create token2"
+      },
+      {
+        "parameters": {
+          "method": "PUT",
+          "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/JKqubKyppawQ8LsmQFtlN3M4g5b/tables/tblHcrG2irXvQL2A/records/{{ $('Webhook').item.json.query.r }}",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "=Authorization",
+                "value": "=Bearer {{ $json.tenant_access_token }}"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"fields\": {\n    \"Confirm_status_n8n_sync\": \"3\"\n  }\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          576,
+          368
+        ],
+        "id": "0caa3941-b4d7-400e-83b8-3a781c53c8b2",
+        "name": "update records lark2"
+      },
+      {
+        "parameters": {
+          "respondWith": "text",
+          "responseBody": "Cảm ơn bạn đã phản hồi. Chúng tôi đã ghi nhận việc bạn từ chối lịch phỏng vấn. \nHy vọng sẽ có cơ hội hợp tác với bạn trong tương lai.",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.5,
+        "position": [
+          176,
+          160
+        ],
+        "id": "612a432d-8546-498b-b010-45ee9369f90e",
+        "name": "Respond to Webhook1"
+      },
+      {
+        "parameters": {
+          "respondWith": "text",
+          "responseBody": "Cảm ơn bạn đã phản hồi. \nChúng tôi đã ghi nhận yêu cầu thay đổi lịch phỏng vấn của bạn. \nBộ phận Nhân sự sẽ liên hệ lại với bạn sớm để sắp xếp thời gian phù hợp hơn.",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.5,
+        "position": [
+          144,
+          528
+        ],
+        "id": "72aeb5cf-c46f-4c33-ae9d-b493f2d81ff8",
+        "name": "Respond to Webhook2"
+      }
+    ],
+    "connections": {
+      "Create token": {
+        "main": [
+          [
+            {
+              "node": "update records lark",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "Create token",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Create token1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Respond to Webhook1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Create token2",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Respond to Webhook2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create token1": {
+        "main": [
+          [
+            {
+              "node": "update records lark1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create token2": {
+        "main": [
+          [
+            {
+              "node": "update records lark2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Trịnh Đình Duy",
+    "name": "Version 16e37d8a",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "16e37d8a-bc23-4972-8ae7-bf16805fdfe3",
+  "connections": {
+    "Create token": {
+      "main": [
+        [
+          {
+            "node": "update records lark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Create token",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create token1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create token2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create token1": {
+      "main": [
+        [
+          {
+            "node": "update records lark1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create token2": {
+      "main": [
+        [
+          {
+            "node": "update records lark2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-04-08T10:07:44.140Z",
+  "id": "W3kBGkjc59G2Ajnb",
+  "isArchived": false,
+  "meta": null,
+  "name": "HRM_HCM_VP",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "confirm",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -480,
+        32
+      ],
+      "id": "3d644d74-1363-463d-beae-c81670bba3b4",
+      "name": "Webhook",
+      "webhookId": "ff111be1-65c7-4605-a587-899fc59d626f"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        128,
+        -352
+      ],
+      "id": "f3470db0-8c16-4ac3-882a-ee279c083661",
+      "name": "Create token"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Cảm ơn bạn đã xác nhận tham gia phỏng vấn. \nChúng tôi đã ghi nhận thông tin và sẽ gặp bạn theo lịch đã hẹn. \nChúc bạn chuẩn bị thật tốt và hẹn gặp bạn!",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        128,
+        -144
+      ],
+      "id": "edc641aa-7370-4937-8a8d-a4345f81a8f4",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/JKqubKyppawQ8LsmQFtlN3M4g5b/tables/tblHcrG2irXvQL2A/records/{{ $('Webhook').item.json.query.r }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Confirm_status_n8n_sync\": \"1\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        464,
+        -320
+      ],
+      "id": "19cb6b6b-932f-48ac-a0dc-fe2f52d32f5f",
+      "name": "update records lark"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.query.a}}",
+                    "rightValue": "1",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "9b87e5bf-b35b-4d0a-a638-ed3829ab8f2c"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "24747a0b-e522-4404-b9fc-a504d61a9221",
+                    "leftValue": "={{$json.query.a}}",
+                    "rightValue": "2",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "3a49238b-6c44-4e84-a065-81d9bcc38753",
+                    "leftValue": "={{$json.query.a}}",
+                    "rightValue": "3",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -224,
+        -16
+      ],
+      "id": "00127c86-0edd-486b-99ab-0ce9cc274ebf",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        144,
+        16
+      ],
+      "id": "0b2e2212-7ad8-4c4d-b7d1-95e871e44120",
+      "name": "Create token1"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/JKqubKyppawQ8LsmQFtlN3M4g5b/tables/tblHcrG2irXvQL2A/records/{{ $('Webhook').item.json.query.r }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Confirm_status_n8n_sync\": \"2\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        528,
+        16
+      ],
+      "id": "a22e76b4-785f-42ad-99ac-8cfaca8ee54d",
+      "name": "update records lark1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "=cli_a72ffec19c78d02f"
+            },
+            {
+              "name": "app_secret",
+              "value": "=9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"app_id\": \"cli_a72ffec19c78d02f\",\n    \"app_secret\": \"9AE5c8mjNvNnzZAdJ7z9dfvqYbHlLqoN\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        160,
+        368
+      ],
+      "id": "07842b8a-a4f3-402b-a96e-30bece84b84a",
+      "name": "Create token2"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/JKqubKyppawQ8LsmQFtlN3M4g5b/tables/tblHcrG2irXvQL2A/records/{{ $('Webhook').item.json.query.r }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Confirm_status_n8n_sync\": \"3\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        576,
+        368
+      ],
+      "id": "0caa3941-b4d7-400e-83b8-3a781c53c8b2",
+      "name": "update records lark2"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Cảm ơn bạn đã phản hồi. Chúng tôi đã ghi nhận việc bạn từ chối lịch phỏng vấn. \nHy vọng sẽ có cơ hội hợp tác với bạn trong tương lai.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        176,
+        160
+      ],
+      "id": "612a432d-8546-498b-b010-45ee9369f90e",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Cảm ơn bạn đã phản hồi. \nChúng tôi đã ghi nhận yêu cầu thay đổi lịch phỏng vấn của bạn. \nBộ phận Nhân sự sẽ liên hệ lại với bạn sớm để sắp xếp thời gian phù hợp hơn.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        144,
+        528
+      ],
+      "id": "72aeb5cf-c46f-4c33-ae9d-b493f2d81ff8",
+      "name": "Respond to Webhook2"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "x-forwarded-host": "n8n.hebekery.com",
+            "x-real-ip": "171.250.163.139",
+            "x-forwarded-for": "171.250.163.139",
+            "x-forwarded-proto": "https",
+            "host": "n8n.hebekery.com",
+            "connection": "Upgrade",
+            "dnt": "1",
+            "upgrade-insecure-requests": "1",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "sec-fetch-site": "cross-site",
+            "sec-fetch-mode": "navigate",
+            "sec-fetch-user": "?1",
+            "sec-fetch-dest": "document",
+            "sec-ch-ua": "\"Google Chrome\";v=\"147\", \"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"147\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "en-US,en;q=0.9,vi;q=0.8",
+            "priority": "u=0, i",
+            "cookie": "rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX1%2BZgvgEpSbeFvF%2BMkydjsyerLnbUHztAVw%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX1%2FDOC7bT1SV4gLKbcQnsfHpFOzPUueVh6Q%3D; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX1%2FHNuA1xfysi9o1ZXaTYJtc%2F8A24JxUaxc4kdJRL9QneRPOqczVaHFVZ4JunT9hkfvolygWQVFD3g%3D%3D; rl_user_id=RudderEncrypt%3AU2FsdGVkX19pW7eBoHUvTjCJyd%2FOti8zVmSv%2FxiV1XTF1as0qnS3sh%2BFOJJlBucF31xVD2%2FETuaNuypy%2B2z2Uw9gwd25qUq2zFCcbr%2BuDqUgo%2BSwKJTmA6i0x57K%2FCezpGcnkGSHpiMviLkonEBT6JBfM00anUgydVMxYOxjwso%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX1811dgnv%2B6Ub94tcmHYFz24eEl7D7lO4sRBL3L1mDsCC%2FZFSmHWgNOIJos8FL7GGaedau8jTY%2FUDgfc8sAfbFDOmWcXTUkajoVDWI73UQ%2FSGPzqdIogiRQMFdC6E2fZtzj6vd%2BxhDsuvwF7gWECy86Ww%2FGhRw1Hx%2Bw%3D; rl_session=RudderEncrypt%3AU2FsdGVkX188YBxbM0r7NRLewDa8z8b%2FG74o%2BrZiSqOI%2FpY9KgQzaI8nyhECjvw9IEkeoD01PrKIpUE7zWhkqTbjijUaM4QlJT7ZoZWrAyCw5aeUKI7XxmAdEsCFzy3jJvx29wn%2BteoqAmj2F3YWNg%3D%3D; ph_phc_4URIAm1uYfJO7j8kWSe0J8lc8IqnstRLS7Jx8NcakHo_posthog=%7B%22%24device_id%22%3A%22019d66c0-1897-758c-943a-9dc9ae70076e%22%2C%22distinct_id%22%3A%22a7e523b39d02669025ac9e1b9150043f2c236d471fe47d781acdf017c3b43d2b%234d8e5bd1-abe9-4215-871e-40587fac7c76%22%2C%22%24sesid%22%3A%5B1775647282604%2C%22019d6cb4-cbe0-736c-8acb-19fa17e96381%22%2C1775645281248%5D%2C%22%24epp%22%3Atrue%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22%24direct%22%2C%22u%22%3A%22https%3A%2F%2Fn8n.hebekery.com%2Fsignin%3Fredirect%3D%25252F%22%7D%2C%22%24user_state%22%3A%22identified%22%7D"
+          },
+          "params": {},
+          "query": {
+            "r": "rec27amK8F47Wn",
+            "a": "1"
+          },
+          "body": {},
+          "webhookUrl": "https://n8n.hebekery.com/webhook/confirm",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-04-08T10:07:44.193Z",
+      "createdAt": "2026-04-08T10:07:44.193Z",
+      "role": "workflow:owner",
+      "workflowId": "W3kBGkjc59G2Ajnb",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-04-11T04:11:58.326Z",
+  "versionId": "16e37d8a-bc23-4972-8ae7-bf16805fdfe3"
+}
