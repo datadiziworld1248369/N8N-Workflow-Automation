@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-04T02:53:24.096Z",
-    "createdAt": "2025-12-04T02:53:24.096Z",
-    "versionId": "1edd4ab0-81c5-4a0c-888c-0ec918669032",
+    "updatedAt": "2026-04-06T11:09:16.000Z",
+    "createdAt": "2026-04-06T11:09:14.643Z",
+    "versionId": "3c5e88a6-2e39-4e60-8072-dff65972677b",
     "workflowId": "1vzVfiJcN5tTFE6M",
     "nodes": [
       {
@@ -11,8 +11,8 @@
         "type": "n8n-nodes-base.manualTrigger",
         "typeVersion": 1,
         "position": [
-          -368,
-          0
+          -480,
+          -336
         ],
         "id": "0e537b37-2c72-4717-b544-15b7f3e4f3c7",
         "name": "When clicking ‘Test workflow’"
@@ -647,12 +647,12 @@
         ]
       }
     },
-    "authors": "system migration",
-    "name": null,
-    "description": null,
-    "autosaved": false
+    "authors": "Trịnh Đình Duy",
+    "name": "Version 3c5e88a6",
+    "description": "",
+    "autosaved": true
   },
-  "activeVersionId": "1edd4ab0-81c5-4a0c-888c-0ec918669032",
+  "activeVersionId": "3c5e88a6-2e39-4e60-8072-dff65972677b",
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
@@ -855,8 +855,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -368,
-        0
+        -480,
+        -336
       ],
       "id": "0e537b37-2c72-4717-b544-15b7f3e4f3c7",
       "name": "When clicking ‘Test workflow’"
@@ -1351,6 +1351,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-03-13T10:40:37.858Z",
-  "versionId": "6d729b02-4a55-4b76-9fc0-8978d464391e"
+  "updatedAt": "2026-04-06T11:09:14.642Z",
+  "versionId": "3c5e88a6-2e39-4e60-8072-dff65972677b"
 }
