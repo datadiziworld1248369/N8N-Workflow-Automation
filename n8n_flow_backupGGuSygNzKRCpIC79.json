@@ -1,0 +1,1163 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-04-15T13:55:23.000Z",
+    "createdAt": "2026-04-15T13:55:08.108Z",
+    "versionId": "7361eca1-a17b-4b9d-8d6a-8b3a7cd8a873",
+    "workflowId": "GGuSygNzKRCpIC79",
+    "nodes": [
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "02bba7c8-fca6-45af-885f-5c299c9eac4a",
+        "name": "When clicking ‘Test workflow’"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://actapp.misa.vn/api/oauth/actopen/connect",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "=                        {\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"access_code\": \"{{ $('Acess_token').item.json.token }}\",\n                        \"org_company_code\": \"congtydemoketnoiact\"\n                        } ",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          928,
+          0
+        ],
+        "id": "190d2396-4c5d-4d0e-b37e-2760b7f22806",
+        "name": "HTTP Request"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://actapp.misa.vn/apir/sync/actopen/get_dictionary",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "X-MISA-AccessToken",
+                "value": "={{ $json.access_token }}"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "  {\n                        \"data_type\": 1 ,\n                        \"branch_id\": \"db8550da-2fe4-4970-8758-d92e78e2ddd0\",\n                        \"skip\": 0,\n                        \"take\": 100,\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"last_sync_time\": \"2000-04-10 14:15:02\"\n                        }",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1344,
+          0
+        ],
+        "id": "cbe96d5e-bcbd-46ac-8975-5326c7c21c00",
+        "name": "HTTP Request4"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Parse JSON string\nconst raw = $json[\"Data\"];\nconst parsed = JSON.parse(raw);\n\n// Trả về mỗi object là một item mới\nreturn parsed.map(item => {\n  return {\n    json: item\n  };\n});\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1824,
+          0
+        ],
+        "id": "528d0349-d793-400b-a222-b4f8264d4767",
+        "name": "Code"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "77775875-fff9-4792-9778-a8f2d4deb7d4",
+                "name": "code",
+                "value": "={{ $json.account_object_code }}",
+                "type": "string"
+              },
+              {
+                "id": "6a315617-d1c9-4320-b851-e3dcc5207b4b",
+                "name": "name",
+                "value": "={{ $json.account_object_name }}",
+                "type": "string"
+              },
+              {
+                "id": "2b720bc6-df57-45e9-8b59-4fd90e51280a",
+                "name": "address",
+                "value": "={{ $json.address }}",
+                "type": "string"
+              },
+              {
+                "id": "5494091e-aca5-40e0-9955-a8f3b75ac57c",
+                "name": "tax_code",
+                "value": "={{ $json.company_tax_code }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "10ef830a-59e6-4742-9a78-a7bd4d472430",
+        "name": "Normalize data",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          2240,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "fieldToSplitOut": "Data",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitOut",
+        "typeVersion": 1,
+        "position": [
+          1648,
+          0
+        ],
+        "id": "1d592bac-4056-4627-807f-a539617096ce",
+        "name": "Split Out"
+      },
+      {
+        "parameters": {
+          "amount": 1
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          3760,
+          0
+        ],
+        "id": "e8ecea2a-3914-4a4c-9405-22db7f3b1554",
+        "name": "Wait1",
+        "webhookId": "2db19d3e-fb49-4ba8-a108-457a6f9edb23"
+      },
+      {
+        "parameters": {
+          "batchSize": 10,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          2496,
+          0
+        ],
+        "id": "b6b08c06-669e-4265-b3c0-0996beb98d7f",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Chạy cho từng item\nreturn items.map(item => {\n  const rawData = item.json[\"Data\"]; // Lấy chuỗi JSON từ trường Data\n  const parsed = JSON.parse(rawData); // Parse chuỗi JSON thành object\n\n  return {\n    json: parsed // Trả về object đã parse\n  };\n});\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1120,
+          0
+        ],
+        "id": "4fd095a6-cb9e-4cf5-a327-da49301da5d6",
+        "name": "Code2"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/EFWPbB04eaPBWGse700lEg1Mg6M/tables/tblSSaAH8o6QLoja/records",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "=Authorization",
+                "value": "=Bearer {{ $('Create token').item.json.tenant_access_token }}"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"fields\": {\n    \"Mã_khách_hàng\": \"{{ $('Normalize data').item.json.code }}\",\n    \"Tên_khách_hàng\": \"{{ $('Normalize data').item.json.name }}\",\n    \"Địa_chỉ\": \"{{ $('Normalize data').item.json.address }}\",\n    \"Mã_số_thuế\": \"{{ $('Normalize data').item.json.tax_code }}\"\n  }\n}\n",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          3472,
+          0
+        ],
+        "id": "a4ca4a41-64f1-42f4-923c-bfae34204671",
+        "name": "Creates records lark1"
+      },
+      {
+        "parameters": {
+          "mode": "raw",
+          "jsonOutput": "{\n\"token\": \n\"SDIhakhcBmZROQuGCq2Vs0hZGS5zDeaYbXPg/YDWQ5RSS/h5xKo03XysI/cqW7+NfffaFAsWBtqOXrrlM4YhhZx7tng4XoNsBDsS6L4EWz1GUyMw083tUC9SZnI4barDU8ETtQPdVCo2ZnEfHnE4Xve8vP9TOtdOkUoc4RVfLM8R325pXreTPe5M/R20yBQYqBoLxjBilzz2WKyCtyrzBllFn9JhPqva8LfolxKZngQIhDH3nGfnASRE5Y9UIKwqtAbYoejYh4Z0nCOBF7Y+kQ==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          512,
+          0
+        ],
+        "id": "02632e74-5d7e-44fd-9e10-52bdafc13198",
+        "name": "Acess_token"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "app_id",
+                "value": "={{ $json.app_id }}"
+              },
+              {
+                "name": "app_secret",
+                "value": "={{ $json.app_scret }}"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "{\n    \"app_id\": \"cli_a7f1cfbe36b81010\",\n    \"app_secret\": \"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          752,
+          0
+        ],
+        "id": "77e90414-9060-415c-9996-9fd63c50d9c6",
+        "name": "Create token"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/EFWPbB04eaPBWGse700lEg1Mg6M/tables/tblSSaAH8o6QLoja/records/search",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "page_size",
+                "value": "500"
+              }
+            ]
+          },
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('Create token').item.json.app_access_token }}"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"filter\": {\n    \"conjunction\": \"and\",\n    \"conditions\": [\n      {\n        \"field_name\": \"Mã_số_thuế\",\n        \"operator\": \"is\",\n        \"value\": [\n          \"{{ $json.code }}\"\n        ]\n      }\n    ]\n  },\n  \"automatic_fields\": false\n}",
+          "options": {
+            "pagination": {
+              "pagination": {
+                "parameters": {
+                  "parameters": [
+                    {
+                      "name": "page_token",
+                      "value": "={{ $response ? $response.body.data.page_token : '' }}"
+                    }
+                  ]
+                },
+                "paginationCompleteWhen": "other",
+                "completeExpression": "={{ !$response.body.data.has_more }}"
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          2784,
+          16
+        ],
+        "id": "5bdfa35e-6402-47ad-9701-282111a265e7",
+        "name": "search a record"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "87e38320-bec7-4bae-9c15-392cba496219",
+                "leftValue": "={{ $json.data.total }}",
+                "rightValue": 0,
+                "operator": {
+                  "type": "number",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          3072,
+          16
+        ],
+        "id": "0308a1a9-6ac5-4a52-9a7b-cda840361a3c",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "amount": 1
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          2704,
+          400
+        ],
+        "id": "ff55c32d-9346-4d64-b57d-c091c540c05f",
+        "name": "Wait",
+        "webhookId": "b796dc21-ec6a-4e81-8aaf-44f339cd5b2c"
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "hours",
+                "hoursInterval": 6
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          48,
+          240
+        ],
+        "id": "73c7a058-7f80-4b88-a7ad-70cb391755e7",
+        "name": "Schedule Trigger"
+      }
+    ],
+    "connections": {
+      "When clicking ‘Test workflow’": {
+        "main": [
+          [
+            {
+              "node": "Acess_token",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Code2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request4": {
+        "main": [
+          [
+            {
+              "node": "Split Out",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code": {
+        "main": [
+          [
+            {
+              "node": "Normalize data",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Normalize data": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Split Out": {
+        "main": [
+          [
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait1": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [],
+          [
+            {
+              "node": "search a record",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code2": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Creates records lark1": {
+        "main": [
+          [
+            {
+              "node": "Wait1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Acess_token": {
+        "main": [
+          [
+            {
+              "node": "Create token",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create token": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "search a record": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Creates records lark1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Acess_token",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Trịnh Đình Duy",
+    "name": "Version 7361eca1",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "7361eca1-a17b-4b9d-8d6a-8b3a7cd8a873",
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Acess_token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Normalize data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize data": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "search a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Creates records lark1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acess_token": {
+      "main": [
+        [
+          {
+            "node": "Create token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create token": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "search a record": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Creates records lark1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Acess_token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-04-15T09:14:01.338Z",
+  "id": "GGuSygNzKRCpIC79",
+  "isArchived": false,
+  "meta": null,
+  "name": "AMIS_ Lấy danh sách khách hàng",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "02bba7c8-fca6-45af-885f-5c299c9eac4a",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://actapp.misa.vn/api/oauth/actopen/connect",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=                        {\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"access_code\": \"{{ $('Acess_token').item.json.token }}\",\n                        \"org_company_code\": \"congtydemoketnoiact\"\n                        } ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        928,
+        0
+      ],
+      "id": "190d2396-4c5d-4d0e-b37e-2760b7f22806",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://actapp.misa.vn/apir/sync/actopen/get_dictionary",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-MISA-AccessToken",
+              "value": "={{ $json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "  {\n                        \"data_type\": 1 ,\n                        \"branch_id\": \"db8550da-2fe4-4970-8758-d92e78e2ddd0\",\n                        \"skip\": 0,\n                        \"take\": 100,\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"last_sync_time\": \"2000-04-10 14:15:02\"\n                        }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1344,
+        0
+      ],
+      "id": "cbe96d5e-bcbd-46ac-8975-5326c7c21c00",
+      "name": "HTTP Request4"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse JSON string\nconst raw = $json[\"Data\"];\nconst parsed = JSON.parse(raw);\n\n// Trả về mỗi object là một item mới\nreturn parsed.map(item => {\n  return {\n    json: item\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1824,
+        0
+      ],
+      "id": "528d0349-d793-400b-a222-b4f8264d4767",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "77775875-fff9-4792-9778-a8f2d4deb7d4",
+              "name": "code",
+              "value": "={{ $json.account_object_code }}",
+              "type": "string"
+            },
+            {
+              "id": "6a315617-d1c9-4320-b851-e3dcc5207b4b",
+              "name": "name",
+              "value": "={{ $json.account_object_name }}",
+              "type": "string"
+            },
+            {
+              "id": "2b720bc6-df57-45e9-8b59-4fd90e51280a",
+              "name": "address",
+              "value": "={{ $json.address }}",
+              "type": "string"
+            },
+            {
+              "id": "5494091e-aca5-40e0-9955-a8f3b75ac57c",
+              "name": "tax_code",
+              "value": "={{ $json.company_tax_code }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "10ef830a-59e6-4742-9a78-a7bd4d472430",
+      "name": "Normalize data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2240,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "Data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1648,
+        0
+      ],
+      "id": "1d592bac-4056-4627-807f-a539617096ce",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3760,
+        0
+      ],
+      "id": "e8ecea2a-3914-4a4c-9405-22db7f3b1554",
+      "name": "Wait1",
+      "webhookId": "2db19d3e-fb49-4ba8-a108-457a6f9edb23"
+    },
+    {
+      "parameters": {
+        "batchSize": 10,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2496,
+        0
+      ],
+      "id": "b6b08c06-669e-4265-b3c0-0996beb98d7f",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Chạy cho từng item\nreturn items.map(item => {\n  const rawData = item.json[\"Data\"]; // Lấy chuỗi JSON từ trường Data\n  const parsed = JSON.parse(rawData); // Parse chuỗi JSON thành object\n\n  return {\n    json: parsed // Trả về object đã parse\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        0
+      ],
+      "id": "4fd095a6-cb9e-4cf5-a327-da49301da5d6",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/EFWPbB04eaPBWGse700lEg1Mg6M/tables/tblSSaAH8o6QLoja/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=Authorization",
+              "value": "=Bearer {{ $('Create token').item.json.tenant_access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"fields\": {\n    \"Mã_khách_hàng\": \"{{ $('Normalize data').item.json.code }}\",\n    \"Tên_khách_hàng\": \"{{ $('Normalize data').item.json.name }}\",\n    \"Địa_chỉ\": \"{{ $('Normalize data').item.json.address }}\",\n    \"Mã_số_thuế\": \"{{ $('Normalize data').item.json.tax_code }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3472,
+        0
+      ],
+      "id": "a4ca4a41-64f1-42f4-923c-bfae34204671",
+      "name": "Creates records lark1"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n\"token\": \n\"SDIhakhcBmZROQuGCq2Vs0hZGS5zDeaYbXPg/YDWQ5RSS/h5xKo03XysI/cqW7+NfffaFAsWBtqOXrrlM4YhhZx7tng4XoNsBDsS6L4EWz1GUyMw083tUC9SZnI4barDU8ETtQPdVCo2ZnEfHnE4Xve8vP9TOtdOkUoc4RVfLM8R325pXreTPe5M/R20yBQYqBoLxjBilzz2WKyCtyrzBllFn9JhPqva8LfolxKZngQIhDH3nGfnASRE5Y9UIKwqtAbYoejYh4Z0nCOBF7Y+kQ==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        512,
+        0
+      ],
+      "id": "02632e74-5d7e-44fd-9e10-52bdafc13198",
+      "name": "Acess_token"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.larksuite.com/open-apis/auth/v3/app_access_token/internal",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "app_id",
+              "value": "={{ $json.app_id }}"
+            },
+            {
+              "name": "app_secret",
+              "value": "={{ $json.app_scret }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"app_id\": \"cli_a7f1cfbe36b81010\",\n    \"app_secret\": \"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        752,
+        0
+      ],
+      "id": "77e90414-9060-415c-9996-9fd63c50d9c6",
+      "name": "Create token"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://open.larksuite.com/open-apis/bitable/v1/apps/EFWPbB04eaPBWGse700lEg1Mg6M/tables/tblSSaAH8o6QLoja/records/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "page_size",
+              "value": "500"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Create token').item.json.app_access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"filter\": {\n    \"conjunction\": \"and\",\n    \"conditions\": [\n      {\n        \"field_name\": \"Mã_số_thuế\",\n        \"operator\": \"is\",\n        \"value\": [\n          \"{{ $json.code }}\"\n        ]\n      }\n    ]\n  },\n  \"automatic_fields\": false\n}",
+        "options": {
+          "pagination": {
+            "pagination": {
+              "parameters": {
+                "parameters": [
+                  {
+                    "name": "page_token",
+                    "value": "={{ $response ? $response.body.data.page_token : '' }}"
+                  }
+                ]
+              },
+              "paginationCompleteWhen": "other",
+              "completeExpression": "={{ !$response.body.data.has_more }}"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2784,
+        16
+      ],
+      "id": "5bdfa35e-6402-47ad-9701-282111a265e7",
+      "name": "search a record"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "87e38320-bec7-4bae-9c15-392cba496219",
+              "leftValue": "={{ $json.data.total }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3072,
+        16
+      ],
+      "id": "0308a1a9-6ac5-4a52-9a7b-cda840361a3c",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2704,
+        400
+      ],
+      "id": "ff55c32d-9346-4d64-b57d-c091c540c05f",
+      "name": "Wait",
+      "webhookId": "b796dc21-ec6a-4e81-8aaf-44f339cd5b2c"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        48,
+        240
+      ],
+      "id": "73c7a058-7f80-4b88-a7ad-70cb391755e7",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {
+    "When clicking ‘Test workflow’": [
+      {
+        "json": {}
+      }
+    ],
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2026-03-09T12:00:05.275+07:00",
+          "Readable date": "March 9th 2026, 12:00:05 pm",
+          "Readable time": "12:00:05 pm",
+          "Day of week": "Monday",
+          "Year": "2026",
+          "Month": "March",
+          "Day of month": "09",
+          "Hour": "12",
+          "Minute": "00",
+          "Second": "05",
+          "Timezone": "Asia/Ho_Chi_Minh (UTC+07:00)"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-04-15T09:14:01.386Z",
+      "createdAt": "2026-04-15T09:14:01.386Z",
+      "role": "workflow:owner",
+      "workflowId": "GGuSygNzKRCpIC79",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": [
+        0
+      ]
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-04-15T13:55:08.107Z",
+  "versionId": "7361eca1-a17b-4b9d-8d6a-8b3a7cd8a873"
+}
