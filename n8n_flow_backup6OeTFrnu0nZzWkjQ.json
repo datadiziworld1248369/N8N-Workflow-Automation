@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-04T02:53:24.096Z",
-    "createdAt": "2025-12-04T02:53:24.096Z",
-    "versionId": "1a171093-42c8-4396-a0d1-a6fd3779ab88",
+    "updatedAt": "2026-04-15T10:31:52.000Z",
+    "createdAt": "2026-04-15T10:31:48.658Z",
+    "versionId": "7b5173e0-ba15-4da0-b51c-b5f4880646df",
     "workflowId": "6OeTFrnu0nZzWkjQ",
     "nodes": [
       {
@@ -104,7 +104,7 @@
           },
           "sendBody": true,
           "specifyBody": "json",
-          "jsonBody": "  {\n                        \"data_type\": 1 ,\n                        \"branch_id\": \"db8550da-2fe4-4970-8758-d92e78e2ddd0\",\n                        \"skip\": 0,\n                        \"take\": 1000,\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"last_sync_time\": \"2000-01-25 14:15:02\"\n                        }",
+          "jsonBody": "  {\n                        \"data_type\": 1 ,\n                        \"branch_id\": null,\n                        \"skip\": 0,\n                        \"take\": 1000,\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"last_sync_time\": \"2000-01-25 14:15:02\"\n                        }",
           "options": {}
         },
         "type": "n8n-nodes-base.httpRequest",
@@ -1075,12 +1075,12 @@
         ]
       }
     },
-    "authors": "system migration",
-    "name": null,
-    "description": null,
-    "autosaved": false
+    "authors": "Trịnh Đình Duy",
+    "name": "Version 7b5173e0",
+    "description": "",
+    "autosaved": true
   },
-  "activeVersionId": "1a171093-42c8-4396-a0d1-a6fd3779ab88",
+  "activeVersionId": "7b5173e0-ba15-4da0-b51c-b5f4880646df",
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
@@ -1417,7 +1417,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "  {\n                        \"data_type\": 1 ,\n                        \"branch_id\": \"db8550da-2fe4-4970-8758-d92e78e2ddd0\",\n                        \"skip\": 0,\n                        \"take\": 1000,\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"last_sync_time\": \"2000-01-25 14:15:02\"\n                        }",
+        "jsonBody": "  {\n                        \"data_type\": 1 ,\n                        \"branch_id\": null,\n                        \"skip\": 0,\n                        \"take\": 1000,\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"last_sync_time\": \"2000-01-25 14:15:02\"\n                        }",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -2184,7 +2184,8 @@
     ]
   },
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate"
   },
   "shared": [
     {
@@ -2204,6 +2205,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-03-11T07:40:52.809Z",
-  "versionId": "1a171093-42c8-4396-a0d1-a6fd3779ab88"
+  "updatedAt": "2026-04-15T10:31:48.655Z",
+  "versionId": "7b5173e0-ba15-4da0-b51c-b5f4880646df"
 }
