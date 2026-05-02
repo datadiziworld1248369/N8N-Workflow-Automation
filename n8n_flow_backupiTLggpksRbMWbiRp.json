@@ -1,0 +1,202 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-05-02T04:52:23.000Z",
+    "createdAt": "2026-05-02T04:52:20.409Z",
+    "versionId": "78f6b5eb-b0b8-43f2-bec8-27de34c5da9b",
+    "workflowId": "iTLggpksRbMWbiRp",
+    "nodes": [
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "triggerAtHour": 10,
+                "triggerAtMinute": 30
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          0,
+          0
+        ],
+        "id": "c94f6e6c-9065-4b98-9143-f1d44a04cc30",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "resource": "workflow",
+          "owner": {
+            "__rl": true,
+            "value": "Duy133009",
+            "mode": "name"
+          },
+          "repository": {
+            "__rl": true,
+            "value": "recruitment-analytics",
+            "mode": "list",
+            "cachedResultName": "recruitment-analytics",
+            "cachedResultUrl": "https://github.com/Duy133009/recruitment-analytics"
+          },
+          "workflowId": {
+            "__rl": true,
+            "value": 239051544,
+            "mode": "list",
+            "cachedResultName": "Daily Transform"
+          },
+          "ref": {
+            "__rl": true,
+            "value": "main",
+            "mode": "list",
+            "cachedResultName": "main"
+          }
+        },
+        "type": "n8n-nodes-base.github",
+        "typeVersion": 1.1,
+        "position": [
+          208,
+          0
+        ],
+        "id": "1f245069-a743-4156-982c-94ac723bb211",
+        "name": "Dispatch a workflow event",
+        "webhookId": "1276a707-13dc-4733-8b7f-3515a49b3de1",
+        "credentials": {
+          "githubApi": {
+            "id": "RNqHKRss4KkHBlTe",
+            "name": "Ads analatic"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Dispatch a workflow event",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Trịnh Đình Duy",
+    "name": "Version 78f6b5eb",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "78f6b5eb-b0b8-43f2-bec8-27de34c5da9b",
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Dispatch a workflow event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-05-02T04:42:02.656Z",
+  "id": "iTLggpksRbMWbiRp",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "UPDATE ADS PT SUMARIZE",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 10,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c94f6e6c-9065-4b98-9143-f1d44a04cc30",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "resource": "workflow",
+        "owner": {
+          "__rl": true,
+          "value": "Duy133009",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "recruitment-analytics",
+          "mode": "list",
+          "cachedResultName": "recruitment-analytics",
+          "cachedResultUrl": "https://github.com/Duy133009/recruitment-analytics"
+        },
+        "workflowId": {
+          "__rl": true,
+          "value": 239051544,
+          "mode": "list",
+          "cachedResultName": "Daily Transform"
+        },
+        "ref": {
+          "__rl": true,
+          "value": "main",
+          "mode": "list",
+          "cachedResultName": "main"
+        }
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "1f245069-a743-4156-982c-94ac723bb211",
+      "name": "Dispatch a workflow event",
+      "webhookId": "1276a707-13dc-4733-8b7f-3515a49b3de1",
+      "credentials": {
+        "githubApi": {
+          "id": "RNqHKRss4KkHBlTe",
+          "name": "Ads analatic"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-05-02T04:42:02.658Z",
+      "createdAt": "2026-05-02T04:42:02.658Z",
+      "role": "workflow:owner",
+      "workflowId": "iTLggpksRbMWbiRp",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-05-02T04:52:20.408Z",
+  "versionId": "78f6b5eb-b0b8-43f2-bec8-27de34c5da9b"
+}
