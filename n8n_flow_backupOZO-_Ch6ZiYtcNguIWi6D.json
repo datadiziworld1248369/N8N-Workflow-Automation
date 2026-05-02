@@ -176,7 +176,7 @@
   },
   "createdAt": "2026-02-27T09:26:07.887Z",
   "id": "OZO-_Ch6ZiYtcNguIWi6D",
-  "isArchived": false,
+  "isArchived": true,
   "meta": null,
   "name": "My workflow 43",
   "nodes": [
@@ -826,6 +826,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-02-27T10:25:11.394Z",
-  "versionId": "3e595967-02b1-4227-a3a3-0bb3dd11ee2d"
+  "updatedAt": "2026-05-02T04:14:20.000Z",
+  "versionId": "71bce746-9553-4926-8222-28e760113498"
 }
