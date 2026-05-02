@@ -1,0 +1,77 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Lark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-04-29T15:20:54.866Z",
+  "id": "BrWSDYFzjIum1pLP",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 44",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "28bd8216-528e-464d-a896-93f4a2b5edaa",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "base"
+      },
+      "type": "n8n-nodes-lark-global.lark",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "8eb03bbd-58ad-4019-849a-0ef1d1914d73",
+      "name": "Lark",
+      "webhookId": "031eff5a-8fec-4ba2-aa0c-0ffad5753bd7",
+      "credentials": {
+        "larkApi": {
+          "id": "oHBVKmEIgIIIwEpZ",
+          "name": "SyncOrganizaionInfo"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-04-29T15:20:54.870Z",
+      "createdAt": "2026-04-29T15:20:54.870Z",
+      "role": "workflow:owner",
+      "workflowId": "BrWSDYFzjIum1pLP",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-05-02T04:13:20.000Z",
+  "versionId": "83682b65-1b9b-4927-b866-4f9d142597f4"
+}
