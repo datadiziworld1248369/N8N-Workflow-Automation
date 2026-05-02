@@ -38,7 +38,7 @@
   },
   "createdAt": "2026-04-08T10:13:45.030Z",
   "id": "PeLHF9Ixm2q4LqrY",
-  "isArchived": false,
+  "isArchived": true,
   "meta": null,
   "name": "HRM_HCM_VP_Ko_Đồng_ý_PV",
   "nodes": [
@@ -149,6 +149,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-04-08T11:14:49.177Z",
-  "versionId": "ce7a52f2-9b2e-474f-920d-64fd66c99a07"
+  "updatedAt": "2026-05-02T04:13:54.000Z",
+  "versionId": "c4886550-307f-470b-a512-acf36a625e87"
 }
