@@ -212,7 +212,7 @@
   },
   "createdAt": "2025-10-30T03:39:25.984Z",
   "id": "STgJijTaC9Trvuep",
-  "isArchived": false,
+  "isArchived": true,
   "meta": null,
   "name": "Amis_Dim_product",
   "nodes": [
@@ -1749,6 +1749,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-03-13T08:17:01.485Z",
-  "versionId": "fc2e68f1-9b9b-4173-bec0-8d3b3ba5881d"
+  "updatedAt": "2026-05-02T04:14:15.000Z",
+  "versionId": "7425aa00-8e77-43b0-9aec-03d07941661f"
 }
