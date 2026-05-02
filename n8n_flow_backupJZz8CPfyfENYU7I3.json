@@ -1,0 +1,91 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "CreateRecord base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-05-02T04:09:20.770Z",
+  "id": "JZz8CPfyfENYU7I3",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 45",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "fef92297-0398-46f6-80e2-3e5498a5527e",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "base",
+        "operation": "createRecord",
+        "app_token": {
+          "__rl": true,
+          "value": "DmEXbKWyOadOKUsJisFlICcPgPh",
+          "mode": "id"
+        },
+        "table_id": {
+          "__rl": true,
+          "value": "tblVIXc2zd5LyU6d",
+          "mode": "list",
+          "cachedResultName": "Test node lark"
+        },
+        "body": "{\n  \"fields\": {\n    \"Text\": \"Giá trị test của mày\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-lark-global.lark",
+      "typeVersion": 1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "42be6328-bcca-4791-88d4-41d284ecf00a",
+      "name": "CreateRecord base",
+      "webhookId": "2ddf2846-f7ca-496f-87cb-1bcb876a3b3f",
+      "credentials": {
+        "larkApi": {
+          "id": "oHBVKmEIgIIIwEpZ",
+          "name": "SyncOrganizaionInfo"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-05-02T04:09:20.798Z",
+      "createdAt": "2026-05-02T04:09:20.798Z",
+      "role": "workflow:owner",
+      "workflowId": "JZz8CPfyfENYU7I3",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-05-02T04:13:12.000Z",
+  "versionId": "42f13f84-e51c-4f3d-aa05-a340618ec98a"
+}
