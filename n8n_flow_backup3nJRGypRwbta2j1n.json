@@ -1,15 +1,15 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-04T02:53:24.096Z",
-    "createdAt": "2025-12-04T02:53:24.096Z",
-    "versionId": "2350afc3-b6db-4ad2-997c-55e0e664308e",
+    "updatedAt": "2026-05-02T04:25:28.000Z",
+    "createdAt": "2026-05-02T04:25:20.079Z",
+    "versionId": "5a044df2-e6b0-4012-9879-803b1c78a516",
     "workflowId": "3nJRGypRwbta2j1n",
     "nodes": [
       {
         "parameters": {
           "httpMethod": "POST",
-          "path": "8ece36be-0983-488d-98ef-9bcd69797cd1",
+          "path": "anh",
           "options": {}
         },
         "type": "n8n-nodes-base.webhook",
@@ -24,12 +24,12 @@
       }
     ],
     "connections": {},
-    "authors": "system migration",
-    "name": null,
-    "description": null,
-    "autosaved": false
+    "authors": "Trịnh Đình Duy",
+    "name": "Version 5a044df2",
+    "description": "",
+    "autosaved": true
   },
-  "activeVersionId": "2350afc3-b6db-4ad2-997c-55e0e664308e",
+  "activeVersionId": "5a044df2-e6b0-4012-9879-803b1c78a516",
   "connections": {},
   "createdAt": "2025-08-26T16:31:30.306Z",
   "id": "3nJRGypRwbta2j1n",
@@ -40,7 +40,7 @@
     {
       "parameters": {
         "httpMethod": "POST",
-        "path": "8ece36be-0983-488d-98ef-9bcd69797cd1",
+        "path": "anh",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
@@ -56,7 +56,8 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate"
   },
   "shared": [
     {
@@ -70,6 +71,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-26T16:31:49.000Z",
-  "versionId": "2350afc3-b6db-4ad2-997c-55e0e664308e"
+  "updatedAt": "2026-05-02T04:25:20.077Z",
+  "versionId": "5a044df2-e6b0-4012-9879-803b1c78a516"
 }
