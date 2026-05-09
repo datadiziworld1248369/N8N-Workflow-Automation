@@ -1,0 +1,205 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-05-08T16:54:28.000Z",
+    "createdAt": "2026-05-08T16:46:25.394Z",
+    "versionId": "0ddcc7fa-2cb0-48eb-8747-0710df4c7850",
+    "workflowId": "53pjLez3QbCm69md",
+    "nodes": [
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "hours"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          0,
+          0
+        ],
+        "id": "4db82c3e-d4be-451f-8f91-604f6abde9ac",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "resource": "workflow",
+          "owner": {
+            "__rl": true,
+            "value": "Duy133009",
+            "mode": "name"
+          },
+          "repository": {
+            "__rl": true,
+            "value": "GET_NVL_AMIS",
+            "mode": "list",
+            "cachedResultName": "GET_NVL_AMIS",
+            "cachedResultUrl": "https://github.com/Duy133009/GET_NVL_AMIS"
+          },
+          "workflowId": {
+            "__rl": true,
+            "value": 273376530,
+            "mode": "list",
+            "cachedResultName": "Sync AMIS To Lark Base"
+          },
+          "ref": {
+            "__rl": true,
+            "value": "main",
+            "mode": "list",
+            "cachedResultName": "main"
+          }
+        },
+        "type": "n8n-nodes-base.github",
+        "typeVersion": 1.1,
+        "position": [
+          208,
+          0
+        ],
+        "id": "706646cd-11b8-4179-a4fb-c067511ae0f7",
+        "name": "Dispatch a workflow event",
+        "webhookId": "af1718c5-3a9b-4096-835e-ffaa19f1f17a",
+        "credentials": {
+          "githubApi": {
+            "id": "RNqHKRss4KkHBlTe",
+            "name": "Ads analatic"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Dispatch a workflow event",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Trịnh Đình Duy",
+    "name": "Version 0ddcc7fa",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "0ddcc7fa-2cb0-48eb-8747-0710df4c7850",
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Dispatch a workflow event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-05-07T14:57:09.067Z",
+  "id": "53pjLez3QbCm69md",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "kéo nvl amiss về base",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4db82c3e-d4be-451f-8f91-604f6abde9ac",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "resource": "workflow",
+        "owner": {
+          "__rl": true,
+          "value": "Duy133009",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "GET_NVL_AMIS",
+          "mode": "list",
+          "cachedResultName": "GET_NVL_AMIS",
+          "cachedResultUrl": "https://github.com/Duy133009/GET_NVL_AMIS"
+        },
+        "workflowId": {
+          "__rl": true,
+          "value": 273376530,
+          "mode": "list",
+          "cachedResultName": "Sync AMIS To Lark Base"
+        },
+        "ref": {
+          "__rl": true,
+          "value": "main",
+          "mode": "list",
+          "cachedResultName": "main"
+        }
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "706646cd-11b8-4179-a4fb-c067511ae0f7",
+      "name": "Dispatch a workflow event",
+      "webhookId": "af1718c5-3a9b-4096-835e-ffaa19f1f17a",
+      "credentials": {
+        "githubApi": {
+          "id": "RNqHKRss4KkHBlTe",
+          "name": "Ads analatic"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-05-07T14:57:09.085Z",
+      "createdAt": "2026-05-07T14:57:09.085Z",
+      "role": "workflow:owner",
+      "workflowId": "53pjLez3QbCm69md",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger1": {
+      "recurrenceRules": [
+        21
+      ]
+    },
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-05-08T16:46:25.692Z",
+  "versionId": "0ddcc7fa-2cb0-48eb-8747-0710df4c7850"
+}
