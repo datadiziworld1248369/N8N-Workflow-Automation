@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-15T10:31:52.000Z",
-    "createdAt": "2026-04-15T10:31:48.658Z",
-    "versionId": "7b5173e0-ba15-4da0-b51c-b5f4880646df",
+    "updatedAt": "2026-05-08T10:05:18.000Z",
+    "createdAt": "2026-05-08T10:05:16.297Z",
+    "versionId": "7a679553-e688-4d5a-8b68-03b4825113e3",
     "workflowId": "6OeTFrnu0nZzWkjQ",
     "nodes": [
       {
@@ -104,7 +104,7 @@
           },
           "sendBody": true,
           "specifyBody": "json",
-          "jsonBody": "  {\n                        \"data_type\": 1 ,\n                        \"branch_id\": null,\n                        \"skip\": 0,\n                        \"take\": 1000,\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"last_sync_time\": \"2000-01-25 14:15:02\"\n                        }",
+          "jsonBody": "  {\n                        \"data_type\": 1 ,\n                        \"branch_id\": null,\n                        \"skip\": 0,\n                        \"take\": 1000,\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"last_sync_time\": \"2000-01-01 14:15:02\"\n                        }",
           "options": {}
         },
         "type": "n8n-nodes-base.httpRequest",
@@ -677,7 +677,7 @@
       {
         "parameters": {
           "mode": "raw",
-          "jsonOutput": "{\n\"token\": \n\"SDIhakhcBmZROQuGCq2Vs0hZGS5zDeaYbXPg/YDWQ5RSS/h5xKo03XysI/cqW7+NfffaFAsWBtqOXrrlM4YhhZx7tng4XoNsBDsS6L4EWz1GUyMw083tUC9SZnI4barDU8ETtQPdVCo2ZnEfHnE4Xve8vP9TOtdOkUoc4RVfLM8R325pXreTPe5M/R20yBQYqBoLxjBilzz2WKyCtyrzBllFn9JhPqva8LfolxKZngQIhDH3nGfnASRE5Y9UIKwqtAbYoejYh4Z0nCOBF7Y+kQ==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+          "jsonOutput": "{\n\"token\": \n\"NJwNdfjD1EusR+iPwFvU10H5vfFANuDcCxboXxIz1dKpjLkbZMmBkR3gv0pwkeNJ3n0WjlDiPvbRz397AeKhRJro3aegEJySmsPbY31osClXmHkAqi9i1B0HfinHbU62Y4tXR3WsvmWPgGkh3O5n7JY9hjP3w92p1Wp5E7EugUVW+GAQ1MD6BgAStAAfCOJNs4mo0QpIYQLXsCFuvTkJpZVNCUF5tNjqPEUUk8QSo+i//gYjEQeKyTl1VCYy8NBtciXEz03Ov2stUWrnXFx3xg==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
           "options": {}
         },
         "type": "n8n-nodes-base.set",
@@ -1076,11 +1076,11 @@
       }
     },
     "authors": "Trịnh Đình Duy",
-    "name": "Version 7b5173e0",
+    "name": "Version 7a679553",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "7b5173e0-ba15-4da0-b51c-b5f4880646df",
+  "activeVersionId": "7a679553-e688-4d5a-8b68-03b4825113e3",
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
@@ -1417,7 +1417,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "  {\n                        \"data_type\": 1 ,\n                        \"branch_id\": null,\n                        \"skip\": 0,\n                        \"take\": 1000,\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"last_sync_time\": \"2000-01-25 14:15:02\"\n                        }",
+        "jsonBody": "  {\n                        \"data_type\": 1 ,\n                        \"branch_id\": null,\n                        \"skip\": 0,\n                        \"take\": 1000,\n                        \"app_id\": \"b389320a-d4d5-4b61-a70a-36ff1d258df8\",\n                        \"last_sync_time\": \"2000-01-01 14:15:02\"\n                        }",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1990,7 +1990,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "{\n\"token\": \n\"SDIhakhcBmZROQuGCq2Vs0hZGS5zDeaYbXPg/YDWQ5RSS/h5xKo03XysI/cqW7+NfffaFAsWBtqOXrrlM4YhhZx7tng4XoNsBDsS6L4EWz1GUyMw083tUC9SZnI4barDU8ETtQPdVCo2ZnEfHnE4Xve8vP9TOtdOkUoc4RVfLM8R325pXreTPe5M/R20yBQYqBoLxjBilzz2WKyCtyrzBllFn9JhPqva8LfolxKZngQIhDH3nGfnASRE5Y9UIKwqtAbYoejYh4Z0nCOBF7Y+kQ==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+        "jsonOutput": "{\n\"token\": \n\"NJwNdfjD1EusR+iPwFvU10H5vfFANuDcCxboXxIz1dKpjLkbZMmBkR3gv0pwkeNJ3n0WjlDiPvbRz397AeKhRJro3aegEJySmsPbY31osClXmHkAqi9i1B0HfinHbU62Y4tXR3WsvmWPgGkh3O5n7JY9hjP3w92p1Wp5E7EugUVW+GAQ1MD6BgAStAAfCOJNs4mo0QpIYQLXsCFuvTkJpZVNCUF5tNjqPEUUk8QSo+i//gYjEQeKyTl1VCYy8NBtciXEz03Ov2stUWrnXFx3xg==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.set",
@@ -2199,12 +2199,12 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        0
+        18
       ]
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-04-15T10:31:48.655Z",
-  "versionId": "7b5173e0-ba15-4da0-b51c-b5f4880646df"
+  "updatedAt": "2026-05-08T10:05:16.295Z",
+  "versionId": "7a679553-e688-4d5a-8b68-03b4825113e3"
 }
