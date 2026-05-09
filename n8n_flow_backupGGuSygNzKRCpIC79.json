@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-15T13:55:23.000Z",
-    "createdAt": "2026-04-15T13:55:08.108Z",
-    "versionId": "7361eca1-a17b-4b9d-8d6a-8b3a7cd8a873",
+    "updatedAt": "2026-05-08T09:33:49.000Z",
+    "createdAt": "2026-05-08T09:33:46.804Z",
+    "versionId": "bd449667-8b1d-4d29-91d5-8db2de26349e",
     "workflowId": "GGuSygNzKRCpIC79",
     "nodes": [
       {
@@ -201,7 +201,7 @@
       {
         "parameters": {
           "mode": "raw",
-          "jsonOutput": "{\n\"token\": \n\"SDIhakhcBmZROQuGCq2Vs0hZGS5zDeaYbXPg/YDWQ5RSS/h5xKo03XysI/cqW7+NfffaFAsWBtqOXrrlM4YhhZx7tng4XoNsBDsS6L4EWz1GUyMw083tUC9SZnI4barDU8ETtQPdVCo2ZnEfHnE4Xve8vP9TOtdOkUoc4RVfLM8R325pXreTPe5M/R20yBQYqBoLxjBilzz2WKyCtyrzBllFn9JhPqva8LfolxKZngQIhDH3nGfnASRE5Y9UIKwqtAbYoejYh4Z0nCOBF7Y+kQ==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+          "jsonOutput": "{\n\"token\": \n\"NJwNdfjD1EusR+iPwFvU10H5vfFANuDcCxboXxIz1dKpjLkbZMmBkR3gv0pwkeNJ3n0WjlDiPvbRz397AeKhRJro3aegEJySmsPbY31osClXmHkAqi9i1B0HfinHbU62Y4tXR3WsvmWPgGkh3O5n7JY9hjP3w92p1Wp5E7EugUVW+GAQ1MD6BgAStAAfCOJNs4mo0QpIYQLXsCFuvTkJpZVNCUF5tNjqPEUUk8QSo+i//gYjEQeKyTl1VCYy8NBtciXEz03Ov2stUWrnXFx3xg==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
           "options": {}
         },
         "type": "n8n-nodes-base.set",
@@ -554,11 +554,11 @@
       }
     },
     "authors": "Trịnh Đình Duy",
-    "name": "Version 7361eca1",
+    "name": "Version bd449667",
     "description": "",
-    "autosaved": false
+    "autosaved": true
   },
-  "activeVersionId": "7361eca1-a17b-4b9d-8d6a-8b3a7cd8a873",
+  "activeVersionId": "bd449667-8b1d-4d29-91d5-8db2de26349e",
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
@@ -931,7 +931,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"fields\": {\n    \"Mã_khách_hàng\": \"{{ $('Normalize data').item.json.code }}\",\n    \"Tên_khách_hàng\": \"{{ $('Normalize data').item.json.name }}\",\n    \"Địa_chỉ\": \"{{ $('Normalize data').item.json.address }}\",\n    \"Mã_số_thuế\": \"{{ $('Normalize data').item.json.tax_code }}\"\n  }\n}\n",
+        "jsonBody": "={\n  \"fields\": {\n    \"Mã_khách_hàng\": \"{{ ($('Normalize data').item.json.code || '').toString().replace(/[\\u0000-\\u001F\\u007F]/g, ' ') }}\",\n    \"Tên_khách_hàng\": \"{{ ($('Normalize data').item.json.name || '').toString().replace(/[\\u0000-\\u001F\\u007F]/g, ' ') }}\",\n    \"Địa_chỉ\": \"{{ ($('Normalize data').item.json.address || '').toString().replace(/[\\u0000-\\u001F\\u007F]/g, ' ') }}\",\n    \"Mã_số_thuế\": \"{{ ($('Normalize data').item.json.tax_code || '').toString().replace(/[\\u0000-\\u001F\\u007F]/g, ' ') }}\"\n  }\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -946,7 +946,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "{\n\"token\": \n\"SDIhakhcBmZROQuGCq2Vs0hZGS5zDeaYbXPg/YDWQ5RSS/h5xKo03XysI/cqW7+NfffaFAsWBtqOXrrlM4YhhZx7tng4XoNsBDsS6L4EWz1GUyMw083tUC9SZnI4barDU8ETtQPdVCo2ZnEfHnE4Xve8vP9TOtdOkUoc4RVfLM8R325pXreTPe5M/R20yBQYqBoLxjBilzz2WKyCtyrzBllFn9JhPqva8LfolxKZngQIhDH3nGfnASRE5Y9UIKwqtAbYoejYh4Z0nCOBF7Y+kQ==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
+        "jsonOutput": "{\n\"token\": \n\"NJwNdfjD1EusR+iPwFvU10H5vfFANuDcCxboXxIz1dKpjLkbZMmBkR3gv0pwkeNJ3n0WjlDiPvbRz397AeKhRJro3aegEJySmsPbY31osClXmHkAqi9i1B0HfinHbU62Y4tXR3WsvmWPgGkh3O5n7JY9hjP3w92p1Wp5E7EugUVW+GAQ1MD6BgAStAAfCOJNs4mo0QpIYQLXsCFuvTkJpZVNCUF5tNjqPEUUk8QSo+i//gYjEQeKyTl1VCYy8NBtciXEz03Ov2stUWrnXFx3xg==\",\n\"app_id\": \n\"cli_a7f1cfbe36b81010\",\n\"app_scret\": \n\"IHGVFOCYPGBkP7Uvw8E8IgXnZn4bj7z3\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.set",
@@ -1152,12 +1152,12 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        0
+        18
       ]
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-04-15T13:55:08.107Z",
-  "versionId": "7361eca1-a17b-4b9d-8d6a-8b3a7cd8a873"
+  "updatedAt": "2026-05-08T09:37:08.015Z",
+  "versionId": "d5b77e06-51ca-4d3d-9362-ff420dda231c"
 }
