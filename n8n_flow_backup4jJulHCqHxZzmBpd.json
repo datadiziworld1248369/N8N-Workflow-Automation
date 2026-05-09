@@ -1,0 +1,69 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Zalo Send Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-05-06T14:57:05.117Z",
+  "id": "4jJulHCqHxZzmBpd",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 46",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "60c650aa-c615-4b10-b828-3d77f191712d",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "quote": {},
+        "mentions": {}
+      },
+      "type": "n8n-nodes-zalo-stable.zaloSendMessage",
+      "typeVersion": 4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "69ecf731-062a-454f-b45b-a4c193a14305",
+      "name": "Zalo Send Message"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-05-06T14:57:05.121Z",
+      "createdAt": "2026-05-06T14:57:05.121Z",
+      "role": "workflow:owner",
+      "workflowId": "4jJulHCqHxZzmBpd",
+      "projectId": "HmG9Xuclf9YeLvw5"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-05-06T14:57:20.823Z",
+  "versionId": "1da8dd97-e486-4946-8313-f216c880101b"
+}
