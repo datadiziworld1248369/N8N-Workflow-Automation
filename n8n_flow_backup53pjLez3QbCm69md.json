@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-05-08T16:54:28.000Z",
-    "createdAt": "2026-05-08T16:46:25.394Z",
-    "versionId": "0ddcc7fa-2cb0-48eb-8747-0710df4c7850",
+    "updatedAt": "2026-05-11T03:27:46.000Z",
+    "createdAt": "2026-05-11T03:27:43.156Z",
+    "versionId": "0707ebfc-644c-4690-b97c-6730fbe992b7",
     "workflowId": "53pjLez3QbCm69md",
     "nodes": [
       {
@@ -11,7 +11,8 @@
           "rule": {
             "interval": [
               {
-                "field": "hours"
+                "field": "hours",
+                "hoursInterval": 8
               }
             ]
           }
@@ -84,11 +85,11 @@
       }
     },
     "authors": "Trịnh Đình Duy",
-    "name": "Version 0ddcc7fa",
+    "name": "Version 0707ebfc",
     "description": "",
-    "autosaved": false
+    "autosaved": true
   },
-  "activeVersionId": "0ddcc7fa-2cb0-48eb-8747-0710df4c7850",
+  "activeVersionId": "0707ebfc-644c-4690-b97c-6730fbe992b7",
   "connections": {
     "Schedule Trigger": {
       "main": [
@@ -115,7 +116,8 @@
         "rule": {
           "interval": [
             {
-              "field": "hours"
+              "field": "hours",
+              "hoursInterval": 8
             }
           ]
         }
@@ -195,11 +197,13 @@
       ]
     },
     "node:Schedule Trigger": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        16
+      ]
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-05-08T16:46:25.692Z",
-  "versionId": "0ddcc7fa-2cb0-48eb-8747-0710df4c7850"
+  "updatedAt": "2026-05-11T03:27:43.153Z",
+  "versionId": "0707ebfc-644c-4690-b97c-6730fbe992b7"
 }
