@@ -1272,7 +1272,7 @@
       "typeVersion": 1.2,
       "position": [
         608,
-        -384
+        -608
       ],
       "id": "2d1b2937-7b0b-4920-a652-7e5d2e423c9f",
       "name": "Telegram",
@@ -1312,8 +1312,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        176,
-        -208
+        240,
+        -368
       ],
       "id": "38cba35d-5089-4399-9c09-63109756272e",
       "name": "If"
@@ -1411,8 +1411,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        736,
-        -32
+        592,
+        -384
       ],
       "id": "dc40090d-5620-4d68-87a8-62e7c1227152",
       "name": "Send a text message",
@@ -1459,7 +1459,8 @@
         "include": "except",
         "excludeTools": [
           "batch_create_records"
-        ]
+        ],
+        "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.1,
@@ -1508,7 +1509,8 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate"
   },
   "shared": [
     {
@@ -1529,6 +1531,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-09-15T10:31:28.000Z",
-  "versionId": "5f5c7eac-9bad-419e-a467-82ca9dcad272"
+  "updatedAt": "2026-07-16T08:44:23.765Z",
+  "versionId": "e3ee6c15-a334-4657-8b8f-9b5d26c3f5e2"
 }
