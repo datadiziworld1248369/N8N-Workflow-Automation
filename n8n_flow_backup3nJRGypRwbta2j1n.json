@@ -1,35 +1,7 @@
 {
-  "active": true,
-  "activeVersion": {
-    "updatedAt": "2026-05-02T04:25:28.000Z",
-    "createdAt": "2026-05-02T04:25:20.079Z",
-    "versionId": "5a044df2-e6b0-4012-9879-803b1c78a516",
-    "workflowId": "3nJRGypRwbta2j1n",
-    "nodes": [
-      {
-        "parameters": {
-          "httpMethod": "POST",
-          "path": "anh",
-          "options": {}
-        },
-        "type": "n8n-nodes-base.webhook",
-        "typeVersion": 2.1,
-        "position": [
-          0,
-          0
-        ],
-        "id": "8aaa41b3-4233-4fd4-865a-6088a1fbd4cc",
-        "name": "Webhook",
-        "webhookId": "8ece36be-0983-488d-98ef-9bcd69797cd1"
-      }
-    ],
-    "connections": {},
-    "authors": "Trịnh Đình Duy",
-    "name": "Version 5a044df2",
-    "description": "",
-    "autosaved": true
-  },
-  "activeVersionId": "5a044df2-e6b0-4012-9879-803b1c78a516",
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
   "connections": {},
   "createdAt": "2025-08-26T16:31:30.306Z",
   "id": "3nJRGypRwbta2j1n",
